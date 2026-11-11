@@ -1045,6 +1045,14 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
       </div>
     </div>
     <div class="m-field" style="margin-top:16px;">
+      <label>テーマ</label>
+      <div class="pos-opt-row">
+        <button class="pos-opt" data-theme-opt="system"><span class="pos-opt-icon">🌐</span>自動</button>
+        <button class="pos-opt" data-theme-opt="light"><span class="pos-opt-icon">☀️</span>ライト</button>
+        <button class="pos-opt" data-theme-opt="dark"><span class="pos-opt-icon">🌙</span>ダーク</button>
+      </div>
+    </div>
+    <div class="m-field" style="margin-top:16px;">
       <label>アクセス制限</label>
       <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
         <div id="pc-status" style="font-size:13px;color:var(--fg2);padding:4px 0;"></div>
@@ -1676,6 +1684,7 @@ if(!db.nutrients)db.nutrients=[];
 if(!db.settings)db.settings={addBtnPos:'center',highlightTab:'wo',calLayout:'general'};
 if(!db.settings.highlightTab)db.settings.highlightTab='wo';
 if(!db.settings.calLayout)db.settings.calLayout='general';
+if(!db.settings.theme)db.settings.theme='system';
 if(!db.calendars||!db.calendars.length){
   db.calendars=[
     {id:uid(),name:'マイカレンダー',color:'#4F46E5'}
@@ -2457,6 +2466,20 @@ document.querySelectorAll('.pos-opt[data-cal]').forEach(btn=>{
     if(st.tab==='cal')renderCal();
   };
 });
+function applyTheme(theme){
+  if(theme==='light')document.documentElement.setAttribute('data-theme','light');
+  else if(theme==='dark')document.documentElement.setAttribute('data-theme','dark');
+  else document.documentElement.removeAttribute('data-theme');
+}
+applyTheme(db.settings.theme||'system');
+document.querySelectorAll('.pos-opt[data-theme-opt]').forEach(btn=>{
+  btn.onclick=()=>{
+    db.settings.theme=btn.dataset.themeOpt;
+    save(db);
+    applyTheme(btn.dataset.themeOpt);
+    document.querySelectorAll('.pos-opt[data-theme-opt]').forEach(b=>b.classList.toggle('on',b.dataset.themeOpt===btn.dataset.themeOpt));
+  };
+});
 document.getElementById('cl-prev').onclick=()=>{
   const d=new Date(st.selDate+'T00:00:00');d.setDate(d.getDate()-1);
   st.selDate=fmt(d);st.calY=d.getFullYear();st.calM=d.getMonth();renderCal();
@@ -2690,6 +2713,7 @@ document.getElementById('hdr-settings').onclick=()=>{
   document.querySelectorAll('.pos-opt[data-pos]').forEach(b=>b.classList.toggle('on',b.dataset.pos===(s.addBtnPos||'center')));
   document.querySelectorAll('.pos-opt[data-hl]').forEach(b=>b.classList.toggle('on',b.dataset.hl===(s.highlightTab||'wo')));
   document.querySelectorAll('.pos-opt[data-cal]').forEach(b=>b.classList.toggle('on',b.dataset.cal===(s.calLayout||'general')));
+  document.querySelectorAll('.pos-opt[data-theme-opt]').forEach(b=>b.classList.toggle('on',b.dataset.themeOpt===(s.theme||'system')));
   document.getElementById('mo-settings').hidden=false;
 };
 document.querySelectorAll('.pos-opt[data-pos]').forEach(btn=>{
