@@ -379,18 +379,6 @@ input[type=number]{-moz-appearance:textfield;}
 .sleep-time-in:focus{border-color:var(--accent);outline:none;}
 .sleep-dur{font-size:14px;font-weight:700;color:var(--accent);margin-left:auto;}
 .sleep-total{font-size:13px;font-weight:700;color:var(--fg2);margin-top:10px;padding-top:8px;border-top:1px solid var(--border);text-align:right;}
-.sl-quick-btns{display:flex;gap:10px;margin-bottom:14px;}
-.sl-quick-btn{flex:1;padding:14px 8px;border:none;border-radius:var(--r-s);font-size:14px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;min-height:64px;transition:opacity .15s;}
-.sl-quick-btn:active{opacity:.65;}
-.sl-bed-btn{background:#dde1f9;color:#3730a3;}
-.sl-wake-btn{background:#fde8c8;color:#9a3412;}
-.sl-time-badge{font-size:11px;font-weight:600;opacity:.75;min-height:14px;}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .sl-bed-btn{background:#1E1B4B;color:#a5b4fc;}
-  :root:not([data-theme="light"]) .sl-wake-btn{background:#431407;color:#fdba74;}
-}
-:root[data-theme="dark"] .sl-bed-btn{background:#1E1B4B;color:#a5b4fc;}
-:root[data-theme="dark"] .sl-wake-btn{background:#431407;color:#fdba74;}
 .sl-add-nap-btn{display:block;width:100%;margin-top:10px;background:none;border:1.5px dashed var(--border);border-radius:var(--r-s);padding:13px;font-size:13px;color:var(--fg2);cursor:pointer;text-align:center;font-family:inherit;}
 .sl-add-nap-btn:hover{border-color:var(--accent);color:var(--accent);}
 .ml-legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
@@ -899,10 +887,6 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
       </div>
       <div class="card sleep-card">
         <div class="sleep-head">😴 睡眠記録</div>
-        <div class="sl-quick-btns">
-          <button id="sl-bed-now" class="sl-quick-btn sl-bed-btn">🌙 就寝<span id="sl-bed-badge" class="sl-time-badge"></span></button>
-          <button id="sl-wake-now" class="sl-quick-btn sl-wake-btn">☀️ 起床<span id="sl-wake-badge" class="sl-time-badge"></span></button>
-        </div>
         <div class="sleep-inputs">
           <div class="sleep-field"><span class="sleep-lbl">就寝</span><input type="time" id="sl-bedtime" class="sleep-time-in"></div>
           <div class="sleep-field"><span class="sleep-lbl">起床</span><input type="time" id="sl-waketime" class="sleep-time-in"></div>
@@ -1579,15 +1563,17 @@ const ACTIVE_STORE='lh_active';
   if(!aid||!profs.find(p=>p.id===aid)){aid=profs[0].id;localStorage.setItem(ACTIVE_STORE,aid);}
   window._LH_PID=aid;
 })();
-// iOS PWA standalone: env(safe-area-inset-top)がCSSカスタムプロパティで解決されない場合のJSフォールバック
+// iOS standalone: env(safe-area-inset-top)を実測して余白を加算
 (function(){
   if(!window.navigator.standalone&&!window.matchMedia('(display-mode:standalone)').matches)return;
+  const app=document.getElementById('app');if(!app)return;
   const p=document.createElement('div');
   p.setAttribute('style','position:fixed;top:env(safe-area-inset-top,0px);left:0;width:0;height:0;pointer-events:none;');
   document.documentElement.appendChild(p);
-  const st=p.getBoundingClientRect().top;
+  const measured=p.getBoundingClientRect().top;
   p.remove();
-  if(st<20){const a=document.getElementById('app');if(a)a.style.setProperty('--safe-top','44px');}
+  // 実測値+10pxの余白、最低54px
+  app.style.setProperty('--safe-top',Math.max(measured+10,54)+'px');
 })();
 const KEY='lifehub2_'+window._LH_PID;
 function load(){try{const r=localStorage.getItem(KEY);return r?JSON.parse(r):null;}catch(e){return null;}}
@@ -2727,7 +2713,7 @@ document.getElementById('mo-settings').onclick=e=>{if(e.target===e.currentTarget
 // ===== お知らせ =====
 // 新しいお知らせを追加するときは先頭に追加する（idは一意な文字列）
 const ANNOUNCEMENTS=[
-  {id:'ann_002',date:'2026-11-11',title:'アップデート v2.25.0',body:'① カレンダーに「Clarify」レイアウトを追加。日付・目標・予定・タスクだけをシンプルに表示できます。② 睡眠タブに就寝/起床のクイック記録ボタンを追加。③ iOS表示の崩れ・タップ位置のズレを修正。④ 全ボタンを押しやすいサイズに拡大。'},
+  {id:'ann_002',date:'2026-11-11',title:'アップデート v2.25.0',body:'① カレンダーに「Clarify」レイアウトを追加。日付・目標・予定・タスクだけをシンプルに表示できます。② iOS表示の崩れ・タップ位置のズレを修正。③ 全ボタンを押しやすいサイズに拡大。'},
   {id:'ann_001',date:'2026-11-10',title:'LifeHub 公開しました！',body:'いつでもどこでも使えるように、GitHubでの公開を開始しました。今後もアップデートを続けていきます。設定の「アップデート履歴」でいつでも変更内容を確認できます。'},
 ];
 (()=>{
@@ -3794,12 +3780,6 @@ function renderSleepTab(){
   document.getElementById('sl-waketime').value=sl.wakeTime||'';
   renderNaps();
   updateSlDur();
-  // クイックボタンのバッジ更新（今日の就寝・昨日からの起床）
-  const today=todayStr();
-  const ydD=new Date(today+'T00:00:00');ydD.setDate(ydD.getDate()-1);
-  const yd=fmt(ydD);
-  document.getElementById('sl-bed-badge').textContent=(db.sleep[today]||{}).bedtime||'';
-  document.getElementById('sl-wake-badge').textContent=(db.sleep[yd]||{}).wakeTime||'';
 }
 document.getElementById('sl-prev').onclick=()=>{const d=new Date(st.slDate);d.setDate(d.getDate()-1);st.slDate=fmt(d);renderSleepTab();};
 document.getElementById('sl-next').onclick=()=>{const d=new Date(st.slDate);d.setDate(d.getDate()+1);st.slDate=fmt(d);renderSleepTab();};
@@ -3813,24 +3793,6 @@ document.getElementById('sl-waketime').addEventListener('change',()=>{
   db.sleep[st.slDate].wakeTime=document.getElementById('sl-waketime').value;
   save(db);updateSlDur();
 });
-document.getElementById('sl-bed-now').onclick=()=>{
-  const now=new Date();
-  const t=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
-  const today=todayStr();
-  if(!db.sleep[today])db.sleep[today]={};
-  db.sleep[today].bedtime=t;
-  save(db);st.slDate=today;renderSleepTab();
-};
-document.getElementById('sl-wake-now').onclick=()=>{
-  const now=new Date();
-  const t=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
-  // 起床は昨夜の睡眠記録（昨日）に保存
-  const ydD=new Date(todayStr()+'T00:00:00');ydD.setDate(ydD.getDate()-1);
-  const yd=fmt(ydD);
-  if(!db.sleep[yd])db.sleep[yd]={};
-  db.sleep[yd].wakeTime=t;
-  save(db);st.slDate=yd;renderSleepTab();
-};
 document.getElementById('sl-add-nap').onclick=()=>{
   const ds=st.slDate;
   if(!db.sleep[ds])db.sleep[ds]={};
