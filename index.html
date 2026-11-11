@@ -2238,7 +2238,6 @@ function renderCal(){
   const searchRow=document.querySelector('.cal-search-row');
   if(searchRow)searchRow.hidden=isClarify;
   document.getElementById('cal-filter-row').hidden=isClarify;
-  document.getElementById('day-lbl').hidden=isClarify;
   document.getElementById('clarify-tasks').hidden=!isClarify;
   if(isClarify){
     document.getElementById('cal-grid').hidden=true;
@@ -2324,7 +2323,7 @@ function renderClarifyTasks(dateStr){
     chk.textContent=done?'✓':'';
     chk.onclick=()=>toggleTaskDoneOn(t.id,dateStr);
     const name=document.createElement('div');name.className='clarify-task-name'+(done?' done':'');
-    name.textContent=t.text+(t.repeat&&t.repeat!=='none'?` (${t.repeat==='daily'?'毎日':'毎週'})`:'');
+    name.textContent=t.title+(t.repeat&&t.repeat!=='none'?` (${t.repeat==='daily'?'毎日':'毎週'})`:'');
     row.appendChild(chk);row.appendChild(name);sec.appendChild(row);
   });
 }
