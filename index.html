@@ -119,6 +119,61 @@ input[type=number]{-moz-appearance:textfield;}
 .fab-float.pos-br{right:max(16px,env(safe-area-inset-right,0px));}
 .fab-float.pos-bl{left:max(16px,env(safe-area-inset-left,0px));}
 .fab-float:active{transform:scale(.93);}
+/* AI chat */
+.ai-fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(var(--nav-h) + 14px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(99,102,241,.5);z-index:9;transition:transform .12s;}
+.ai-fab:active{transform:scale(.93);}
+.ai-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199;opacity:0;pointer-events:none;transition:opacity .3s;}
+.ai-overlay.open{opacity:1;pointer-events:auto;}
+.ai-modal{position:fixed;bottom:0;left:0;right:0;height:75dvh;z-index:200;display:flex;flex-direction:column;background:var(--bg);max-width:480px;margin:0 auto;overflow:hidden;border-radius:20px 20px 0 0;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);}
+.ai-modal[hidden]{display:none!important;}
+.ai-modal.open{transform:translateY(0);}
+.ai-drag-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:10px auto 0;flex-shrink:0;}
+.ai-modal.sm{height:35dvh;}
+.ai-tts-btn{background:none;border:none;font-size:14px;color:var(--fg3);cursor:pointer;padding:3px 5px;line-height:1;border-radius:4px;margin-top:5px;display:block;}
+.ai-tts-btn.speaking{color:var(--accent);}
+.hist-modal{position:fixed;inset:0;z-index:300;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.5);}
+.hist-modal[hidden]{display:none!important;}
+.hist-sheet{background:var(--bg);border-radius:20px 20px 0 0;width:100%;max-width:480px;max-height:80dvh;display:flex;flex-direction:column;overflow:hidden;}
+.hist-sheet-hdr{display:flex;align-items:center;gap:8px;padding:16px 16px 12px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.hist-sheet-title{flex:1;font-size:16px;font-weight:700;}
+.hist-sheet-body{flex:1;overflow-y:auto;padding:12px 16px 20px;}
+.hist-row{padding:10px 0;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:3px;}
+.hist-row:last-child{border:none;}
+.hist-row-date{font-size:13px;font-weight:600;color:var(--fg);}
+.hist-row-sets{font-size:12px;color:var(--fg2);line-height:1.6;}
+.hist-row-memo{font-size:12px;color:var(--accent);font-style:italic;}
+.hist-btn{background:none;border:none;font-size:14px;color:var(--fg3);cursor:pointer;padding:5px 7px;line-height:1;border-radius:4px;flex-shrink:0;}
+.hist-btn:hover{color:var(--accent);background:var(--surface2);}
+.ai-modal-hdr{display:flex;align-items:center;gap:8px;padding:10px 12px 12px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.ai-modal-hdr h2{flex:1;font-size:16px;font-weight:700;}
+.ai-hdr-btn{background:none;border:none;font-size:20px;color:var(--fg2);cursor:pointer;padding:6px;line-height:1;}
+.ai-hist-panel{position:absolute;inset:0;z-index:10;background:var(--bg);display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .25s ease;border-radius:20px 20px 0 0;}
+.ai-hist-panel.open{transform:translateX(0);}
+.ai-hist-hdr{display:flex;align-items:center;gap:8px;padding:10px 12px 12px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.ai-hist-hdr h2{flex:1;font-size:16px;font-weight:700;}
+.ai-hist-list{flex:1;overflow-y:auto;padding:8px 0;}
+.ai-hist-item{display:flex;flex-direction:column;gap:2px;padding:12px 16px;cursor:pointer;border-bottom:1px solid var(--border);}
+.ai-hist-item:active{background:var(--surface2);}
+.ai-hist-item.active{background:var(--surface2);}
+.ai-hist-item-title{font-size:14px;font-weight:500;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ai-hist-item-date{font-size:12px;color:var(--fg2);}
+.ai-hist-empty{text-align:center;color:var(--fg2);font-size:14px;padding:40px 16px;}
+.ai-new-btn{margin:12px 16px;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;}
+.ai-close{background:none;border:none;font-size:22px;color:var(--fg2);cursor:pointer;padding:6px;}
+.ai-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
+.ai-msg{max-width:85%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.5;}
+.ai-msg.user{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:4px;}
+.ai-msg.ai{align-self:flex-start;background:var(--surface);color:var(--fg);border-bottom-left-radius:4px;}
+.ai-msg.ai.thinking{color:var(--fg2);font-style:italic;}
+.ai-input-row{display:flex;gap:8px;padding:12px 16px calc(12px + var(--safe-bot));border-top:1px solid var(--border);flex-shrink:0;}
+.ai-input{flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:16px;padding:10px 16px;font-size:14px;font-family:inherit;color:var(--fg);outline:none;resize:none;overflow-y:hidden;line-height:1.4;min-height:42px;max-height:160px;overflow-y:auto;}
+.ai-input:focus{border-color:var(--accent);}
+.ai-send{width:42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ai-send:disabled{opacity:.4;}
+.ai-mic{width:42px;height:42px;border-radius:50%;background:var(--surface2);border:1.5px solid var(--border);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,border-color .2s;}
+.ai-mic.recording{background:#ef4444;border-color:#ef4444;animation:mic-pulse 1s infinite;}
+@keyframes mic-pulse{0%,100%{opacity:1;}50%{opacity:.6;}}
+.ai-empty{text-align:center;color:var(--fg2);font-size:13px;padding:40px 20px;line-height:1.6;}
 .hdr-settings-btn{background:none;border:none;color:var(--fg2);cursor:pointer;padding:10px;font-size:17px;line-height:1;border-radius:8px;}
 .hdr-settings-btn:hover{background:var(--surface2);}
 .prof-btn{background:none;border:none;cursor:pointer;padding:7px;display:flex;align-items:center;}
@@ -379,6 +434,18 @@ input[type=number]{-moz-appearance:textfield;}
 .sleep-time-in:focus{border-color:var(--accent);outline:none;}
 .sleep-dur{font-size:14px;font-weight:700;color:var(--accent);margin-left:auto;}
 .sleep-total{font-size:13px;font-weight:700;color:var(--fg2);margin-top:10px;padding-top:8px;border-top:1px solid var(--border);text-align:right;}
+.sl-quick-btns{display:flex;gap:10px;margin-bottom:14px;}
+.sl-quick-btn{flex:1;padding:14px 8px;border:none;border-radius:var(--r-s);font-size:14px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;min-height:64px;transition:opacity .15s;}
+.sl-quick-btn:active{opacity:.65;}
+.sl-bed-btn{background:#dde1f9;color:#3730a3;}
+.sl-wake-btn{background:#fde8c8;color:#9a3412;}
+.sl-time-badge{font-size:11px;font-weight:600;opacity:.75;min-height:14px;}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .sl-bed-btn{background:#1E1B4B;color:#a5b4fc;}
+  :root:not([data-theme="light"]) .sl-wake-btn{background:#431407;color:#fdba74;}
+}
+:root[data-theme="dark"] .sl-bed-btn{background:#1E1B4B;color:#a5b4fc;}
+:root[data-theme="dark"] .sl-wake-btn{background:#431407;color:#fdba74;}
 .sl-add-nap-btn{display:block;width:100%;margin-top:10px;background:none;border:1.5px dashed var(--border);border-radius:var(--r-s);padding:13px;font-size:13px;color:var(--fg2);cursor:pointer;text-align:center;font-family:inherit;}
 .sl-add-nap-btn:hover{border-color:var(--accent);color:var(--accent);}
 .ml-legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
@@ -484,6 +551,20 @@ input[type=number]{-moz-appearance:textfield;}
 .goal-link-badge{font-size:11px;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);padding:1px 6px;border-radius:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px;display:inline-block;vertical-align:middle;}
 .tk-loc{font-size:11px;color:var(--fg2);margin-top:2px;}
 .tk-memo{font-size:11px;color:var(--fg2);margin-top:3px;line-height:1.4;white-space:pre-wrap;word-break:break-word;}
+.tk-progress-card{background:var(--surface);border-radius:var(--r);padding:14px 16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.tk-progress-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.tk-progress-hdr-title{font-size:13px;font-weight:700;color:var(--fg);}
+.tk-progress-refresh{background:none;border:none;font-size:16px;color:var(--fg2);cursor:pointer;padding:4px;line-height:1;transition:opacity .2s;}
+.tk-progress-refresh:disabled{opacity:.4;}
+.tk-progress-pct{font-size:26px;font-weight:800;color:var(--accent);margin-bottom:8px;line-height:1;}
+.tk-progress-bar-wrap{background:var(--surface2);border-radius:99px;height:10px;overflow:hidden;}
+.tk-progress-bar{height:100%;border-radius:99px;background:linear-gradient(90deg,#6366f1,#8b5cf6);transition:width .7s cubic-bezier(.4,0,.2,1);}
+.tk-progress-status{font-size:12px;color:var(--fg2);margin-top:6px;}
+.tk-ai-score{font-size:11px;color:#8b5cf6;font-weight:700;}
+.tk-daily-memo{margin-top:6px;margin-left:32px;}
+.tk-daily-memo-btn{background:none;border:1px dashed var(--border);border-radius:6px;padding:5px 10px;font-size:12px;color:var(--fg2);cursor:pointer;width:100%;text-align:left;line-height:1.4;}
+.tk-daily-memo-input{width:100%;min-height:64px;background:var(--surface2);border:1.5px solid var(--accent);border-radius:6px;padding:6px 8px;font-size:13px;font-family:inherit;color:var(--fg);outline:none;resize:vertical;box-sizing:border-box;line-height:1.5;margin-top:4px;display:none;}
+.tk-daily-memo-input.open{display:block;}
 .today-tasks-head{font-size:13px;font-weight:700;color:var(--fg);margin:12px 0 6px;padding-left:2px;}
 .today-tk-item{border-left:3px solid var(--accent);}
 .repeat-badge{font-size:11px;color:#059669;background:rgba(5,150,105,.12);padding:1px 6px;border-radius:20px;}
@@ -779,6 +860,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
       <span style="font-size:1rem;font-weight:700;color:var(--fg);">タスク</span>
       <button id="tk-add-btn" style="width:36px;height:36px;border-radius:50%;border:none;background:var(--accent);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">＋</button>
     </div>
+    <div id="tk-progress-wrap"></div>
     <div id="tk-today-section"></div>
     <div class="filter-row">
       <button class="fbtn on" data-f="all">すべて</button>
@@ -887,6 +969,10 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
       </div>
       <div class="card sleep-card">
         <div class="sleep-head">😴 睡眠記録</div>
+        <div class="sl-quick-btns">
+          <button id="sl-bed-now" class="sl-quick-btn sl-bed-btn">🌙 就寝<span id="sl-bed-badge" class="sl-time-badge"></span></button>
+          <button id="sl-wake-now" class="sl-quick-btn sl-wake-btn">☀️ 起床<span id="sl-wake-badge" class="sl-time-badge"></span></button>
+        </div>
         <div class="sleep-inputs">
           <div class="sleep-field"><span class="sleep-lbl">就寝</span><input type="time" id="sl-bedtime" class="sleep-time-in"></div>
           <div class="sleep-field"><span class="sleep-lbl">起床</span><input type="time" id="sl-waketime" class="sleep-time-in"></div>
@@ -979,6 +1065,46 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
 </div>
 
 <button class="fab-float pos-br" id="fab-float" hidden>＋</button>
+<button class="ai-fab" id="ai-fab" title="AIアシスタント">✨</button>
+<div class="ai-overlay" id="ai-overlay"></div>
+<div class="ai-modal" id="ai-modal" hidden>
+  <div class="ai-drag-handle"></div>
+  <!-- 履歴パネル -->
+  <div class="ai-hist-panel" id="ai-hist-panel">
+    <div class="ai-hist-hdr">
+      <button class="ai-hdr-btn" id="ai-hist-close">←</button>
+      <h2>チャット履歴</h2>
+    </div>
+    <button class="ai-new-btn" id="ai-new-chat">✏ 新しいチャット</button>
+    <div class="ai-hist-list" id="ai-hist-list"></div>
+  </div>
+  <!-- メインチャット -->
+  <div class="ai-modal-hdr">
+    <button class="ai-hdr-btn" id="ai-hist-open">☰</button>
+    <h2 id="ai-chat-title">AIアシスタント</h2>
+    <button class="ai-hdr-btn" id="ai-size-toggle" title="サイズ切替">⤢</button>
+    <button class="ai-close" id="ai-close">✕</button>
+  </div>
+  <div class="ai-messages" id="ai-messages">
+    <div class="ai-empty">今日の予定・タスク・目標を把握しています。<br>何でも聞いてください。</div>
+  </div>
+  <div class="ai-input-row">
+    <button class="ai-mic" id="ai-mic" title="音声入力">🎤</button>
+    <textarea class="ai-input" id="ai-input" placeholder="メッセージを入力..." autocomplete="off" rows="1"></textarea>
+    <button class="ai-send" id="ai-send">▶</button>
+  </div>
+</div>
+
+<!-- 履歴モーダル -->
+<div class="hist-modal" id="hist-modal" hidden>
+  <div class="hist-sheet">
+    <div class="hist-sheet-hdr">
+      <span class="hist-sheet-title" id="hist-modal-title">履歴</span>
+      <button class="ai-close" id="hist-modal-close">✕</button>
+    </div>
+    <div class="hist-sheet-body" id="hist-modal-body"></div>
+  </div>
+</div>
 
 <div class="overlay" id="mo-profiles" hidden>
   <div class="modal" style="max-height:90vh;overflow-y:auto;">
@@ -1082,7 +1208,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
     <div class="m-actions" style="margin-top:16px;">
       <button class="btn-ok" id="settings-close" style="width:100%;">閉じる</button>
     </div>
-    <p style="text-align:center;font-size:11px;color:var(--fg3);margin-top:12px;">LifeHub v1.0</p>
+    <p style="text-align:center;font-size:11px;color:var(--fg3);margin-top:12px;">LifeHub v1.0.2</p>
   </div>
 </div>
 
@@ -1403,8 +1529,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
       </select>
     </div>
     <div class="m-field"><label>場所（任意）</label><input id="te-location" placeholder="例: 国会議事堂"></div>
-    <div class="m-field"><label>自由記述（任意）</label>
-      <textarea id="te-memo" placeholder="メモ・詳細など" style="width:100%;min-height:72px;background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--r-s);padding:8px 10px;font-size:13px;font-family:inherit;color:var(--fg);outline:none;resize:vertical;box-sizing:border-box;line-height:1.5;"></textarea>
+    <div class="m-field"><label>メモ（任意）</label>
+      <textarea id="te-memo" placeholder="タスクの詳細・やり方など" style="width:100%;min-height:72px;background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--r-s);padding:8px 10px;font-size:13px;font-family:inherit;color:var(--fg);outline:none;resize:vertical;box-sizing:border-box;line-height:1.5;"></textarea>
     </div>
     <div id="tk-photo-strip-wrap"></div>
     <div class="m-actions">
@@ -1571,16 +1697,19 @@ const ACTIVE_STORE='lh_active';
   if(!aid||!profs.find(p=>p.id===aid)){aid=profs[0].id;localStorage.setItem(ACTIVE_STORE,aid);}
   window._LH_PID=aid;
 })();
-// iOS standalone: env(safe-area-inset-top)を実測して余白を加算
+// iOS: body{position:fixed}環境でscrollOffsetが蓄積するバグをリセット（全モード共通）
+window.scrollTo(0,0);
+document.addEventListener('scroll',function(){window.scrollTo(0,0);},{passive:true});
+// iOS standalone: safe-area-inset-topを実測してCSS変数に適用
 (function(){
   if(!window.navigator.standalone&&!window.matchMedia('(display-mode:standalone)').matches)return;
+  if(window._DEV_MODE)return;
   const app=document.getElementById('app');if(!app)return;
   const p=document.createElement('div');
   p.setAttribute('style','position:fixed;top:env(safe-area-inset-top,0px);left:0;width:0;height:0;pointer-events:none;');
   document.documentElement.appendChild(p);
   const measured=p.getBoundingClientRect().top;
   p.remove();
-  // 実測値+10pxの余白、最低54px
   app.style.setProperty('--safe-top',Math.max(measured+10,54)+'px');
 })();
 const KEY='lifehub2_'+window._LH_PID;
@@ -1680,11 +1809,15 @@ Object.values(db.workouts||{}).forEach(exs=>{
 });
 // migrate repeating tasks: add completedDates array
 (db.tasks||[]).forEach(t=>{if(t.repeat&&!t.completedDates)t.completedDates=[];});
+// migrate tasks: add dailyMemos and aiProgress
+(db.tasks||[]).forEach(t=>{if(!t.dailyMemos)t.dailyMemos={};if(!('aiProgress' in t))t.aiProgress=null;});
 if(!db.nutrients)db.nutrients=[];
+if(!db.aiChats)db.aiChats=[];
 if(!db.settings)db.settings={addBtnPos:'center',highlightTab:'wo',calLayout:'general'};
 if(!db.settings.highlightTab)db.settings.highlightTab='wo';
 if(!db.settings.calLayout)db.settings.calLayout='general';
 if(!db.settings.theme)db.settings.theme='system';
+if(!db.settings.workerUrl)db.settings.workerUrl=''; // legacy compat
 if(!db.calendars||!db.calendars.length){
   db.calendars=[
     {id:uid(),name:'マイカレンダー',color:'#4F46E5'}
@@ -2732,11 +2865,15 @@ document.querySelectorAll('.pos-opt[data-hl]').forEach(btn=>{
     if(st.tab==='other')renderOther();
   };
 });
-document.getElementById('settings-close').onclick=()=>{document.getElementById('mo-settings').hidden=true;};
+document.getElementById('settings-close').onclick=()=>{
+  save(db);
+  document.getElementById('mo-settings').hidden=true;
+};
 document.getElementById('mo-settings').onclick=e=>{if(e.target===e.currentTarget)e.currentTarget.hidden=true;};
 // ===== お知らせ =====
 // 新しいお知らせを追加するときは先頭に追加する（idは一意な文字列）
 const ANNOUNCEMENTS=[
+  {id:'ann_003',date:'2026-11-12',title:'アップデート v1.0.2',body:'① AIアシスタントが画面下から開くシートに変わりました。② シートの大きさを切り替えて、カレンダーを見ながら会話できます。③ AI返答を音声で読み上げる🔊ボタンを追加。④ タスク・筋トレ種目の過去履歴を📋ボタンで確認できます。⑤ タップ位置のズレを修正。'},
   {id:'ann_002',date:'2026-11-11',title:'アップデート v2.25.0',body:'① カレンダーに「Clarify」レイアウトを追加。日付・目標・予定・タスクだけをシンプルに表示できます。② iOS表示の崩れ・タップ位置のズレを修正。③ 全ボタンを押しやすいサイズに拡大。'},
   {id:'ann_001',date:'2026-11-10',title:'LifeHub 公開しました！',body:'いつでもどこでも使えるように、GitHubでの公開を開始しました。今後もアップデートを続けていきます。設定の「アップデート履歴」でいつでも変更内容を確認できます。'},
 ];
@@ -2875,7 +3012,10 @@ if(window._DEV_MODE){
     document.getElementById('dev-date-label').textContent='今日に戻した';
   };
 }
+const WORKER_URL='https://lifehub-ai.y-atsuhisa7234.workers.dev';
 const CHANGELOG=[
+  {v:'v1.0.2',d:'音声読み上げ・サイズ切替・履歴機能を追加'},
+  {v:'v1.0.1',d:'AIチャットをボトムシート表示に変更'},
   {v:'v1.0',d:'初期リリース'},
 ];
 (()=>{
@@ -3092,8 +3232,14 @@ function renderTasks(){
     const el=document.createElement('div');el.className='card tk-item'+(doneToday?' done':'');
     const goalName=task.goalId?(db.goals||[]).find(g=>g.id===task.goalId)?.text:'';
     const histDates=(task.completedDates||[]).slice().sort().reverse();
+    const dailyMemos=task.dailyMemos||{};
     const histHtml=task.repeat&&histDates.length?
-      `<div class="tk-repeat-hist"><span class="tk-hist-toggle">✓ 達成 ${histDates.length}回 ▾</span><div class="tk-hist-dates" hidden>${histDates.map(d=>`<span class="tk-hist-date">${jpDate(d)}</span>`).join('')}</div></div>`:'';
+      `<div class="tk-repeat-hist"><span class="tk-hist-toggle">✓ 達成 ${histDates.length}回 ▾</span><div class="tk-hist-dates" hidden>${histDates.map(d=>`<span class="tk-hist-date">${jpDate(d)}${dailyMemos[d]?' 📝':''}</span>`).join('')}</div></div>`:'';
+    const todayMemoVal=dailyMemos[todayStr()]||'';
+    const dailyMemoHtml=task.repeat?`<div class="tk-daily-memo"><button class="tk-daily-memo-btn">${todayMemoVal?'📝 '+esc(todayMemoVal.slice(0,40))+(todayMemoVal.length>40?'…':''):'📝 今日のメモを追加...'}</button><textarea class="tk-daily-memo-input" placeholder="今日の気づき・できたこと・できなかったこと...">${esc(todayMemoVal)}</textarea></div>`:'';
+    const score=calcTaskScore(task);
+    const aiScoreHtml=(!doneToday&&score!==null)?`<span class="tk-ai-score">✦ ${score}%</span>`:'';
+    const aiCommentHtml=(!doneToday&&task.aiProgress?.comment)?`<div class="tk-memo" style="color:#8b5cf6;">${esc(task.aiProgress.comment)}</div>`:'';
     el.innerHTML=`<button class="check-btn${doneToday?' on':''}" aria-label="完了">✓</button>
       <div class="tk-info"><div class="tk-title">${esc(task.title)}</div>
       ${task.location?`<div class="tk-loc">📍 ${esc(task.location)}</div>`:''}
@@ -3102,10 +3248,14 @@ function renderTasks(){
         ${task.repeat?`<span class="repeat-badge">${repLbl[task.repeat]}</span>`:''}
         ${task.due&&!task.repeat?`<span>${jpDate(task.due)}まで</span>`:''}
         ${goalName?`<span class="goal-link-badge">🎯 ${esc(goalName)}</span>`:''}
+        ${aiScoreHtml}
       </div>
       ${!task.repeat&&task.done&&task.completedAt?`<div class="tk-completed-at">✓ 完了: ${jpDate(task.completedAt)}</div>`:''}
       ${histHtml}
+      ${dailyMemoHtml}
+      ${aiCommentHtml}
       ${task.memo?`<div class="tk-memo">${esc(task.memo)}</div>`:''}</div>
+      ${(task.repeat&&(task.completedDates||[]).length)||(!task.repeat&&task.completedAt)?`<button class="hist-btn" title="達成履歴">📋</button>`:''}
       <button class="edit-btn">✎</button>
       <button class="del-btn">×</button>`;
     const tkPs=db.taskPhotos[task.id]||[];
@@ -3121,9 +3271,24 @@ function renderTasks(){
         histToggle.textContent=histToggle.textContent.replace(d.hidden?'▴':'▾',d.hidden?'▾':'▴');
       };
     }
+    const dmBtn=el.querySelector('.tk-daily-memo-btn');
+    if(dmBtn){
+      const dmInput=el.querySelector('.tk-daily-memo-input');
+      dmBtn.onclick=()=>{dmInput.classList.add('open');dmInput.focus();};
+      dmInput.addEventListener('blur',()=>{
+        const val=dmInput.value.trim();
+        if(!task.dailyMemos)task.dailyMemos={};
+        if(val)task.dailyMemos[todayStr()]=val;
+        else delete task.dailyMemos[todayStr()];
+        save(db);
+        dmBtn.textContent=val?'📝 '+val.slice(0,40)+(val.length>40?'…':''):'📝 今日のメモを追加...';
+        dmInput.classList.remove('open');
+      });
+    }
     el.querySelector('.check-btn').onclick=()=>toggleTaskDone(task.id);
     el.querySelector('.edit-btn').onclick=()=>openTaskEdit(task);
     el.querySelector('.del-btn').onclick=()=>{db.tasks=db.tasks.filter(t=>t.id!==task.id);delete db.taskPhotos[task.id];save(db);renderTasks();};
+    const hb=el.querySelector('.hist-btn');if(hb)hb.onclick=()=>openTaskHistory(task);
     list.appendChild(el);
   };
   incomplete.forEach(renderItem);
@@ -3132,7 +3297,94 @@ function renderTasks(){
     sep.textContent='完了済み';list.appendChild(sep);
   }
   done.forEach(renderItem);
+  renderProgressMeter();
 }
+
+// ── タスク進捗メーター ──────────────────────────────────────
+let _aiEstimating=false;
+let _aiProgressChecked=false;
+
+function calcTaskScore(task){
+  if(!task.repeat&&task.done)return 100;
+  if(task.repeat){
+    const cut=new Date();cut.setDate(cut.getDate()-30);
+    const cutStr=cut.toISOString().slice(0,10);
+    const recent=(task.completedDates||[]).filter(d=>d>=cutStr).length;
+    const expected={daily:30,weekly:4,monthly:1}[task.repeat]||4;
+    return Math.min(100,Math.round(recent/expected*100));
+  }
+  return task.aiProgress?task.aiProgress.score:null;
+}
+
+function renderProgressMeter(){
+  const wrap=document.getElementById('tk-progress-wrap');
+  if(!wrap)return;
+  const active=(db.tasks||[]).filter(t=>!(!t.repeat&&t.done));
+  if(!active.length){wrap.innerHTML='';return;}
+  const scores=active.map(calcTaskScore).filter(s=>s!==null);
+  const avg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):null;
+  const needsAI=active.some(t=>!t.repeat&&!t.done&&!t.aiProgress);
+  const isStale=active.some(t=>!t.repeat&&!t.done&&t.aiProgress&&(Date.now()-new Date(t.aiProgress.updatedAt).getTime())>12*3600*1000);
+  const pct=avg!==null?avg+'%':'--';
+  const barW=avg!==null?avg:0;
+  const color=barW>=70?'linear-gradient(90deg,#22c55e,#16a34a)':barW>=40?'linear-gradient(90deg,#f59e0b,#d97706)':'linear-gradient(90deg,#6366f1,#8b5cf6)';
+  wrap.innerHTML=`<div class="tk-progress-card">
+    <div class="tk-progress-hdr">
+      <span class="tk-progress-hdr-title">📊 全タスク進捗</span>
+      <button class="tk-progress-refresh" id="tk-prg-refresh">🔄</button>
+    </div>
+    <div class="tk-progress-pct" style="color:${barW>=70?'#22c55e':barW>=40?'#f59e0b':'var(--accent)'};">${pct}</div>
+    <div class="tk-progress-bar-wrap"><div class="tk-progress-bar" style="width:${barW}%;background:${color};"></div></div>
+    <div class="tk-progress-status" id="tk-prg-status">${needsAI||isStale?'AIが進捗を評価中..':'評価済み'}</div>
+  </div>`;
+  document.getElementById('tk-prg-refresh').onclick=()=>estimateProgressWithAI(true);
+  if((needsAI||isStale)&&!_aiEstimating&&!_aiProgressChecked){
+    _aiProgressChecked=true;
+    estimateProgressWithAI(false);
+  }
+}
+
+async function estimateProgressWithAI(manual){
+  if(_aiEstimating&&!manual)return;
+  const workerUrl=WORKER_URL;
+  if(!workerUrl)return;
+  const active=(db.tasks||[]).filter(t=>!(!t.repeat&&t.done));
+  const targets=active.filter(t=>!t.repeat&&!t.done);
+  if(!targets.length)return;
+  _aiEstimating=true;
+  const btn=document.getElementById('tk-prg-refresh');
+  const status=document.getElementById('tk-prg-status');
+  if(btn)btn.disabled=true;
+  if(status)status.textContent='🤖 AIが進捗を評価中...';
+  const cut=new Date();cut.setDate(cut.getDate()-14);const cutStr=cut.toISOString().slice(0,10);
+  const recentChat=(db.aiChats||[]).slice(0,5).flatMap(c=>c.messages||[]).filter(m=>m.role==='user').map(m=>m.content).join('\n').slice(0,800);
+  const taskList=targets.map(t=>{
+    const memos=Object.entries(t.dailyMemos||{}).filter(([d])=>d>=cutStr).sort(([a],[b])=>b.localeCompare(a)).map(([d,m])=>`${d}: ${m}`).join('\n');
+    return `---\nID: ${t.id}\nタイトル: ${t.title}${t.memo?'\n詳細: '+t.memo:''}${memos?'\n記録:\n'+memos:''}`;
+  }).join('\n');
+  const prompt=`以下のタスクの進捗を、ユーザーの記録をもとに評価してください。\n\n【最近のユーザー発言（参考）】\n${recentChat||'なし'}\n\n【タスク一覧】\n${taskList}\n\nJSON配列のみ返してください（他テキスト不要）:\n[{"id":"...","score":整数0〜100,"comment":"20字以内のポジティブなコメント"}]`;
+  try{
+    const res=await fetch(workerUrl,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({model:'claude-sonnet-5-5',max_tokens:600,system:'あなたはLifeHubのAI進捗評価アシスタントです。ユーザーのモチベーション維持・向上を最優先に評価してください。正確さより励ましを重視し、少しでも取り組みの記録があれば高めに評価してください。全く記録がない場合でも最低20点を付けてください。コメントは必ずポジティブなトーンで20字以内にしてください。',messages:[{role:'user',content:prompt}]})});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const data=await res.json();
+    const text=data.content?.find(c=>c.type==='text')?.text||'';
+    const m=text.match(/\[[\s\S]*\]/);
+    if(m){
+      const results=JSON.parse(m[0]);
+      const now=new Date().toISOString();
+      results.forEach(r=>{const t=db.tasks.find(t=>t.id===r.id);if(t)t.aiProgress={score:r.score,comment:r.comment,updatedAt:now};});
+      save(db);
+      const s=document.getElementById('tk-prg-status');if(s)s.textContent='評価完了 ✓';
+      renderTasks();
+    }
+  }catch(e){
+    const s=document.getElementById('tk-prg-status');if(s)s.textContent='評価エラー: '+e.message;
+  }finally{
+    _aiEstimating=false;
+    const b=document.getElementById('tk-prg-refresh');if(b)b.disabled=false;
+  }
+}
+
 let _editTaskId=null;
 function _openTaskModal(task){
   const isEdit=!!task;
@@ -3173,7 +3425,7 @@ document.getElementById('te-ok').onclick=()=>{
     db.taskPhotos[_editTaskId]=_tkPhotos;
   } else {
     const newId=uid();
-    db.tasks.push({id:newId,title,done:false,pri,due,goalId,repeat,location,memo});
+    db.tasks.push({id:newId,title,done:false,pri,due,goalId,repeat,location,memo,dailyMemos:{}});
     db.taskPhotos[newId]=_tkPhotos;
   }
   save(db);document.getElementById('mo-task-edit').hidden=true;renderTasks();renderGoals();
@@ -3416,6 +3668,7 @@ function buildExCard(ex,xi,ds){
       ${catBadge}<span class="ex-name">${esc(ex.name)}</span>
       <button class="ex-rename" data-xi="${xi}" title="名前を変更">✎</button>
       <div class="ex-acts">
+        <button class="ex-hist-btn" data-xi="${xi}" title="過去の記録">📋</button>
         <button class="add-set-btn" data-xi="${xi}">＋ セット</button>
         <button class="del-ex" data-xi="${xi}">削除</button>
       </div>
@@ -3470,6 +3723,9 @@ function renderWo(){
     });
     list.querySelectorAll('.del-ex').forEach(btn=>{
       btn.onclick=()=>{db.workouts[ds].splice(+btn.dataset.xi,1);save(db);renderWo();};
+    });
+    list.querySelectorAll('.ex-hist-btn').forEach(btn=>{
+      btn.onclick=()=>{const ex=db.workouts[ds][+btn.dataset.xi];if(ex)openExerciseHistory(ex.name);};
     });
     list.querySelectorAll('.ex-rename').forEach(btn=>{
       btn.onclick=()=>{
@@ -3804,6 +4060,11 @@ function renderSleepTab(){
   document.getElementById('sl-waketime').value=sl.wakeTime||'';
   renderNaps();
   updateSlDur();
+  const today=todayStr();
+  const ydD=new Date(today+'T00:00:00');ydD.setDate(ydD.getDate()-1);
+  const yd=fmt(ydD);
+  document.getElementById('sl-bed-badge').textContent=(db.sleep[today]||{}).bedtime||'';
+  document.getElementById('sl-wake-badge').textContent=(db.sleep[yd]||{}).wakeTime||'';
 }
 document.getElementById('sl-prev').onclick=()=>{const d=new Date(st.slDate);d.setDate(d.getDate()-1);st.slDate=fmt(d);renderSleepTab();};
 document.getElementById('sl-next').onclick=()=>{const d=new Date(st.slDate);d.setDate(d.getDate()+1);st.slDate=fmt(d);renderSleepTab();};
@@ -3817,6 +4078,23 @@ document.getElementById('sl-waketime').addEventListener('change',()=>{
   db.sleep[st.slDate].wakeTime=document.getElementById('sl-waketime').value;
   save(db);updateSlDur();
 });
+document.getElementById('sl-bed-now').onclick=()=>{
+  const now=new Date();
+  const t=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  const today=todayStr();
+  if(!db.sleep[today])db.sleep[today]={};
+  db.sleep[today].bedtime=t;
+  save(db);st.slDate=today;renderSleepTab();
+};
+document.getElementById('sl-wake-now').onclick=()=>{
+  const now=new Date();
+  const t=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  const ydD=new Date(todayStr()+'T00:00:00');ydD.setDate(ydD.getDate()-1);
+  const yd=fmt(ydD);
+  if(!db.sleep[yd])db.sleep[yd]={};
+  db.sleep[yd].wakeTime=t;
+  save(db);st.slDate=yd;renderSleepTab();
+};
 document.getElementById('sl-add-nap').onclick=()=>{
   const ds=st.slDate;
   if(!db.sleep[ds])db.sleep[ds]={};
@@ -4225,6 +4503,315 @@ document.getElementById('btn-pc-clear').onclick=()=>{
 };
 // Init settings UI
 window.updatePcSettingsUI();
+
+// ── AIチャット ────────────────────────────────────────────
+(function(){
+  const UID=()=>Date.now().toString(36)+Math.random().toString(36).slice(2);
+  let currentSessionId=null;
+  let aiHistory=[];
+
+  const AI_TOOLS=[
+    {name:'add_event',description:'カレンダーに予定を追加する',input_schema:{type:'object',properties:{title:{type:'string',description:'予定のタイトル'},date:{type:'string',description:'日付（YYYY-MM-DD）'},time:{type:'string',description:'開始時刻（HH:MM）終日なら省略'},time_end:{type:'string',description:'終了時刻（HH:MM）省略可'},location:{type:'string',description:'場所（省略可）'},memo:{type:'string',description:'メモ（省略可）'}},required:['title','date']}},
+    {name:'add_task',description:'タスクを追加する。titleには短いタスク名、memoにはタスクの具体的な内容・やり方・注意点を記入する',input_schema:{type:'object',properties:{title:{type:'string',description:'短いタスク名（例: ベンチプレス練習）'},priority:{type:'string',enum:['high','mid','low'],description:'優先度 high=高/mid=中/low=低'},due:{type:'string',description:'期限（YYYY-MM-DD）省略可'},memo:{type:'string',description:'タスクの具体的な内容・やり方・ポイントなど'}},required:['title']}},
+    {name:'complete_task',description:'タスクを完了にする。コンテキストのタスクIDを使う',input_schema:{type:'object',properties:{task_id:{type:'string',description:'タスクのID（コンテキストの[id:...]）'}},required:['task_id']}},
+    {name:'add_goal',description:'目標を追加する',input_schema:{type:'object',properties:{title:{type:'string',description:'目標のタイトル'},level:{type:'string',enum:['high','mid','low'],description:'重要度'},due:{type:'string',description:'期限（YYYY-MM-DD）省略可'}},required:['title']}},
+  ];
+
+  // ── セッション管理 ──
+  function saveSession(){
+    if(!currentSessionId||!aiHistory.length)return;
+    const idx=db.aiChats.findIndex(c=>c.id===currentSessionId);
+    const firstUser=aiHistory.find(m=>m.role==='user');
+    const title=firstUser?firstUser.content.slice(0,40)+(firstUser.content.length>40?'…':''):'新しいチャット';
+    const sess={id:currentSessionId,title,updatedAt:new Date().toISOString(),messages:[...aiHistory]};
+    if(idx>=0)db.aiChats[idx]=sess;
+    else db.aiChats.unshift(sess);
+    save(db);
+  }
+  function startNewSession(){
+    saveSession();
+    currentSessionId=UID();
+    aiHistory=[];
+    const wrap=document.getElementById('ai-messages');
+    wrap.innerHTML='<div class="ai-empty">今日の予定・タスク・目標を把握しています。<br>何でも聞いてください。</div>';
+    document.getElementById('ai-chat-title').textContent='AIアシスタント';
+  }
+  function loadSession(sess){
+    saveSession();
+    currentSessionId=sess.id;
+    aiHistory=[...sess.messages];
+    const wrap=document.getElementById('ai-messages');
+    wrap.innerHTML='';
+    for(const m of aiHistory){
+      const div=document.createElement('div');
+      div.className='ai-msg '+(m.role==='user'?'user':'ai');
+      div.innerHTML=safeHtml(m.content);
+      wrap.appendChild(div);
+    }
+    wrap.scrollTop=wrap.scrollHeight;
+    document.getElementById('ai-chat-title').textContent=sess.title.slice(0,20)+(sess.title.length>20?'…':'');
+  }
+
+  // ── 履歴パネル ──
+  function renderHistList(){
+    const list=document.getElementById('ai-hist-list');
+    list.innerHTML='';
+    if(!db.aiChats.length){
+      list.innerHTML='<div class="ai-hist-empty">履歴はありません</div>';
+      return;
+    }
+    for(const sess of db.aiChats){
+      const item=document.createElement('div');
+      item.className='ai-hist-item'+(sess.id===currentSessionId?' active':'');
+      const d=new Date(sess.updatedAt);
+      const dateStr=`${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+      item.innerHTML=`<div class="ai-hist-item-title">${safeHtml(sess.title)}</div><div class="ai-hist-item-date">${dateStr}</div>`;
+      item.onclick=()=>{
+        loadSession(sess);
+        closeHistPanel();
+      };
+      list.appendChild(item);
+    }
+  }
+  function openHistPanel(){
+    renderHistList();
+    document.getElementById('ai-hist-panel').classList.add('open');
+  }
+  function closeHistPanel(){
+    document.getElementById('ai-hist-panel').classList.remove('open');
+  }
+
+  // ── 表示 ──
+  function safeHtml(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
+  function speakText(text,btn){
+    if(!window.speechSynthesis)return;
+    if(window.speechSynthesis.speaking){
+      window.speechSynthesis.cancel();
+      document.querySelectorAll('.ai-tts-btn.speaking').forEach(b=>{b.classList.remove('speaking');b.textContent='🔊';});
+      if(btn.classList.contains('was-speaking')){btn.classList.remove('was-speaking');return;}
+    }
+    const utter=new SpeechSynthesisUtterance(text);
+    utter.lang='ja-JP';utter.rate=1.05;
+    btn.classList.add('speaking');btn.textContent='⏹';
+    utter.onend=()=>{btn.classList.remove('speaking');btn.textContent='🔊';};
+    utter.onerror=()=>{btn.classList.remove('speaking');btn.textContent='🔊';};
+    window.speechSynthesis.speak(utter);
+  }
+  function addMsg(role,text,thinking){
+    aiHistory.push({role,content:text});
+    const wrap=document.getElementById('ai-messages');
+    const empty=wrap.querySelector('.ai-empty');
+    if(empty)empty.remove();
+    const div=document.createElement('div');
+    div.className='ai-msg '+(role==='user'?'user':'ai')+(thinking?' thinking':'');
+    div.innerHTML=safeHtml(text);
+    if(role==='assistant'&&!thinking){
+      const tb=document.createElement('button');tb.className='ai-tts-btn';tb.textContent='🔊';
+      tb.onclick=()=>{tb.classList.toggle('was-speaking',tb.classList.contains('speaking'));speakText(text,tb);};
+      div.appendChild(tb);
+    }
+    wrap.appendChild(div);
+    wrap.scrollTop=wrap.scrollHeight;
+  }
+
+  // ── ツール ──
+  function getContext(){
+    const today=todayStr();
+    const todayD=new Date(today+'T00:00:00');
+    const futD=new Date(todayD);futD.setDate(futD.getDate()+14);
+    const futStr=futD.toISOString().slice(0,10);
+    const evs=(db.events||[]).filter(e=>{
+      if(e.repeat==='daily')return true;
+      if(e.repeat==='weekly'&&new Date(e.date+'T00:00:00').getDay()===todayD.getDay())return true;
+      return e.date>=today&&e.date<=futStr||(e.endDate&&e.date<=futStr&&e.endDate>=today);
+    }).map(e=>`・[id:${e.id}] ${e.date} ${e.time||'終日'} ${e.title}${e.location?' @'+e.location:''}`).join('\n')||'なし';
+    const tasks=(db.tasks||[]).filter(t=>!taskIsDoneOn(t,today)&&!t.done)
+      .sort((a,b)=>({'high':0,'mid':1,'low':2}[a.priority||'mid']||1)-({'high':0,'mid':1,'low':2}[b.priority||'mid']||1))
+      .map(t=>`・[id:${t.id}][${t.priority==='high'?'高':t.priority==='low'?'低':'中'}] ${t.title}${t.due?' 期限:'+t.due:''}`).join('\n')||'なし';
+    const goals=(db.goals||[]).filter(g=>!g.done).map(g=>`・[id:${g.id}] ${g.title} 進捗:${g.progress||0}%${g.dueDate?' 期限:'+g.dueDate:''}`).join('\n')||'なし';
+    const cals=(db.calendars||[]).map(c=>`・[id:${c.id}] ${c.name}`).join('\n')||'なし';
+    return `【今日の日付】${today}\n【今後14日間の予定】\n${evs}\n【未完了タスク】\n${tasks}\n【進行中の目標】\n${goals}\n【カレンダー一覧】\n${cals}`;
+  }
+  function executeTool(name,input){
+    if(name==='add_event'){
+      const ev={id:UID(),date:input.date,title:input.title,time:input.time||'',timeEnd:input.time_end||'',allDay:!input.time,color:'',calendarId:(db.calendars[0]||{}).id||'',location:input.location||'',memo:input.memo||'',repeat:'none',repeatEnd:null,exceptions:[]};
+      db.events.push(ev);save(db);return `「${ev.title}」を${ev.date}に追加しました。`;
+    }
+    if(name==='add_task'){
+      const task={id:UID(),title:input.title,done:false,priority:input.priority||'mid',due:input.due||'',repeat:'',goalId:'',location:'',memo:input.memo||'',completedAt:null,completedDates:[]};
+      db.tasks.push(task);save(db);return `タスク「${task.title}」を追加しました。`;
+    }
+    if(name==='complete_task'){
+      const task=db.tasks.find(t=>t.id===input.task_id);
+      if(!task)return `ID「${input.task_id}」のタスクが見つかりませんでした。`;
+      task.done=true;task.completedAt=todayStr();save(db);return `「${task.title}」を完了にしました。`;
+    }
+    if(name==='add_goal'){
+      const goal={id:UID(),title:input.title,type:'manual',progress:0,freq:'monthly',freqMonths:1,lastReview:null,level:input.level||'mid',dueDate:input.due||null,createdAt:todayStr(),done:false,achievedAt:null};
+      db.goals.push(goal);save(db);return `目標「${goal.title}」を追加しました。`;
+    }
+    return `不明なツール: ${name}`;
+  }
+  function showToolConfirm(toolUseBlocks){
+    const TLABEL={add_event:'📅 予定を追加',add_task:'✅ タスクを追加',complete_task:'☑ タスクを完了',add_goal:'🎯 目標を追加'};
+    return new Promise(resolve=>{
+      const wrap=document.getElementById('ai-messages');
+      const div=document.createElement('div');div.className='ai-msg ai';
+      let txt='以下を実行してもよいですか？\n\n';
+      for(const tool of toolUseBlocks){
+        txt+=`【${TLABEL[tool.name]||tool.name}】\n`;
+        const i=tool.input;
+        if(i.title)txt+=`・${i.title}\n`;
+        if(i.date)txt+=`・日付: ${i.date}\n`;
+        if(i.time)txt+=`・時刻: ${i.time}${i.time_end?'〜'+i.time_end:''}\n`;
+        if(i.location)txt+=`・場所: ${i.location}\n`;
+        if(i.priority)txt+=`・優先度: ${i.priority==='high'?'高':i.priority==='low'?'低':'中'}\n`;
+        if(i.due)txt+=`・期限: ${i.due}\n`;
+        if(i.level)txt+=`・重要度: ${i.level==='high'?'高':i.level==='low'?'低':'中'}\n`;
+        if(i.task_id){const t=db.tasks.find(t=>t.id===i.task_id);txt+=`・「${t?t.title:i.task_id}」\n`;}
+        txt+='\n';
+      }
+      div.innerHTML=safeHtml(txt);
+      const bw=document.createElement('div');bw.style.cssText='margin-top:8px;display:flex;gap:8px;';
+      const yes=document.createElement('button');yes.textContent='✓ 実行';
+      yes.style.cssText='flex:1;padding:8px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:14px;cursor:pointer;min-height:40px;';
+      yes.onclick=()=>{div.remove();resolve(true);};
+      const no=document.createElement('button');no.textContent='✗ キャンセル';
+      no.style.cssText='flex:1;padding:8px;background:var(--surface-2,#e5e5ea);color:var(--text);border:none;border-radius:8px;font-size:14px;cursor:pointer;min-height:40px;';
+      no.onclick=()=>{div.remove();resolve(false);};
+      bw.appendChild(yes);bw.appendChild(no);div.appendChild(bw);
+      wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;
+    });
+  }
+
+  // ── 送信 ──
+  async function sendMsg(){
+    const input=document.getElementById('ai-input');
+    const btn=document.getElementById('ai-send');
+    const text=input.value.trim();
+    if(!text)return;
+    input.value='';input.style.height='auto';btn.disabled=true;
+    if(!currentSessionId)currentSessionId=UID();
+    addMsg('user',text);
+    addMsg('ai','考え中…',true);
+    const thinkingEl=document.getElementById('ai-messages').lastChild;
+    try{
+      let reply;
+      if(window._DEV_MODE){
+        await new Promise(r=>setTimeout(r,800));
+        reply='[DEVモード] AIは動作していません。Worker URLを設定すると実際に動作します。\n\n取得したコンテキスト:\n'+getContext();
+      } else {
+        const workerUrl=WORKER_URL;
+        const system='あなたはLifeHubのAIアシスタントです。ユーザーの生活データを把握しており、日本語でアドバイスします。ツールを使ってデータの追加・変更が可能です。ユーザーが何かを追加・変更したそうな場合は積極的にツールを活用してください。\n\n【回答フォーマットのルール】\n・適切な場所で改行を入れ、読みやすくする\n・複数の内容がある場合は箇条書き（・）を使う\n・句読点（。、）を正しく使い、文章を短く区切る\n・何を言いたいか一目でわかるよう、結論や要点を最初に書く\n・長くなりすぎず、必要な情報に絞って答える\n\n'+getContext();
+        const apiMessages=aiHistory.slice(0,-2).filter(m=>m.role==='user'||m.role==='assistant').map(m=>({role:m.role,content:m.content}));
+        apiMessages.push({role:'user',content:text});
+        while(true){
+          const res=await fetch(workerUrl,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({model:'claude-sonnet-5-5',max_tokens:1024,system,messages:apiMessages,tools:AI_TOOLS})});
+          if(!res.ok)throw new Error('HTTP '+res.status);
+          const data=await res.json();
+          const toolUseBlocks=data.content?.filter(c=>c.type==='tool_use')||[];
+          if(data.stop_reason==='tool_use'&&toolUseBlocks.length>0){
+            apiMessages.push({role:'assistant',content:data.content});
+            thinkingEl.textContent='確認が必要です';thinkingEl.className='ai-msg ai';
+            const confirmed=await showToolConfirm(toolUseBlocks);
+            thinkingEl.textContent='考え中…';thinkingEl.className='ai-msg ai thinking';
+            const toolResults=toolUseBlocks.map(tool=>({type:'tool_result',tool_use_id:tool.id,content:confirmed?executeTool(tool.name,tool.input):'ユーザーがキャンセルしました'}));
+            apiMessages.push({role:'user',content:toolResults});
+          } else {
+            reply=data.content?.find(c=>c.type==='text')?.text||'応答を取得できませんでした';
+            break;
+          }
+        }
+      }
+      thinkingEl.innerHTML=safeHtml(reply);
+      thinkingEl.className='ai-msg ai';
+      aiHistory[aiHistory.length-1]={role:'assistant',content:reply};
+      saveSession();
+    }catch(e){
+      thinkingEl.textContent='エラーが発生しました: '+e.message;
+      thinkingEl.className='ai-msg ai';
+    }
+    btn.disabled=false;
+  }
+
+  // ── イベント ──
+  function openAiModal(){const m=document.getElementById('ai-modal'),o=document.getElementById('ai-overlay');m.hidden=false;requestAnimationFrame(()=>{m.classList.add('open');o.classList.add('open');});document.getElementById('ai-input').focus();}
+  function closeAiModal(){const m=document.getElementById('ai-modal'),o=document.getElementById('ai-overlay');m.classList.remove('open');o.classList.remove('open');setTimeout(()=>{m.hidden=true;},300);}
+  document.getElementById('ai-fab').onclick=openAiModal;
+  document.getElementById('ai-close').onclick=closeAiModal;
+  document.getElementById('ai-overlay').onclick=closeAiModal;
+  document.getElementById('ai-size-toggle').onclick=()=>{
+    const m=document.getElementById('ai-modal');
+    const small=m.classList.toggle('sm');
+    document.getElementById('ai-size-toggle').textContent=small?'⤡':'⤢';
+  };
+  document.getElementById('ai-hist-open').onclick=openHistPanel;
+  document.getElementById('ai-hist-close').onclick=closeHistPanel;
+  document.getElementById('ai-new-chat').onclick=()=>{startNewSession();closeHistPanel();document.getElementById('ai-input').focus();};
+  document.getElementById('ai-send').onclick=sendMsg;
+  const aiInput=document.getElementById('ai-input');
+  aiInput.addEventListener('input',()=>{aiInput.style.height='auto';aiInput.style.height=Math.min(aiInput.scrollHeight,160)+'px';});
+  aiInput.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
+  // 音声入力
+  const micBtn=document.getElementById('ai-mic');
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){micBtn.style.display='none';}
+  else{
+    const rec=new SR();rec.lang='ja-JP';rec.interimResults=true;rec.continuous=false;
+    let isRec=false;
+    rec.onresult=e=>{
+      const t=Array.from(e.results).map(r=>r[0].transcript).join('');
+      aiInput.value=t;aiInput.style.height='auto';aiInput.style.height=Math.min(aiInput.scrollHeight,160)+'px';
+    };
+    rec.onend=()=>{isRec=false;micBtn.classList.remove('recording');micBtn.textContent='🎤';};
+    rec.onerror=()=>{isRec=false;micBtn.classList.remove('recording');micBtn.textContent='🎤';};
+    micBtn.onclick=()=>{
+      if(isRec){rec.stop();}
+      else{rec.start();isRec=true;micBtn.classList.add('recording');micBtn.textContent='⏹';}
+    };
+  }
+})();
+
+// ── 履歴モーダル ─────────────────────────────────────────
+function openHistModal(title,rows){
+  document.getElementById('hist-modal-title').textContent=title;
+  const body=document.getElementById('hist-modal-body');
+  if(!rows.length){body.innerHTML='<div style="color:var(--fg2);text-align:center;padding:30px 0">記録がありません</div>';document.getElementById('hist-modal').hidden=false;return;}
+  body.innerHTML=rows.map(r=>`<div class="hist-row"><div class="hist-row-date">${r.date}</div>${r.sets?`<div class="hist-row-sets">${r.sets}</div>`:''}${r.memo?`<div class="hist-row-memo">"${esc(r.memo)}"</div>`:''}</div>`).join('');
+  document.getElementById('hist-modal').hidden=false;
+}
+function openTaskHistory(task){
+  const histDates=(task.completedDates||[]).slice().sort().reverse();
+  const rows=[];
+  if(task.repeat&&histDates.length){
+    for(const d of histDates){
+      const memo=(task.dailyMemos||{})[d]||'';
+      rows.push({date:'✓ '+jpDate(d),memo});
+    }
+  } else if(task.completedAt){
+    rows.push({date:'✓ 完了: '+jpDate(task.completedAt),memo:''});
+  }
+  openHistModal(esc(task.title)+' — 達成履歴',rows);
+}
+function openExerciseHistory(name){
+  const entries=Object.entries(db.workouts||{})
+    .filter(([,exs])=>exs.some(e=>e.name===name))
+    .sort(([a],[b])=>b.localeCompare(a)).slice(0,50);
+  const rows=entries.map(([date,exs])=>{
+    const ex=exs.find(e=>e.name===name);if(!ex)return null;
+    const cat=ex.category||'weight';
+    let sets='';
+    if(cat==='weight') sets=ex.sets.map((s,i)=>`${i+1}. ${s.w??'-'}kg×${s.r??'-'}回`).join('　');
+    else if(cat==='bodyweight') sets=ex.sets.map((s,i)=>`${i+1}. ${s.r??'-'}回`).join('　');
+    else if(cat==='cardio') sets=ex.sets.map((s,i)=>`${i+1}. ${s.distance??'-'}km`).join('　');
+    else if(cat==='stretch') sets=ex.sets.map((s,i)=>`${i+1}. ${s.time!=null?fmtTime(s.time):'-'}`).join('　');
+    const vol=calcExVol(ex);
+    return {date:jpDate(date),sets:sets+(vol>0?' — '+Math.round(vol)+'kg':''),memo:''};
+  }).filter(Boolean);
+  openHistModal(esc(name)+' — 記録',rows);
+}
+document.getElementById('hist-modal-close').onclick=()=>document.getElementById('hist-modal').hidden=true;
+document.getElementById('hist-modal').onclick=e=>{if(e.target===e.currentTarget)e.currentTarget.hidden=true;};
 </script>
 </body>
 </html>
