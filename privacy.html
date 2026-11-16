@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プライバシーポリシー — LifeHub</title>
+<style>
+  :root { --bg:#f8f9fa; --fg:#1a1a1a; --fg2:#555; --accent:#7c3aed; --border:#e0e0e0; }
+  @media (prefers-color-scheme:dark) {
+    :root { --bg:#111; --fg:#f0f0f0; --fg2:#aaa; --border:#2a2a2a; }
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--fg); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.7; }
+  .wrap { max-width:720px; margin:0 auto; padding:48px 24px 80px; }
+  .logo { display:flex; align-items:center; gap:10px; margin-bottom:40px; }
+  .logo-icon { width:36px; height:36px; background:var(--accent); border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; }
+  .logo-name { font-size:20px; font-weight:800; }
+  h1 { font-size:28px; font-weight:800; margin-bottom:8px; }
+  .date { font-size:13px; color:var(--fg2); margin-bottom:40px; }
+  h2 { font-size:17px; font-weight:700; margin:36px 0 10px; border-left:3px solid var(--accent); padding-left:12px; }
+  p { font-size:15px; color:var(--fg2); margin-bottom:12px; }
+  ul { font-size:15px; color:var(--fg2); padding-left:20px; margin-bottom:12px; }
+  ul li { margin-bottom:6px; }
+  a { color:var(--accent); }
+  .footer { margin-top:60px; padding-top:24px; border-top:1px solid var(--border); font-size:13px; color:var(--fg2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">
+    <div class="logo-icon">⚡</div>
+    <div class="logo-name">LifeHub</div>
+  </div>
+
+  <h1>プライバシーポリシー</h1>
+  <div class="date">最終更新: 2026年11月16日</div>
+
+  <h2>1. 基本方針</h2>
+  <p>LifeHub（以下「本アプリ」）は、ユーザーの個人情報およびプライバシーを適切に保護することを基本方針とします。本ポリシーは、本アプリがどのような情報を取り扱うかを説明するものです。</p>
+
+  <h2>2. 収集する情報</h2>
+  <p>本アプリは以下の情報を取り扱います：</p>
+  <ul>
+    <li>カレンダー・タスク・目標などのスケジュール情報</li>
+    <li>食事・睡眠・健康・筋トレ記録</li>
+    <li>Gmail連携を有効にした場合：受信メールの件名・差出人・本文（アクション抽出のみに使用）</li>
+  </ul>
+
+  <h2>3. 情報の利用目的</h2>
+  <p>収集した情報は以下の目的にのみ使用します：</p>
+  <ul>
+    <li>アプリの機能提供（スケジュール管理、健康記録、AIアシスト等）</li>
+    <li>Gmailから予定・タスクを自動抽出してアプリに提案する機能</li>
+  </ul>
+  <p>収集した情報を第三者に販売・提供することはありません。</p>
+
+  <h2>4. データの保存場所</h2>
+  <ul>
+    <li>アプリのデータ（カレンダー・健康記録等）はお使いのデバイスのブラウザ（localStorage）に保存されます</li>
+    <li>Gmail連携を使用する場合、メールから抽出したアクション候補はCloudflareのサーバー（KVストレージ）に一時保存されます</li>
+    <li>Googleアカウントの認証トークンはCloudflareのサーバーに暗号化して保存されます</li>
+  </ul>
+
+  <h2>5. Google APIの使用</h2>
+  <p>本アプリはGmail APIを使用します。取得するGmailデータは、予定・タスクの抽出目的にのみ使用し、Googleのユーザーデータポリシーに従って適切に取り扱います。Gmailの内容を広告やAIのトレーニングに使用することはありません。</p>
+
+  <h2>6. データの削除</h2>
+  <p>ユーザーはいつでも以下の方法でデータを削除できます：</p>
+  <ul>
+    <li>アプリ内設定 → Gmailの接続を解除することでGmail関連のデータを削除できます</li>
+    <li>ブラウザのlocalStorageをクリアすることでアプリのすべてのデータを削除できます</li>
+  </ul>
+
+  <h2>7. お問い合わせ</h2>
+  <p>プライバシーに関するお問い合わせは以下までご連絡ください：</p>
+  <p><a href="mailto:y.atsuhisa7234@gmail.com">y.atsuhisa7234@gmail.com</a></p>
+
+  <div class="footer">
+    &copy; 2026 LifeHub. All rights reserved.<br>
+    <a href="https://atsu0106.github.io/lifehub">アプリに戻る</a>
+  </div>
+</div>
+</body>
+</html>
