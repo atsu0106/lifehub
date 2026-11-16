@@ -72,6 +72,7 @@ input[type=number]{-moz-appearance:textfield;}
   position:fixed;inset:0;
   max-width:480px;margin:0 auto;
   overflow:hidden;
+  z-index:1;
   --bleed-l:max(16px,env(safe-area-inset-left,0px));
   --bleed-r:max(16px,env(safe-area-inset-right,0px));
   --safe-top:max(env(safe-area-inset-top,0px),36px);
@@ -248,6 +249,7 @@ body.lefty .m-actions{flex-direction:row-reverse;}
 .ai-mic.recording{background:#ef4444;border-color:#ef4444;animation:mic-pulse 1s infinite;}
 .ai-attach{width:42px;height:42px;border-radius:50%;background:var(--surface2);border:1.5px solid var(--border);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .ai-attach-preview{display:flex;flex-wrap:wrap;gap:6px;padding:8px 16px 0;overflow-x:auto;}
+.ai-drag-over{outline:2px dashed var(--accent);outline-offset:-4px;background:var(--accent-bg);}
 .ai-attach-chip{position:relative;display:flex;align-items:center;gap:6px;padding:4px 8px 4px 6px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--fg);max-width:160px;}
 .ai-attach-chip img{width:32px;height:32px;object-fit:cover;border-radius:4px;flex-shrink:0;}
 .ai-attach-chip .chip-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px;}
@@ -258,6 +260,72 @@ body.lefty .m-actions{flex-direction:row-reverse;}
 .ai-empty{text-align:center;color:var(--fg2);font-size:13px;padding:40px 20px;line-height:1.6;}
 .hdr-settings-btn{background:none;border:none;color:var(--fg2);cursor:pointer;padding:10px;font-size:17px;line-height:1;border-radius:8px;}
 .hdr-settings-btn:hover{background:var(--surface2);}
+.hdr-gmail-btn{position:relative;background:none;border:none;color:var(--fg2);cursor:pointer;padding:8px;font-size:18px;line-height:1;border-radius:8px;}
+.hdr-gmail-btn:hover{background:var(--surface2);}
+.gmail-badge{position:absolute;top:4px;right:2px;min-width:16px;height:16px;border-radius:8px;background:#ef4444;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 3px;}
+/* Gmail sheet */
+.gmail-sheet{position:fixed;bottom:0;left:0;right:0;max-height:80dvh;z-index:300;background:var(--bg);border-radius:20px 20px 0 0;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);}
+.gmail-sheet.open{transform:translateY(0);}
+.gmail-sheet[hidden]{display:none!important;}
+.gmail-sheet-hdr{display:flex;align-items:center;gap:8px;padding:14px 16px 10px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.gmail-sheet-hdr h2{flex:1;font-size:16px;font-weight:700;}
+.gmail-sheet-body{overflow-y:auto;padding:12px 14px 32px;flex:1;}
+/* Mail tab cards */
+.mail-card{background:var(--surface);border-radius:10px;margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow);}
+.mail-card-top{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;}
+.mail-card-avatar{width:36px;height:36px;border-radius:50%;background:#ea4335;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mail-card-info{flex:1;min-width:0;}
+.mail-card-from{font-size:11px;color:var(--fg3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mail-card-subject{font-size:13px;font-weight:600;color:var(--fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px;}
+.mail-card-summary{font-size:12px;color:var(--fg2);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mail-card-meta{font-size:11px;color:var(--fg3);flex-shrink:0;text-align:right;}
+.mail-card-detail{padding:0 14px 12px;border-top:1px solid var(--border);display:none;}
+.mail-card-detail.open{display:block;}
+.mail-card-detail-toggle{background:none;border:none;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;padding:0;margin-left:auto;display:block;padding-top:4px;}
+.mail-action-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);}
+.mail-action-row:last-of-type{border-bottom:none;}
+.mail-action-icon{font-size:14px;flex-shrink:0;}
+.mail-action-body{flex:1;min-width:0;}
+.mail-action-title{font-size:12px;font-weight:600;color:var(--fg);}
+.mail-action-sub{font-size:11px;color:var(--fg3);margin-top:1px;}
+.mail-action-add{padding:4px 10px;border-radius:6px;background:var(--accent);color:#fff;border:none;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.mail-action-add:disabled{opacity:.45;}
+.mail-dismiss-btn{background:none;border:none;color:var(--fg3);font-size:16px;cursor:pointer;padding:2px 4px;flex-shrink:0;}
+.gmail-item{background:var(--surface);border-radius:12px;padding:12px 14px;margin-bottom:10px;}
+.gmail-item-hdr{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;}
+.gmail-from{font-size:11px;color:var(--fg3);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.gmail-subj{font-size:13px;font-weight:700;color:var(--fg);margin-bottom:2px;}
+.gmail-summary{font-size:12px;color:var(--fg2);margin-bottom:8px;line-height:1.5;}
+.gmail-actions-list{display:flex;flex-direction:column;gap:6px;}
+.gmail-action-row{display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 10px;}
+.gmail-action-type{font-size:14px;flex-shrink:0;}
+.gmail-action-text{flex:1;font-size:12px;color:var(--fg);line-height:1.4;}
+.gmail-action-add{padding:5px 12px;border-radius:8px;background:var(--accent);color:#fff;border:none;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.gmail-action-add:disabled{opacity:.5;}
+.gmail-item-dismiss{background:none;border:none;color:var(--fg3);font-size:18px;cursor:pointer;padding:2px 4px;line-height:1;}
+.gmail-empty{text-align:center;padding:40px 20px;color:var(--fg2);font-size:14px;line-height:1.6;}
+.gmail-all-btn{width:100%;margin-top:12px;padding:13px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer;}
+body.lefty .hdr-gmail-btn{order:-2;}
+/* Gmail confirm drawer */
+.gmail-cd{position:fixed;bottom:0;left:0;right:0;max-height:90dvh;z-index:400;background:var(--surface);border-radius:20px 20px 0 0;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);}
+.gmail-cd.open{transform:translateY(0);}
+.gmail-cd[hidden]{display:none!important;}
+.gmail-cd-hdr{display:flex;align-items:center;gap:10px;padding:16px 16px 12px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.gmail-cd-icon{font-size:22px;line-height:1;}
+.gmail-cd-hdr h3{flex:1;font-size:15px;font-weight:700;}
+.gmail-cd-close{background:none;border:none;color:var(--fg3);font-size:20px;cursor:pointer;padding:4px;line-height:1;}
+.gmail-cd-body{overflow-y:auto;padding:14px 16px 24px;flex:1;display:flex;flex-direction:column;gap:10px;}
+.gmail-cd-row{display:flex;flex-direction:column;gap:4px;}
+.gmail-cd-label{font-size:11px;font-weight:600;color:var(--fg3);text-transform:uppercase;letter-spacing:.04em;}
+.gmail-cd-input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--fg);font-size:14px;font-family:inherit;outline:none;}
+.gmail-cd-input:focus{border-color:var(--accent);}
+.gmail-cd-row-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.gmail-cd-ok{margin-top:4px;padding:14px;border-radius:12px;background:var(--accent);color:#fff;border:none;font-size:15px;font-weight:700;cursor:pointer;width:100%;}
+.gmail-cd-ok:active{opacity:.85;}
+/* Toast */
+.lh-toast{position:fixed;bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%) translateY(20px);background:#1a1a2e;color:#fff;padding:10px 18px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap;z-index:9998;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;}
+.lh-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+#gmail-cd-overlay{position:fixed;inset:0;z-index:399;background:rgba(0,0,0,.5);display:none;}
 .prof-btn{background:none;border:none;cursor:pointer;padding:7px;display:flex;align-items:center;}
 .prof-avatar{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;}
 .prof-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);cursor:pointer;border-radius:6px;}
@@ -349,27 +417,28 @@ body.lefty .m-actions{flex-direction:row-reverse;}
 .cal-def-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
 .cal-def-row:last-child{border:none;}
 .cal-def-name{flex:1;font-size:14px;font-weight:500;}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:18px;grid-auto-rows:minmax(68px,auto);}
-.dow{text-align:center;font-size:10px;font-weight:700;color:var(--fg3);
-  padding-bottom:5px;text-transform:uppercase;letter-spacing:.05em;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin-bottom:18px;grid-auto-rows:minmax(74px,auto);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.dow{text-align:center;font-size:10px;font-weight:600;color:var(--fg3);
+  padding:6px 0;background:var(--surface);border-bottom:1px solid var(--border);}
 .dow.sun{color:#EF4444;}.dow.sat{color:#3B82F6;}
-.cday{border-radius:6px;display:flex;flex-direction:column;align-items:stretch;
-  gap:1px;font-size:12px;font-weight:500;cursor:pointer;transition:background .1s;
-  padding:3px 2px;overflow:hidden;min-height:68px;}
+.cday{display:flex;flex-direction:column;align-items:stretch;
+  gap:1px;font-size:12px;font-weight:500;cursor:pointer;transition:background .12s;
+  padding:4px 2px 3px;overflow:hidden;min-height:74px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.cday:last-child,.cday:nth-child(7n){border-right:none;}
 .cday:hover{background:var(--surface2);}
-.cday.other{color:var(--fg3);}
-.cday.other .ev-pill{opacity:.5;}
+.cday.other{background:var(--bg);}
+.cday.other .ev-pill{opacity:.45;}
 .cal-day-num{font-size:11px;font-weight:600;text-align:center;line-height:20px;
-  width:20px;height:20px;border-radius:50%;margin:0 auto 1px;flex-shrink:0;}
+  width:22px;height:22px;border-radius:50%;margin:0 auto 2px;flex-shrink:0;}
 .cday.today>.cal-day-num{background:var(--accent);color:#fff;}
 .cday.sel{background:var(--accent-bg)!important;}
 .cday.sel>.cal-day-num{background:var(--accent);color:#fff;}
 .cday.holiday>.cal-day-num{color:#EF4444;}
 .cday.today.holiday>.cal-day-num{background:#EF4444;color:#fff;}
-.ev-pill{display:block;font-size:9px;line-height:14px;padding:0 3px;border-radius:3px;
-  color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-bottom:1px;}
+.ev-pill{display:block;font-size:10px;line-height:16px;padding:0 4px;border-radius:3px;
+  color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-bottom:1px;font-weight:500;}
 .ev-pill.allday{font-weight:600;}
-.ev-more{font-size:8px;color:var(--fg3);padding:0 3px;line-height:14px;}
+.ev-more{font-size:9px;color:var(--fg3);padding:0 4px;line-height:14px;}
 .holiday-dot{font-size:8px;color:#EF4444;line-height:12px;text-align:center;
   overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 2px;}
 .ev-card{display:flex;align-items:center;gap:11px;padding:11px 14px;margin-bottom:7px;}
@@ -851,6 +920,37 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
 .pc-key.pc-del{font-size:20px;background:none;box-shadow:none;color:var(--fg2);}
 .pc-key.pc-empty{background:none;box-shadow:none;pointer-events:none;}
 @keyframes pc-shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+/* ── Settings redesign ── */
+.settings-modal{max-height:95dvh;overflow:hidden;display:flex;flex-direction:column;padding:0;}
+.settings-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.settings-hdr-title{font-size:17px;font-weight:700;color:var(--fg);}
+.settings-close-btn{background:none;border:none;font-size:22px;color:var(--fg2);cursor:pointer;padding:4px 8px;line-height:1;border-radius:8px;}
+.settings-body{overflow-y:auto;padding:12px 16px calc(16px + env(safe-area-inset-bottom,0px));flex:1;}
+.st-sec{font-size:11px;font-weight:700;color:var(--fg3);text-transform:uppercase;letter-spacing:.06em;padding:14px 4px 6px;}
+.st-sec:first-child{padding-top:4px;}
+.st-card{background:var(--surface2);border-radius:14px;overflow:hidden;margin-bottom:4px;}
+.st-row{display:flex;align-items:center;gap:12px;padding:11px 14px;min-height:48px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.st-row+.st-row{border-top:1px solid var(--border);}
+.st-ic{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.st-label{flex:1;font-size:14px;font-weight:500;color:var(--fg);}
+.st-val{font-size:13px;color:var(--fg3);}
+.st-arrow{font-size:18px;color:var(--fg3);line-height:1;margin-left:2px;}
+.st-row-toggle{cursor:default;}
+.st-toggle{position:relative;width:48px;height:28px;flex-shrink:0;}
+.st-toggle input{opacity:0;width:0;height:0;}
+.st-toggle-track{position:absolute;inset:0;border-radius:14px;cursor:pointer;transition:background .2s;}
+.st-toggle-thumb{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);pointer-events:none;}
+.st-inline{padding:4px 14px 12px;display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--border);}
+.st-opts{display:flex;gap:6px;flex-wrap:wrap;}
+.st-opt{padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;border:1.5px solid var(--border);background:transparent;color:var(--fg2);cursor:pointer;font-family:inherit;white-space:nowrap;}
+.st-opt.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-fg);}
+.st-action-row{display:flex;align-items:center;gap:12px;padding:11px 14px;min-height:48px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.st-action-row+.st-action-row{border-top:1px solid var(--border);}
+.st-action-label{flex:1;font-size:14px;font-weight:500;color:var(--fg);}
+.st-action-danger{color:var(--err);}
+.st-game-wrap{padding:4px 14px 12px;border-top:1px solid var(--border);}
+.st-ics-wrap{padding:4px 14px 12px;border-top:1px solid var(--border);}
+.st-hist-wrap{padding:4px 14px 12px;border-top:1px solid var(--border);}
 </style>
 </head>
 <body>
@@ -897,8 +997,10 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
       <div class="ob-chips">
         <button class="ob-chip" data-val="study">📚 勉強・試験</button>
         <button class="ob-chip" data-val="fitness">💪 筋トレ・体づくり</button>
+        <button class="ob-chip" data-val="diet">🍱 食事・ダイエット</button>
         <button class="ob-chip" data-val="habit">📅 習慣管理</button>
         <button class="ob-chip" data-val="goal">🎯 目標達成</button>
+        <button class="ob-chip" data-val="work">💼 仕事・秘書AI</button>
       </div>
       <button id="ob-start" class="ob-btn" style="margin-top:8px;">はじめる →</button>
       <button id="ob-skip" class="ob-skip-btn">スキップ</button>
@@ -910,6 +1012,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
   <header class="hdr">
     <span class="hdr-logo">LifeHub</span>
     <span class="hdr-date" id="hdr-date"></span>
+    <button class="hdr-gmail-btn" id="hdr-gmail" hidden title="メールからのアクション">📧<span class="gmail-badge" id="gmail-badge">0</span></button>
     <button class="prof-btn" id="prof-btn" title="プロフィール切り替え">
       <span class="prof-avatar" id="prof-avatar" style="background:#4F46E5">?</span>
     </button>
@@ -952,6 +1055,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
     <p class="section-label" id="day-lbl"></p>
     <div id="ev-list"></div>
     <div id="clarify-tasks" class="clarify-tasks-section" hidden></div>
+    <div id="clarify-gmail" class="clarify-tasks-section" hidden></div>
   </section>
 
   <section id="tab-tasks" class="tab">
@@ -980,6 +1084,10 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
       <button class="other-sub-btn on" data-s="meals"><span class="osb-icon">🍱</span>食事</button>
       <button class="other-sub-btn" data-s="sleep"><span class="osb-icon">😴</span>睡眠</button>
       <button class="other-sub-btn" data-s="health"><span class="osb-icon">❤️</span>健康</button>
+      <button class="other-sub-btn" data-s="mail" id="other-mail-btn" style="display:none;"><span class="osb-icon">📧</span>メール</button>
+    </div>
+    <div id="other-mail" hidden>
+      <div id="other-mail-list"></div>
     </div>
     <div id="other-wo" hidden>
       <div class="card date-bar" id="wo-datebar">
@@ -1152,9 +1260,9 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
       <svg viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
       予定追加
     </button>
-    <button class="nb" id="nav-hl" data-t="hl">
-      <svg id="nav-hl-svg" viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M3 8h4M17 8h4M3 16h4M17 16h4"/></svg>
-      <span id="nav-hl-label">トレーニング</span>
+    <button class="nb" id="nav-ai" data-t="ai">
+      <svg viewBox="0 0 24 24"><path d="M12 2l1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8z"/></svg>
+      AI
     </button>
     <button class="nb" data-t="other">
       <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
@@ -1164,7 +1272,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
 </div>
 
 <button class="fab-float pos-br" id="fab-float" hidden>＋</button>
-<button class="ai-fab" id="ai-fab" title="AIアシスタント">✨</button>
+<button class="ai-fab" id="ai-fab" title="AIアシスタント" style="display:none">✨</button>
 <div class="ai-overlay" id="ai-overlay"></div>
 <div class="ai-modal" id="ai-modal" hidden>
   <div class="ai-drag-handle"></div>
@@ -1240,110 +1348,257 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
 </div>
 
 <div class="overlay" id="mo-settings" hidden>
-  <div class="modal" style="max-height:90vh;overflow-y:auto;">
-    <h3>⚙ 設定</h3>
-    <div class="m-field">
-      <label>「予定追加」ボタンの位置</label>
-      <div class="pos-opt-row">
-        <button class="pos-opt" data-pos="center">
-          <span class="pos-opt-icon">↕</span>中央<br>(ナビ内)
-        </button>
-        <button class="pos-opt" data-pos="br">
-          <span class="pos-opt-icon">↘</span>右下<br>(フロート)
-        </button>
-        <button class="pos-opt" data-pos="bl">
-          <span class="pos-opt-icon">↙</span>左下<br>(フロート)
-        </button>
-      </div>
+  <div class="modal settings-modal">
+    <!-- ヘッダー -->
+    <div class="settings-hdr">
+      <span class="settings-hdr-title">設定</span>
+      <button class="settings-close-btn" id="settings-close-top">✕</button>
     </div>
-    <div class="m-field" style="margin-top:16px;">
-      <label>ハイライトタブ（4番目のナビ）</label>
-      <div class="pos-opt-row">
-        <button class="pos-opt" data-hl="wo"><span class="pos-opt-icon">🏋️</span>トレーニング</button>
-        <button class="pos-opt" data-hl="meals"><span class="pos-opt-icon">🍱</span>食事</button>
-        <button class="pos-opt" data-hl="sleep"><span class="pos-opt-icon">😴</span>睡眠</button>
-        <button class="pos-opt" data-hl="health"><span class="pos-opt-icon">❤️</span>健康</button>
-      </div>
-    </div>
-    <div class="m-field" style="margin-top:16px;">
-      <label>カレンダーレイアウト</label>
-      <div class="pos-opt-row">
-        <button class="pos-opt" data-cal="general"><span class="pos-opt-icon">📅</span>General</button>
-        <button class="pos-opt" data-cal="clarify"><span class="pos-opt-icon">✨</span>Clarify</button>
-      </div>
-    </div>
-    <div class="m-field" style="margin-top:16px;">
-      <label>左利きモード</label>
-      <div class="pos-opt-row" style="margin-top:8px;">
-        <button class="pos-opt" id="lefty-off" data-lefty="off"><span class="pos-opt-icon">👉</span>右利き</button>
-        <button class="pos-opt" id="lefty-on" data-lefty="on"><span class="pos-opt-icon">👈</span>左利き</button>
-      </div>
-      <p style="font-size:11px;color:var(--fg3);margin:6px 0 0;">⚙ボタン・AIボタンが左側に移動します</p>
-    </div>
-    <div class="m-field" style="margin-top:16px;">
-      <label>テーマ</label>
-      <div class="pos-opt-row">
-        <button class="pos-opt" data-theme-opt="system"><span class="pos-opt-icon">🌐</span>自動</button>
-        <button class="pos-opt" data-theme-opt="light"><span class="pos-opt-icon">☀️</span>ライト</button>
-        <button class="pos-opt" data-theme-opt="dark"><span class="pos-opt-icon">🌙</span>ダーク</button>
-      </div>
-    </div>
-    <div class="m-field" style="margin-top:16px;">
-      <label>アクセス制限</label>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
-        <div id="pc-status" style="font-size:13px;color:var(--fg2);padding:4px 0;"></div>
-        <button id="btn-pc-set" class="btn-cancel" style="width:100%;">🔑 パスコードを設定する</button>
-        <button id="btn-pc-clear" class="btn-cancel" style="width:100%;display:none;">🔓 パスコードを解除する</button>
-      </div>
-    </div>
-    <div class="m-field" style="margin-top:16px;">
-      <label>データ管理</label>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
-        <button id="btn-export" class="btn-cancel" style="width:100%;">📤 データをエクスポート（バックアップ）</button>
-        <label id="btn-import-lbl" class="btn-cancel" style="width:100%;padding:14px 12px;font-size:15px;font-weight:700;text-align:center;cursor:pointer;box-sizing:border-box;display:flex;align-items:center;justify-content:center;border-radius:var(--r-s);min-height:52px;">
-          📥 データをインポート（復元）
-          <input type="file" id="import-file" accept=".json" style="display:none;">
-        </label>
-        <button id="btn-reset" style="width:100%;padding:12px;font-size:.95rem;border:none;border-radius:var(--r-s);background:#fee2e2;color:#dc2626;cursor:pointer;font-family:inherit;font-weight:600;">🗑️ 全データを削除（まっさらに戻す）</button>
-      </div>
-    </div>
-    <div class="m-field" style="margin-top:16px;">
-      <label>💬 AIチャット設定</label>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding:12px 14px;background:var(--surface);border-radius:10px;border:1px solid var(--border);">
-        <div>
-          <div style="font-size:14px;font-weight:600;color:var(--fg);">📎 ファイル添付（画像・PDF）</div>
-          <div style="font-size:12px;color:var(--fg3);margin-top:2px;">チャットに写真やPDFを添付してAIに送れる</div>
+    <!-- スクロール本体 -->
+    <div class="settings-body">
+
+      <!-- 外観 -->
+      <div class="st-sec">外観</div>
+      <div class="st-card">
+        <div class="st-row st-row-toggle">
+          <span class="st-ic" style="background:#6366f1;">🎨</span>
+          <span class="st-label">テーマ</span>
+          <div class="st-opts" style="gap:4px;">
+            <button class="st-opt" data-theme-opt="system">自動</button>
+            <button class="st-opt" data-theme-opt="light">☀️</button>
+            <button class="st-opt" data-theme-opt="dark">🌙</button>
+          </div>
         </div>
-        <label style="position:relative;display:inline-block;width:48px;height:28px;flex-shrink:0;">
-          <input type="checkbox" id="toggle-attach" style="opacity:0;width:0;height:0;">
-          <span id="toggle-attach-track" style="position:absolute;inset:0;background:var(--border);border-radius:14px;cursor:pointer;transition:background .2s;"></span>
-          <span id="toggle-attach-thumb" style="position:absolute;top:3px;left:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);pointer-events:none;"></span>
-        </label>
+        <div class="st-row st-row-toggle">
+          <span class="st-ic" style="background:#8b5cf6;">👈</span>
+          <div style="flex:1;">
+            <div class="st-label">左利きモード</div>
+            <div style="font-size:11px;color:var(--fg3);margin-top:1px;">⚙・AIボタンが左側に移動</div>
+          </div>
+          <label class="st-toggle">
+            <input type="checkbox" id="lefty-toggle-ck" style="opacity:0;width:0;height:0;">
+            <span id="lefty-toggle-track" class="st-toggle-track" style="background:var(--border);"></span>
+            <span id="lefty-toggle-thumb" class="st-toggle-thumb"></span>
+          </label>
+        </div>
       </div>
-    </div>
-    <div class="m-field" style="margin-top:16px;">
-      <label>🎮 ゲームステータス</label>
-      <div id="game-stats-panel" style="margin-top:10px;"></div>
-    </div>
-    <div class="m-field" style="margin-top:16px;">
-      <label>📥 Googleカレンダーをインポート</label>
-      <p style="font-size:12px;color:var(--fg2);margin:6px 0 10px;">Googleカレンダー → 設定 → エクスポート で取得した<strong>.icsファイル</strong>を選択してください。既存データは保持されます。</p>
-      <input type="file" id="ics-file-input" accept=".ics,text/calendar" style="display:none;">
-      <button id="ics-import-btn" style="width:100%;padding:11px;border:1.5px dashed var(--border);border-radius:10px;background:var(--surface2);color:var(--fg2);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">📂 .icsファイルを選択</button>
-      <div id="ics-result" style="margin-top:8px;font-size:12px;color:var(--ok);display:none;"></div>
-    </div>
-    <div class="m-field" style="margin-top:16px;">
-      <div id="hist-toggle" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;padding:4px 0;">
-        <label style="cursor:pointer;font-weight:600;">📋 アップデート履歴</label>
-        <span id="hist-arrow" style="font-size:12px;color:var(--fg3);">▾</span>
+
+      <!-- ナビゲーション -->
+      <div class="st-sec">ナビゲーション</div>
+      <div class="st-card">
+        <div class="st-row st-row-toggle">
+          <span class="st-ic" style="background:#0ea5e9;">➕</span>
+          <span class="st-label" style="flex:0 0 auto;margin-right:8px;">追加ボタン</span>
+          <div class="st-opts" style="justify-content:flex-end;">
+            <button class="st-opt" data-pos="center">中央</button>
+            <button class="st-opt" data-pos="br">右下</button>
+            <button class="st-opt" data-pos="bl">左下</button>
+          </div>
+        </div>
+        <div class="st-row st-row-toggle">
+          <span class="st-ic" style="background:#f59e0b;">⭐</span>
+          <span class="st-label" style="flex:0 0 auto;margin-right:8px;">ハイライトタブ</span>
+          <div class="st-opts" style="justify-content:flex-end;">
+            <button class="st-opt" data-hl="wo">🏋️</button>
+            <button class="st-opt" data-hl="meals">🍱</button>
+            <button class="st-opt" data-hl="sleep">😴</button>
+            <button class="st-opt" data-hl="health">❤️</button>
+          </div>
+        </div>
+        <div class="st-row st-row-toggle">
+          <span class="st-ic" style="background:#10b981;">📅</span>
+          <span class="st-label" style="flex:0 0 auto;margin-right:8px;">カレンダー</span>
+          <div class="st-opts" style="justify-content:flex-end;">
+            <button class="st-opt" data-cal="general">General</button>
+            <button class="st-opt" data-cal="clarify">Clarify</button>
+          </div>
+        </div>
       </div>
-      <div id="hist-list" hidden style="margin-top:8px;display:flex;flex-direction:column;gap:6px;">
+
+      <!-- 表示する機能 -->
+      <div class="st-sec">表示する機能</div>
+      <div class="st-card">
+        <div class="st-row st-row-toggle">
+          <span class="st-ic" style="background:#ef4444;">🏋️</span>
+          <span class="st-label">トレーニング記録</span>
+          <label class="st-toggle">
+            <input type="checkbox" id="ft-toggle-workout" style="opacity:0;width:0;height:0;">
+            <span id="ft-track-workout" class="st-toggle-track" style="background:var(--accent);"></span>
+            <span id="ft-thumb-workout" class="st-toggle-thumb" style="left:23px;"></span>
+          </label>
+        </div>
+        <div class="st-row st-row-toggle">
+          <span class="st-ic" style="background:#f59e0b;">🍱</span>
+          <span class="st-label">食事記録</span>
+          <label class="st-toggle">
+            <input type="checkbox" id="ft-toggle-meals" style="opacity:0;width:0;height:0;">
+            <span id="ft-track-meals" class="st-toggle-track" style="background:var(--accent);"></span>
+            <span id="ft-thumb-meals" class="st-toggle-thumb" style="left:23px;"></span>
+          </label>
+        </div>
+        <div class="st-row st-row-toggle">
+          <span class="st-ic" style="background:#6366f1;">😴</span>
+          <span class="st-label">睡眠記録</span>
+          <label class="st-toggle">
+            <input type="checkbox" id="ft-toggle-sleep" style="opacity:0;width:0;height:0;">
+            <span id="ft-track-sleep" class="st-toggle-track" style="background:var(--accent);"></span>
+            <span id="ft-thumb-sleep" class="st-toggle-thumb" style="left:23px;"></span>
+          </label>
+        </div>
+        <div class="st-row st-row-toggle" id="st-gmail-feat-row">
+          <span class="st-ic" style="background:#0ea5e9;">📧</span>
+          <div style="flex:1;">
+            <div class="st-label">Gmailアクション</div>
+            <div style="font-size:11px;color:var(--fg3);margin-top:1px;" id="st-gmail-feat-sub">メールをAIが解析してタスク・予定を提案</div>
+          </div>
+          <label class="st-toggle">
+            <input type="checkbox" id="ft-toggle-gmail" style="opacity:0;width:0;height:0;">
+            <span id="ft-track-gmail" class="st-toggle-track" style="background:var(--border);"></span>
+            <span id="ft-thumb-gmail" class="st-toggle-thumb"></span>
+          </label>
+        </div>
       </div>
-    </div>
-    <div class="m-actions" style="margin-top:16px;">
-      <button class="btn-ok" id="settings-close" style="width:100%;">閉じる</button>
-    </div>
-    <p style="text-align:center;font-size:11px;color:var(--fg3);margin-top:12px;">LifeHub v1.6.0</p>
+
+      <!-- AI・連携 -->
+      <div class="st-sec">AI・連携</div>
+      <!-- Gmail OAuth connect card -->
+      <div class="st-card" id="st-gmail-connect-card">
+        <div class="st-row" id="st-gmail-connect-row" style="cursor:pointer;">
+          <span class="st-ic" style="background:#ea4335;">G</span>
+          <div style="flex:1;">
+            <div class="st-label" id="st-gmail-connect-label">Googleアカウントと連携</div>
+            <div style="font-size:11px;color:var(--fg3);margin-top:1px;" id="st-gmail-connect-sub">タップしてGmailを接続する</div>
+          </div>
+          <span id="st-gmail-connect-arrow" class="st-arrow">›</span>
+        </div>
+        <div class="st-row" id="st-gmail-disconnect-row" style="display:none;cursor:pointer;">
+          <span class="st-ic" style="background:#fee2e2;">🔌</span>
+          <span class="st-label st-action-danger">連携を解除する</span>
+          <span class="st-arrow">›</span>
+        </div>
+        <div class="st-row st-row-toggle" id="st-gmail-auto-event-row" style="display:none;">
+          <span class="st-ic" style="background:#4f46e5;">📅</span>
+          <div style="flex:1;">
+            <div class="st-label">予定を自動追加</div>
+            <div style="font-size:11px;color:var(--fg3);margin-top:1px;">カレンダー予定を確認なしで自動追加</div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="gmail-auto-event-toggle"><span class="toggle-track"><span class="toggle-thumb"></span></span></label>
+        </div>
+        <div class="st-row st-row-toggle" id="st-gmail-auto-task-row" style="display:none;">
+          <span class="st-ic" style="background:#10b981;">✅</span>
+          <div style="flex:1;">
+            <div class="st-label">タスクを自動追加</div>
+            <div style="font-size:11px;color:var(--fg3);margin-top:1px;">タスクを確認なしで自動追加</div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="gmail-auto-task-toggle"><span class="toggle-track"><span class="toggle-thumb"></span></span></label>
+        </div>
+        <div class="st-row" id="st-gmail-lookback-row" style="display:none;">
+          <span class="st-ic" style="background:#6366f1;">📆</span>
+          <div style="flex:1;">
+            <div class="st-label">チェック期間</div>
+            <div style="font-size:11px;color:var(--fg3);margin-top:1px;">過去何日分のメールを遡るか</div>
+          </div>
+          <select id="gmail-lookback-select" style="border:1.5px solid var(--border);border-radius:8px;padding:5px 8px;background:var(--surface2);color:var(--fg);font-size:13px;font-family:inherit;">
+            <option value="7">1週間</option>
+            <option value="30" selected>1か月</option>
+            <option value="90">3か月</option>
+            <option value="180">6か月</option>
+          </select>
+        </div>
+      </div>
+      <div class="st-card">
+        <div class="st-row st-row-toggle">
+          <span class="st-ic" style="background:#8b5cf6;">📎</span>
+          <div style="flex:1;">
+            <div class="st-label">ファイル添付（チャット）</div>
+            <div style="font-size:11px;color:var(--fg3);margin-top:1px;">画像・PDFをAIに送れる</div>
+          </div>
+          <label class="st-toggle">
+            <input type="checkbox" id="toggle-attach" style="opacity:0;width:0;height:0;">
+            <span id="toggle-attach-track" class="st-toggle-track" style="background:var(--border);"></span>
+            <span id="toggle-attach-thumb" class="st-toggle-thumb"></span>
+          </label>
+        </div>
+        <div class="st-row" id="st-ics-row" style="cursor:pointer;">
+          <span class="st-ic" style="background:#10b981;">📥</span>
+          <div style="flex:1;">
+            <div class="st-label">Googleカレンダーをインポート</div>
+            <div style="font-size:11px;color:var(--fg3);margin-top:1px;" id="ics-result">.icsファイルを読み込む</div>
+          </div>
+          <span class="st-arrow">›</span>
+          <input type="file" id="ics-file-input" accept=".ics,text/calendar" style="display:none;">
+        </div>
+      </div>
+
+      <!-- セキュリティ -->
+      <div class="st-sec">セキュリティ</div>
+      <div class="st-card">
+        <div class="st-row" id="st-pc-row" style="cursor:pointer;">
+          <span class="st-ic" style="background:#64748b;">🔑</span>
+          <div style="flex:1;">
+            <div class="st-label">パスコード</div>
+            <div class="st-val" id="pc-status" style="font-size:11px;color:var(--fg3);margin-top:1px;"></div>
+          </div>
+          <span class="st-arrow">›</span>
+        </div>
+        <div class="st-row" id="st-pc-clear-row" style="cursor:pointer;display:none;">
+          <span class="st-ic" style="background:#ef4444;">🔓</span>
+          <span class="st-label">パスコードを解除する</span>
+          <span class="st-arrow">›</span>
+        </div>
+      </div>
+
+      <!-- データ -->
+      <div class="st-sec">データ</div>
+      <div class="st-card">
+        <div class="st-row" id="st-export-row" style="cursor:pointer;">
+          <span class="st-ic" style="background:#0ea5e9;">📤</span>
+          <span class="st-label">エクスポート（バックアップ）</span>
+          <span class="st-arrow">›</span>
+        </div>
+        <div class="st-row" id="st-import-row" style="cursor:pointer;">
+          <span class="st-ic" style="background:#10b981;">📥</span>
+          <span class="st-label">インポート（復元）</span>
+          <span class="st-arrow">›</span>
+          <input type="file" id="import-file" accept=".json" style="display:none;">
+        </div>
+        <div class="st-row st-action-danger" id="st-reset-row" style="cursor:pointer;">
+          <span class="st-ic" style="background:#fee2e2;">🗑️</span>
+          <span class="st-label st-action-danger">全データを削除</span>
+        </div>
+      </div>
+
+      <!-- その他 -->
+      <div class="st-sec">その他</div>
+      <div class="st-card">
+        <div class="st-row" id="st-game-row" style="cursor:pointer;">
+          <span class="st-ic" style="background:#f59e0b;">🎮</span>
+          <span class="st-label">ゲームステータス</span>
+          <span class="st-arrow" id="st-game-arrow">›</span>
+        </div>
+        <div class="st-game-wrap" id="game-stats-panel" hidden></div>
+        <div class="st-row" id="hist-toggle" style="cursor:pointer;">
+          <span class="st-ic" style="background:#6366f1;">📋</span>
+          <span class="st-label">アップデート履歴</span>
+          <span class="st-arrow" id="hist-arrow">›</span>
+        </div>
+        <div class="st-hist-wrap" id="hist-list" hidden style="display:flex;flex-direction:column;gap:6px;"></div>
+      </div>
+
+      <p style="text-align:center;font-size:11px;color:var(--fg3);margin:16px 0 4px;">LifeHub v1.6.0</p>
+      <div style="height:8px;"></div>
+    </div><!-- /.settings-body -->
+
+    <!-- 非表示ボタン（既存JSが参照するID） -->
+    <button id="settings-close" hidden></button>
+    <button class="pos-opt" id="lefty-off" data-lefty="off" hidden></button>
+    <button class="pos-opt" id="lefty-on" data-lefty="on" hidden></button>
+    <button id="btn-pc-set" hidden></button>
+    <button id="btn-pc-clear" hidden></button>
+    <button id="ics-import-btn" hidden></button>
+    <button id="btn-export" hidden></button>
+    <label id="btn-import-lbl" hidden><input type="file" id="import-file-dup" accept=".json" style="display:none;"></label>
+    <button id="btn-reset" hidden></button>
   </div>
 </div>
 
@@ -1715,6 +1970,53 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
   </div>
 </div>
 
+<!-- Gmail Sheet (must be before <script> so IDs are available at parse time) -->
+<div id="gmail-sheet" class="gmail-sheet" hidden>
+  <div class="gmail-sheet-hdr">
+    <h2>📧 メールからのアクション</h2>
+    <button class="ai-hdr-btn" id="gmail-close">✕</button>
+  </div>
+  <div class="gmail-sheet-body" id="gmail-sheet-body"></div>
+</div>
+<div id="gmail-overlay" style="position:fixed;inset:0;z-index:299;background:rgba(0,0,0,.4);display:none;"></div>
+<!-- Gmail確認ドロワー (z-index:400, gmailシートの上に重なる) -->
+<div id="gmail-cd-overlay"></div>
+<div id="gmail-cd" class="gmail-cd" hidden>
+  <div class="gmail-cd-hdr">
+    <span class="gmail-cd-icon" id="gmail-cd-icon">📅</span>
+    <h3 id="gmail-cd-heading">予定を確認</h3>
+    <button class="gmail-cd-close" id="gmail-cd-close">✕</button>
+  </div>
+  <div class="gmail-cd-body">
+    <div class="gmail-cd-row">
+      <span class="gmail-cd-label">タイトル</span>
+      <input class="gmail-cd-input" id="gmail-cd-title" type="text" placeholder="タイトル">
+    </div>
+    <div class="gmail-cd-row">
+      <span class="gmail-cd-label">日付</span>
+      <input class="gmail-cd-input" id="gmail-cd-date" type="date">
+    </div>
+    <div class="gmail-cd-row" id="gmail-cd-time-row">
+      <span class="gmail-cd-label">時刻</span>
+      <div class="gmail-cd-row-2">
+        <input class="gmail-cd-input" id="gmail-cd-time" type="time" placeholder="開始">
+        <input class="gmail-cd-input" id="gmail-cd-timeend" type="time" placeholder="終了">
+      </div>
+    </div>
+    <div class="gmail-cd-row" id="gmail-cd-location-row">
+      <span class="gmail-cd-label">場所</span>
+      <input class="gmail-cd-input" id="gmail-cd-location" type="text" placeholder="場所">
+    </div>
+    <div class="gmail-cd-row">
+      <span class="gmail-cd-label">メモ</span>
+      <input class="gmail-cd-input" id="gmail-cd-memo" type="text" placeholder="メモ">
+    </div>
+    <button class="gmail-cd-ok" id="gmail-cd-ok">追加する</button>
+  </div>
+</div>
+<!-- Toast -->
+<div class="lh-toast" id="lh-toast"></div>
+
 <script>
 // ── バージョン管理・キャッシュバスト ─────────────────────────
 (function(){
@@ -1879,6 +2181,13 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function fmt(d){return `${d.getFullYear()}-${p2(d.getMonth()+1)}-${p2(d.getDate())}`;}
 function p2(n){return String(n).padStart(2,'0');}
 function jpDate(str){const[,m,d]=str.split('-');return `${+m}月${+d}日`;}
+let _toastTimer=null;
+function showToast(msg){
+  const el=document.getElementById('lh-toast');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(_toastTimer);
+  _toastTimer=setTimeout(()=>el.classList.remove('show'),2500);
+}
 
 // ── Japanese Holidays ─────────────────────────────────────
 const HOLIDAYS={
@@ -1929,6 +2238,20 @@ function getEventsForDate(dateStr){
   return (db.events||[]).filter(ev=>evOccursOn(ev,dateStr)&&!st.hiddenCals.has(ev.calendarId))
     .sort((a,b)=>(a.time||'').localeCompare(b.time||''));
 }
+function getGmailEventsForDate(dateStr){
+  if(!window._getGmailCalItems)return[];
+  const result=[];
+  for(const item of window._getGmailCalItems()){
+    const recDate=item.receivedAt?(()=>{try{return new Date(item.receivedAt).toISOString().substring(0,10);}catch(e){return null;}})():null;
+    if(recDate===dateStr)
+      result.push({_gmail:true,emailId:item.emailId,title:'📧 '+item.subject,date:dateStr,color:'#ea4335',allDay:true,_item:item});
+    (item.actions||[]).forEach(a=>{
+      if(a.type==='event'&&a.date===dateStr&&a.date!==recDate)
+        result.push({_gmail:true,emailId:item.emailId,title:'📅 '+a.title,date:dateStr,time:a.time||'',color:'#ea4335',_item:item,_action:a});
+    });
+  }
+  return result;
+}
 
 let db=load();
 const NOW=new Date();
@@ -1963,6 +2286,21 @@ Object.values(db.workouts||{}).forEach(exs=>{
 (db.tasks||[]).forEach(t=>{if(t.repeat&&!t.completedDates)t.completedDates=[];});
 // migrate tasks: add dailyMemos and aiProgress
 (db.tasks||[]).forEach(t=>{if(!t.dailyMemos)t.dailyMemos={};if(!('aiProgress' in t))t.aiProgress=null;});
+// migrate tasks: fix tasks with 'text' field (from Gmail auto-add bug) → 'title'
+db.tasks=(db.tasks||[]).map(t=>{
+  if(t.text!==undefined&&t.title===undefined){t.title=t.text;delete t.text;}
+  if(t.pri!==undefined&&t.priority===undefined){t.priority=t.pri===1?'high':t.pri===3?'low':'mid';delete t.pri;}
+  if(t.date!==undefined&&t.due===undefined){t.due=t.date;delete t.date;}
+  return t;
+});
+// remove tasks with undefined or empty title (bad data from Gmail bug)
+{const before=db.tasks.length;db.tasks=db.tasks.filter(t=>t.title&&t.title!=='undefined');if(db.tasks.length!==before)save(db);}
+// one-time cleanup: remove Gmail-auto-added tasks (source:'gmail' or long titles with " — " separator)
+{const before=db.tasks.length;db.tasks=db.tasks.filter(t=>{
+  if(t.source==='gmail')return false;
+  if(t.title&&t.title.length>50&&t.title.includes(' — '))return false;
+  return true;
+});if(db.tasks.length!==before)save(db);}
 if(!db.nutrients)db.nutrients=[];
 if(!db.aiChats)db.aiChats=[];
 if(!db.userProfile)db.userProfile={useCase:[]};
@@ -1970,6 +2308,51 @@ if(!db.lifeXp)db.lifeXp=[];
 if(!db.settings)db.settings={addBtnPos:'center',highlightTab:'wo',calLayout:'general'};
 if(!db.settings.highlightTab)db.settings.highlightTab='wo';
 if(!db.settings.calLayout)db.settings.calLayout='general';
+if(!db.settings.features)db.settings.features={workout:true,meals:true,sleep:true,gmail:false};
+
+function autoConfigFeatures(useCases){
+  const f=db.settings.features;
+  if(useCases.includes('fitness')){f.workout=true;f.sleep=true;}
+  if(useCases.includes('diet')){f.meals=true;f.sleep=true;}
+  if(useCases.includes('work')){f.gmail=true;}
+  if(useCases.includes('study')||useCases.includes('goal')||useCases.includes('habit')){
+    // バランス型：全部ON
+    f.workout=true;f.meals=true;f.sleep=true;
+  }
+  // fitnessもdietも選ばなかった場合は食事・筋トレを任意OFFにしない（デフォルトON維持）
+  // ハイライトタブを有効な機能に自動設定
+  const hl=db.settings.highlightTab;
+  const hlFeature={wo:'workout',meals:'meals',sleep:'sleep',health:'workout'};
+  if(hlFeature[hl]&&!f[hlFeature[hl]]){
+    if(f.workout)db.settings.highlightTab='wo';
+    else if(f.meals)db.settings.highlightTab='meals';
+    else if(f.sleep)db.settings.highlightTab='sleep';
+  }
+  save(db);
+  applyFeatureVisibility();
+}
+
+function applyFeatureVisibility(){
+  const f=db.settings.features||{workout:true,meals:true,sleep:true,gmail:false};
+  // ハイライトタブ選択肢を更新
+  document.querySelector('.pos-opt[data-hl="wo"]')?.parentElement && (() => {
+    document.querySelectorAll('.pos-opt[data-hl]').forEach(b=>{
+      const featureMap={wo:'workout',meals:'meals',sleep:'sleep',health:'workout'};
+      b.style.display=f[featureMap[b.dataset.hl]!==undefined?featureMap[b.dataset.hl]:'workout']?'':'none';
+    });
+  })();
+  // 機能トグルのUI状態を更新
+  ['workout','meals','sleep','gmail'].forEach(key=>{
+    const track=document.getElementById(`ft-track-${key}`);
+    const thumb=document.getElementById(`ft-thumb-${key}`);
+    const cb=document.getElementById(`ft-toggle-${key}`);
+    if(!track)return;
+    const on=f[key]!==false;
+    if(cb)cb.checked=on;
+    track.style.background=on?'var(--accent)':'var(--border)';
+    thumb.style.left=on?'23px':'3px';
+  });
+}
 if(!db.settings.theme)db.settings.theme='system';
 if(!db.settings.workerUrl)db.settings.workerUrl=''; // legacy compat
 if(db.settings.enableAttach===undefined)db.settings.enableAttach=false;
@@ -2034,24 +2417,24 @@ fabFloat.onclick=openEvModalAndSetup;
 // legacy reference
 const fab={onclick:null};
 function updateNavActive(){
-  const hl=db.settings?.highlightTab||'wo';
+  const aiOpen=!!(document.getElementById('ai-modal')?.classList.contains('open'));
   document.querySelectorAll('.nb').forEach(b=>{
-    if(b.id==='nav-hl') b.classList.toggle('on',st.tab==='other'&&st.otherSub===hl);
-    else if(b.dataset.t==='other') b.classList.toggle('on',st.tab==='other'&&st.otherSub!==hl);
-    else b.classList.toggle('on',b.dataset.t===st.tab);
+    if(b.id==='nav-ai') b.classList.toggle('on',aiOpen);
+    else b.classList.toggle('on',!aiOpen&&b.dataset.t===st.tab);
   });
 }
 function switchToTab(t){
-  const hl=db.settings?.highlightTab||'wo';
-  if(t==='hl'){t='other';st.otherSub=hl;}
-  else if(t==='other'){
-    const nonHl=['wo','meals','sleep'].filter(x=>x!==hl);
-    if(st.otherSub===hl)st.otherSub=nonHl[0];
+  if(t==='ai'){
+    const m=document.getElementById('ai-modal'),o=document.getElementById('ai-overlay');
+    if(m&&o){m.style.bottom='';m.style.height='';m.hidden=false;requestAnimationFrame(()=>{m.classList.add('open');o.classList.add('open');updateNavActive();});const inp=document.getElementById('ai-input');if(inp)setTimeout(()=>inp.focus(),50);}
+    return;
   }
+  const tabEl=document.getElementById('tab-'+t);
+  if(!tabEl)return;
   st.tab=t;
   document.querySelectorAll('.tab').forEach(s=>s.classList.remove('on'));
-  document.getElementById('tab-'+t).classList.add('on');
-  document.getElementById('tab-'+t).scrollTop=0;
+  tabEl.classList.add('on');
+  tabEl.scrollTop=0;
   updateNavActive();
   if(t==='cal'){renderGoals();renderCal();}
   if(t==='tasks')renderTasks();
@@ -2541,6 +2924,7 @@ function renderCal(){
   if(searchRow)searchRow.hidden=isClarify;
   document.getElementById('cal-filter-row').hidden=isClarify;
   document.getElementById('clarify-tasks').hidden=!isClarify;
+  document.getElementById('clarify-gmail').hidden=!isClarify;
   if(isClarify){
     document.getElementById('cal-grid').hidden=true;
     document.getElementById('week-view').hidden=true;
@@ -2585,6 +2969,7 @@ function renderClarifyView(){
   document.getElementById('cl-dow-label').textContent=dowStr+'曜日';
   renderDayEv();
   renderClarifyTasks(ds);
+  renderClarifyGmail(ds);
 }
 function taskIsDoneOn(task,dateStr){
   if(task.repeat==='none'||!task.repeat)return!!task.done;
@@ -2627,6 +3012,29 @@ function renderClarifyTasks(dateStr){
     const name=document.createElement('div');name.className='clarify-task-name'+(done?' done':'');
     name.textContent=t.title+(t.repeat&&t.repeat!=='none'?` (${t.repeat==='daily'?'毎日':'毎週'})`:'');
     row.appendChild(chk);row.appendChild(name);sec.appendChild(row);
+  });
+}
+function renderClarifyGmail(dateStr){
+  const sec=document.getElementById('clarify-gmail');sec.innerHTML='';
+  const items=getGmailEventsForDate(dateStr);
+  if(!items.length)return;
+  const lbl=document.createElement('p');lbl.className='section-label';lbl.textContent='メール';sec.appendChild(lbl);
+  items.forEach(gev=>{
+    const row=document.createElement('div');
+    row.className='clarify-task-row';
+    row.style.cssText='cursor:pointer;border-left:3px solid #ea4335;padding-left:11px;';
+    const icon=document.createElement('span');icon.style.cssText='font-size:16px;flex-shrink:0;';
+    icon.textContent=gev._action?'📅':'📧';
+    const info=document.createElement('div');info.style.cssText='flex:1;min-width:0;';
+    const title=document.createElement('div');title.className='clarify-task-name';
+    title.textContent=String(gev.title).replace(/^[📧📅] /,'');
+    const sub=document.createElement('div');sub.style.cssText='font-size:11px;color:var(--fg3);margin-top:1px;';
+    sub.textContent=(gev._action?'予定 (Gmailより)':'メール受信')+(gev._action&&gev._action.time?' · '+gev._action.time:'');
+    info.appendChild(title);info.appendChild(sub);
+    const arr=document.createElement('span');arr.style.cssText='font-size:12px;color:#ea4335;font-weight:600;';arr.textContent='確認›';
+    row.appendChild(icon);row.appendChild(info);row.appendChild(arr);
+    row.onclick=()=>{if(window._gmailOpenSheet)window._gmailOpenSheet();};
+    sec.appendChild(row);
   });
 }
 function addDay(grid,num,cls,ds){
@@ -2780,6 +3188,7 @@ function applyTheme(theme){
 }
 applyTheme(db.settings.theme||'system');
 applyLeftyMode();
+applyFeatureVisibility();
 document.querySelectorAll('.pos-opt[data-theme-opt]').forEach(btn=>{
   btn.onclick=()=>{
     db.settings.theme=btn.dataset.themeOpt;
@@ -2916,8 +3325,10 @@ const HL_NAV={
 function updateHlNav(){
   const hl=db.settings?.highlightTab||'wo';
   const c=HL_NAV[hl];
-  document.getElementById('nav-hl-svg').innerHTML=c.svg;
-  document.getElementById('nav-hl-label').textContent=c.label;
+  const svgEl=document.getElementById('nav-hl-svg');
+  const labelEl=document.getElementById('nav-hl-label');
+  if(svgEl)svgEl.innerHTML=c.svg;
+  if(labelEl)labelEl.textContent=c.label;
   updateNavActive();
 }
 updateHlNav();
@@ -3023,6 +3434,8 @@ document.getElementById('hdr-settings').onclick=()=>{
   document.querySelectorAll('.pos-opt[data-cal]').forEach(b=>b.classList.toggle('on',b.dataset.cal===(s.calLayout||'general')));
   document.querySelectorAll('.pos-opt[data-theme-opt]').forEach(b=>b.classList.toggle('on',b.dataset.themeOpt===(s.theme||'system')));
   document.querySelectorAll('.pos-opt[data-lefty]').forEach(b=>b.classList.toggle('on',b.dataset.lefty===(s.leftHand?'on':'off')));
+  // 機能トグル状態を反映
+  applyFeatureVisibility();
   // 添付トグル状態を反映
   const attachToggle=document.getElementById('toggle-attach');
   const attachTrack=document.getElementById('toggle-attach-track');
@@ -3034,6 +3447,26 @@ document.getElementById('hdr-settings').onclick=()=>{
   document.getElementById('mo-settings').hidden=false;
   renderGameStats();
 };
+// 機能トグルハンドラ
+['workout','meals','sleep','gmail'].forEach(key=>{
+  document.getElementById(`ft-toggle-${key}`)?.addEventListener('change',function(){
+    if(!db.settings.features)db.settings.features={workout:true,meals:true,sleep:true,gmail:false};
+    db.settings.features[key]=this.checked;
+    // OFFにした機能がハイライトタブに設定されていたら次の有効な機能に切り替え
+    if(!this.checked){
+      const hlMap={workout:'wo',meals:'meals',sleep:'sleep'};
+      if(hlMap[key]===db.settings.highlightTab){
+        const f=db.settings.features;
+        if(f.workout&&key!=='workout')db.settings.highlightTab='wo';
+        else if(f.meals&&key!=='meals')db.settings.highlightTab='meals';
+        else if(f.sleep&&key!=='sleep')db.settings.highlightTab='sleep';
+        updateHlNav();
+      }
+    }
+    save(db);
+    applyFeatureVisibility();
+  });
+});
 document.getElementById('toggle-attach').addEventListener('change',function(){
   const on=this.checked;
   db.settings.enableAttach=on;
@@ -3065,8 +3498,394 @@ document.querySelectorAll('.pos-opt[data-hl]').forEach(btn=>{
     if(st.tab==='other')renderOther();
   };
 });
+// ── Gmail連携 ─────────────────────────────────────────────
+(function(){
+  const WORKER = 'https://lifehub-ai.y-atsuhisa7234.workers.dev';
+  const SECRET = 'lh-gmail-7x9k2m4p8q';
+  let _gmailItems = [];
+  const safeHtml = t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  async function fetchActions(){
+    try{
+      const res = await fetch(`${WORKER}/gmail-actions`, {
+        headers: { 'X-LifeHub-Token': SECRET }
+      });
+      if(!res.ok) return [];
+      return await res.json();
+    } catch(e){ return []; }
+  }
+
+  async function dismissEmail(emailId){
+    try{
+      await fetch(`${WORKER}/gmail-confirm`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain', 'X-LifeHub-Token': SECRET },
+        body: JSON.stringify({ emailId })
+      });
+    } catch(e){}
+  }
+
+  function typeIcon(t){ return t==='event'?'📅':t==='task'?'✅':'↩️'; }
+
+  function renderSheet(items){
+    const body = document.getElementById('gmail-sheet-body');
+    if(items.length === 0){
+      body.innerHTML = '<div class="gmail-empty">📭 新しいアクションはありません</div>';
+      return;
+    }
+    body.innerHTML = items.map((item,i)=>`
+      <div class="gmail-item" id="gmail-item-${i}">
+        <div class="gmail-item-hdr">
+          <div style="flex:1"><div class="gmail-subj">${safeHtml(item.subject)}</div><div class="gmail-from">${safeHtml(item.from)}</div>${item.receivedAt?`<div style="font-size:11px;color:var(--fg3);margin-top:2px;">📅 ${(()=>{try{const d=new Date(item.receivedAt);return`${d.getMonth()+1}月${d.getDate()}日 ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;}catch(e){return item.receivedAt.substring(0,10);}})()}</div>`:''}</div>
+          <button class="gmail-item-dismiss" data-dismiss="${i}" title="却下">✕</button>
+        </div>
+        <div class="gmail-summary">${safeHtml(item.summary||'')}</div>
+        <div class="gmail-actions-list">${item.actions.map((a,j)=>`
+          <div class="gmail-action-row">
+            <span class="gmail-action-type">${typeIcon(a.type)}</span>
+            <div class="gmail-action-text"><strong>${safeHtml(a.title)}</strong>${a.date?`<br><span style="color:var(--fg3)">${a.date}${a.time?' '+a.time:''}${a.location?' · '+safeHtml(a.location):''}</span>`:''}${a.description?`<br>${safeHtml(a.description)}`:''}
+            </div>
+            <button class="gmail-action-add" data-item="${i}" data-action="${j}">追加</button>
+          </div>`).join('')}
+        </div>
+      </div>`).join('') +
+      (items.length > 1 ? `<button class="gmail-all-btn" id="gmail-add-all">📥 全部追加（${items.reduce((s,it)=>s+it.actions.length,0)}件）</button>` : '');
+
+    // 追加ボタン
+    body.querySelectorAll('.gmail-action-add').forEach(btn=>{
+      btn.onclick = ()=>{
+        const item = items[+btn.dataset.item];
+        const action = item.actions[+btn.dataset.action];
+        openConfirmDrawer(action, async (edited)=>{
+          btn.disabled = true; btn.textContent = '✓';
+          addActionToApp(edited);
+          // 全アクション追加済みなら dismiss
+          const row = btn.closest('.gmail-item');
+          const remaining = row.querySelectorAll('.gmail-action-add:not(:disabled)');
+          if(remaining.length === 0){
+            await dismissEmail(item.emailId);
+            _gmailItems = _gmailItems.filter(it=>it.emailId!==item.emailId);
+            updateBadge(_gmailItems.length);
+          }
+          closeSheet();
+          navigateAfterAdd(edited);
+        });
+      };
+    });
+
+    // 却下ボタン
+    body.querySelectorAll('[data-dismiss]').forEach(btn=>{
+      btn.onclick = async ()=>{
+        const item = items[+btn.dataset.dismiss];
+        await dismissEmail(item.emailId);
+        _gmailItems = _gmailItems.filter(it=>it.emailId!==item.emailId);
+        updateBadge(_gmailItems.length);
+        renderSheet(_gmailItems);
+      };
+    });
+
+    // 全部追加ボタン
+    const allBtn = body.querySelector('#gmail-add-all');
+    if(allBtn) allBtn.onclick = async ()=>{
+      allBtn.disabled = true; allBtn.textContent = '追加中…';
+      for(const item of items){
+        for(const action of item.actions) addActionToApp(action);
+        await dismissEmail(item.emailId);
+      }
+      _gmailItems = [];
+      updateBadge(0);
+      renderSheet([]);
+    };
+  }
+
+  function addActionToApp(action){
+    const today = TODAY;
+    if(action.type === 'event'){
+      const ev = {
+        id: 'ev_'+Date.now()+'_'+Math.random().toString(36).slice(2,6),
+        title: action.title,
+        date: action.date || today,
+        time: action.time || '',
+        timeEnd: action.time_end || '',
+        location: action.location || '',
+        memo: action.description || '',
+        color: '#4F46E5'
+      };
+      if(!db.events) db.events = [];
+      db.events.push(ev);
+      save(db); renderCal();
+    } else if(action.type === 'task' || action.type === 'reply'){
+      const task = {
+        id: 'tk_'+Date.now()+'_'+Math.random().toString(36).slice(2,6),
+        title: action.title + (action.description ? ' — '+action.description : ''),
+        done: false,
+        priority: 'mid',
+        due: action.date || '',
+        repeat: '',
+        goalId: '',
+        location: '',
+        memo: '',
+        completedAt: null,
+        completedDates: [],
+        source: 'gmail',
+        createdAt: today
+      };
+      if(!db.tasks) db.tasks = [];
+      db.tasks.push(task);
+      save(db); if(typeof renderTasks==='function') renderTasks();
+    }
+    window._missionHook?.('task_add');
+  }
+
+  // ── 確認ドロワー ───────────────────────────────────────────
+  let _cdCallback = null;
+  function openConfirmDrawer(action, onConfirm){
+    const isEvent = action.type === 'event';
+    _cdCallback = onConfirm;
+    document.getElementById('gmail-cd-icon').textContent = isEvent ? '📅' : '✅';
+    document.getElementById('gmail-cd-heading').textContent = isEvent ? '予定を確認・編集' : 'タスクを確認・編集';
+    document.getElementById('gmail-cd-title').value = action.title || '';
+    document.getElementById('gmail-cd-date').value = action.date || TODAY;
+    document.getElementById('gmail-cd-time').value = action.time || '';
+    document.getElementById('gmail-cd-timeend').value = action.time_end || '';
+    document.getElementById('gmail-cd-location').value = action.location || '';
+    document.getElementById('gmail-cd-memo').value = action.description || '';
+    document.getElementById('gmail-cd-time-row').style.display = isEvent ? '' : 'none';
+    document.getElementById('gmail-cd-location-row').style.display = isEvent ? '' : 'none';
+    const cd = document.getElementById('gmail-cd');
+    const ov = document.getElementById('gmail-cd-overlay');
+    cd.hidden = false; ov.style.display = 'block';
+    requestAnimationFrame(()=>cd.classList.add('open'));
+  }
+
+  function closeConfirmDrawer(){
+    const cd = document.getElementById('gmail-cd');
+    const ov = document.getElementById('gmail-cd-overlay');
+    cd.classList.remove('open');
+    ov.style.display = 'none';
+    setTimeout(()=>{ cd.hidden = true; _cdCallback = null; }, 300);
+  }
+
+  function navigateAfterAdd(action){
+    const isEvent = action.type === 'event';
+    const date = action.date || TODAY;
+    if(isEvent){
+      const d = new Date(date + 'T00:00:00');
+      st.selDate = date; st.calY = d.getFullYear(); st.calM = d.getMonth();
+      switchToTab('cal');
+      setTimeout(()=>openDayModal(date), 320);
+      showToast('📅 カレンダーに追加しました');
+    } else {
+      switchToTab('tasks');
+      showToast('✅ タスクに追加しました');
+    }
+  }
+
+  document.getElementById('gmail-cd-ok').onclick = ()=>{
+    if(!_cdCallback) return;
+    const edited = {
+      type: document.getElementById('gmail-cd-time-row').style.display === 'none' ? 'task' : 'event',
+      title: document.getElementById('gmail-cd-title').value.trim() || '(タイトルなし)',
+      date: document.getElementById('gmail-cd-date').value || TODAY,
+      time: document.getElementById('gmail-cd-time').value || '',
+      time_end: document.getElementById('gmail-cd-timeend').value || '',
+      location: document.getElementById('gmail-cd-location').value || '',
+      description: document.getElementById('gmail-cd-memo').value || ''
+    };
+    const cb = _cdCallback;
+    closeConfirmDrawer();
+    cb(edited);
+  };
+  document.getElementById('gmail-cd-close').onclick = closeConfirmDrawer;
+  document.getElementById('gmail-cd-overlay').onclick = closeConfirmDrawer;
+
+  function updateBadge(count){
+    const btn = document.getElementById('hdr-gmail');
+    const badge = document.getElementById('gmail-badge');
+    btn.hidden = count === 0;
+    badge.textContent = count;
+  }
+
+  function openSheet(){
+    const sheet = document.getElementById('gmail-sheet');
+    const ov = document.getElementById('gmail-overlay');
+    renderSheet(_gmailItems);
+    sheet.hidden = false;
+    ov.style.display = 'block';
+    requestAnimationFrame(()=>sheet.classList.add('open'));
+  }
+
+  function closeSheet(){
+    const sheet = document.getElementById('gmail-sheet');
+    const ov = document.getElementById('gmail-overlay');
+    sheet.classList.remove('open');
+    ov.style.display = 'none';
+    setTimeout(()=>{ sheet.hidden = true; }, 300);
+  }
+
+  window._getGmailCalItems = () => _gmailItems;
+  window._gmailOpenSheet = () => openSheet();
+  window._gmailDismiss = async (emailId)=>{
+    await dismissEmail(emailId);
+    _gmailItems=_gmailItems.filter(it=>it.emailId!==emailId);
+    updateBadge(_gmailItems.length);
+  };
+  window._gmailAddAction = (action)=>addActionToApp(action);
+
+  function updateMailTabVisibility(){
+    const btn=document.getElementById('other-mail-btn');
+    if(btn) btn.style.display=db.settings?.features?.gmail===false?'none':'';
+  }
+  updateMailTabVisibility();
+
+  // ── 自動追加 ──────────────────────────────────────────────
+  async function autoProcess(items){
+    if(!items.length)return;
+    let evCount=0,tkCount=0;
+    const autoEv=!!db.settings?.gmailAutoAddEvent;
+    const autoTk=!!db.settings?.gmailAutoAddTask;
+    for(const item of items){
+      let handled=true;
+      (item.actions||[]).forEach(a=>{
+        if(a.type==='event'&&autoEv){addActionToApp(a);evCount++;}
+        else if((a.type==='task'||a.type==='reply')&&autoTk){addActionToApp(a);tkCount++;}
+        else handled=false;
+      });
+      if(handled) await dismissEmail(item.emailId);
+    }
+    // 未処理分だけ残す
+    _gmailItems=items.filter(item=>(item.actions||[]).some(a=>{
+      if(a.type==='event')return !autoEv;
+      return !autoTk;
+    }));
+    updateBadge(_gmailItems.length);
+    const msgs=[];
+    if(evCount>0)msgs.push(`予定${evCount}件`);
+    if(tkCount>0)msgs.push(`タスク${tkCount}件`);
+    if(msgs.length>0)showToast(`📧 Gmail: ${msgs.join('・')}を自動追加しました`);
+  }
+
+  async function fetchAndProcess(){
+    const items = await fetchActions();
+    if(db.settings?.gmailAutoAdd){
+      await autoProcess(items);
+    } else {
+      _gmailItems = items;
+      updateBadge(_gmailItems.length);
+    }
+  }
+
+  // 自動追加トグル初期化・保存（予定/タスク別）
+  const autoEventToggle = document.getElementById('gmail-auto-event-toggle');
+  if(autoEventToggle){
+    autoEventToggle.checked = !!db.settings?.gmailAutoAddEvent;
+    autoEventToggle.onchange = ()=>{ if(!db.settings)db.settings={}; db.settings.gmailAutoAddEvent=autoEventToggle.checked; save(db); };
+  }
+  const autoTaskToggle = document.getElementById('gmail-auto-task-toggle');
+  if(autoTaskToggle){
+    autoTaskToggle.checked = !!db.settings?.gmailAutoAddTask;
+    autoTaskToggle.onchange = ()=>{ if(!db.settings)db.settings={}; db.settings.gmailAutoAddTask=autoTaskToggle.checked; save(db); };
+  }
+
+  // チェック期間セレクタ初期化・保存
+  const lookbackSel = document.getElementById('gmail-lookback-select');
+  if(lookbackSel){
+    const saved = db.settings?.gmailLookback ?? 30;
+    lookbackSel.value = String(saved);
+    lookbackSel.onchange = ()=>{
+      if(!db.settings) db.settings={};
+      db.settings.gmailLookback = Number(lookbackSel.value);
+      save(db);
+    };
+  }
+
+  document.getElementById('hdr-gmail').onclick = openSheet;
+  document.getElementById('gmail-close').onclick = closeSheet;
+  document.getElementById('gmail-overlay').onclick = closeSheet;
+
+  // ── Gmail OAuth UI ────────────────────────────────────────
+  async function checkGmailConnection(){
+    try{
+      const res = await fetch(`${WORKER}/oauth/status`,{headers:{'X-LifeHub-Token':SECRET}});
+      const data = await res.json();
+      const connectRow = document.getElementById('st-gmail-connect-row');
+      const disconnectRow = document.getElementById('st-gmail-disconnect-row');
+      const label = document.getElementById('st-gmail-connect-label');
+      const sub   = document.getElementById('st-gmail-connect-sub');
+      const ic    = connectRow?.querySelector('.st-ic');
+      if(data.connected){
+        if(connectRow) connectRow.style.display='flex';
+        if(disconnectRow) disconnectRow.style.display='flex';
+        if(label) label.textContent = '連携済み ✓';
+        if(sub)   sub.textContent   = data.email ? data.email : 'Gmailが自動でチェックされます';
+        if(ic){ ic.textContent='✓'; ic.style.background='#dcfce7'; ic.style.color='#16a34a'; }
+        document.getElementById('st-gmail-connect-arrow').style.display='none';
+        document.getElementById('st-gmail-auto-event-row').style.display='flex';
+        document.getElementById('st-gmail-auto-task-row').style.display='flex';
+        document.getElementById('st-gmail-lookback-row').style.display='flex';
+        // 機能トグルを自動でON
+        const ck=document.getElementById('ft-toggle-gmail');
+        if(ck&&!ck.checked){ ck.checked=true; ck.dispatchEvent(new Event('change')); }
+      } else {
+        if(disconnectRow) disconnectRow.style.display='none';
+        document.getElementById('st-gmail-auto-event-row').style.display='none';
+        document.getElementById('st-gmail-auto-task-row').style.display='none';
+        document.getElementById('st-gmail-lookback-row').style.display='none';
+        if(label) label.textContent = 'Googleアカウントと連携';
+        if(sub)   sub.textContent   = 'タップしてGmailを接続する';
+        if(ic){ ic.textContent='G'; ic.style.background='#ea4335'; ic.style.color=''; }
+        document.getElementById('st-gmail-connect-arrow').style.display='';
+      }
+    } catch(e){}
+  }
+
+  // 設定画面を開くたびに接続状態を確認
+  const moSettings = document.getElementById('mo-settings');
+  if(moSettings){
+    new MutationObserver(muts=>{
+      muts.forEach(m=>{ if(!moSettings.hidden) checkGmailConnection(); });
+    }).observe(moSettings,{attributeFilter:['hidden']});
+  }
+
+  // 連携ボタン
+  document.getElementById('st-gmail-connect-row').onclick = ()=>{
+    const returnUrl = location.origin + location.pathname;
+    location.href = `${WORKER}/oauth/start?return=${encodeURIComponent(returnUrl)}`;
+  };
+
+  // 解除ボタン
+  document.getElementById('st-gmail-disconnect-row').onclick = async ()=>{
+    if(!confirm('Googleアカウントとの連携を解除しますか？')) return;
+    await fetch(`${WORKER}/oauth/disconnect`,{method:'POST',headers:{'X-LifeHub-Token':SECRET}});
+    checkGmailConnection();
+    showToast('Gmail連携を解除しました');
+    // 機能トグルをOFF
+    const ck=document.getElementById('ft-toggle-gmail');
+    if(ck&&ck.checked){ ck.checked=false; ck.dispatchEvent(new Event('change')); }
+  };
+
+  // OAuth後のコールバック処理（?gmail_connected=1）
+  if(location.search.includes('gmail_connected=1')){
+    history.replaceState(null,'',location.pathname);
+    // 機能フラグをONに設定
+    if(!db.settings.features)db.settings.features={workout:true,meals:true,sleep:true,gmail:true};
+    db.settings.features.gmail=true;
+    save(db);
+    updateMailTabVisibility();
+    setTimeout(()=>{showToast('✅ Gmailと連携しました！');}, 500);
+    // 即アクション取得
+    setTimeout(()=>fetchAndProcess(), 1500);
+  }
+
+  // 起動時に非同期でアクション取得（Gmail機能がONの場合のみ）
+  setTimeout(async ()=>{
+    if(db.settings.features?.gmail===false)return;
+    await fetchAndProcess();
+  }, 2000);
+})();
 // ── ICSインポート ─────────────────────────────────────────
 (function(){
+  const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2);
   function parseIcs(text){
     // 折り返し行（RFC5545: 行頭スペース/タブは前行の続き）を結合
     const lines=text.replace(/\r\n/g,'\n').replace(/\r/g,'\n').replace(/\n[ \t]/g,'').split('\n');
@@ -3130,7 +3949,7 @@ document.querySelectorAll('.pos-opt[data-hl]').forEach(btn=>{
       const en=parseDt(ev.dtend,ev.dtendParams);
       const repeat=rruleToRepeat(ev.rrule);
       const newEv={
-        id:UID(),
+        id:uid(),
         gcal_uid:ev.uid||null,
         date:st.date,
         title:ev.summary,
@@ -3181,11 +4000,112 @@ document.querySelectorAll('.pos-opt[data-hl]').forEach(btn=>{
 })();
 // ── End ICSインポート ──
 
-document.getElementById('settings-close').onclick=()=>{
-  save(db);
-  document.getElementById('mo-settings').hidden=true;
-};
+function closeSettings(){save(db);document.getElementById('mo-settings').hidden=true;}
+document.getElementById('settings-close').onclick=closeSettings;
+document.getElementById('settings-close-top').onclick=closeSettings;
 document.getElementById('mo-settings').onclick=e=>{if(e.target===e.currentTarget)e.currentTarget.hidden=true;};
+
+// ── 新設定UI の行→既存処理 接続 ────────────────────────────
+(function(){
+  // データ操作行
+  const wire=(rowId,btnId)=>{
+    const row=document.getElementById(rowId);
+    const btn=document.getElementById(btnId);
+    if(row&&btn)row.onclick=()=>btn.click();
+  };
+  wire('st-export-row','btn-export');
+  wire('st-reset-row','btn-reset');
+  wire('st-pc-row','btn-pc-set');
+  wire('st-pc-clear-row','btn-pc-clear');
+
+  // ICSインポート
+  const icsRow=document.getElementById('st-ics-row');
+  const icsInput=document.getElementById('ics-file-input');
+  if(icsRow&&icsInput)icsRow.onclick=()=>icsInput.click();
+
+  // データインポート
+  const importRow=document.getElementById('st-import-row');
+  const importInput=document.getElementById('import-file');
+  if(importRow&&importInput)importRow.onclick=()=>importInput.click();
+
+  // 左利きトグル（新checkbox → 既存hidden btn）
+  const lck=document.getElementById('lefty-toggle-ck');
+  const ltrack=document.getElementById('lefty-toggle-track');
+  const lthumb=document.getElementById('lefty-toggle-thumb');
+  if(lck){
+    // 初期状態を設定
+    function syncLeftyToggle(){
+      const on=!!db.settings.leftHand;
+      lck.checked=on;
+      ltrack.style.background=on?'var(--accent)':'var(--border)';
+      lthumb.style.left=on?'23px':'3px';
+    }
+    syncLeftyToggle();
+    lck.onchange=function(){
+      const on=lck.checked;
+      db.settings.leftHand=on;
+      save(db);
+      ltrack.style.background=on?'var(--accent)':'var(--border)';
+      lthumb.style.left=on?'23px':'3px';
+      applyLeftyMode();
+    };
+  }
+
+  // ゲームステータス展開
+  const gameRow=document.getElementById('st-game-row');
+  const gameArrow=document.getElementById('st-game-arrow');
+  const gamePanel=document.getElementById('game-stats-panel');
+  if(gameRow&&gamePanel){
+    gameRow.onclick=()=>{
+      const open=!gamePanel.hidden;
+      gamePanel.hidden=open;
+      if(gameArrow)gameArrow.textContent=open?'›':'⌄';
+      if(!open&&typeof renderGameStats==='function')renderGameStats();
+    };
+  }
+
+  // ICS行のsubtext更新（import成功後）
+  const origIcsResult=document.getElementById('ics-result');
+  if(origIcsResult){
+    const obs=new MutationObserver(()=>{
+      const txt=origIcsResult.textContent;
+      if(txt&&txt!=='.icsファイルを読み込む')origIcsResult.style.color='var(--ok)';
+    });
+    obs.observe(origIcsResult,{childList:true,characterData:true,subtree:true});
+  }
+
+  // updatePcSettingsUIをフック：st-pc-clear-rowの表示も更新
+  const origPcUI=window.updatePcSettingsUI;
+  window.updatePcSettingsUI=function(){
+    if(origPcUI)origPcUI();
+    const clearRow=document.getElementById('st-pc-clear-row');
+    if(!clearRow)return;
+    // origPcUIがbtn-pc-clearのdisplay:noneを更新済み → それを参照
+    const btnClr=document.getElementById('btn-pc-clear');
+    const hasCode=btnClr&&btnClr.style.display!=='none';
+    clearRow.style.display=hasCode?'':'none';
+  };
+})();
+
+// iOS PWA fix: iOSスタンドアロンモードのみ適用
+// (position:fixed;overflow:hiddenのコンポジットレイヤーがモーダルのタッチを横取りするバグの対策)
+(function(){
+  const isIOSStandalone=/iPhone|iPad|iPod/.test(navigator.userAgent)&&window.navigator.standalone===true;
+  if(!isIOSStandalone)return;
+  const MODAL_IDS=['mo-settings','mo-profiles','mo-day','mo-ev','mo-goal','mo-goal-add','mo-task-edit','mo-ann','mo-review','mo-timer','mo-ml-add','mo-nutrients','mo-calendars','hist-modal'];
+  // モーダル自体は#appの子要素なので#app全体をブロックしない。
+  // タブセクションとナビだけをブロックし、モーダルは操作可能にする。
+  const bgEls=[...document.querySelectorAll('.tab'),document.getElementById('main-nav')].filter(Boolean);
+  function syncPointerEvents(){
+    const anyOpen=MODAL_IDS.some(id=>{const el=document.getElementById(id);return el&&!el.hidden;});
+    bgEls.forEach(el=>el.style.pointerEvents=anyOpen?'none':'');
+  }
+  MODAL_IDS.forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    new MutationObserver(syncPointerEvents).observe(el,{attributeFilter:['hidden']});
+  });
+})();
 // ===== お知らせ =====
 // 新しいお知らせを追加するときは先頭に追加する（idは一意な文字列）
 const ANNOUNCEMENTS=[
@@ -3495,7 +4415,7 @@ function taskOccursToday(task){
 }
 function renderTodayTasks(){
   const sec=document.getElementById('tk-today-section');if(!sec)return;
-  const today=(db.tasks||[]).filter(taskOccursToday);
+  const today=(db.tasks||[]).filter(t=>t.source!=='gmail').filter(taskOccursToday);
   if(!today.length){sec.innerHTML='';return;}
   const pLbl={high:'高',mid:'中',low:'低'};
   const repLbl={daily:'毎日',weekly:'毎週',monthly:'毎月'};
@@ -3552,7 +4472,7 @@ function toggleTaskDone(id){
 function renderTasks(){
   renderTodayTasks();
   const list=document.getElementById('tk-list');
-  let tasks=db.tasks||[];
+  let tasks=(db.tasks||[]).filter(t=>t.source!=='gmail');
   if(st.filter==='pending')tasks=tasks.filter(t=>!taskIsDoneToday(t));
   else if(st.filter==='done')tasks=tasks.filter(t=>taskIsDoneToday(t));
   list.innerHTML='';
@@ -4445,6 +5365,11 @@ document.getElementById('sl-add-nap').onclick=()=>{
 function renderOther(){
   const hl=db.settings?.highlightTab||'wo';
   document.querySelectorAll('.other-sub-btn').forEach(b=>{
+    if(b.dataset.s==='mail'){
+      b.classList.toggle('on',st.otherSub==='mail');
+      b.style.display=db.settings?.features?.gmail===false?'none':'';
+      return;
+    }
     b.hidden=b.dataset.s===hl;
     b.classList.toggle('on',b.dataset.s===st.otherSub);
   });
@@ -4452,6 +5377,7 @@ function renderOther(){
   document.getElementById('other-meals').hidden=st.otherSub!=='meals';
   document.getElementById('other-sleep').hidden=st.otherSub!=='sleep';
   document.getElementById('other-health').hidden=st.otherSub!=='health';
+  document.getElementById('other-mail').hidden=st.otherSub!=='mail';
   if(st.otherSub==='wo'){
     document.querySelectorAll('.wo-vtab').forEach(b=>b.classList.toggle('on',b.dataset.v==='log'));
     document.getElementById('wo-datebar').style.display='';
@@ -4461,7 +5387,80 @@ function renderOther(){
   } else if(st.otherSub==='meals') renderMeals();
   else if(st.otherSub==='sleep') renderSleepTab();
   else if(st.otherSub==='health') renderHealth();
+  else if(st.otherSub==='mail') renderOtherMail();
   updateNavActive();
+}
+function renderOtherMail(){
+  const list=document.getElementById('other-mail-list');
+  const items=window._getGmailCalItems?window._getGmailCalItems():[];
+  if(!items.length){
+    list.innerHTML='<div class="empty" style="padding:40px 0"><div class="empty-icon">📭</div><p>新しいメールはありません</p></div>';
+    return;
+  }
+  list.innerHTML='';
+  items.forEach((item,i)=>{
+    const card=document.createElement('div');card.className='mail-card';
+    // 受信日フォーマット
+    let dateStr='';
+    try{const d=new Date(item.receivedAt);dateStr=`${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;}catch(e){}
+    // 送信者のイニシャル
+    const fromName=(item.from||'?').replace(/<.*>/,'').trim();
+    const initial=(fromName[0]||'?').toUpperCase();
+    // esc
+    const e=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    card.innerHTML=`
+      <div class="mail-card-top" data-idx="${i}">
+        <div class="mail-card-avatar">${e(initial)}</div>
+        <div class="mail-card-info">
+          <div class="mail-card-from">${e(fromName)}</div>
+          <div class="mail-card-subject">${e(item.subject)}</div>
+          <div class="mail-card-summary">${e(item.summary||'')}</div>
+        </div>
+        <div class="mail-card-meta">${e(dateStr)}<br><span style="color:var(--accent);font-size:11px;font-weight:600;">${item.actions?.length||0}件</span></div>
+      </div>
+      <div class="mail-card-detail" id="mail-detail-${i}">
+        <button class="mail-card-detail-toggle" data-idx="${i}">アクションを見る ▾</button>
+        <div id="mail-actions-${i}" style="margin-top:8px;"></div>
+        <div style="display:flex;justify-content:flex-end;margin-top:6px;">
+          <button class="mail-dismiss-btn" data-dismiss="${i}" title="却下">✕ 却下</button>
+        </div>
+      </div>`;
+    list.appendChild(card);
+    // トップタップで展開
+    card.querySelector('.mail-card-top').onclick=()=>{
+      const det=document.getElementById(`mail-detail-${i}`);
+      det.classList.toggle('open');
+      if(det.classList.contains('open')) renderMailActions(i,item);
+    };
+    // 却下
+    card.querySelector('.mail-dismiss-btn').onclick=async e=>{
+      e.stopPropagation();
+      await window._gmailDismiss?.(item.emailId);
+      renderOtherMail();
+    };
+  });
+}
+function renderMailActions(idx,item){
+  const wrap=document.getElementById(`mail-actions-${idx}`);
+  if(!wrap)return;
+  const e=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  wrap.innerHTML='';
+  (item.actions||[]).forEach((action,j)=>{
+    const icon=action.type==='event'?'📅':action.type==='task'?'✅':'↩️';
+    const sub=[action.date,action.time,action.location].filter(Boolean).join(' · ');
+    const row=document.createElement('div');row.className='mail-action-row';
+    row.innerHTML=`<span class="mail-action-icon">${icon}</span>
+      <div class="mail-action-body">
+        <div class="mail-action-title">${e(action.title)}</div>
+        ${sub?`<div class="mail-action-sub">${e(sub)}</div>`:''}
+      </div>
+      <button class="mail-action-add" data-idx="${idx}" data-action="${j}">追加</button>`;
+    wrap.appendChild(row);
+    row.querySelector('.mail-action-add').onclick=async btn=>{
+      btn.target.disabled=true;btn.target.textContent='✓';
+      window._gmailAddAction?.(action);
+    };
+  });
 }
 function renderOtherSub(s){st.otherSub=s;renderOther();}
 document.querySelectorAll('.other-sub-btn').forEach(btn=>{
@@ -4825,6 +5824,7 @@ document.getElementById('ml-next').onclick=()=>{const d=new Date(st.mlDate);d.se
       const selected=[...step2.querySelectorAll('.ob-chip.active')].map(c=>c.dataset.val);
       const savedName=inp.value.trim()||'マイデータ';
       db.userProfile={useCase:selected,setupAt:todayStr(),name:savedName};
+      if(selected.length>0)autoConfigFeatures(selected);
       save(db);
       ob.hidden=true;
       app.style.display='';
@@ -4839,6 +5839,7 @@ document.getElementById('ml-next').onclick=()=>{const d=new Date(st.mlDate);d.se
 
 // ── Init ──────────────────────────────────────────────────
 if(!window._LH_IS_NEW){
+  renderProfHeader();
   renderGoals();
   renderCal();
   renderTasks();
@@ -4987,16 +5988,47 @@ window.updatePcSettingsUI();
     if(db.settings.enableAttach)attachBtn.style.display='flex';
     attachBtn.onclick=()=>fileInput.click();
   }
+  async function addFile(file){
+    if(!file)return;
+    const reader=new FileReader();
+    const data=await new Promise(res=>{reader.onload=e=>res(e.target.result.split(',')[1]);reader.readAsDataURL(file);});
+    pendingAttachments.push({name:file.name||'file',mediaType:file.type||'application/octet-stream',data});
+    renderAttachPreview();
+  }
+
   if(fileInput){
     fileInput.addEventListener('change',async()=>{
-      for(const file of fileInput.files){
-        if(!file)continue;
-        const reader=new FileReader();
-        const data=await new Promise(res=>{reader.onload=e=>res(e.target.result.split(',')[1]);reader.readAsDataURL(file);});
-        pendingAttachments.push({name:file.name,mediaType:file.type||'application/octet-stream',data});
-      }
+      for(const file of fileInput.files) await addFile(file);
       fileInput.value='';
-      renderAttachPreview();
+    });
+  }
+
+  // Ctrl+V でファイル・画像を貼り付け
+  const aiInputEl=document.getElementById('ai-input');
+  if(aiInputEl){
+    aiInputEl.addEventListener('paste',async e=>{
+      const items=e.clipboardData?.items;
+      if(!items)return;
+      let hasFile=false;
+      for(const item of items){
+        if(item.kind==='file'){
+          hasFile=true;
+          e.preventDefault();
+          await addFile(item.getAsFile());
+        }
+      }
+    });
+  }
+
+  // ドラッグ&ドロップ
+  const dropZone=document.getElementById('ai-messages');
+  if(dropZone){
+    dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('ai-drag-over');});
+    dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('ai-drag-over'));
+    dropZone.addEventListener('drop',async e=>{
+      e.preventDefault();
+      dropZone.classList.remove('ai-drag-over');
+      for(const file of e.dataTransfer.files) await addFile(file);
     });
   }
 
@@ -5339,17 +6371,19 @@ window.updatePcSettingsUI();
   }
   function openAiModal(){
     const m=document.getElementById('ai-modal'),o=document.getElementById('ai-overlay');
-    m.style.bottom='';m.style.height='';// 前回の値をリセット
+    m.style.bottom='';m.style.height='';
     m.hidden=false;
-    requestAnimationFrame(()=>{m.classList.add('open');o.classList.add('open');});
+    requestAnimationFrame(()=>{m.classList.add('open');o.classList.add('open');updateNavActive();});
     document.getElementById('ai-input').focus();
     window._missionHook?.('open_ai');
   }
   function closeAiModal(){
     const m=document.getElementById('ai-modal'),o=document.getElementById('ai-overlay');
     m.classList.remove('open');o.classList.remove('open');
-    setTimeout(()=>{m.style.bottom='';m.style.height='';m.hidden=true;},300);// transition後にリセット
+    setTimeout(()=>{m.style.bottom='';m.style.height='';m.hidden=true;updateNavActive();},300);
   }
+  window._lhOpenAi=openAiModal;
+  window._lhCloseAi=closeAiModal;
   document.getElementById('ai-fab').onclick=openAiModal;
   document.getElementById('ai-close').onclick=closeAiModal;
   document.getElementById('ai-overlay').onclick=closeAiModal;
