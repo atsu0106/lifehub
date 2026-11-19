@@ -1010,7 +1010,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
 .nav{display:none!important;}
 .other-subnav{display:none;}
 .fab-float[hidden]{display:none!important;}
-.st-opt[data-pos="center"],.st-row:has(.st-opt[data-hl]){display:none;}
+.st-opt[data-pos="center"]{display:none;}
 .hdr .prof-btn,.hdr .hdr-settings-btn{display:none;}
 .hdr-menu-btn{background:none;border:none;color:var(--fg);cursor:pointer;width:40px;height:40px;margin-left:-8px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .hdr-menu-btn:active{background:var(--surface2);}
@@ -1134,6 +1134,39 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
 .st-game-wrap{padding:4px 14px 12px;border-top:1px solid var(--border);}
 .st-ics-wrap{padding:4px 14px 12px;border-top:1px solid var(--border);}
 .st-hist-wrap{padding:4px 14px 12px;border-top:1px solid var(--border);}
+/* === Bottom tab bar (v2.83.0): 筋トレ / カレンダー / タスク — TimeTree風の浮いたカプセル型 === */
+:root{--nav-h:62px;--nav-off:max(10px,calc(env(safe-area-inset-bottom,0px) - 12px));}
+.nav{display:grid!important;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:1fr;
+  bottom:var(--nav-off);width:calc(min(100%,480px) - 36px);height:var(--nav-h);padding:5px;box-sizing:border-box;
+  border:1px solid var(--border);border-radius:999px;background:var(--surface);
+  box-shadow:0 6px 24px rgba(0,0,0,.18);}
+.nav .nb[hidden],.nav .nb-add[hidden]{display:none!important;}
+.nav .nb{font-size:11px;font-weight:700;gap:3px;padding:0 4px;border-radius:999px;color:var(--fg3);}
+.nav .nb svg{width:26px;height:26px;stroke-width:1.7;}
+.nav .nb.on{background:var(--accent-bg);color:var(--accent);}
+.nav .nb.on svg{transform:none;}
+.tab{bottom:calc(var(--nav-h) + var(--nav-off) + 6px);padding-bottom:72px;}
+.ai-fab{bottom:calc(var(--nav-h) + var(--nav-off) + 12px);}
+.fab-float{bottom:calc(var(--nav-h) + var(--nav-off) + 12px);}
+.lh-toast{bottom:calc(var(--nav-h) + var(--nav-off) + 64px);}
+
+/* === マイタブ（v2.84.0） === */
+.ob-hint{font-size:.85rem;color:var(--fg3);margin:-6px 0 0;text-align:center;}
+.st-opt[data-hl]{min-width:0;padding-left:8px;padding-right:8px;}
+
+/* === チャット＋メニュー（v2.85.1） === */
+.ai-plus-wrap{position:relative;flex-shrink:0;}
+.ai-plus-wrap .ai-attach{font-size:24px;font-weight:300;color:var(--fg2);}
+.ai-plus-menu{position:absolute;left:0;bottom:calc(100% + 8px);min-width:160px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.18);padding:6px;z-index:20;display:flex;flex-direction:column;}
+.ai-plus-menu[hidden]{display:none;}
+.ai-plus-menu button{display:flex;align-items:center;gap:10px;padding:11px 12px;border:none;background:none;border-radius:10px;font-size:15px;font-family:inherit;color:var(--fg);text-align:left;cursor:pointer;}
+.ai-plus-menu button:active{background:var(--surface2);}
+.ai-plus-menu button span{font-size:18px;width:22px;text-align:center;}
+
+/* === トレーニング中のAI記録（v2.86.0） === */
+body.in-training .ai-overlay{z-index:699;}
+body.in-training .ai-modal{z-index:700;}
+.training-ai-log-btn{display:block;flex:0 0 auto;width:calc(100% - 32px);font-size:14px!important;margin:0 auto 12px;background:linear-gradient(135deg,#6366f1,#8b5cf6)!important;color:#fff!important;border:none!important;}
 </style>
 </head>
 <body>
@@ -1188,6 +1221,17 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
       <button id="ob-start" class="ob-btn" style="margin-top:8px;">はじめる →</button>
       <button id="ob-skip" class="ob-skip-btn">スキップ</button>
     </div>
+    <div class="ob-form" id="ob-step3" hidden>
+      <label class="ob-label">いちばんよく使いそうなのはどれ？</label>
+      <p class="ob-hint">画面下のタブに置きます（あとで設定から変更できます）</p>
+      <div class="ob-chips">
+        <button class="ob-chip" data-hl="wo">🏋️ 筋トレ</button>
+        <button class="ob-chip" data-hl="meals">🍱 食事</button>
+        <button class="ob-chip" data-hl="sleep">😴 睡眠</button>
+        <button class="ob-chip" data-hl="health">❤️ 健康</button>
+      </div>
+      <button id="ob-skip3" class="ob-skip-btn">あとで決める</button>
+    </div>
   </div>
 </div>
 
@@ -1196,7 +1240,6 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
     <button class="hdr-menu-btn" id="hdr-menu" aria-label="メニュー"><svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
     <span class="hdr-logo" id="hdr-title">LifeHub</span>
     <span class="hdr-date" id="hdr-date"></span>
-    <button class="hdr-gmail-btn" id="hdr-gmail" hidden title="メールからのアクション">📧<span class="gmail-badge" id="gmail-badge">0</span></button>
     <button class="prof-btn" id="prof-btn" title="プロフィール切り替え">
       <span class="prof-avatar" id="prof-avatar" style="background:#4F46E5">?</span>
     </button>
@@ -1251,7 +1294,7 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
     <p class="section-label" id="day-lbl"></p>
     <div id="ev-list"></div>
     <div id="clarify-tasks" class="clarify-tasks-section" hidden></div>
-    <div id="clarify-gmail" class="clarify-tasks-section" hidden></div>
+    
   </section>
 
   <section id="tab-tasks" class="tab">
@@ -1279,10 +1322,6 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
       <button class="other-sub-btn on" data-s="meals"><span class="osb-icon">🍱</span>食事</button>
       <button class="other-sub-btn" data-s="sleep"><span class="osb-icon">😴</span>睡眠</button>
       <button class="other-sub-btn" data-s="health"><span class="osb-icon">❤️</span>健康</button>
-      <button class="other-sub-btn" data-s="mail" id="other-mail-btn" style="display:none;"><span class="osb-icon">📧</span>メール</button>
-    </div>
-    <div id="other-mail" hidden>
-      <div id="other-mail-list"></div>
     </div>
     <div id="other-wo" hidden>
       <div class="card date-bar" id="wo-datebar">
@@ -1451,18 +1490,11 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
       <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
       タスク
     </button>
-    <button class="nb-add" id="fab-nav">
-      <svg viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
-      予定追加
+    <button class="nb" data-t="other" data-sub="wo" id="nav-hl">
+      <svg viewBox="0 0 24 24" id="nav-hl-svg"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>
+      <span id="nav-hl-label">筋トレ</span>
     </button>
-    <button class="nb" id="nav-ai" data-t="ai">
-      <svg viewBox="0 0 24 24"><path d="M12 2l1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8z"/></svg>
-      AI
-    </button>
-    <button class="nb" data-t="other">
-      <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
-      その他
-    </button>
+    <button class="nb-add" id="fab-nav" hidden></button>
   </nav>
 
   <div class="drawer-ov" id="drawer-ov"></div>
@@ -1481,7 +1513,6 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
       <button class="dr-item" data-go="meals"><span class="dr-ic">🍱</span>食事</button>
       <button class="dr-item" data-go="sleep"><span class="dr-ic">😴</span>睡眠</button>
       <button class="dr-item" data-go="health"><span class="dr-ic">❤️</span>健康</button>
-      <button class="dr-item" data-go="mail"><span class="dr-ic">📧</span>メール</button>
       <div class="dr-sep"></div>
       <button class="dr-item" data-act="settings"><span class="dr-ic">⚙️</span>設定</button>
     </div>
@@ -1520,8 +1551,17 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
   </div>
   <div class="ai-input-row">
     <button class="ai-mic" id="ai-mic" title="音声入力">🎤</button>
-    <button class="ai-attach" id="ai-attach" title="ファイルを添付" style="display:none;">📎</button>
-    <input type="file" id="ai-file-input" accept="image/*,.pdf" multiple style="display:none;">
+    <div class="ai-plus-wrap">
+      <button class="ai-attach" id="ai-attach" title="写真・ファイルを追加" aria-haspopup="menu">＋</button>
+      <div class="ai-plus-menu" id="ai-plus-menu" role="menu" hidden>
+        <button role="menuitem" id="ai-camera"><span>📷</span>カメラ</button>
+        <button role="menuitem" id="ai-photo"><span>🖼️</span>写真</button>
+        <button role="menuitem" id="ai-file"><span>📎</span>ファイル</button>
+      </div>
+    </div>
+    <input type="file" id="ai-camera-input" accept="image/*" capture="environment" style="display:none;">
+    <input type="file" id="ai-photo-input" accept="image/*" multiple style="display:none;">
+    <input type="file" id="ai-file-input" accept="image/*,.pdf,.txt,.md,.csv,.json,text/plain,text/csv,application/json" multiple style="display:none;">
     <textarea class="ai-input" id="ai-input" placeholder="メッセージを入力..." autocomplete="off" rows="1"></textarea>
     <button class="ai-send" id="ai-send">▶</button>
   </div>
@@ -1665,12 +1705,12 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
         </div>
         <div class="st-row st-row-toggle">
           <span class="st-ic" style="background:#f59e0b;">⭐</span>
-          <span class="st-label" style="flex:0 0 auto;margin-right:8px;">ハイライトタブ</span>
+          <span class="st-label" style="flex:0 0 auto;margin-right:8px;">下のタブ</span>
           <div class="st-opts" style="justify-content:flex-end;">
-            <button class="st-opt" data-hl="wo">🏋️</button>
-            <button class="st-opt" data-hl="meals">🍱</button>
-            <button class="st-opt" data-hl="sleep">😴</button>
-            <button class="st-opt" data-hl="health">❤️</button>
+            <button class="st-opt" data-hl="wo">筋トレ</button>
+            <button class="st-opt" data-hl="meals">食事</button>
+            <button class="st-opt" data-hl="sleep">睡眠</button>
+            <button class="st-opt" data-hl="health">健康</button>
           </div>
         </div>
         <div class="st-row st-row-toggle">
@@ -1711,18 +1751,6 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
             <input type="checkbox" id="ft-toggle-sleep" style="opacity:0;width:0;height:0;">
             <span id="ft-track-sleep" class="st-toggle-track" style="background:var(--accent);"></span>
             <span id="ft-thumb-sleep" class="st-toggle-thumb" style="left:23px;"></span>
-          </label>
-        </div>
-        <div class="st-row st-row-toggle" id="st-gmail-feat-row">
-          <span class="st-ic" style="background:#0ea5e9;">📧</span>
-          <div style="flex:1;">
-            <div class="st-label">Gmailアクション</div>
-            <div style="font-size:11px;color:var(--fg3);margin-top:1px;" id="st-gmail-feat-sub">メールをAIが解析してタスク・予定を提案</div>
-          </div>
-          <label class="st-toggle">
-            <input type="checkbox" id="ft-toggle-gmail" style="opacity:0;width:0;height:0;">
-            <span id="ft-track-gmail" class="st-toggle-track" style="background:var(--border);"></span>
-            <span id="ft-thumb-gmail" class="st-toggle-thumb"></span>
           </label>
         </div>
       </div>
@@ -1789,64 +1817,7 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
 
       <!-- AI・連携 -->
       <div class="st-sec">AI・連携</div>
-      <!-- Gmail OAuth connect card -->
-      <div class="st-card" id="st-gmail-connect-card">
-        <div class="st-row" id="st-gmail-connect-row" style="cursor:pointer;">
-          <span class="st-ic" style="background:#ea4335;">G</span>
-          <div style="flex:1;">
-            <div class="st-label" id="st-gmail-connect-label">Googleアカウントと連携</div>
-            <div style="font-size:11px;color:var(--fg3);margin-top:1px;" id="st-gmail-connect-sub">タップしてGmailを接続する</div>
-          </div>
-          <span id="st-gmail-connect-arrow" class="st-arrow">›</span>
-        </div>
-        <div class="st-row" id="st-gmail-disconnect-row" style="display:none;cursor:pointer;">
-          <span class="st-ic" style="background:#fee2e2;">🔌</span>
-          <span class="st-label st-action-danger">連携を解除する</span>
-          <span class="st-arrow">›</span>
-        </div>
-        <div class="st-row st-row-toggle" id="st-gmail-auto-event-row" style="display:none;">
-          <span class="st-ic" style="background:#4f46e5;">📅</span>
-          <div style="flex:1;">
-            <div class="st-label">予定を自動追加</div>
-            <div style="font-size:11px;color:var(--fg3);margin-top:1px;">カレンダー予定を確認なしで自動追加</div>
-          </div>
-          <label class="toggle"><input type="checkbox" id="gmail-auto-event-toggle"><span class="toggle-track"><span class="toggle-thumb"></span></span></label>
-        </div>
-        <div class="st-row st-row-toggle" id="st-gmail-auto-task-row" style="display:none;">
-          <span class="st-ic" style="background:#10b981;">✅</span>
-          <div style="flex:1;">
-            <div class="st-label">タスクを自動追加</div>
-            <div style="font-size:11px;color:var(--fg3);margin-top:1px;">タスクを確認なしで自動追加</div>
-          </div>
-          <label class="toggle"><input type="checkbox" id="gmail-auto-task-toggle"><span class="toggle-track"><span class="toggle-thumb"></span></span></label>
-        </div>
-        <div class="st-row" id="st-gmail-lookback-row" style="display:none;">
-          <span class="st-ic" style="background:#6366f1;">📆</span>
-          <div style="flex:1;">
-            <div class="st-label">チェック期間</div>
-            <div style="font-size:11px;color:var(--fg3);margin-top:1px;">過去何日分のメールを遡るか</div>
-          </div>
-          <select id="gmail-lookback-select" style="border:1.5px solid var(--border);border-radius:8px;padding:5px 8px;background:var(--surface2);color:var(--fg);font-size:13px;font-family:inherit;">
-            <option value="7">1週間</option>
-            <option value="30" selected>1か月</option>
-            <option value="90">3か月</option>
-            <option value="180">6か月</option>
-          </select>
-        </div>
-      </div>
       <div class="st-card">
-        <div class="st-row st-row-toggle">
-          <span class="st-ic" style="background:#8b5cf6;">📎</span>
-          <div style="flex:1;">
-            <div class="st-label">ファイル添付（チャット）</div>
-            <div style="font-size:11px;color:var(--fg3);margin-top:1px;">画像・PDFをAIに送れる</div>
-          </div>
-          <label class="st-toggle">
-            <input type="checkbox" id="toggle-attach" style="opacity:0;width:0;height:0;">
-            <span id="toggle-attach-track" class="st-toggle-track" style="background:var(--border);"></span>
-            <span id="toggle-attach-thumb" class="st-toggle-thumb"></span>
-          </label>
-        </div>
         <div class="st-row" id="st-ics-row" style="cursor:pointer;">
           <span class="st-ic" style="background:#10b981;">📥</span>
           <div style="flex:1;">
@@ -1913,7 +1884,7 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
         <div class="st-hist-wrap" id="hist-list" hidden style="display:flex;flex-direction:column;gap:6px;"></div>
       </div>
 
-      <p style="text-align:center;font-size:11px;color:var(--fg3);margin:16px 0 4px;">LifeHub v2.82.0</p>
+      <p style="text-align:center;font-size:11px;color:var(--fg3);margin:16px 0 4px;">LifeHub v2.86.0 <span style="opacity:.6;">build <span id="lh-build"></span></span></p>
       <div style="height:8px;"></div>
     </div><!-- /.settings-body -->
 
@@ -1946,6 +1917,7 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
     <button class="training-sub-btn" onclick="openTrainingMenu()">📋 メニュー確認</button>
     <button class="training-sub-btn" onclick="openTrainingLog()">✏️ 種目を記録</button>
   </div>
+  <button class="training-sub-btn training-ai-log-btn" id="training-ai-log" onclick="talkToLogWorkout()">💬 AIに話して記録</button>
   <button class="training-end-btn" onclick="endTraining()">トレーニング終了</button>
 </div>
 
@@ -2498,66 +2470,32 @@ body.lefty .drawer.open{transform:translateX(0);box-shadow:-4px 0 24px rgba(0,0,
   </div>
 </div>
 
-<!-- Gmail Sheet (must be before <script> so IDs are available at parse time) -->
-<div id="gmail-sheet" class="gmail-sheet" hidden>
-  <div class="gmail-sheet-hdr">
-    <h2>📧 メールからのアクション</h2>
-    <button class="ai-hdr-btn" id="gmail-close">✕</button>
-  </div>
-  <div class="gmail-sheet-body" id="gmail-sheet-body"></div>
-</div>
-<div id="gmail-overlay" style="position:fixed;inset:0;z-index:299;background:rgba(0,0,0,.4);display:none;"></div>
-<!-- Gmail確認ドロワー (z-index:400, gmailシートの上に重なる) -->
-<div id="gmail-cd-overlay"></div>
-<div id="gmail-cd" class="gmail-cd" hidden>
-  <div class="gmail-cd-hdr">
-    <span class="gmail-cd-icon" id="gmail-cd-icon">📅</span>
-    <h3 id="gmail-cd-heading">予定を確認</h3>
-    <button class="gmail-cd-close" id="gmail-cd-close">✕</button>
-  </div>
-  <div class="gmail-cd-body">
-    <div class="gmail-cd-row">
-      <span class="gmail-cd-label">タイトル</span>
-      <input class="gmail-cd-input" id="gmail-cd-title" type="text" placeholder="タイトル">
-    </div>
-    <div class="gmail-cd-row">
-      <span class="gmail-cd-label">日付</span>
-      <input class="gmail-cd-input" id="gmail-cd-date" type="date">
-    </div>
-    <div class="gmail-cd-row" id="gmail-cd-time-row">
-      <span class="gmail-cd-label">時刻</span>
-      <div class="gmail-cd-row-2">
-        <input class="gmail-cd-input" id="gmail-cd-time" type="time" placeholder="開始">
-        <input class="gmail-cd-input" id="gmail-cd-timeend" type="time" placeholder="終了">
-      </div>
-    </div>
-    <div class="gmail-cd-row" id="gmail-cd-location-row">
-      <span class="gmail-cd-label">場所</span>
-      <input class="gmail-cd-input" id="gmail-cd-location" type="text" placeholder="場所">
-    </div>
-    <div class="gmail-cd-row">
-      <span class="gmail-cd-label">メモ</span>
-      <input class="gmail-cd-input" id="gmail-cd-memo" type="text" placeholder="メモ">
-    </div>
-    <button class="gmail-cd-ok" id="gmail-cd-ok">追加する</button>
-  </div>
-</div>
 <!-- Toast -->
 <div class="lh-toast" id="lh-toast"></div>
 
 <script>
-// ── バージョン管理・キャッシュバスト ─────────────────────────
+// ── 自動更新: 配信中の最新版とBUILD_IDを比べ、古ければ1回だけ再読み込み ──
 (function(){
-  const APP_VER='1.6.0';
-  const stored=localStorage.getItem('lh_ver');
-  if(stored&&stored!==APP_VER){
-    localStorage.setItem('lh_ver',APP_VER);
-    // キャッシュバスト: URLに _cb パラメータを付けて強制再取得
-    const base=location.href.replace(/[?&]_cb=[^&]*/,'').replace(/[?&]$/,'');
-    location.replace(base+(base.includes('?')?'&':'?')+'_cb='+APP_VER.replace(/\./g,''));
-    return;
+  const BUILD_ID='b736e26c29'; // tools/build.mjs が内容ハッシュに置換する
+  window._LH_BUILD=BUILD_ID;
+  const el=document.getElementById('lh-build');
+  if(el)el.textContent=BUILD_ID.startsWith('__')?'dev':BUILD_ID;
+  if(BUILD_ID.startsWith('__')||window._DEV_MODE||location.protocol==='file:')return;
+  let checking=false;
+  async function check(){
+    if(checking)return;checking=true;
+    try{
+      const r=await fetch(location.pathname+'?bc='+Date.now(),{cache:'no-store'});
+      const m=(await r.text()).match(/const BUILD_ID='([0-9a-f]{8,})'/);
+      if(!m||m[1]===BUILD_ID)return;
+      const K='lh_reloaded_for';
+      if(sessionStorage.getItem(K)===m[1])return; // 同じ版への再読み込みは1回まで（ループ防止）
+      sessionStorage.setItem(K,m[1]);
+      location.replace(location.pathname+'?v='+m[1]);
+    }catch{}finally{checking=false;}
   }
-  localStorage.setItem('lh_ver',APP_VER);
+  setTimeout(check,2000);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')check();});
 })();
 // ── Passcode ──────────────────────────────────────────────
 (function(){
@@ -2784,20 +2722,6 @@ function getEventsForDate(dateStr){
   return (db.events||[]).filter(ev=>evOccursOn(ev,dateStr)&&!st.hiddenCals.has(ev.calendarId))
     .sort((a,b)=>(a.time||'').localeCompare(b.time||''));
 }
-function getGmailEventsForDate(dateStr){
-  if(!window._getGmailCalItems)return[];
-  const result=[];
-  for(const item of window._getGmailCalItems()){
-    const recDate=item.receivedAt?(()=>{try{return new Date(item.receivedAt).toISOString().substring(0,10);}catch(e){return null;}})():null;
-    if(recDate===dateStr)
-      result.push({_gmail:true,emailId:item.emailId,title:'📧 '+item.subject,date:dateStr,color:'#ea4335',allDay:true,_item:item});
-    (item.actions||[]).forEach(a=>{
-      if(a.type==='event'&&a.date===dateStr&&a.date!==recDate)
-        result.push({_gmail:true,emailId:item.emailId,title:'📅 '+a.title,date:dateStr,time:a.time||'',color:'#ea4335',_item:item,_action:a});
-    });
-  }
-  return result;
-}
 
 let db=load();
 const NOW=new Date();
@@ -2825,6 +2749,25 @@ if(!db.goals)db.goals=[];
   if(g.achievedAt===undefined)g.achievedAt=null;
   if(g.dueDate===undefined)g.dueDate=null;
 });
+// 筋トレ記録の追加（保存先は db.workouts に統一）。同じ日・同じ種目ならセットを追記
+function addWorkoutSets(date,name,category,sets){
+  if(!db.workouts)db.workouts={};
+  if(!db.workouts[date])db.workouts[date]=[];
+  let ex=db.workouts[date].find(e=>e.name===name);
+  if(!ex){ex={id:uid(),name,category:category||'weight',sets:[]};db.workouts[date].push(ex);}
+  ex.sets.push(...sets);
+  return ex;
+}
+// v2.86.0: トレーニング画面の旧保存先 db.workoutLogs → db.workouts へ一度だけ移行
+if(!db.workouts)db.workouts={};
+if(Array.isArray(db.workoutLogs)&&!db._migWorkoutLogs){
+  db.workoutLogs.forEach(l=>(l.exercises||[]).forEach(e=>{
+    if(!e||!e.name||!l.date)return;
+    const n=Math.max(1,parseInt(e.sets)||1);
+    addWorkoutSets(l.date,e.name,'weight',Array.from({length:n},()=>({w:+e.weight||0,r:+e.reps||0})));
+  }));
+  db._migWorkoutLogs=true;save(db);
+}
 // migrate existing exercises: add category field
 Object.values(db.workouts||{}).forEach(exs=>{
   (exs||[]).forEach(ex=>{if(!ex.category)ex.category='weight';});
@@ -2856,7 +2799,8 @@ if(!db.settings)db.settings={addBtnPos:'center',highlightTab:'wo',calLayout:'gen
 if(!db.settings.highlightTab)db.settings.highlightTab='wo';
 if(!db.settings.calLayout)db.settings.calLayout='general';
 if(!db.settings.healthProfile)db.settings.healthProfile={};
-if(!db.settings.features)db.settings.features={workout:true,meals:true,sleep:true,gmail:false};
+if(!db.settings.features)db.settings.features={workout:true,meals:true,sleep:true};
+delete db.settings.features.gmail; // v2.85.0 メール連携削除
 
 // 既存の写真データをlocalStorage→IndexedDBに移行
 (async()=>{
@@ -2876,35 +2820,20 @@ function autoConfigFeatures(useCases){
   const f=db.settings.features;
   if(useCases.includes('fitness')){f.workout=true;f.sleep=true;}
   if(useCases.includes('diet')){f.meals=true;f.sleep=true;}
-  if(useCases.includes('work')){f.gmail=true;}
   if(useCases.includes('study')||useCases.includes('goal')||useCases.includes('habit')){
     // バランス型：全部ON
     f.workout=true;f.meals=true;f.sleep=true;
   }
   // fitnessもdietも選ばなかった場合は食事・筋トレを任意OFFにしない（デフォルトON維持）
-  // ハイライトタブを有効な機能に自動設定
-  const hl=db.settings.highlightTab;
-  const hlFeature={wo:'workout',meals:'meals',sleep:'sleep',health:'workout'};
-  if(hlFeature[hl]&&!f[hlFeature[hl]]){
-    if(f.workout)db.settings.highlightTab='wo';
-    else if(f.meals)db.settings.highlightTab='meals';
-    else if(f.sleep)db.settings.highlightTab='sleep';
-  }
   save(db);
   applyFeatureVisibility();
 }
 
 function applyFeatureVisibility(){
-  const f=db.settings.features||{workout:true,meals:true,sleep:true,gmail:false};
-  // ハイライトタブ選択肢を更新
-  document.querySelector('.st-opt[data-hl="wo"]')?.parentElement && (() => {
-    document.querySelectorAll('.st-opt[data-hl]').forEach(b=>{
-      const featureMap={wo:'workout',meals:'meals',sleep:'sleep',health:'workout'};
-      b.style.display=f[featureMap[b.dataset.hl]!==undefined?featureMap[b.dataset.hl]:'workout']?'':'none';
-    });
-  })();
+  const f=db.settings.features||{workout:true,meals:true,sleep:true};
+  if(window._hlReady)updateHlNav(); // calendar.js 読込前は呼ばない（HL_NAVの初期化前）
   // 機能トグルのUI状態を更新
-  ['workout','meals','sleep','gmail'].forEach(key=>{
+  ['workout','meals','sleep'].forEach(key=>{
     const track=document.getElementById(`ft-track-${key}`);
     const thumb=document.getElementById(`ft-thumb-${key}`);
     const cb=document.getElementById(`ft-toggle-${key}`);
@@ -2917,7 +2846,6 @@ function applyFeatureVisibility(){
 }
 if(!db.settings.theme)db.settings.theme='system';
 if(!db.settings.workerUrl)db.settings.workerUrl=''; // legacy compat
-if(db.settings.enableAttach===undefined)db.settings.enableAttach=false;
 if(!db.calendars||!db.calendars.length){
   db.calendars=[
     {id:uid(),name:'マイカレンダー',color:'#4F46E5'}
@@ -2971,19 +2899,19 @@ const fab={onclick:null};
 function updateNavActive(){
   const aiOpen=!!(document.getElementById('ai-modal')?.classList.contains('open'));
   document.querySelectorAll('.nb').forEach(b=>{
-    if(b.id==='nav-ai') b.classList.toggle('on',aiOpen);
-    else b.classList.toggle('on',!aiOpen&&b.dataset.t===st.tab);
+    const match=b.dataset.t===st.tab&&(!b.dataset.sub||b.dataset.sub===st.otherSub);
+    b.classList.toggle('on',!aiOpen&&match);
   });
   const key=st.tab==='other'?st.otherSub:st.tab;
   document.querySelectorAll('.dr-item[data-go]').forEach(b=>b.classList.toggle('on',b.dataset.go===key));
   document.getElementById('hdr-title').textContent=st.tab==='cal'?'LifeHub':st.tab==='tasks'?'タスク':(SCREEN_TITLES[st.otherSub]||'LifeHub');
   fabFloat.hidden=st.tab!=='cal';
 }
-const SCREEN_TITLES={wo:'トレーニング',meals:'食事',sleep:'睡眠',health:'健康',mail:'メール'};
+const SCREEN_TITLES={wo:'トレーニング',meals:'食事',sleep:'睡眠',health:'健康'};
 const drawerEl=document.getElementById('drawer'),drawerOv=document.getElementById('drawer-ov');
 function openDrawer(){
   const f=db.settings.features||{};
-  const featOf={wo:'workout',meals:'meals',sleep:'sleep',mail:'gmail'};
+  const featOf={wo:'workout',meals:'meals',sleep:'sleep'};
   drawerEl.querySelectorAll('.dr-item[data-go]').forEach(b=>{const k=featOf[b.dataset.go];b.hidden=!!k&&f[k]===false;});
   const profs=getProfs();
   const active=profs.find(p=>p.id===window._LH_PID)||profs[0]||{name:'?',color:'#4F46E5'};
@@ -3027,10 +2955,30 @@ function switchToTab(t){
   if(t==='other')renderOther();
 }
 document.querySelectorAll('.nb').forEach(btn=>{
-  btn.addEventListener('click',()=>switchToTab(btn.dataset.t));
+  btn.addEventListener('click',()=>{
+    if(btn.dataset.sub)st.otherSub=btn.dataset.sub;
+    switchToTab(btn.dataset.t);
+  });
 });
 
 // ── Media helpers ─────────────────────────────────────────
+// AIに送る画像を縮小（長辺1568px・JPEG）。API上限5MB超えによる失敗を防ぐ。画像以外・デコード不可はそのまま
+function readFileBase64(file){
+  return new Promise((res,rej)=>{const r=new FileReader();r.onload=e=>res(String(e.target.result).split(',')[1]);r.onerror=rej;r.readAsDataURL(file);});
+}
+async function fileToAIImage(file,max=1568){
+  const raw=async()=>({data:await readFileBase64(file),mediaType:file.type||'application/octet-stream'});
+  if(!file.type||!file.type.startsWith('image/'))return raw();
+  try{
+    const url=URL.createObjectURL(file);
+    const img=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=url;});
+    URL.revokeObjectURL(url);
+    const scale=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));
+    const c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*scale);c.height=Math.round(img.naturalHeight*scale);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    return {data:c.toDataURL('image/jpeg',.85).split(',')[1],mediaType:'image/jpeg'};
+  }catch(e){return raw();}
+}
 function compressImage(file){
   return new Promise(resolve=>{
     const reader=new FileReader();
@@ -3518,7 +3466,6 @@ function renderCal(){
   if(searchRow)searchRow.hidden=isClarify;
   document.getElementById('cal-filter-row').hidden=isClarify;
   document.getElementById('clarify-tasks').hidden=!isClarify;
-  document.getElementById('clarify-gmail').hidden=!isClarify;
   if(isClarify){
     document.getElementById('cal-grid').hidden=true;
     document.getElementById('week-view').hidden=true;
@@ -3563,7 +3510,6 @@ function renderClarifyView(){
   document.getElementById('cl-dow-label').textContent=dowStr+'曜日';
   renderDayEv();
   renderClarifyTasks(ds);
-  renderClarifyGmail(ds);
 }
 function taskIsDoneOn(task,dateStr){
   if(task.repeat==='none'||!task.repeat)return!!task.done;
@@ -3606,29 +3552,6 @@ function renderClarifyTasks(dateStr){
     const name=document.createElement('div');name.className='clarify-task-name'+(done?' done':'');
     name.textContent=t.title+(t.repeat&&t.repeat!=='none'?` (${t.repeat==='daily'?'毎日':'毎週'})`:'');
     row.appendChild(chk);row.appendChild(name);sec.appendChild(row);
-  });
-}
-function renderClarifyGmail(dateStr){
-  const sec=document.getElementById('clarify-gmail');sec.innerHTML='';
-  const items=getGmailEventsForDate(dateStr);
-  if(!items.length)return;
-  const lbl=document.createElement('p');lbl.className='section-label';lbl.textContent='メール';sec.appendChild(lbl);
-  items.forEach(gev=>{
-    const row=document.createElement('div');
-    row.className='clarify-task-row';
-    row.style.cssText='cursor:pointer;border-left:3px solid #ea4335;padding-left:11px;';
-    const icon=document.createElement('span');icon.style.cssText='font-size:16px;flex-shrink:0;';
-    icon.textContent=gev._action?'📅':'📧';
-    const info=document.createElement('div');info.style.cssText='flex:1;min-width:0;';
-    const title=document.createElement('div');title.className='clarify-task-name';
-    title.textContent=String(gev.title).replace(/^[📧📅] /,'');
-    const sub=document.createElement('div');sub.style.cssText='font-size:11px;color:var(--fg3);margin-top:1px;';
-    sub.textContent=(gev._action?'予定 (Gmailより)':'メール受信')+(gev._action&&gev._action.time?' · '+gev._action.time:'');
-    info.appendChild(title);info.appendChild(sub);
-    const arr=document.createElement('span');arr.style.cssText='font-size:12px;color:#ea4335;font-weight:600;';arr.textContent='確認›';
-    row.appendChild(icon);row.appendChild(info);row.appendChild(arr);
-    row.onclick=()=>{if(window._gmailOpenSheet)window._gmailOpenSheet();};
-    sec.appendChild(row);
   });
 }
 function addDay(grid,num,cls,ds){
@@ -3911,20 +3834,32 @@ function openEvModal(ev=null){
 }
 applyAddBtnPos();
 const HL_NAV={
-  wo:{svg:'<path d="M6 4v16M18 4v16M3 8h4M17 8h4M3 16h4M17 16h4"/>',label:'トレーニング'},
+  wo:{svg:'<path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/>',label:'筋トレ'},
   meals:{svg:'<path d="M3 2v7c0 1.1.9 2 2 2h4v13h2V11h4a2 2 0 0 0 2-2V2h-2v7H9V2H7v7H5V2H3z"/>',label:'食事'},
   sleep:{svg:'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',label:'睡眠'},
   health:{svg:'<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',label:'健康'}
 };
+// マイタブ（下部タブ3つ目）: 機能がオフなら有効な別の機能へ（健康は常に有効）
+const HL_FEAT={wo:'workout',meals:'meals',sleep:'sleep'};
+function hlAvailable(k){const f=db.settings.features||{};return !!HL_NAV[k]&&(!HL_FEAT[k]||f[HL_FEAT[k]]!==false);}
+function fixHighlightTab(){
+  let hl=db.settings.highlightTab;
+  if(!hlAvailable(hl)){hl=['wo','meals','sleep','health'].find(hlAvailable);if(db.settings.highlightTab!==hl){db.settings.highlightTab=hl;save(db);}}
+  return hl;
+}
 function updateHlNav(){
-  const hl=db.settings?.highlightTab||'wo';
+  const hl=fixHighlightTab();
   const c=HL_NAV[hl];
+  const btn=document.getElementById('nav-hl');
   const svgEl=document.getElementById('nav-hl-svg');
   const labelEl=document.getElementById('nav-hl-label');
+  if(btn)btn.dataset.sub=hl;
   if(svgEl)svgEl.innerHTML=c.svg;
   if(labelEl)labelEl.textContent=c.label;
+  document.querySelectorAll('.st-opt[data-hl]').forEach(b=>{b.hidden=!hlAvailable(b.dataset.hl);b.classList.toggle('on',b.dataset.hl===hl);});
   updateNavActive();
 }
+window._hlReady=true;
 updateHlNav();
 document.querySelectorAll('.ev-time-toggle').forEach(btn=>{
   btn.onclick=()=>_evSetTimeMode(btn.dataset.t);
@@ -4030,14 +3965,6 @@ document.getElementById('hdr-settings').onclick=()=>{
   document.querySelectorAll('.pos-opt[data-lefty]').forEach(b=>b.classList.toggle('on',b.dataset.lefty===(s.leftHand?'on':'off')));
   // 機能トグル状態を反映
   applyFeatureVisibility();
-  // 添付トグル状態を反映
-  const attachToggle=document.getElementById('toggle-attach');
-  const attachTrack=document.getElementById('toggle-attach-track');
-  const attachThumb=document.getElementById('toggle-attach-thumb');
-  const enabled=db.settings.enableAttach||false;
-  attachToggle.checked=enabled;
-  attachTrack.style.background=enabled?'var(--accent)':'var(--border)';
-  attachThumb.style.left=enabled?'23px':'3px';
   // 健康プロフィールを反映
   const hp=s.healthProfile||{};
   ['height','weight','age'].forEach(k=>{const el=document.getElementById('hp-'+k);if(el)el.value=hp[k]||'';});
@@ -4117,6 +4044,7 @@ function startTraining(){
   const mo=document.getElementById('mo-training');if(!mo)return;
   _trainingStart=Date.now();_trainingSlideCur=0;
   mo.hidden=false;
+  document.body.classList.add('in-training');
   _trainingTimerInt=setInterval(()=>{
     const e=Math.floor((Date.now()-_trainingStart)/1000);
     const el=document.getElementById('training-timer');
@@ -4135,6 +4063,8 @@ function startTraining(){
 }
 async function endTraining(){
   clearInterval(_trainingTimerInt);clearInterval(_trainingSlideInt);
+  document.body.classList.remove('in-training');
+  const _aiIn=document.getElementById('ai-input');if(_aiIn&&_aiIn.dataset.ph0){_aiIn.placeholder=_aiIn.dataset.ph0;delete _aiIn.dataset.ph0;}
   const dur=_trainingStart?Math.floor((Date.now()-_trainingStart)/1000):0;
   const m=Math.floor(dur/60),s=dur%60;
   if(!db.trainingSessions)db.trainingSessions=[];
@@ -4150,7 +4080,7 @@ async function endTraining(){
   if(charImgEl){charImgEl.style.display='';charImgEl.src=SWEAT_IMG[char]||SWEAT_IMG.pico;}
   if(durEl)durEl.textContent=`${m}分${s}秒 — よく頑張った！`;
   const pronoun=char==='kai'?'俺':'ぼく';
-  const todayExs=db.workoutLogs?.find(l=>l.date===todayStr())?.exercises||[];
+  const todayExs=db.workouts?.[todayStr()]||[];
   let endMsg='今日もお疲れ様！';
   if(todayExs.length){
     const names=[...new Set(todayExs.map(e=>e.name))];
@@ -4285,24 +4215,35 @@ function saveExerciseLog(){
   const sets=parseInt(document.getElementById('log-sets').value)||0;
   const reps=parseInt(document.getElementById('log-reps').value)||0;
   const weight=parseFloat(document.getElementById('log-weight').value)||0;
-  const today=todayStr();
-  if(!db.workoutLogs)db.workoutLogs=[];
-  let todayLog=db.workoutLogs.find(l=>l.date===today);
-  if(!todayLog){todayLog={date:today,exercises:[]};db.workoutLogs.unshift(todayLog);}
-  todayLog.exercises.push({name,sets,reps,weight,ts:Date.now()});
+  const n=Math.max(1,sets);
+  addWorkoutSets(todayStr(),name,'weight',Array.from({length:n},()=>({w:weight,r:reps})));
   save(db);
+  if(typeof checkLevelUp==='function')checkLevelUp();
+  if(st.tab==='other'&&st.otherSub==='wo'&&typeof renderWo==='function')renderWo();
   ['log-exercise-name','log-sets','log-reps','log-weight'].forEach(id=>{document.getElementById(id).value='';});
   renderExerciseLogs();
 }
 function renderExerciseLogs(){
   const list=document.getElementById('training-log-list');if(!list)return;
-  const todayLog=db.workoutLogs?.find(l=>l.date===todayStr());
-  if(!todayLog||!todayLog.exercises.length){list.innerHTML='<div style="color:var(--fg3);font-size:13px;text-align:center;padding:8px 0;">まだ記録がありません</div>';return;}
-  list.innerHTML=todayLog.exercises.map(e=>{
-    const d=[e.sets?`${e.sets}セット`:'',e.reps?`${e.reps}レップ`:'',e.weight?`${e.weight}kg`:''].filter(Boolean).join(' × ');
-    return `<div class="training-log-item"><span style="font-weight:700;">${e.name}</span><span style="color:var(--fg2);">${d}</span></div>`;
+  const exs=db.workouts?.[todayStr()]||[];
+  if(!exs.length){list.innerHTML='<div style="color:var(--fg3);font-size:13px;text-align:center;padding:8px 0;">まだ記録がありません</div>';return;}
+  const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  list.innerHTML=exs.map(e=>{
+    const ss=e.sets||[];
+    const d=ss.length?ss.map(s=>s.time!=null&&s.r==null?`${Math.round(s.time/60)||s.time}分`:[s.w?s.w+'kg':'',s.r?s.r+'回':''].filter(Boolean).join('×')||'—').join(' / '):'';
+    return `<div class="training-log-item"><span style="font-weight:700;">${esc(e.name)}</span><span style="color:var(--fg2);">${ss.length}セット ${esc(d)}</span></div>`;
   }).join('');
 }
+// トレーニング中にAIへ話して記録（チャットをトレーニング画面の上に開く）
+function talkToLogWorkout(){
+  switchToTab('ai');
+  const inp=document.getElementById('ai-input');
+  if(inp){if(!inp.dataset.ph0)inp.dataset.ph0=inp.placeholder;inp.placeholder='例: ベンチ60kg×10回×3セット';}
+}
+window._afterWorkoutLogged=()=>{
+  if(!document.getElementById('mo-training-log-sheet')?.hidden)renderExerciseLogs();
+  if(st.tab==='other'&&st.otherSub==='wo'&&typeof renderWo==='function')renderWo();
+};
 // ── サプリメント管理 ──
 let _suppEditId=null;
 function renderSuppList(){
@@ -4358,33 +4299,14 @@ document.getElementById('supp-save').onclick=()=>{
   renderSuppList();
 };
 // 機能トグルハンドラ
-['workout','meals','sleep','gmail'].forEach(key=>{
+['workout','meals','sleep'].forEach(key=>{
   document.getElementById(`ft-toggle-${key}`)?.addEventListener('change',function(){
-    if(!db.settings.features)db.settings.features={workout:true,meals:true,sleep:true,gmail:false};
+    if(!db.settings.features)db.settings.features={workout:true,meals:true,sleep:true};
     db.settings.features[key]=this.checked;
-    // OFFにした機能がハイライトタブに設定されていたら次の有効な機能に切り替え
-    if(!this.checked){
-      const hlMap={workout:'wo',meals:'meals',sleep:'sleep'};
-      if(hlMap[key]===db.settings.highlightTab){
-        const f=db.settings.features;
-        if(f.workout&&key!=='workout')db.settings.highlightTab='wo';
-        else if(f.meals&&key!=='meals')db.settings.highlightTab='meals';
-        else if(f.sleep&&key!=='sleep')db.settings.highlightTab='sleep';
-        updateHlNav();
-      }
-    }
     save(db);
     applyFeatureVisibility();
-    if(!this.checked&&st.tab==='other'){const subMap={workout:'wo',meals:'meals',sleep:'sleep',gmail:'mail'};if(st.otherSub===subMap[key])switchToTab('cal');}
+    if(!this.checked&&st.tab==='other'){const subMap={workout:'wo',meals:'meals',sleep:'sleep'};if(st.otherSub===subMap[key])switchToTab('cal');}
   });
-});
-document.getElementById('toggle-attach').addEventListener('change',function(){
-  const on=this.checked;
-  db.settings.enableAttach=on;
-  save(db);
-  document.getElementById('toggle-attach-track').style.background=on?'var(--accent)':'var(--border)';
-  document.getElementById('toggle-attach-thumb').style.left=on?'23px':'3px';
-  document.getElementById('ai-attach').style.display=on?'flex':'none';
 });
 document.querySelectorAll('.st-opt[data-pos]').forEach(btn=>{
   btn.onclick=()=>{
@@ -4434,391 +4356,6 @@ document.querySelectorAll('.st-opt[data-hp-gym]').forEach(btn=>{
     document.querySelectorAll('.st-opt[data-hp-gym]').forEach(b=>b.classList.toggle('on',b.dataset.hpGym===btn.dataset.hpGym));
   };
 });
-// ── Gmail連携 ─────────────────────────────────────────────
-(function(){
-  const WORKER = 'https://lifehub-ai.y-atsuhisa7234.workers.dev';
-  const SECRET = 'lh-gmail-7x9k2m4p8q';
-  let _gmailItems = [];
-  const safeHtml = t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-
-  async function fetchActions(){
-    try{
-      const res = await fetch(`${WORKER}/gmail-actions`, {
-        headers: { 'X-LifeHub-Token': SECRET }
-      });
-      if(!res.ok) return [];
-      return await res.json();
-    } catch(e){ return []; }
-  }
-
-  async function dismissEmail(emailId){
-    try{
-      await fetch(`${WORKER}/gmail-confirm`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain', 'X-LifeHub-Token': SECRET },
-        body: JSON.stringify({ emailId })
-      });
-    } catch(e){}
-  }
-
-  function typeIcon(t){ return t==='event'?'📅':t==='task'?'✅':'↩️'; }
-
-  function renderSheet(items){
-    const body = document.getElementById('gmail-sheet-body');
-    if(items.length === 0){
-      body.innerHTML = '<div class="gmail-empty">📭 新しいアクションはありません</div>';
-      return;
-    }
-    body.innerHTML = items.map((item,i)=>`
-      <div class="gmail-item" id="gmail-item-${i}">
-        <div class="gmail-item-hdr">
-          <div style="flex:1"><div class="gmail-subj">${safeHtml(item.subject)}</div><div class="gmail-from">${safeHtml(item.from)}</div>${item.receivedAt?`<div style="font-size:11px;color:var(--fg3);margin-top:2px;">📅 ${(()=>{try{const d=new Date(item.receivedAt);return`${d.getMonth()+1}月${d.getDate()}日 ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;}catch(e){return item.receivedAt.substring(0,10);}})()}</div>`:''}</div>
-          <button class="gmail-item-dismiss" data-dismiss="${i}" title="却下">✕</button>
-        </div>
-        <div class="gmail-summary">${safeHtml(item.summary||'')}</div>
-        <div class="gmail-actions-list">${item.actions.map((a,j)=>`
-          <div class="gmail-action-row">
-            <span class="gmail-action-type">${typeIcon(a.type)}</span>
-            <div class="gmail-action-text"><strong>${safeHtml(a.title)}</strong>${a.date?`<br><span style="color:var(--fg3)">${a.date}${a.time?' '+a.time:''}${a.location?' · '+safeHtml(a.location):''}</span>`:''}${a.description?`<br>${safeHtml(a.description)}`:''}
-            </div>
-            <button class="gmail-action-add" data-item="${i}" data-action="${j}">追加</button>
-          </div>`).join('')}
-        </div>
-      </div>`).join('') +
-      (items.length > 1 ? `<button class="gmail-all-btn" id="gmail-add-all">📥 全部追加（${items.reduce((s,it)=>s+it.actions.length,0)}件）</button>` : '');
-
-    // 追加ボタン
-    body.querySelectorAll('.gmail-action-add').forEach(btn=>{
-      btn.onclick = ()=>{
-        const item = items[+btn.dataset.item];
-        const action = item.actions[+btn.dataset.action];
-        openConfirmDrawer(action, async (edited)=>{
-          btn.disabled = true; btn.textContent = '✓';
-          addActionToApp(edited);
-          // 全アクション追加済みなら dismiss
-          const row = btn.closest('.gmail-item');
-          const remaining = row.querySelectorAll('.gmail-action-add:not(:disabled)');
-          if(remaining.length === 0){
-            await dismissEmail(item.emailId);
-            _gmailItems = _gmailItems.filter(it=>it.emailId!==item.emailId);
-            updateBadge(_gmailItems.length);
-          }
-          closeSheet();
-          navigateAfterAdd(edited);
-        });
-      };
-    });
-
-    // 却下ボタン
-    body.querySelectorAll('[data-dismiss]').forEach(btn=>{
-      btn.onclick = async ()=>{
-        const item = items[+btn.dataset.dismiss];
-        await dismissEmail(item.emailId);
-        _gmailItems = _gmailItems.filter(it=>it.emailId!==item.emailId);
-        updateBadge(_gmailItems.length);
-        renderSheet(_gmailItems);
-      };
-    });
-
-    // 全部追加ボタン
-    const allBtn = body.querySelector('#gmail-add-all');
-    if(allBtn) allBtn.onclick = async ()=>{
-      allBtn.disabled = true; allBtn.textContent = '追加中…';
-      for(const item of items){
-        for(const action of item.actions) addActionToApp(action);
-        await dismissEmail(item.emailId);
-      }
-      _gmailItems = [];
-      updateBadge(0);
-      renderSheet([]);
-    };
-  }
-
-  function addActionToApp(action){
-    const today = TODAY;
-    if(action.type === 'event'){
-      const ev = {
-        id: 'ev_'+Date.now()+'_'+Math.random().toString(36).slice(2,6),
-        title: action.title,
-        date: action.date || today,
-        time: action.time || '',
-        timeEnd: action.time_end || '',
-        location: action.location || '',
-        memo: action.description || '',
-        color: '#4F46E5'
-      };
-      if(!db.events) db.events = [];
-      db.events.push(ev);
-      save(db); renderCal();
-    } else if(action.type === 'task' || action.type === 'reply'){
-      const task = {
-        id: 'tk_'+Date.now()+'_'+Math.random().toString(36).slice(2,6),
-        title: action.title + (action.description ? ' — '+action.description : ''),
-        done: false,
-        priority: 'mid',
-        due: action.date || '',
-        repeat: '',
-        goalId: '',
-        location: '',
-        memo: '',
-        completedAt: null,
-        completedDates: [],
-        source: 'gmail',
-        createdAt: today
-      };
-      if(!db.tasks) db.tasks = [];
-      db.tasks.push(task);
-      save(db); if(typeof renderTasks==='function') renderTasks();
-    }
-    window._missionHook?.('task_add');
-  }
-
-  // ── 確認ドロワー ───────────────────────────────────────────
-  let _cdCallback = null;
-  function openConfirmDrawer(action, onConfirm){
-    const isEvent = action.type === 'event';
-    _cdCallback = onConfirm;
-    document.getElementById('gmail-cd-icon').textContent = isEvent ? '📅' : '✅';
-    document.getElementById('gmail-cd-heading').textContent = isEvent ? '予定を確認・編集' : 'タスクを確認・編集';
-    document.getElementById('gmail-cd-title').value = action.title || '';
-    document.getElementById('gmail-cd-date').value = action.date || TODAY;
-    document.getElementById('gmail-cd-time').value = action.time || '';
-    document.getElementById('gmail-cd-timeend').value = action.time_end || '';
-    document.getElementById('gmail-cd-location').value = action.location || '';
-    document.getElementById('gmail-cd-memo').value = action.description || '';
-    document.getElementById('gmail-cd-time-row').style.display = isEvent ? '' : 'none';
-    document.getElementById('gmail-cd-location-row').style.display = isEvent ? '' : 'none';
-    const cd = document.getElementById('gmail-cd');
-    const ov = document.getElementById('gmail-cd-overlay');
-    cd.hidden = false; ov.style.display = 'block';
-    requestAnimationFrame(()=>cd.classList.add('open'));
-  }
-
-  function closeConfirmDrawer(){
-    const cd = document.getElementById('gmail-cd');
-    const ov = document.getElementById('gmail-cd-overlay');
-    cd.classList.remove('open');
-    ov.style.display = 'none';
-    setTimeout(()=>{ cd.hidden = true; _cdCallback = null; }, 300);
-  }
-
-  function navigateAfterAdd(action){
-    const isEvent = action.type === 'event';
-    const date = action.date || TODAY;
-    if(isEvent){
-      const d = new Date(date + 'T00:00:00');
-      st.selDate = date; st.calY = d.getFullYear(); st.calM = d.getMonth();
-      switchToTab('cal');
-      setTimeout(()=>openDayModal(date), 320);
-      showToast('📅 カレンダーに追加しました');
-    } else {
-      switchToTab('tasks');
-      showToast('✅ タスクに追加しました');
-    }
-  }
-
-  document.getElementById('gmail-cd-ok').onclick = ()=>{
-    if(!_cdCallback) return;
-    const edited = {
-      type: document.getElementById('gmail-cd-time-row').style.display === 'none' ? 'task' : 'event',
-      title: document.getElementById('gmail-cd-title').value.trim() || '(タイトルなし)',
-      date: document.getElementById('gmail-cd-date').value || TODAY,
-      time: document.getElementById('gmail-cd-time').value || '',
-      time_end: document.getElementById('gmail-cd-timeend').value || '',
-      location: document.getElementById('gmail-cd-location').value || '',
-      description: document.getElementById('gmail-cd-memo').value || ''
-    };
-    const cb = _cdCallback;
-    closeConfirmDrawer();
-    cb(edited);
-  };
-  document.getElementById('gmail-cd-close').onclick = closeConfirmDrawer;
-  document.getElementById('gmail-cd-overlay').onclick = closeConfirmDrawer;
-
-  function updateBadge(count){
-    const btn = document.getElementById('hdr-gmail');
-    const badge = document.getElementById('gmail-badge');
-    btn.hidden = count === 0;
-    badge.textContent = count;
-  }
-
-  function openSheet(){
-    const sheet = document.getElementById('gmail-sheet');
-    const ov = document.getElementById('gmail-overlay');
-    renderSheet(_gmailItems);
-    sheet.hidden = false;
-    ov.style.display = 'block';
-    requestAnimationFrame(()=>sheet.classList.add('open'));
-  }
-
-  function closeSheet(){
-    const sheet = document.getElementById('gmail-sheet');
-    const ov = document.getElementById('gmail-overlay');
-    sheet.classList.remove('open');
-    ov.style.display = 'none';
-    setTimeout(()=>{ sheet.hidden = true; }, 300);
-  }
-
-  window._getGmailCalItems = () => _gmailItems;
-  window._gmailOpenSheet = () => openSheet();
-  window._gmailDismiss = async (emailId)=>{
-    await dismissEmail(emailId);
-    _gmailItems=_gmailItems.filter(it=>it.emailId!==emailId);
-    updateBadge(_gmailItems.length);
-  };
-  window._gmailAddAction = (action)=>addActionToApp(action);
-
-  function updateMailTabVisibility(){
-    const btn=document.getElementById('other-mail-btn');
-    if(btn) btn.style.display=db.settings?.features?.gmail===false?'none':'';
-  }
-  updateMailTabVisibility();
-
-  // ── 自動追加 ──────────────────────────────────────────────
-  async function autoProcess(items){
-    if(!items.length)return;
-    let evCount=0,tkCount=0;
-    const autoEv=!!db.settings?.gmailAutoAddEvent;
-    const autoTk=!!db.settings?.gmailAutoAddTask;
-    for(const item of items){
-      let handled=true;
-      (item.actions||[]).forEach(a=>{
-        if(a.type==='event'&&autoEv){addActionToApp(a);evCount++;}
-        else if((a.type==='task'||a.type==='reply')&&autoTk){addActionToApp(a);tkCount++;}
-        else handled=false;
-      });
-      if(handled) await dismissEmail(item.emailId);
-    }
-    // 未処理分だけ残す
-    _gmailItems=items.filter(item=>(item.actions||[]).some(a=>{
-      if(a.type==='event')return !autoEv;
-      return !autoTk;
-    }));
-    updateBadge(_gmailItems.length);
-    const msgs=[];
-    if(evCount>0)msgs.push(`予定${evCount}件`);
-    if(tkCount>0)msgs.push(`タスク${tkCount}件`);
-    if(msgs.length>0)showToast(`📧 Gmail: ${msgs.join('・')}を自動追加しました`);
-  }
-
-  async function fetchAndProcess(){
-    const items = await fetchActions();
-    if(db.settings?.gmailAutoAdd){
-      await autoProcess(items);
-    } else {
-      _gmailItems = items;
-      updateBadge(_gmailItems.length);
-    }
-  }
-
-  // 自動追加トグル初期化・保存（予定/タスク別）
-  const autoEventToggle = document.getElementById('gmail-auto-event-toggle');
-  if(autoEventToggle){
-    autoEventToggle.checked = !!db.settings?.gmailAutoAddEvent;
-    autoEventToggle.onchange = ()=>{ if(!db.settings)db.settings={}; db.settings.gmailAutoAddEvent=autoEventToggle.checked; save(db); };
-  }
-  const autoTaskToggle = document.getElementById('gmail-auto-task-toggle');
-  if(autoTaskToggle){
-    autoTaskToggle.checked = !!db.settings?.gmailAutoAddTask;
-    autoTaskToggle.onchange = ()=>{ if(!db.settings)db.settings={}; db.settings.gmailAutoAddTask=autoTaskToggle.checked; save(db); };
-  }
-
-  // チェック期間セレクタ初期化・保存
-  const lookbackSel = document.getElementById('gmail-lookback-select');
-  if(lookbackSel){
-    const saved = db.settings?.gmailLookback ?? 30;
-    lookbackSel.value = String(saved);
-    lookbackSel.onchange = ()=>{
-      if(!db.settings) db.settings={};
-      db.settings.gmailLookback = Number(lookbackSel.value);
-      save(db);
-    };
-  }
-
-  document.getElementById('hdr-gmail').onclick = openSheet;
-  document.getElementById('gmail-close').onclick = closeSheet;
-  document.getElementById('gmail-overlay').onclick = closeSheet;
-
-  // ── Gmail OAuth UI ────────────────────────────────────────
-  async function checkGmailConnection(){
-    try{
-      const res = await fetch(`${WORKER}/oauth/status`,{headers:{'X-LifeHub-Token':SECRET}});
-      const data = await res.json();
-      const connectRow = document.getElementById('st-gmail-connect-row');
-      const disconnectRow = document.getElementById('st-gmail-disconnect-row');
-      const label = document.getElementById('st-gmail-connect-label');
-      const sub   = document.getElementById('st-gmail-connect-sub');
-      const ic    = connectRow?.querySelector('.st-ic');
-      if(data.connected){
-        if(connectRow) connectRow.style.display='flex';
-        if(disconnectRow) disconnectRow.style.display='flex';
-        if(label) label.textContent = '連携済み ✓';
-        if(sub)   sub.textContent   = data.email ? data.email : 'Gmailが自動でチェックされます';
-        if(ic){ ic.textContent='✓'; ic.style.background='#dcfce7'; ic.style.color='#16a34a'; }
-        document.getElementById('st-gmail-connect-arrow').style.display='none';
-        document.getElementById('st-gmail-auto-event-row').style.display='flex';
-        document.getElementById('st-gmail-auto-task-row').style.display='flex';
-        document.getElementById('st-gmail-lookback-row').style.display='flex';
-        // 機能トグルを自動でON
-        const ck=document.getElementById('ft-toggle-gmail');
-        if(ck&&!ck.checked){ ck.checked=true; ck.dispatchEvent(new Event('change')); }
-      } else {
-        if(disconnectRow) disconnectRow.style.display='none';
-        document.getElementById('st-gmail-auto-event-row').style.display='none';
-        document.getElementById('st-gmail-auto-task-row').style.display='none';
-        document.getElementById('st-gmail-lookback-row').style.display='none';
-        if(label) label.textContent = 'Googleアカウントと連携';
-        if(sub)   sub.textContent   = 'タップしてGmailを接続する';
-        if(ic){ ic.textContent='G'; ic.style.background='#ea4335'; ic.style.color=''; }
-        document.getElementById('st-gmail-connect-arrow').style.display='';
-      }
-    } catch(e){}
-  }
-
-  // 設定画面を開くたびに接続状態を確認
-  const moSettings = document.getElementById('mo-settings');
-  if(moSettings){
-    new MutationObserver(muts=>{
-      muts.forEach(m=>{ if(!moSettings.hidden) checkGmailConnection(); });
-    }).observe(moSettings,{attributeFilter:['hidden']});
-  }
-
-  // 連携ボタン
-  document.getElementById('st-gmail-connect-row').onclick = ()=>{
-    const returnUrl = location.origin + location.pathname;
-    location.href = `${WORKER}/oauth/start?return=${encodeURIComponent(returnUrl)}`;
-  };
-
-  // 解除ボタン
-  document.getElementById('st-gmail-disconnect-row').onclick = async ()=>{
-    if(!confirm('Googleアカウントとの連携を解除しますか？')) return;
-    await fetch(`${WORKER}/oauth/disconnect`,{method:'POST',headers:{'X-LifeHub-Token':SECRET}});
-    checkGmailConnection();
-    showToast('Gmail連携を解除しました');
-    // 機能トグルをOFF
-    const ck=document.getElementById('ft-toggle-gmail');
-    if(ck&&ck.checked){ ck.checked=false; ck.dispatchEvent(new Event('change')); }
-  };
-
-  // OAuth後のコールバック処理（?gmail_connected=1）
-  if(location.search.includes('gmail_connected=1')){
-    history.replaceState(null,'',location.pathname);
-    // 機能フラグをONに設定
-    if(!db.settings.features)db.settings.features={workout:true,meals:true,sleep:true,gmail:true};
-    db.settings.features.gmail=true;
-    save(db);
-    updateMailTabVisibility();
-    setTimeout(()=>{showToast('✅ Gmailと連携しました！');}, 500);
-    // 即アクション取得
-    setTimeout(()=>fetchAndProcess(), 1500);
-  }
-
-  // 起動時に非同期でアクション取得（Gmail機能がONの場合のみ）
-  setTimeout(async ()=>{
-    if(db.settings.features?.gmail===false)return;
-    await fetchAndProcess();
-  }, 2000);
-})();
 // ── ICSインポート ─────────────────────────────────────────
 (function(){
   const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2);
@@ -5216,6 +4753,13 @@ const CHARS={
     system:'あなたはコタ（おっとり伴走のクマ）です。ゆっくり丁寧で温かい口調。急かさない。「焦らなくていいよ」「続けることが一番大事」という姿勢。ユーザーのデータを使って自分ごとにする。一人称は「ぼく」。指定フォーマット厳守。日本語のみ。'},
 };
 const CHANGELOG=[
+  {v:'v2.86.0',d:'トレーニング中の種目記録が筋トレ記録に出ない不具合を修正。トレーニング中に「💬 AIに話して記録」で話すだけで記録できるように'},
+  {v:'v2.85.1',d:'AIチャットの＋ボタンから カメラ・写真・ファイル を送れるように。メール連携は終了しました'},
+  {v:'v2.84.0',d:'画面下の3つ目のタブを 筋トレ・食事・睡眠・健康 から選べるように（設定→下のタブ）'},
+  {v:'v2.83.0',d:'画面下部に筋トレ・カレンダー・タスクのタブを追加'},
+  {v:'v2.82.3',d:'ひとことを親しみやすい口調に。AIの文章が途中で切れる不具合を根本修正'},
+  {v:'v2.82.2',d:'ひとことが途中で切れる不具合を修正。アプリが古いまま残らないよう自動更新に対応'},
+  {v:'v2.82.1',d:'「AIからの今日のひとこと」の生成設定を以前の内容に戻しました'},
   {v:'v2.82.0',d:'内部構成を整理（機能・見た目の変更なし）'},
   {v:'v2.81.1',d:'新規ユーザーが起動直後にフリーズする不具合を修正。チャット入力欄・プランナーの表示崩れ、終了画面のキャラ画像を修正'},
   {v:'v2.81.0',d:'週間プランナー拡張: 食事プラン（朝/昼/夜）・睡眠目標（就寝/起床）を日付別に事前設定可能に'},
@@ -5429,7 +4973,7 @@ async function renderHealthAdvice(force){
   try{const fbList=JSON.parse(localStorage.getItem('lh_advice_fb')||'[]');if(fbList.length>0){const good=fbList.filter(e=>e.rating==='good').length;const bad=fbList.filter(e=>e.rating==='bad').length;const rec=fbList.slice(0,7);const recGood=rec.filter(e=>e.rating==='good').length;fbContext=`\n過去の提案評価: 役立った${good}回, 不要${bad}回（計${fbList.length}回）`;if(recGood>=5)fbContext+='\n（最近の提案はよく評価されている。同様のスタイルを継続）';else if(recGood<=2&&rec.length>=5)fbContext+='\n（最近の提案はあまり評価されていない。より具体的で実践的な内容に変える）';}}catch(e){}
   const prompt=`ユーザーの健康データ:\nプロフィール: ${hpParts.join(', ')||'未設定'}\n今週のジム: ${thisWeekWo}回${hp.gymFreq?'（目標:週'+hp.gymFreq+'回、残り'+(Math.max(0,hp.gymFreq-thisWeekWo))+'回）':''}\n昨日の睡眠: ${sleepInfo}\n昨日のトレーニング: ${ydWoInfo}\n${taskInfo}${fbContext}\n\n以下の形式で出力（JSON・マークダウン不要）:\n1行目: 昨日の振り返り1文（30字以内）\n2〜4行目: 今日のアクション（各30字以内、「・」で始める）`;
   try{
-    const res=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({model:'claude-haiku-5-5',max_tokens:200,system:getCharSystem(),messages:[{role:'user',content:prompt}]})});
+    const res=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({model:'claude-haiku-5-5',max_tokens:200,thinking:{type:'disabled'},system:getCharSystem(),messages:[{role:'user',content:prompt}]})});
     if(!res.ok)throw new Error('HTTP '+res.status);
     const data=await res.json();
     const text=data.content?.find(c=>c.type==='text')?.text?.trim()||'';
@@ -5525,7 +5069,7 @@ async function _autoUpdateGoalProgress(goalId,taskTitle){
   save(db);renderGoals();
   try{
     const prompt=`ゴール「${g.text}」の達成進捗を判定してください。\n関連タスク: 全${totalCount}件中${doneCount}件完了\n直前に完了したタスク:「${taskTitle}」\n\n0〜100の整数のみで回答:`;
-    const res=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({model:'claude-haiku-5-5',max_tokens:8,system:'ゴール進捗率を0〜100の整数のみで返す。',messages:[{role:'user',content:prompt}]})});
+    const res=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({model:'claude-haiku-5-5',max_tokens:8,thinking:{type:'disabled'},system:'ゴール進捗率を0〜100の整数のみで返す。',messages:[{role:'user',content:prompt}]})});
     if(!res.ok)return;
     const data=await res.json();
     const txt=data.content?.find(c=>c.type==='text')?.text?.trim()||'';
@@ -6492,11 +6036,6 @@ document.getElementById('sl-add-nap').onclick=()=>{
 function renderOther(){
   const hl=db.settings?.highlightTab||'wo';
   document.querySelectorAll('.other-sub-btn').forEach(b=>{
-    if(b.dataset.s==='mail'){
-      b.classList.toggle('on',st.otherSub==='mail');
-      b.style.display=db.settings?.features?.gmail===false?'none':'';
-      return;
-    }
     b.hidden=false;
     b.classList.toggle('on',b.dataset.s===st.otherSub);
   });
@@ -6504,7 +6043,6 @@ function renderOther(){
   document.getElementById('other-meals').hidden=st.otherSub!=='meals';
   document.getElementById('other-sleep').hidden=st.otherSub!=='sleep';
   document.getElementById('other-health').hidden=st.otherSub!=='health';
-  document.getElementById('other-mail').hidden=st.otherSub!=='mail';
   if(st.otherSub==='wo'){
     document.querySelectorAll('.wo-vtab').forEach(b=>b.classList.toggle('on',b.dataset.v==='log'));
     document.getElementById('wo-datebar').style.display='';
@@ -6514,80 +6052,7 @@ function renderOther(){
   } else if(st.otherSub==='meals') renderMeals();
   else if(st.otherSub==='sleep') renderSleepTab();
   else if(st.otherSub==='health') renderHealth();
-  else if(st.otherSub==='mail') renderOtherMail();
   updateNavActive();
-}
-function renderOtherMail(){
-  const list=document.getElementById('other-mail-list');
-  const items=window._getGmailCalItems?window._getGmailCalItems():[];
-  if(!items.length){
-    list.innerHTML='<div class="empty" style="padding:40px 0"><div class="empty-icon">📭</div><p>新しいメールはありません</p></div>';
-    return;
-  }
-  list.innerHTML='';
-  items.forEach((item,i)=>{
-    const card=document.createElement('div');card.className='mail-card';
-    // 受信日フォーマット
-    let dateStr='';
-    try{const d=new Date(item.receivedAt);dateStr=`${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;}catch(e){}
-    // 送信者のイニシャル
-    const fromName=(item.from||'?').replace(/<.*>/,'').trim();
-    const initial=(fromName[0]||'?').toUpperCase();
-    // esc
-    const e=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    card.innerHTML=`
-      <div class="mail-card-top" data-idx="${i}">
-        <div class="mail-card-avatar">${e(initial)}</div>
-        <div class="mail-card-info">
-          <div class="mail-card-from">${e(fromName)}</div>
-          <div class="mail-card-subject">${e(item.subject)}</div>
-          <div class="mail-card-summary">${e(item.summary||'')}</div>
-        </div>
-        <div class="mail-card-meta">${e(dateStr)}<br><span style="color:var(--accent);font-size:11px;font-weight:600;">${item.actions?.length||0}件</span></div>
-      </div>
-      <div class="mail-card-detail" id="mail-detail-${i}">
-        <button class="mail-card-detail-toggle" data-idx="${i}">アクションを見る ▾</button>
-        <div id="mail-actions-${i}" style="margin-top:8px;"></div>
-        <div style="display:flex;justify-content:flex-end;margin-top:6px;">
-          <button class="mail-dismiss-btn" data-dismiss="${i}" title="却下">✕ 却下</button>
-        </div>
-      </div>`;
-    list.appendChild(card);
-    // トップタップで展開
-    card.querySelector('.mail-card-top').onclick=()=>{
-      const det=document.getElementById(`mail-detail-${i}`);
-      det.classList.toggle('open');
-      if(det.classList.contains('open')) renderMailActions(i,item);
-    };
-    // 却下
-    card.querySelector('.mail-dismiss-btn').onclick=async e=>{
-      e.stopPropagation();
-      await window._gmailDismiss?.(item.emailId);
-      renderOtherMail();
-    };
-  });
-}
-function renderMailActions(idx,item){
-  const wrap=document.getElementById(`mail-actions-${idx}`);
-  if(!wrap)return;
-  const e=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  wrap.innerHTML='';
-  (item.actions||[]).forEach((action,j)=>{
-    const icon=action.type==='event'?'📅':action.type==='task'?'✅':'↩️';
-    const sub=[action.date,action.time,action.location].filter(Boolean).join(' · ');
-    const row=document.createElement('div');row.className='mail-action-row';
-    row.innerHTML=`<span class="mail-action-icon">${icon}</span>
-      <div class="mail-action-body">
-        <div class="mail-action-title">${e(action.title)}</div>
-        ${sub?`<div class="mail-action-sub">${e(sub)}</div>`:''}
-      </div>
-      <button class="mail-action-add" data-idx="${idx}" data-action="${j}">追加</button>`;
-    wrap.appendChild(row);
-    row.querySelector('.mail-action-add').onclick=async btn=>{
-      btn.target.disabled=true;btn.target.textContent='✓';
-      window._gmailAddAction?.(action);
-    };
-  });
 }
 function renderOtherSub(s){st.otherSub=s;renderOther();}
 document.querySelectorAll('.other-sub-btn').forEach(btn=>{
@@ -6871,13 +6336,10 @@ async function analyzePhotoMeal(){
   const btn=document.getElementById('mla-photo-btn');
   statusEl.textContent='📷 分析中...';btn.disabled=true;
   try{
-    const reader=new FileReader();
-    const dataUrl=await new Promise(res=>{reader.onload=e=>res(e.target.result);reader.readAsDataURL(file);});
-    const base64=dataUrl.split(',')[1];
-    const mimeType=file.type||'image/jpeg';
+    const {data:base64,mediaType:mimeType}=await fileToAIImage(file);
     const prompt='この料理・食事の写真を見て、含まれている食品と栄養成分を推定してください。複数の食品が見える場合は全体でまとめて推定してください。\n\n以下のJSON形式のみで返してください（コードブロック不要）:\n{"name":"料理名 (量の目安)","kcal":カロリー数値,"protein":タンパク質g数,"carbs":炭水化物g数,"fat":脂質g数,"note":"推定根拠や注意点（20字以内）"}';
     const res=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({
-      model:'claude-haiku-5-5',max_tokens:400,
+      model:'claude-haiku-5-5',max_tokens:400,thinking:{type:'disabled'},
       messages:[{role:'user',content:[
         {type:'image',source:{type:'base64',media_type:mimeType,data:base64}},
         {type:'text',text:prompt}
@@ -6885,7 +6347,8 @@ async function analyzePhotoMeal(){
     })});
     if(!res.ok)throw new Error('HTTP '+res.status);
     const data=await res.json();
-    const text=data.content?.find(c=>c.type==='text')?.text||'{}';
+    if(data.error)throw new Error(data.error.type||'api');
+    const text=data.content?.find(c=>c.type==='text')?.text||'';
     const m=text.match(/\{[\s\S]*\}/);
     if(!m)throw new Error('parse');
     const r=JSON.parse(m[0]);
@@ -6901,7 +6364,7 @@ async function analyzePhotoMeal(){
     });
     statusEl.textContent=r.note?`✓ ${r.note}`:'✓ 推定完了（内容を確認してから追加してください）';
   }catch(e){
-    statusEl.textContent='⚠ 分析に失敗しました。手動で入力してください。';
+    statusEl.textContent='⚠ 分析に失敗しました。もう一度撮るか、手動で入力してください。('+(e.message||'err')+')';
   }
   btn.disabled=false;
   document.getElementById('mla-photo-input').value='';
@@ -6978,6 +6441,7 @@ document.getElementById('ml-next').onclick=()=>{const d=new Date(st.mlDate);d.se
     const skipBtn=document.getElementById('ob-skip');
     const step1=document.getElementById('ob-step1');
     const step2=document.getElementById('ob-step2');
+    const step3=document.getElementById('ob-step3');
     function goToStep2(){
       const name=inp.value.trim()||'マイデータ';
       const profs=getProfs();
@@ -6991,8 +6455,12 @@ document.getElementById('ml-next').onclick=()=>{const d=new Date(st.mlDate);d.se
     step2.querySelectorAll('.ob-chip').forEach(chip=>{
       chip.addEventListener('click',()=>chip.classList.toggle('active'));
     });
-    function finishOnboarding(){
+    // 用途選択 → マイタブ（下部タブ3つ目）の選択へ
+    function goToStep3(){step2.hidden=true;step3.hidden=false;}
+    function finishOnboarding(hlChoice){
       const selected=[...step2.querySelectorAll('.ob-chip.active')].map(c=>c.dataset.val);
+      // マイタブ: 明示選択 > 用途からの推定（食事系のみなら食事、それ以外は筋トレ）
+      db.settings.highlightTab=hlChoice||(selected.includes('diet')&&!selected.includes('fitness')?'meals':'wo');
       const savedName=inp.value.trim()||'マイデータ';
       db.userProfile={useCase:selected,setupAt:todayStr(),name:savedName};
       if(selected.length>0)autoConfigFeatures(selected);
@@ -7000,11 +6468,16 @@ document.getElementById('ml-next').onclick=()=>{const d=new Date(st.mlDate);d.se
       ob.hidden=true;
       app.style.display='';
       renderProfHeader();
+      updateHlNav();
       renderGoals();renderCal();renderTasks();renderHealthAdvice();
       if(window._showCharIntro)window._showCharIntro();
     }
-    startBtn.addEventListener('click',finishOnboarding);
-    skipBtn.addEventListener('click',finishOnboarding);
+    startBtn.addEventListener('click',goToStep3);
+    skipBtn.addEventListener('click',goToStep3);
+    step3.querySelectorAll('.ob-chip[data-hl]').forEach(chip=>{
+      chip.addEventListener('click',()=>finishOnboarding(chip.dataset.hl));
+    });
+    document.getElementById('ob-skip3').addEventListener('click',()=>finishOnboarding());
     setTimeout(()=>inp.focus(),100);
   }
 })();
@@ -7239,17 +6712,31 @@ function calcGameStats(){
     });
   }
   const fileInput=document.getElementById('ai-file-input');
+  // ＋メニュー（カメラ / 写真 / ファイル）— ChatGPT同様、常に表示
   const attachBtn=document.getElementById('ai-attach');
-  if(attachBtn){
-    // 初期表示（設定に応じて）
-    if(db.settings.enableAttach)attachBtn.style.display='flex';
-    attachBtn.onclick=()=>fileInput.click();
+  const plusMenu=document.getElementById('ai-plus-menu');
+  if(attachBtn&&plusMenu){
+    const closeMenu=()=>{plusMenu.hidden=true;};
+    attachBtn.onclick=e=>{e.stopPropagation();plusMenu.hidden=!plusMenu.hidden;};
+    document.addEventListener('click',e=>{if(!plusMenu.hidden&&!plusMenu.contains(e.target))closeMenu();});
+    [['ai-camera','ai-camera-input'],['ai-photo','ai-photo-input'],['ai-file','ai-file-input']].forEach(([b,i])=>{
+      const btn=document.getElementById(b),inp=document.getElementById(i);
+      btn.onclick=()=>{closeMenu();inp.click();};
+      if(i!=='ai-file-input')inp.addEventListener('change',async()=>{for(const f of inp.files)await addFile(f);inp.value='';});
+    });
   }
+  const TEXT_EXT=/\.(txt|md|csv|json)$/i;
   async function addFile(file){
     if(!file)return;
-    const reader=new FileReader();
-    const data=await new Promise(res=>{reader.onload=e=>res(e.target.result.split(',')[1]);reader.readAsDataURL(file);});
-    pendingAttachments.push({name:file.name||'file',mediaType:file.type||'application/octet-stream',data});
+    const isText=(file.type||'').startsWith('text/')||file.type==='application/json'||TEXT_EXT.test(file.name||'');
+    if(isText){
+      if(file.size>500000){alert('テキストファイルは500KBまでです');return;}
+      pendingAttachments.push({name:file.name||'text',mediaType:'text/plain',text:await file.text()});
+      renderAttachPreview();return;
+    }
+    if(!(file.type||'').startsWith('image/')&&file.type!=='application/pdf'){alert('画像・PDF・テキストファイルに対応しています');return;}
+    const {data,mediaType}=await fileToAIImage(file);
+    pendingAttachments.push({name:file.name||(mediaType.startsWith('image/')?'写真':'file'),mediaType,data});
     renderAttachPreview();
   }
 
@@ -7329,6 +6816,9 @@ function calcGameStats(){
   function buildApiContent(text,attachments){
     if(!attachments||!attachments.length)return text;
     const parts=attachments.map(a=>{
+      if(a.mediaType==='text/plain'){
+        return {type:'document',source:{type:'text',media_type:'text/plain',data:a.text},title:a.name};
+      }
       if(a.mediaType==='application/pdf'){
         return {type:'document',source:{type:'base64',media_type:'application/pdf',data:a.data}};
       }
@@ -7497,7 +6987,6 @@ function calcGameStats(){
     }
     if(name==='log_workout'){
       const date=input.date||todayStr();
-      if(!db.workouts[date])db.workouts[date]=[];
       const sets=(input.sets||[]).map(s=>{
         const set={};
         if(s.w!=null)set.w=s.w;
@@ -7507,8 +6996,9 @@ function calcGameStats(){
         if(s.speed!=null)set.speed=s.speed;
         return set;
       });
-      db.workouts[date].push({id:UID(),name:input.name,category:input.category||'weight',sets});
+      addWorkoutSets(date,input.name,input.category||'weight',sets);
       save(db);checkLevelUp();
+      window._afterWorkoutLogged?.();
       const setDesc=sets.map((s,i)=>`${i+1}セット:${s.w!=null?s.w+'kg×':''}${s.r!=null?s.r+'回':''}${s.time!=null?s.time+'分':''}${s.distance!=null?s.distance+'km':''}`).join(' / ');
       return `「${input.name}」を記録しました（${date}）。${setDesc}`;
     }
@@ -7864,7 +7354,8 @@ function calcGameStats(){
 
   // ── AIデイリーブリーフ ──
   (function(){
-    const BRIEF_KEY='lh_ai_brief';
+    const BRIEF_KEY='lh_ai_brief_v4';
+    const isComplete=t=>typeof t==='string'&&t!=='今日も頑張ろう！'&&/[。！？!?…）」』]$/.test(t.trim());
     const card=document.getElementById('ai-brief-card');
     if(!card)return;
     function renderCard(text,loading){
@@ -7880,24 +7371,39 @@ function calcGameStats(){
       if(!force){
         try{
           const cached=JSON.parse(localStorage.getItem(BRIEF_KEY)||'null');
-          if(cached&&cached.date===today){renderCard(cached.text);return;}
+          if(cached&&cached.date===today&&isComplete(cached.text)){renderCard(cached.text);return;}
         }catch{}
       }
       renderCard('分析中…',true);
       if(window._DEV_MODE){renderCard('[DEVモード] AIブリーフは本番・stagingのみ動作します。');return;}
-      try{
-        const ctx=getContext();
-        const companion=getCharInfo();
-        const prompt=`以下はユーザーの今日のライフデータです。\n\n${ctx}\n\nあなたは${companion.name}（${companion.role}）として、ユーザーに今日の「ひとこと」を送ってください。\n\n条件:\n- 未完了タスク数・今週のジム回数・目標進捗・予定など、上記データの具体的な内容を必ず1つ以上盛り込む（ユーザーが「ちゃんと自分のことを見てくれている」と感じる言葉にする）\n- 自分（キャラクター）も一緒に取り組むというニュアンスを入れる（「ぼくも今日一緒に頑張るよ」「俺も隣で走ってるぜ」「今日は一緒に乗り越えよう」など、傍観者ではなく当事者として）\n- 2文で、余計な前置きなしで本文だけ返してください`;
-        const res=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({model:'claude-haiku-5-5',max_tokens:150,system:companion.system,messages:[{role:'user',content:prompt}]})});
-        if(!res.ok)throw new Error('HTTP '+res.status);
-        const data=await res.json();
-        const text=data.content?.find(c=>c.type==='text')?.text||'今日も頑張ろう！';
-        try{localStorage.setItem(BRIEF_KEY,JSON.stringify({date:today,text}));}catch{}
-        renderCard(text);
-      }catch(e){
-        card.hidden=true;
+      let ctx='';
+      try{ctx=getContext();}catch(e){console.warn('[brief] getContext failed:',e);card.hidden=true;return;}
+      const prompt='以下はユーザーの今日のライフデータです。\n\n'+ctx+'\n\n上記データを踏まえて、今日のユーザーへの「ひとこと」を2〜3文で書いてください。予定・タスク・筋トレ状況を絡めて、具体的に、明るく親しみやすい言葉で。余計な前置きなしで本文だけ返してください。';
+      const body=JSON.stringify({model:'claude-haiku-5-5',max_tokens:400,thinking:{type:'disabled'},system:'あなたはLifeHubのAIアシスタントです。ユーザーの生活データを把握している、身近な友達のような存在です。です・ます調は使わず、自然でやわらかいタメ口の日本語で短く話します。',messages:[{role:'user',content:prompt}]});
+      let lastErr='';
+      // Workerは上流のエラー（混雑・回数制限）もHTTP 200で返すため、本文の有無で成否を判定する
+      for(let attempt=0;attempt<3;attempt++){
+        if(attempt)await new Promise(r=>setTimeout(r,attempt*3000));
+        try{
+          const res=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'text/plain'},body});
+          const data=await res.json().catch(()=>({}));
+          let text=data.content?.find(c=>c.type==='text')?.text?.trim();
+          if(text&&data.stop_reason==='max_tokens'){
+            const end=Math.max(text.lastIndexOf('。'),text.lastIndexOf('！'),text.lastIndexOf('？'));
+            text=end>0?text.slice(0,end+1):text+'…';
+          }
+          if(res.ok&&text){
+            try{localStorage.setItem(BRIEF_KEY,JSON.stringify({date:today,text}));}catch{}
+            renderCard(text);
+            return;
+          }
+          lastErr=data.error?.type||data.error?.message||(typeof data.error==='string'?data.error:'')||('HTTP '+res.status);
+        }catch(e){lastErr=e.message||'network';}
       }
+      console.warn('[brief] failed:',lastErr);
+      renderCard('ひとことを取得できませんでした。↺ で再試行できます。');
+      const t=card.querySelector('.ai-brief-text');
+      if(t)t.insertAdjacentHTML('beforeend',`<div style="font-size:10px;color:var(--fg3);margin-top:4px;">(${esc(String(lastErr))})</div>`);
     }
     setTimeout(generateBrief,1500);
     // lh_last_levelが未設定なら現在レベルを黙って保存（初回起動・演出なし）
@@ -8012,7 +7518,7 @@ function calcGameStats(){
         const ctx=getContext();
         const goalList=activeGoals.map(g=>`・${g.title}（進捗${g.progress||0}%${g.dueDate?'・期限'+g.dueDate:''}）`).join('\n');
         const prompt=`以下はユーザーの今日のライフデータです。\n\n${ctx}\n\n【現在の目標】\n${goalList}\n\n今日やるべき3つのミッションをJSONで生成してください。\n【重要】ミッションは「現在の目標」に直接つながるアクションを優先してください。目標の進捗を高めるために今日具体的に何をすべきかを考えて設定してください。タスク・筋トレ・予定なども踏まえて具体的に。\n\n返答はJSON配列のみ（説明不要）:\n[\n  {"id":"m1","text":"ミッション説明（20字以内）","type":"complete_task","taskId":"タスクのid（特定する場合のみ）"},\n  {"id":"m2","text":"...","type":"log_workout"},\n  {"id":"m3","text":"...","type":"open_ai"}\n]\n\ntypeは complete_task / log_workout / open_ai / manual のいずれか。`;
-        const res=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({model:'claude-haiku-5-5',max_tokens:300,system:'あなたはLifeHubのミッション生成AIです。ユーザーのデータを読んで今日のミッションをJSON配列で返します。JSON以外は一切出力しないでください。',messages:[{role:'user',content:prompt}]})});
+        const res=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({model:'claude-haiku-5-5',max_tokens:300,thinking:{type:'disabled'},system:'あなたはLifeHubのミッション生成AIです。ユーザーのデータを読んで今日のミッションをJSON配列で返します。JSON以外は一切出力しないでください。',messages:[{role:'user',content:prompt}]})});
         if(!res.ok)throw new Error('HTTP '+res.status);
         const data=await res.json();
         const raw=data.content?.find(c=>c.type==='text')?.text||'[]';
