@@ -1264,6 +1264,72 @@ body.in-training .ai-modal{z-index:700;}
 .aip-btns{display:grid;grid-template-columns:2fr 1fr;gap:8px;}
 .aip-btns button{padding:11px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface2);color:var(--fg);font-size:13px;font-weight:800;font-family:inherit;cursor:pointer;}
 .aip-btns .aip-save{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+/* === 食事・睡眠のおすすめ動画（v2.91.0）／ランの今週の話題（v2.92.0） === */
+.lv-card{padding:12px 14px;margin:12px 0 0;overflow:visible;}
+.trend-card{margin:0 0 16px;}
+.lv-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--fg);}
+.lv-ran{width:32px;height:32px;object-fit:contain;flex-shrink:0;}
+.lv-reason{font-size:12px;color:var(--accent);font-weight:700;margin:6px 0 8px;}
+.lv-note{font-size:12px;color:var(--fg3);line-height:1.6;margin-top:6px;}
+.lv-list{display:flex;flex-direction:column;gap:8px;}
+.lv-ch{font-size:10px;color:var(--fg3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.tr-intro{font-size:13px;line-height:1.6;color:var(--fg);margin:6px 0 8px;}
+.tr-kws{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.tr-kw{padding:6px 10px;border-radius:999px;border:1.5px solid var(--border);background:var(--surface2);color:var(--fg);font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;min-height:0;}
+.tr-kw.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent);}
+.tr-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px;}
+.tr-tab{padding:7px 4px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);color:var(--fg2);font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;min-height:0;}
+.tr-tab.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent);}
+.tr-sub{font-size:11px;color:var(--fg3);font-weight:700;margin-bottom:6px;}
+
+/* === マイ動画リスト（v2.93.0） === */
+.vl-wrap{display:flex;align-items:center;gap:6px;}
+.vl-wrap>a{flex:1;min-width:0;}
+.vid-save{flex-shrink:0;width:36px;height:36px;min-height:0;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);color:var(--accent);font-size:18px;font-weight:800;line-height:1;cursor:pointer;font-family:inherit;padding:0;}
+.vid-save.on{background:var(--accent);border-color:var(--accent);color:#fff;font-size:15px;}
+.vl-sheet{z-index:950;}
+.vl-save-title{font-size:12px;color:var(--fg3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:-6px;}
+.vl-picks,.vl-lists,.vl-items{display:flex;flex-direction:column;gap:6px;}
+.vl-pick,.vl-row-list{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface);color:var(--fg);font-size:14px;font-weight:700;font-family:inherit;text-align:left;cursor:pointer;min-height:0;}
+.vl-pick.on{border-color:var(--accent);background:var(--accent-bg);}
+.vl-check{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;}
+.vl-pick.on .vl-check{border-color:var(--accent);}
+.vl-pick-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.vl-count{font-size:12px;color:var(--fg3);font-weight:600;flex-shrink:0;}
+.vl-yt{font-size:10px;color:#ef4444;border:1px solid #ef4444;border-radius:4px;padding:0 4px;margin-left:4px;font-weight:700;}
+.vl-row-list img{width:56px;height:32px;border-radius:6px;object-fit:cover;flex-shrink:0;background:var(--border);}
+.vl-ph{width:56px;height:32px;border-radius:6px;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.vl-ph.sm{width:64px;height:48px;}
+.vl-new-row{display:flex;gap:8px;}
+.vl-new-row input,.vl-import-in{flex:1;min-width:0;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);color:var(--fg);font-size:16px;font-family:inherit;}
+.vl-new-row button{flex-shrink:0;padding:0 14px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:700;font-family:inherit;font-size:14px;cursor:pointer;min-height:44px;}
+.vl-done,.vl-import-btn{width:100%;padding:12px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface2);color:var(--fg);font-weight:700;font-size:14px;font-family:inherit;cursor:pointer;min-height:0;}
+.vl-import-btn.primary,.vl-done{background:var(--accent);border-color:var(--accent);color:#fff;}
+.vl-back{background:none;border:none;font-size:24px;color:var(--fg2);cursor:pointer;padding:0 8px 0 0;line-height:1;min-height:0;}
+.vl-title-txt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.vl-list-ops{display:flex;gap:6px;flex-wrap:wrap;}
+.vl-list-ops button{padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--fg2);font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;min-height:0;}
+.vl-list-ops button.danger{color:#ef4444;}
+.vl-item{display:flex;align-items:center;gap:6px;}
+.vl-item-main{flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);text-decoration:none;color:var(--fg);}
+.vl-gone{opacity:.55;}
+.vl-item-ops{display:flex;flex-direction:column;gap:2px;flex-shrink:0;}
+.vl-item-ops button{width:30px;height:22px;min-height:0;padding:0;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--fg2);font-size:11px;cursor:pointer;}
+.vl-item-ops button:disabled{opacity:.3;}
+
+/* === 動画の評価・コメント（v2.94.0） === */
+.vl-sec{font-size:11px;font-weight:800;color:var(--fg3);letter-spacing:.04em;margin-bottom:-4px;}
+.vn-rate{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.vn-rate button{padding:10px 6px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface);color:var(--fg);font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;min-height:0;}
+.vn-rate button.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent);}
+.vn-row{display:flex;gap:8px;align-items:stretch;}
+.vn-text{flex:1;min-width:0;width:100%;min-height:64px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);color:var(--fg);font-size:16px;font-family:inherit;resize:none;box-sizing:border-box;}
+.vid-fb-body .vn-text{margin-bottom:8px;}
+.vn-send{flex-shrink:0;padding:0 14px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer;min-height:44px;}
+.vid-fb-btns .vn-send{background:var(--accent);border-color:var(--accent);color:#fff;}
+.vn-privacy{font-size:11px;color:var(--fg3);line-height:1.5;margin:2px 0 10px;}
+.vn-mine{font-size:11px;color:var(--accent);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 </style>
 </head>
 <body>
@@ -1349,6 +1415,7 @@ body.in-training .ai-modal{z-index:700;}
     <div id="streak-card" class="card streak-card" hidden></div>
     <div id="goal-card" class="goal-card"></div>
     <div id="health-advice-card" class="card health-advice-card" hidden></div>
+    <div id="trend-card" class="card lv-card trend-card" hidden></div>
     <button class="training-start-btn" id="training-start-btn" onclick="startTraining()">
       <img class="training-start-btn-img" src="assets/characters/01_Ran_pointing.png" alt="ラン" onerror="this.style.display='none'">
       <div class="training-start-btn-body">
@@ -1484,6 +1551,7 @@ body.in-training .ai-modal{z-index:700;}
       </div>
       <div id="ml-log-view">
         <div id="ml-list"></div>
+        <div id="ml-video-card" class="card lv-card" hidden></div>
       </div>
       <div id="ml-chart-view" hidden>
         <div class="card chart-ctrl">
@@ -1521,6 +1589,7 @@ body.in-training .ai-modal{z-index:700;}
         <button id="sl-add-nap" class="sl-add-nap-btn">＋ 昼寝を追加</button>
         <div id="sl-total-row" class="sleep-total" hidden></div>
       </div>
+      <div id="sl-video-card" class="card lv-card" hidden></div>
     </div>
     <div id="other-health" hidden>
       <div class="card date-bar" style="gap:0;">
@@ -1611,6 +1680,7 @@ body.in-training .ai-modal{z-index:700;}
       <button class="dr-item" data-go="meals"><span class="dr-ic">🍱</span>食事</button>
       <button class="dr-item" data-go="sleep"><span class="dr-ic">😴</span>睡眠</button>
       <button class="dr-item" data-go="health"><span class="dr-ic">❤️</span>健康</button>
+      <button class="dr-item" data-act="vlists"><span class="dr-ic">📺</span>マイ動画リスト</button>
       <div class="dr-sep"></div>
       <button class="dr-item" data-act="settings"><span class="dr-ic">⚙️</span>設定</button>
     </div>
@@ -1944,6 +2014,14 @@ body.in-training .ai-modal{z-index:700;}
             <button class="st-opt" data-rest="180">3分</button>
           </div>
         </div>
+        <div class="st-row st-row-toggle">
+          <span class="st-ic" style="background:#f97316;">🐴</span>
+          <span class="st-label" style="flex:0 0 auto;margin-right:8px;">ホームの今週の話題</span>
+          <div class="st-opts" style="justify-content:flex-end;">
+            <button class="st-opt" data-trend="on">表示</button>
+            <button class="st-opt" data-trend="off">非表示</button>
+          </div>
+        </div>
       </div>
 
       <!-- セキュリティ -->
@@ -2001,7 +2079,7 @@ body.in-training .ai-modal{z-index:700;}
         <div class="st-hist-wrap" id="hist-list" hidden style="display:flex;flex-direction:column;gap:6px;"></div>
       </div>
 
-      <p style="text-align:center;font-size:11px;color:var(--fg3);margin:16px 0 4px;">LifeHub v2.90.0 <span style="opacity:.6;">build <span id="lh-build"></span></span></p>
+      <p style="text-align:center;font-size:11px;color:var(--fg3);margin:16px 0 4px;">LifeHub v2.94.0 <span style="opacity:.6;">build <span id="lh-build"></span></span></p>
       <div style="height:8px;"></div>
     </div><!-- /.settings-body -->
 
@@ -2087,6 +2165,7 @@ body.in-training .ai-modal{z-index:700;}
       <div style="font-size:11px;font-weight:700;color:var(--fg3);letter-spacing:.05em;margin-bottom:6px;">▶ 解説動画</div>
       <div id="training-menu-videos-list" style="display:flex;flex-direction:column;gap:8px;"></div>
     </div>
+    <button class="vl-import-btn" data-open-vl>📺 マイ動画リストを開く</button>
   </div>
 </div>
 
@@ -2595,7 +2674,7 @@ body.in-training .ai-modal{z-index:700;}
 <script>
 // ── 自動更新: 配信中の最新版とBUILD_IDを比べ、古ければ1回だけ再読み込み ──
 (function(){
-  const BUILD_ID='1f288b4bc1'; // tools/build.mjs が内容ハッシュに置換する
+  const BUILD_ID='961e1ab8a8'; // tools/build.mjs が内容ハッシュに置換する
   window._LH_BUILD=BUILD_ID;
   const el=document.getElementById('lh-build');
   if(el)el.textContent=BUILD_ID.startsWith('__')?'dev':BUILD_ID;
@@ -3052,6 +3131,7 @@ drawerEl.querySelectorAll('.dr-item').forEach(b=>{
     if(act==='add')openEvModalAndSetup();
     else if(act==='ai')switchToTab('ai');
     else if(act==='settings')document.getElementById('hdr-settings').click();
+    else if(act==='vlists'){if(typeof openVideoLists==='function')openVideoLists();}
     else if(go==='cal'||go==='tasks')switchToTab(go);
     else{st.otherSub=go;switchToTab('other');}
   };
@@ -3070,7 +3150,7 @@ function switchToTab(t){
   tabEl.classList.add('on');
   tabEl.scrollTop=0;
   updateNavActive();
-  if(t==='cal'){renderGoals();renderCal();renderHealthAdvice();}
+  if(t==='cal'){renderGoals();renderCal();renderHealthAdvice();if(typeof renderTrendCard==='function')renderTrendCard();}
   if(t==='tasks')renderTasks();
   if(t==='other')renderOther();
 }
@@ -4224,6 +4304,7 @@ document.getElementById('mo-calendars').onclick=e=>{if(e.target===e.currentTarge
 document.getElementById('hdr-settings').onclick=()=>{
   const s=db.settings;
   document.querySelectorAll('.st-opt[data-rest]').forEach(b=>b.classList.toggle('on',+b.dataset.rest===(parseInt(s.restSec)||90)));
+  document.querySelectorAll('.st-opt[data-trend]').forEach(b=>b.classList.toggle('on',b.dataset.trend===(s.hideTrend?'off':'on')));
   document.querySelectorAll('.st-opt[data-pos]').forEach(b=>b.classList.toggle('on',b.dataset.pos===(s.addBtnPos==='bl'?'bl':'br')));
   document.querySelectorAll('.st-opt[data-hl]').forEach(b=>b.classList.toggle('on',b.dataset.hl===(s.highlightTab||'wo')));
   document.querySelectorAll('.st-opt[data-cal]').forEach(b=>b.classList.toggle('on',b.dataset.cal===(s.calLayout||'general')));
@@ -4459,7 +4540,7 @@ async function fetchMenuVideos(){
         return{ex,video:videos[0]||null};
       }catch{return{ex,video:null};}
     }));
-    const html=results.filter(r=>r.video).map(({ex,video})=>`<a ${videoLinkAttrs(video)} class="menu-video-item"><img class="menu-video-thumb" src="${_vidEsc(video.thumbnail)}" alt="" onerror="this.style.display='none'"><div><div class="menu-video-ex">${_vidEsc(ex)}</div><div class="menu-video-title">${_vidEsc(video.title)}</div>${videoUpBadge(video)}</div></a>`).join('');
+    const html=results.filter(r=>r.video).map(({ex,video})=>`<div class="vl-wrap"><a ${videoLinkAttrs(video)} class="menu-video-item"><img class="menu-video-thumb" src="${_vidEsc(video.thumbnail)}" alt="" onerror="this.style.display='none'"><div><div class="menu-video-ex">${_vidEsc(ex)}</div><div class="menu-video-title">${_vidEsc(video.title)}</div>${videoUpBadge(video)}</div></a>${typeof videoSaveBtn==='function'?videoSaveBtn(video):''}</div>`).join('');
     list.innerHTML=html||'<div style="color:var(--fg3);font-size:12px;">動画が見つかりませんでした</div>';
   }catch(e){list.innerHTML='<div style="color:var(--fg3);font-size:12px;">動画の取得に失敗しました</div>';}
 }
@@ -5022,6 +5103,10 @@ const CHARS={
     system:'あなたはコタ（おっとり伴走のクマ）です。ゆっくり丁寧で温かい口調。急かさない。「焦らなくていいよ」「続けることが一番大事」という姿勢。ユーザーのデータを使って自分ごとにする。一人称は「ぼく」。指定フォーマット厳守。日本語のみ。'},
 };
 const CHANGELOG=[
+  {v:'v2.94.0',d:'動画に👍/👎とひとことコメントを付けられるように（動画の「＋」から、いつでも変更可）。評価とコメントは開発者とAIだけが見て、ほかのユーザーには表示されません'},
+  {v:'v2.93.0',d:'📺 マイ動画リスト。動画の「＋」で好きなリストに保存。YouTubeのプレイリスト（公開・限定公開）もURLを貼るだけで読み込めます'},
+  {v:'v2.92.0',d:'ホームに「🐴 ランの今週の話題」。今週の話題ワードと、YouTubeで今週よく見られている筋トレ・食事・睡眠の動画を紹介します'},
+  {v:'v2.91.0',d:'食事・睡眠の画面に、記録に合わせた「ランのおすすめ動画」。たんぱく質が足りない日は作り置きレシピなど。睡眠の動画は寝る前（21時〜5時）は出しません'},
   {v:'v2.90.0',d:'予定に合わせてAIが1週間の筋トレメニューを組むように（週間プランナー）。定番メニューも追加。フォントを丸ゴシックに'},
   {v:'v2.89.0',d:'筋トレ記録に「前回の記録」「自己ベスト🏆」「自動の休憩タイマー」「前回のメニューを使う」を追加。他のアプリ（Hevy・Strong）の記録も取り込めます'},
   {v:'v2.88.0',d:'解説動画を見て戻ると「役に立った？」と聞くように。みんなの評価で、おすすめの動画がどんどん良くなります'},
@@ -6579,6 +6664,7 @@ function renderMeals(){
   con.querySelectorAll('.ml-open-add').forEach(btn=>{
     btn.onclick=()=>openMlAdd(btn.dataset.k);
   });
+  if(typeof renderMealVideos==='function')renderMealVideos();
 }
 
 // ── Sleep ─────────────────────────────────────────────────
@@ -6646,6 +6732,7 @@ function renderSleepTab(){
   const yd=fmt(ydD);
   document.getElementById('sl-bed-badge').textContent=(db.sleep[today]||{}).bedtime||'';
   document.getElementById('sl-wake-badge').textContent=(db.sleep[yd]||{}).wakeTime||'';
+  if(typeof renderSleepVideos==='function')renderSleepVideos();
 }
 document.getElementById('sl-prev').onclick=()=>{const d=new Date(st.slDate);d.setDate(d.getDate()-1);st.slDate=fmt(d);renderSleepTab();};
 document.getElementById('sl-next').onclick=()=>{const d=new Date(st.slDate);d.setDate(d.getDate()+1);st.slDate=fmt(d);renderSleepTab();};
@@ -7566,7 +7653,7 @@ function calcGameStats(){
     if(hp.gymFreq)hpParts.push(`ジム目標:週${hp.gymFreq}回`);
     const hpStats=hpParts.length?hpParts.join(' / '):'未設定';
     const streakStats=typeof streakSummaryText==='function'?streakSummaryText():'なし';
-    return `【今日の日付】${today}\n【連続記録】${streakStats}\n【健康プロフィール】${hpStats}\n【使用目的】${useCaseStr}\n【今後14日間の予定】\n${evs}\n【未完了タスク】\n${tasks}\n【進行中の目標】\n${goals}\n【カレンダー一覧】\n${cals}\n【タスク達成状況】${taskStats}\n【筋トレ履歴（直近30日/最大90日遡及）】\n${woStats}\n【睡眠記録（直近30日統計）】\n${sleepStats}\n【食事記録（過去7日間）】\n${mealStats}\n【今日の健康データ】${healthStats}\n【タスクフィードバック履歴】\n${fbStats}`;
+    return `【今日の日付】${today}\n【連続記録】${streakStats}\n【健康プロフィール】${hpStats}\n【使用目的】${useCaseStr}\n【今後14日間の予定】\n${evs}\n【未完了タスク】\n${tasks}\n【進行中の目標】\n${goals}\n【カレンダー一覧】\n${cals}\n【タスク達成状況】${taskStats}\n【筋トレ履歴（直近30日/最大90日遡及）】\n${woStats}\n【睡眠記録（直近30日統計）】\n${sleepStats}\n【食事記録（過去7日間）】\n${mealStats}\n【今日の健康データ】${healthStats}\n【タスクフィードバック履歴】\n${fbStats}\n【動画への本人の評価・コメント（本人とAIだけが見る。好みに合わせた提案に使う）】\n${typeof vnContextText==='function'?vnContextText():'なし'}`;
   }
   async function executeTool(name,input){
     if(name==='add_event'){
@@ -7739,7 +7826,7 @@ function calcGameStats(){
       try{
         const videos=await fetchRecommendedVideos(q,q,n);
         if(!videos.length)return `「${q}」の動画が見つかりませんでした。`;
-        const cards=videos.map(v=>`<div style="display:flex;gap:10px;align-items:flex-start;margin:8px 0;"><a ${videoLinkAttrs(v)} style="flex-shrink:0;"><img src="${v.thumbnail}" style="width:120px;height:68px;object-fit:cover;border-radius:6px;display:block;"></a><div style="flex:1;min-width:0;"><a ${videoLinkAttrs(v)} style="font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;line-height:1.4;display:block;">${esc(v.title)}</a><div style="font-size:11px;color:var(--fg3);margin-top:3px;">${esc(v.channel)}</div>${videoUpBadge(v)}</div></div>`).join('');
+        const cards=videos.map(v=>`<div style="display:flex;gap:10px;align-items:flex-start;margin:8px 0;"><a ${videoLinkAttrs(v)} style="flex-shrink:0;"><img src="${v.thumbnail}" style="width:120px;height:68px;object-fit:cover;border-radius:6px;display:block;"></a><div style="flex:1;min-width:0;"><a ${videoLinkAttrs(v)} style="font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;line-height:1.4;display:block;">${esc(v.title)}</a><div style="font-size:11px;color:var(--fg3);margin-top:3px;">${esc(v.channel)}</div>${videoUpBadge(v)}</div>${(typeof videoSaveBtn==='function'?videoSaveBtn(v):'')}</div>`).join('');
         const wrap=document.getElementById('ai-messages');
         const div=document.createElement('div');div.className='ai-msg ai';
         div.innerHTML=`<div style="font-size:13px;margin-bottom:8px;">「<strong>${esc(q)}</strong>」の動画 ${videos.length}件</div>${cards}`;
@@ -8249,10 +8336,42 @@ async function fetchRecommendedVideos(exName,query,n){
   }
 }
 function videoLinkAttrs(v){return `href="${_vidEsc(v.url)}" target="_blank" rel="noopener" data-vid="${_vidEsc(v.id)}" data-ex="${_vidEsc(v.ex)}" data-title="${_vidEsc(v.title)}"`;}
-function videoUpBadge(v){return v.up>0?`<span class="vid-up">👍 ${v.up}人が役立った</span>`:'';}
+// v2.94.0: 評価の人数は他のユーザーに見せない（おすすめ順位の計算にだけ使う）
+function videoUpBadge(v){return '';}
 
-function _vidEvent(ex,vid,type,sec){
-  try{fetch(`${_vidBase()}/video/event`,{method:'POST',keepalive:true,headers:{'content-type':'text/plain'},body:JSON.stringify({ex,vid,type,sec})}).catch(()=>{});}catch(e){}
+function _vidEvent(ex,vid,type,sec,prev){
+  try{fetch(`${_vidBase()}/video/event`,{method:'POST',keepalive:true,headers:{'content-type':'text/plain'},body:JSON.stringify({ex,vid,type,sec,prev})}).catch(()=>{});}catch(e){}
+}
+
+// ── 動画の評価・コメント（v2.94.0）: 本人の端末(db.videoNotes)と、匿名で Worker(D1) に送る。他のユーザーには見せない ──
+function vnNotes(){if(!db.videoNotes||typeof db.videoNotes!=='object')db.videoNotes={};return db.videoNotes;}
+function vnGet(vid){return vnNotes()[vid]||null;}
+// v={vid,title,ex}。同じ評価なら送らない。付け替えは前の評価を1減らす
+function vnRate(v,rating,sec){
+  if(!v||!v.vid||!['up','down'].includes(rating))return;
+  const ex=v.ex||'mylist';
+  const n=vnNotes()[v.vid]||{};
+  const voted=_vidLS('lh_video_voted',{});
+  const prev=n.r||voted[ex+'|'+v.vid]||null;
+  n.r=rating;n.t=v.title||n.t||'';n.ex=ex;n.ts=Date.now();vnNotes()[v.vid]=n;
+  voted[ex+'|'+v.vid]=rating;_vidSaveLS('lh_video_voted',voted);
+  save(db);
+  if(prev!==rating)_vidEvent(ex,v.vid,rating,sec||0,prev||undefined);
+}
+function vnComment(v,comment){
+  comment=String(comment||'').trim().slice(0,200);
+  const n=vnNotes()[v.vid]||{t:v.title||'',ex:v.ex||'mylist'};
+  if(!comment||comment===n.c)return false;
+  n.c=comment;n.ts=Date.now();vnNotes()[v.vid]=n;save(db);
+  try{fetch(`${_vidBase()}/video/feedback`,{method:'POST',keepalive:true,headers:{'content-type':'text/plain'},body:JSON.stringify({ex:n.ex||v.ex||'mylist',vid:v.vid,rating:n.r||'',comment})}).catch(()=>{});}catch(e){}
+  return true;
+}
+var VN_PRIVACY='🔒 評価とコメントは開発者とAIだけが見ます。ほかのユーザーには表示されません';
+// AIトレーナーの文脈用（本人の評価・コメント 直近10件）
+function vnContextText(){
+  const list=Object.entries(vnNotes()).filter(([,n])=>n&&(n.r||n.c)).sort((a,b)=>(b[1].ts||0)-(a[1].ts||0)).slice(0,10);
+  if(!list.length)return 'なし';
+  return list.map(([,n])=>`${n.r==='up'?'👍':n.r==='down'?'👎':'・'} ${String(n.t||'').slice(0,40)}${n.c?' — 「'+n.c.slice(0,80)+'」':''}`).join('\n');
 }
 // 動画リンクのタップを記録（どの画面の動画でも data-vid があれば対象）
 document.addEventListener('click',e=>{
@@ -8289,18 +8408,401 @@ function showVideoFeedbackSheet(p,sec){
   </div>`;
   el.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{
     const v=b.dataset.v;
-    if(v!=='skip'){
-      const voted=_vidLS('lh_video_voted',{});voted[p.ex+'|'+p.vid]=v;_vidSaveLS('lh_video_voted',voted);
-      _vidEvent(p.ex,p.vid,v,sec);
-      if(typeof showToast==='function')showToast(v==='up'?'ありがとう！みんなのおすすめに反映するね':'ありがとう！次からは別の動画を出すね');
-    }
-    el.remove();
+    if(v==='skip'){el.remove();return;}
+    vnRate({vid:p.vid,title:p.title,ex:p.ex},v,sec);
+    // 続けてひとことコメント（任意）
+    el.querySelector('.vid-fb-body').innerHTML=`
+      <div class="vid-fb-q">${v==='up'?'👍':'👎'} ありがとう！ひとことあれば</div>
+      <div class="vid-fb-title">${_vidEsc(p.title)}</div>
+      <textarea class="vn-text" maxlength="200" placeholder="よかった点・いまいちだった点（任意）"></textarea>
+      <div class="vn-privacy">${VN_PRIVACY}</div>
+      <div class="vid-fb-btns"><button data-c="skip">閉じる</button><button data-c="send" class="vn-send">送る</button></div>`;
+    el.querySelector('[data-c="skip"]').onclick=()=>{el.remove();if(typeof showToast==='function')showToast(v==='up'?'おすすめに反映するね':'次からは別の動画を出すね');};
+    el.querySelector('[data-c="send"]').onclick=()=>{const t=el.querySelector('.vn-text').value;const ok=vnComment({vid:p.vid,title:p.title,ex:p.ex},t);el.remove();if(typeof showToast==='function')showToast(ok?'コメントを送った。ありがとう！':'おすすめに反映するね');};
   });
   el.onclick=e=>{if(e.target===el)el.remove();};
   document.body.appendChild(el);
 }
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(checkVideoFeedback,400);});
 setTimeout(checkVideoFeedback,1500);
+// ── 食事・睡眠のおすすめ動画（v2.91.0）／ランの今週の話題（v2.92.0） ─────────
+// 動画の取得・「役に立った？」の評価は videos.js の仕組みをそのまま使う（集計キーは meal:〜 / sleep:〜 / topic:〜 / trend:〜）
+// ※ビルドで1つのscriptに連結されるため、トップレベルに const/let を置かない（TDZ回避）
+
+window._lvCache=window._lvCache||{};
+
+function _lvDay(n){const x=new Date(todayStr()+'T00:00:00');x.setDate(x.getDate()+n);return fmt(x);}
+function _lvIsNight(){const h=new Date().getHours();return h>=21||h<5;}
+function _lvBedMins(t){const[h,m]=String(t).split(':').map(Number);let v=h*60+m;if(v<12*60)v+=1440;return v;} // 0時以降の就寝は24時以降として扱う
+function _lvHHMM(v){v=((Math.round(v)%1440)+1440)%1440;return `${Math.floor(v/60)}:${String(v%60).padStart(2,'0')}`;}
+
+// 食事: 記録から「なぜこの動画か」を決める
+function mealVideoTopic(){
+  const hp=db.settings.healthProfile||{};
+  const pn=(db.nutrients||[]).find(n=>/タンパク|たんぱく|蛋白|protein/i.test(n.name||''));
+  if(pn&&hp.weight){
+    const yd=db.meals?.[_lvDay(-1)];
+    const items=yd?MEAL_DEF.flatMap(m=>yd[m.k]||[]):[];
+    if(items.length){
+      const p=items.reduce((s,i)=>s+(parseFloat(i.nutrients?.[pn.id])||0),0);
+      const target=Math.round(hp.weight*(hp.goal==='maintain'?1.0:1.6));
+      if(p<target*0.8)return{key:'meal:protein',q:'高たんぱく 作り置き レシピ',reason:`昨日のたんぱく質 ${Math.round(p)}g（目安 ${target}g）`};
+    }
+  }
+  // 他の食事は記録しているのに朝食がない日（今日は途中なので除く）
+  let noBf=0;
+  for(let n=-3;n<=-1;n++){const d=db.meals?.[_lvDay(n)];if(!d)continue;const other=['lunch','dinner','snack'].some(k=>(d[k]||[]).length);if(other&&!(d.breakfast||[]).length)noBf++;}
+  if(noBf>=2)return{key:'meal:breakfast',q:'朝ごはん 簡単 時短 たんぱく質',reason:'最近、朝食の記録が少なめ'};
+  if(hp.goal==='cut')return{key:'meal:cut',q:'減量 食事 レシピ 高たんぱく 低脂質',reason:'目標が「減量」だから'};
+  if(hp.goal==='bulk')return{key:'meal:bulk',q:'増量 食事 レシピ 簡単',reason:'目標が「増量」だから'};
+  if(hp.goal==='recomp')return{key:'meal:recomp',q:'体脂肪 減らす 食事 筋トレ',reason:'目標が「体脂肪減」だから'};
+  return{key:'meal:basic',q:'筋トレ 食事 基本 自炊',reason:'筋トレする人の食事の基本'};
+}
+
+// 睡眠: 直近7日の記録から決める（db.sleep[D] は D の夜に寝た記録）
+function sleepVideoTopic(){
+  const recs=[];
+  for(let n=-7;n<=-1;n++){const s=db.sleep?.[_lvDay(n)];if(s&&s.bedtime&&s.wakeTime)recs.push(s);}
+  if(recs.length<3)return{key:'sleep:basic',q:'睡眠の質 上げる 方法 基本',reason:'まずは記録を3日ためよう。その間はこれ'};
+  const durs=recs.map(s=>_slMins(s.bedtime,s.wakeTime));
+  const avg=durs.reduce((a,b)=>a+b,0)/durs.length;
+  if(avg<360)return{key:'sleep:short',q:'睡眠不足 解消 方法',reason:`直近${recs.length}日の平均睡眠 ${_fmtMins(Math.round(avg))}`};
+  const beds=recs.map(s=>_lvBedMins(s.bedtime));
+  const spread=Math.max(...beds)-Math.min(...beds);
+  if(spread>=90)return{key:'sleep:rhythm',q:'体内時計 整える 寝る時間 そろえる',reason:`寝る時刻のばらつきが${_fmtMins(spread)}`};
+  const avgBed=beds.reduce((a,b)=>a+b,0)/beds.length;
+  if(avgBed>1440+30)return{key:'sleep:late',q:'早寝 コツ 夜更かし 直す',reason:`平均の就寝が ${_lvHHMM(avgBed)}`};
+  const naps=recs.map(s=>(s.naps||[]).filter(n=>n.start&&n.end).reduce((a,n)=>a+_slMins(n.start,n.end),0));
+  if(naps.reduce((a,b)=>a+b,0)/naps.length>60)return{key:'sleep:nap',q:'昼寝 効果的 時間 取り方',reason:'昼寝が平均1時間を超えてる'};
+  return{key:'sleep:quality',q:'睡眠の質 上げる 習慣',reason:'いい調子。さらに質を上げるなら'};
+}
+
+function _lvHead(title){
+  const img=(typeof CHARS!=='undefined'&&CHARS.ran)?CHARS.ran.img:'';
+  return `<div class="lv-head">${img?`<img class="lv-ran" src="${img}" alt="ラン" onerror="this.style.display='none'">`:''}<span>${title}</span></div>`;
+}
+function _lvItems(list){
+  return list.map(v=>`<div class="vl-wrap"><a ${videoLinkAttrs(v)} class="menu-video-item"><img class="menu-video-thumb" src="${_vidEsc(v.thumbnail)}" alt="" onerror="this.style.display='none'"><div style="min-width:0;"><div class="menu-video-title">${_vidEsc(v.title)}</div><div class="lv-ch">${_vidEsc(v.channel||'')}</div>${videoUpBadge(v)}</div></a>${(typeof videoSaveBtn==='function'?videoSaveBtn(v):'')}</div>`).join('');
+}
+// 同じ日・同じテーマは1回だけ取得（記録を編集するたびに再取得しない）
+function _lvFetch(key,q,n){
+  const ck=key+'|'+q+'|'+todayStr();
+  if(!window._lvCache[ck])window._lvCache[ck]=fetchRecommendedVideos(key,q,n).catch(()=>[]);
+  return window._lvCache[ck];
+}
+
+async function renderLifeVideoCard(elId,topic,opts){
+  const el=document.getElementById(elId);if(!el)return;
+  el.dataset.token=''; // 取得中の古い結果を書き込ませない
+  if(!topic){el.hidden=true;return;}
+  el.hidden=false;
+  if(opts&&opts.night){
+    el.innerHTML=_lvHead('ランのおすすめ動画')+`<div class="lv-note">🌙 寝る前の動画は眠りを浅くする。今日はもう休め。おすすめは朝に出す</div>`;
+    return;
+  }
+  const token=topic.key+'|'+todayStr();
+  el.dataset.token=token;
+  el.innerHTML=_lvHead('ランのおすすめ動画')+`<div class="lv-reason">${esc(topic.reason)}</div><div class="lv-list"><div class="lv-note">動画を探し中…</div></div>`;
+  if(window._DEV_MODE){el.querySelector('.lv-list').innerHTML='<div class="lv-note">[DEVモード] 動画は本番のみ</div>';return;}
+  const list=await _lvFetch(topic.key,topic.q,2);
+  const box=el.querySelector('.lv-list');
+  if(el.dataset.token!==token||!box)return; // 取得中に別の内容へ切り替わった
+  box.innerHTML=list.length?_lvItems(list):'<div class="lv-note">今は動画を取得できなかった。あとでまた見てくれ</div>';
+}
+function renderMealVideos(){
+  const show=st.mlDate===todayStr();
+  if(!show){const el=document.getElementById('ml-video-card');if(el){el.hidden=true;el.dataset.token='';}return;}
+  renderLifeVideoCard('ml-video-card',mealVideoTopic());
+}
+function renderSleepVideos(){
+  renderLifeVideoCard('sl-video-card',sleepVideoTopic(),{night:_lvIsNight()});
+}
+
+// ── ランの今週の話題（ホーム） ─────────────────────────────
+// Worker /trend（毎朝5時に作成）を読むだけ。動画は YouTube の検索結果（直近7日・再生数順）をそのまま表示
+window._trendState=window._trendState||{cat:'muscle',kw:null,data:null,day:null,loading:null};
+var TREND_CAT_LABEL={muscle:'💪 筋トレ',meal:'🍚 食事',sleep:'😴 睡眠'};
+
+async function _trendLoad(){
+  const s=window._trendState,today=todayStr();
+  if(s.data&&s.day===today)return s.data;
+  try{const c=JSON.parse(localStorage.getItem('lh_trend_v1')||'null');if(c&&c.day===today&&c.data){s.data=c.data;s.day=today;return s.data;}}catch(e){}
+  if(!s.loading){
+    s.loading=(async()=>{
+      try{
+        const r=await fetch(`${_vidBase()}/trend`);
+        if(!r.ok)throw new Error('HTTP '+r.status);
+        const d=await r.json();
+        if(!d||!Array.isArray(d.keywords))throw new Error('bad');
+        s.data=d;s.day=today;
+        try{localStorage.setItem('lh_trend_v1',JSON.stringify({day:today,data:d}));}catch(e){}
+        return d;
+      }catch(e){return null;}
+      finally{s.loading=null;}
+    })();
+  }
+  return s.loading;
+}
+
+async function renderTrendCard(){
+  const el=document.getElementById('trend-card');if(!el)return;
+  if(db.settings.hideTrend){el.hidden=true;return;}
+  if(window._DEV_MODE){el.hidden=true;return;}
+  const d=await _trendLoad();
+  if(!d){el.hidden=true;return;}
+  const s=window._trendState;
+  el.hidden=false;
+  const kws=(d.keywords||[]).map(k=>`<button class="tr-kw${s.kw===k?' on':''}" data-kw="${_vidEsc(k)}">#${_vidEsc(k)}</button>`).join('');
+  const tabs=Object.keys(TREND_CAT_LABEL).map(c=>`<button class="tr-tab${!s.kw&&s.cat===c?' on':''}" data-cat="${c}">${TREND_CAT_LABEL[c]}</button>`).join('');
+  el.innerHTML=_lvHead('ランの今週の話題')
+    +`<div class="tr-intro">${esc(d.intro||'')}</div>`
+    +`<div class="tr-kws">${kws}</div>`
+    +`<div class="tr-tabs">${tabs}</div>`
+    +`<div class="tr-sub"></div><div class="lv-list tr-list"></div>`;
+  el.querySelectorAll('.tr-kw').forEach(b=>b.onclick=()=>{s.kw=s.kw===b.dataset.kw?null:b.dataset.kw;renderTrendCard();});
+  el.querySelectorAll('.tr-tab').forEach(b=>b.onclick=()=>{s.kw=null;s.cat=b.dataset.cat;renderTrendCard();});
+  const sub=el.querySelector('.tr-sub'),box=el.querySelector('.tr-list');
+  if(s.kw){
+    const kw=s.kw;
+    sub.textContent=`「${kw}」の解説動画`;
+    box.innerHTML='<div class="lv-note">動画を探し中…</div>';
+    const list=await _lvFetch('topic:'+kw,kw+' 解説',3);
+    if(s.kw!==kw||!box.isConnected)return;
+    box.innerHTML=list.length?_lvItems(list):'<div class="lv-note">今は動画を取得できなかった</div>';
+  }else{
+    sub.textContent='YouTubeで今週よく見られている動画';
+    const list=((d.videos||{})[s.cat]||[]).map(v=>({...v,url:`https://www.youtube.com/watch?v=${v.id}`,ex:'trend:'+s.cat,up:0,down:0}));
+    box.innerHTML=list.length?_lvItems(list):'<div class="lv-note">今週はまだ見つからなかった</div>';
+  }
+}
+document.querySelectorAll('.st-opt[data-trend]').forEach(b=>b.onclick=()=>{db.settings.hideTrend=b.dataset.trend==='off';save(db);document.querySelectorAll('.st-opt[data-trend]').forEach(x=>x.classList.toggle('on',x===b));renderTrendCard();});
+setTimeout(()=>{if(typeof st!=='undefined'&&st.tab==='cal')renderTrendCard();},1800);
+// ── マイ動画リスト（v2.93.0） ─────────────────────────────
+// db.videoLists = [{id, name, src?(YouTubeプレイリストID), items:[{vid, title, channel, thumb, at(追加), ft(情報の取得日時)}]}]
+// 規約（YouTube API Services Developer Policies III.E.4）: タイトル等は7日で取り直し、30日更新できなければ消して動画IDだけ残す
+// ※ビルドで1つのscriptに連結されるため、トップレベルに const/let を置かない（TDZ回避）
+
+var VL_MAX_ITEMS=200, VL_REFRESH_MS=7*86400000, VL_EXPIRE_MS=30*86400000;
+
+function vlLists(){if(!Array.isArray(db.videoLists))db.videoLists=[];return db.videoLists;}
+function vlSavedSet(){const s=new Set();vlLists().forEach(l=>(l.items||[]).forEach(i=>s.add(i.vid)));return s;}
+function vlEsc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// 動画カードに付ける「＋」ボタン（どの画面からでも使う）
+function videoSaveBtn(v){
+  if(!v||!v.id)return '';
+  const on=vlSavedSet().has(v.id);
+  return `<button type="button" class="vid-save${on?' on':''}" data-vid="${vlEsc(v.id)}" data-ex="${vlEsc(v.ex||'')}" data-title="${vlEsc(v.title)}" data-ch="${vlEsc(v.channel||'')}" data-thumb="${vlEsc(v.thumbnail||'')}" aria-label="マイリストに保存">${on?'✓':'＋'}</button>`;
+}
+function vlRefreshSaveBtns(){
+  const s=vlSavedSet();
+  document.querySelectorAll('.vid-save[data-vid]').forEach(b=>{const on=s.has(b.dataset.vid);b.classList.toggle('on',on);b.textContent=on?'✓':'＋';});
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest&&e.target.closest('.vid-save[data-vid]');
+  if(!b)return;
+  e.preventDefault();e.stopPropagation();
+  openVideoSaveSheet({vid:b.dataset.vid,title:b.dataset.title,channel:b.dataset.ch,thumb:b.dataset.thumb,ex:b.dataset.ex||'mylist'});
+},true);
+
+function vlNewList(name){
+  const l={id:uid(),name:String(name||'').trim().slice(0,30)||'マイリスト',items:[]};
+  vlLists().push(l);return l;
+}
+function vlToggleItem(list,v){
+  const i=list.items.findIndex(x=>x.vid===v.vid);
+  if(i>=0){list.items.splice(i,1);return false;}
+  if(list.items.length>=VL_MAX_ITEMS){if(typeof showToast==='function')showToast(`1つのリストは${VL_MAX_ITEMS}本まで`);return false;}
+  list.items.push({vid:v.vid,title:v.title||'',channel:v.channel||'',thumb:v.thumb||'',at:Date.now(),ft:Date.now()});
+  return true;
+}
+
+function _vlSheet(id,html){
+  document.getElementById(id)?.remove();
+  const el=document.createElement('div');el.id=id;el.className='training-sheet vl-sheet';
+  el.innerHTML=`<div class="training-sheet-body">${html}</div>`;
+  el.addEventListener('click',e=>{if(e.target===el)el.remove();});
+  document.body.appendChild(el);
+  return el;
+}
+
+// 保存先を選ぶシート
+function openVideoSaveSheet(v){
+  const render=()=>{
+    const typed=document.querySelector('#vl-save-sheet #vn-text')?.value; // 書きかけのコメントを保つ
+    const lists=vlLists();
+    const rows=lists.map(l=>{const on=l.items.some(i=>i.vid===v.vid);return `<button class="vl-pick${on?' on':''}" data-id="${l.id}"><span class="vl-check">${on?'✓':''}</span><span class="vl-pick-name">${vlEsc(l.name)}</span><span class="vl-count">${l.items.length}本</span></button>`;}).join('');
+    const el=_vlSheet('vl-save-sheet',`
+      <div class="training-sheet-title">保存・評価<button class="training-sheet-close" data-x>✕</button></div>
+      <div class="vl-save-title">${vlEsc(v.title)}</div>
+      ${_vlRateHtml(v)}
+      <div class="vl-sec">マイリストに保存</div>
+      <div class="vl-picks">${rows||'<div class="lv-note">まだリストがない。下で作ろう</div>'}</div>
+      <div class="vl-new-row"><input id="vl-new-name" maxlength="30" placeholder="新しいリストの名前"><button id="vl-new-add">作って保存</button></div>
+      <button class="vl-done" data-x>完了</button>`);
+    el.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>el.remove());
+    if(typed!=null)el.querySelector('#vn-text').value=typed;
+    _vlBindRate(el,v,render);
+    el.querySelectorAll('.vl-pick').forEach(b=>b.onclick=()=>{
+      const l=vlLists().find(x=>x.id===b.dataset.id);if(!l)return;
+      const added=vlToggleItem(l,v);save(db);vlRefreshSaveBtns();
+      if(added&&typeof showToast==='function')showToast(`「${l.name}」に保存した`);
+      render();
+    });
+    el.querySelector('#vl-new-add').onclick=()=>{
+      const name=el.querySelector('#vl-new-name').value.trim();
+      if(!name){el.querySelector('#vl-new-name').focus();return;}
+      const l=vlNewList(name);vlToggleItem(l,v);save(db);vlRefreshSaveBtns();
+      if(typeof showToast==='function')showToast(`「${l.name}」を作って保存した`);
+      render();
+    };
+  };
+  render();
+}
+
+// 評価・コメント欄（保存シート内）
+function _vlRateHtml(v){
+  const n=(typeof vnGet==='function'&&vnGet(v.vid))||{};
+  return `<div class="vl-sec">評価・コメント</div>
+    <div class="vn-rate"><button data-rate="up" class="${n.r==='up'?'on':''}">👍 役に立った</button><button data-rate="down" class="${n.r==='down'?'on':''}">👎 いまいち</button></div>
+    <div class="vn-row"><textarea class="vn-text" id="vn-text" maxlength="200" placeholder="ひとことコメント（任意）">${vlEsc(n.c||'')}</textarea><button class="vn-send" id="vn-send">送る</button></div>
+    <div class="vn-privacy">${typeof VN_PRIVACY!=='undefined'?VN_PRIVACY:''}</div>`;
+}
+function _vlBindRate(el,v,rerender){
+  el.querySelectorAll('[data-rate]').forEach(b=>b.onclick=()=>{
+    const keep=el.querySelector('#vn-text')?.value;
+    vnRate(v,b.dataset.rate,0);
+    rerender();
+    const t=document.querySelector('#vl-save-sheet #vn-text');if(t&&keep!=null)t.value=keep;
+    if(typeof showToast==='function')showToast(b.dataset.rate==='up'?'👍 おすすめに反映するね':'👎 次からは別の動画を出すね');
+  });
+  const send=el.querySelector('#vn-send');
+  if(send)send.onclick=()=>{const ok=vnComment(v,el.querySelector('#vn-text').value);if(typeof showToast==='function')showToast(ok?'コメントを送った。ありがとう！':'コメントが空か、前と同じだよ');};
+}
+
+// ── リスト画面 ──
+function openVideoLists(listId){
+  if(listId){_vlRenderList(listId);return;}
+  const lists=vlLists();
+  const rows=lists.map(l=>{
+    const th=(l.items.find(i=>i.thumb)||{}).thumb;
+    return `<button class="vl-row-list" data-id="${l.id}">${th?`<img src="${vlEsc(th)}" alt="" onerror="this.style.visibility='hidden'">`:'<span class="vl-ph">📺</span>'}<span class="vl-pick-name">${vlEsc(l.name)}${l.src?' <span class="vl-yt">YouTube</span>':''}</span><span class="vl-count">${l.items.length}本 ›</span></button>`;
+  }).join('');
+  const el=_vlSheet('vl-sheet',`
+    <div class="training-sheet-title">📺 マイ動画リスト<button class="training-sheet-close" data-x>✕</button></div>
+    <div class="vl-lists">${rows||'<div class="lv-note">動画カードの「＋」で保存すると、ここにリストができる。YouTubeのプレイリストも読み込める</div>'}</div>
+    <div class="vl-new-row"><input id="vl-new-name2" maxlength="30" placeholder="新しいリストの名前"><button id="vl-new-add2">作る</button></div>
+    <button class="vl-import-btn" id="vl-import-open">▶ YouTubeのプレイリストを読み込む</button>`);
+  el.querySelector('[data-x]').onclick=()=>el.remove();
+  el.querySelectorAll('.vl-row-list').forEach(b=>b.onclick=()=>_vlRenderList(b.dataset.id));
+  el.querySelector('#vl-new-add2').onclick=()=>{const n=el.querySelector('#vl-new-name2').value.trim();if(!n)return;const l=vlNewList(n);save(db);_vlRenderList(l.id);};
+  el.querySelector('#vl-import-open').onclick=()=>_vlRenderImport();
+}
+
+function _vlRenderList(id){
+  const l=vlLists().find(x=>x.id===id);if(!l){openVideoLists();return;}
+  const items=l.items.map((it,i)=>{
+    const gone=it.gone,noInfo=!it.title&&!gone;
+    const label=gone?'見られなくなった動画':noInfo?'（情報を取得中）':vlEsc(it.title);
+    const link=gone?`<div class="vl-item-main vl-gone">`:`<a class="vl-item-main" href="https://www.youtube.com/watch?v=${vlEsc(it.vid)}" target="_blank" rel="noopener">`;
+    return `<div class="vl-item">${link}${it.thumb&&!gone?`<img class="menu-video-thumb" src="${vlEsc(it.thumb)}" alt="" onerror="this.style.visibility='hidden'">`:'<span class="vl-ph sm">▶</span>'}<div style="min-width:0;"><div class="menu-video-title">${label}</div><div class="lv-ch">${vlEsc(gone?'削除または非公開':it.channel||'')}</div>${_vlNoteHtml(it.vid)}</div>${gone?'</div>':'</a>'}
+      <div class="vl-item-ops"><button data-up="${i}" ${i===0?'disabled':''} aria-label="上へ">↑</button><button data-down="${i}" ${i===l.items.length-1?'disabled':''} aria-label="下へ">↓</button><button data-del="${i}" aria-label="削除">✕</button></div></div>`;
+  }).join('');
+  const el=_vlSheet('vl-sheet',`
+    <div class="training-sheet-title"><button class="vl-back" data-back>‹</button><span class="vl-title-txt">${vlEsc(l.name)}</span><button class="training-sheet-close" data-x>✕</button></div>
+    <div class="vl-list-ops"><button data-rename>✎ 名前を変える</button>${l.src?'<button data-resync>↻ YouTubeから更新</button>':''}<button data-dellist class="danger">リストを削除</button></div>
+    <div class="vl-items">${items||'<div class="lv-note">まだ動画がない。動画カードの「＋」で保存しよう</div>'}</div>`);
+  el.querySelector('[data-x]').onclick=()=>el.remove();
+  el.querySelector('[data-back]').onclick=()=>openVideoLists();
+  el.querySelector('[data-rename]').onclick=()=>{const n=prompt('リストの名前',l.name);if(n&&n.trim()){l.name=n.trim().slice(0,30);save(db);_vlRenderList(id);}};
+  el.querySelector('[data-dellist]').onclick=()=>{if(!confirm(`「${l.name}」を削除する？（中の動画もリストから消えます）`))return;db.videoLists=vlLists().filter(x=>x.id!==id);save(db);vlRefreshSaveBtns();openVideoLists();};
+  el.querySelector('[data-resync]')?.addEventListener('click',()=>_vlImport(l.src,el.querySelector('.vl-list-ops')));
+  el.querySelectorAll('[data-up],[data-down],[data-del]').forEach(b=>b.onclick=()=>{
+    const i=+(b.dataset.up??b.dataset.down??b.dataset.del);
+    if(b.dataset.del!=null)l.items.splice(i,1);
+    else{const j=b.dataset.up!=null?i-1:i+1;if(j<0||j>=l.items.length)return;[l.items[i],l.items[j]]=[l.items[j],l.items[i]];}
+    save(db);vlRefreshSaveBtns();_vlRenderList(id);
+  });
+  vlRefreshInfo(l).then(changed=>{if(changed&&document.getElementById('vl-sheet')&&el.isConnected)_vlRenderList(id);});
+}
+
+function _vlNoteHtml(vid){
+  const n=typeof vnGet==='function'&&vnGet(vid);
+  if(!n||(!n.r&&!n.c))return '';
+  return `<div class="vn-mine">${n.r==='up'?'👍':n.r==='down'?'👎':''}${n.c?' '+vlEsc(n.c):''}</div>`;
+}
+// 7日以上前に取得した情報（と情報のない動画）を取り直す
+async function vlRefreshInfo(l){
+  if(window._DEV_MODE)return false;
+  const now=Date.now();
+  const stale=l.items.filter(i=>!i.gone&&(!i.title||!i.ft||now-i.ft>VL_REFRESH_MS));
+  if(!stale.length)return false;
+  let changed=false;
+  for(let k=0;k<stale.length;k+=50){
+    const chunk=stale.slice(k,k+50);
+    try{
+      const r=await fetch(`${_vidBase()}/video/details?ids=${chunk.map(i=>i.vid).join(',')}`);
+      if(!r.ok)continue;
+      const d=await r.json();if(!d||d.error)continue;
+      chunk.forEach(i=>{const v=d[i.vid];if(v){i.title=v.title;i.channel=v.channel;i.thumb=v.thumbnail;i.ft=now;}else{i.gone=true;i.title='';i.channel='';i.thumb='';}changed=true;});
+    }catch(e){}
+  }
+  if(changed)save(db);
+  return changed;
+}
+// 起動時: 30日以上更新できていないタイトル等を消す（動画IDは残す）
+function vlPurgeExpired(){
+  const now=Date.now();let n=0;
+  vlLists().forEach(l=>(l.items||[]).forEach(i=>{if(i.title&&(!i.ft||now-i.ft>VL_EXPIRE_MS)){i.title='';i.channel='';i.thumb='';n++;}}));
+  if(n)save(db);
+  return n;
+}
+
+// ── YouTube プレイリストの読み込み ──
+function vlParsePlaylistId(s){
+  s=String(s||'').trim();
+  try{const u=new URL(s);const p=u.searchParams.get('list');if(p)return p;}catch(e){}
+  return /^[A-Za-z0-9_-]{2,64}$/.test(s)?s:'';
+}
+function _vlRenderImport(){
+  const el=_vlSheet('vl-sheet',`
+    <div class="training-sheet-title"><button class="vl-back" data-back>‹</button><span class="vl-title-txt">YouTubeから読み込む</span><button class="training-sheet-close" data-x>✕</button></div>
+    <div class="lv-note">YouTubeアプリでプレイリストを開き「共有」→「コピー」したURLを貼り付けてね。公開・限定公開のプレイリストだけ読み込める（最大${VL_MAX_ITEMS}本）</div>
+    <input id="vl-import-url" class="vl-import-in" placeholder="https://youtube.com/playlist?list=..." autocomplete="off">
+    <button class="vl-import-btn primary" id="vl-import-go">読み込む</button>
+    <div id="vl-import-msg" class="lv-note"></div>`);
+  el.querySelector('[data-x]').onclick=()=>el.remove();
+  el.querySelector('[data-back]').onclick=()=>openVideoLists();
+  el.querySelector('#vl-import-go').onclick=()=>{
+    const id=vlParsePlaylistId(el.querySelector('#vl-import-url').value);
+    const msg=el.querySelector('#vl-import-msg');
+    if(!id){msg.textContent='プレイリストのURLが読み取れなかった。「list=」を含むURLを貼ってね';return;}
+    _vlImport(id,msg);
+  };
+}
+async function _vlImport(id,msgEl){
+  const say=t=>{if(msgEl)msgEl.textContent=t;};
+  say('読み込み中…');
+  let d;
+  try{const r=await fetch(`${_vidBase()}/youtube/playlist?id=${encodeURIComponent(id)}`);d=await r.json();}catch(e){say('通信に失敗した。電波のいいところでもう一度試してね');return;}
+  if(d.error==='private_special'){say('「後で見る」「高く評価した動画」はYouTubeの仕様で読み込めない。普通のプレイリストにコピーしてから試してね');return;}
+  if(d.error==='not_found'){say('見つからなかった。非公開のプレイリストは読み込めないので、公開か限定公開にしてね');return;}
+  if(d.error||!Array.isArray(d.items)){say('読み込めなかった（'+(d.error||'不明なエラー')+'）');return;}
+  if(!d.items.length){say('このプレイリストには見られる動画がなかった');return;}
+  const now=Date.now();
+  let l=vlLists().find(x=>x.src===id);
+  const isNew=!l;
+  if(!l){l=vlNewList(d.title);l.src=id;}
+  const prev=new Map(l.items.map(i=>[i.vid,i]));
+  l.items=d.items.slice(0,VL_MAX_ITEMS).map(v=>({vid:v.id,title:v.title,channel:v.channel,thumb:v.thumbnail,at:prev.get(v.id)?.at||now,ft:now}));
+  save(db);vlRefreshSaveBtns();
+  if(typeof showToast==='function')showToast(`${isNew?'読み込んだ':'更新した'}: ${l.name}（${l.items.length}本${d.truncated?'・先頭'+VL_MAX_ITEMS+'本':''}）`);
+  _vlRenderList(l.id);
+}
+
+// メニュー（≡）・今日のメニューの入口
+document.querySelectorAll('[data-open-vl]').forEach(b=>b.addEventListener('click',()=>{if(typeof closeDrawer==='function')closeDrawer();openVideoLists();}));
+try{if(db&&db.videoLists)vlPurgeExpired();}catch(e){}
 // ── 履歴モーダル ─────────────────────────────────────────
 function openHistModal(title,rows){
   document.getElementById('hist-modal-title').textContent=title;
