@@ -879,7 +879,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;
 }
 
 /* Onboarding */
-#onboarding{position:fixed;inset:0;background:var(--bg);z-index:200;display:flex;align-items:center;justify-content:center;}
+#onboarding{position:fixed;inset:0;background:var(--bg);z-index:9000;display:flex;align-items:center;justify-content:center;}
 .ob-inner{display:flex;flex-direction:column;align-items:center;gap:0;padding:0 32px;width:100%;max-width:360px;}
 .ob-logo{font-size:56px;margin-bottom:12px;}
 .ob-title{font-size:2rem;font-weight:700;color:var(--fg);margin:0 0 6px;}
@@ -1444,6 +1444,322 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
 .pw-legal{font-size:10px;color:var(--fg3);line-height:1.5;margin-top:8px;}
 .pw-tag{font-size:9px;font-weight:800;letter-spacing:.08em;color:#fff;background:#111;padding:2px 5px;border-radius:4px;vertical-align:middle;}
 #st-plan-row[hidden],.pw-tag[hidden]{display:none!important;}
+
+/* v2.104.0: 下の5つのタブ・自分タブ・筋肉マップ */
+#hdr-menu[hidden]{display:none!important;}
+.ai-fab{display:none!important;}
+.nav.nav5 .nb{padding:0 2px;}
+.nav.nav5 .nb span{white-space:nowrap;}
+.nav.nav5 .nb-ai.on{background:none;}
+.nb-ai-circle{width:44px;height:44px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;margin-top:-14px;box-shadow:0 4px 12px rgba(79,70,229,.35);}
+.nav .nb-ai svg{stroke:#fff!important;width:24px!important;height:24px!important;}
+.nb-ai span:last-child{color:var(--accent);}
+#tab-other .other-subnav[hidden]{display:none!important;}
+.me-head{display:flex;align-items:center;gap:12px;padding:14px;}
+.me-avatar{width:48px;height:48px;border-radius:50%;color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;flex:none;}
+.me-name{display:block;font-size:18px;font-weight:800;color:var(--fg);}
+.me-sub{display:block;font-size:12px;color:var(--fg2);}
+.me-list{padding:4px 0;}
+.me-row{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:0 14px;background:none;border:0;border-bottom:1px solid var(--border);font:inherit;color:var(--fg);text-align:left;cursor:pointer;}
+.me-row:last-child{border-bottom:0;}
+.me-row[hidden]{display:none!important;}
+.me-ic{width:24px;text-align:center;}
+.me-lbl{flex:1;font-size:15px;font-weight:600;}
+.me-val{font-size:12px;color:var(--fg2);}
+.me-go{color:var(--fg3);font-size:18px;}
+.mm-home-card{padding:0;overflow:hidden;}
+.mm-home-btn{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;background:none;border:0;font:inherit;color:var(--fg);text-align:left;cursor:pointer;}
+.mm-home-txt{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0;}
+.mm-home-lbl{font-size:12px;font-weight:700;color:#B45309;}
+.mm-home-head{font-size:17px;font-weight:800;}
+.mm-home-sub{font-size:12px;color:var(--fg2);}
+.mm-home-go{font-size:22px;color:var(--fg3);}
+.ana-chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 10px;}
+.ana-chip{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--fg);font:inherit;font-size:13px;font-weight:700;cursor:pointer;}
+.ana-chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg);}
+.mm-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--surface2);border-radius:12px;padding:4px;margin-bottom:10px;}
+.mm-side{min-height:38px;border:0;border-radius:9px;background:transparent;font:inherit;font-size:14px;font-weight:700;color:var(--fg2);cursor:pointer;}
+.mm-side.on{background:var(--surface);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.08);}
+.mm-card{display:flex;gap:6px;align-items:center;padding:10px;}
+.mm-fig{flex:none;}
+.mm-svg [data-k]{cursor:pointer;}
+.mm-list{flex:1;display:flex;flex-direction:column;min-width:0;}
+.mm-row{display:flex;align-items:center;gap:6px;min-height:34px;padding:2px 4px;border:0;border-radius:8px;background:none;font:inherit;color:var(--fg);text-align:left;cursor:pointer;}
+.mm-row.on{background:var(--accent-bg);}
+.mm-dot{width:10px;height:10px;border-radius:3px;flex:none;}
+.mm-nm{flex:1;display:flex;flex-direction:column;line-height:1.2;min-width:0;}
+.mm-nm b{font-size:12px;}
+.mm-nm small{font-size:9px;color:var(--fg2);}
+.mm-days{font-size:11px;color:var(--fg2);white-space:nowrap;}
+.mm-legend{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:11px;color:var(--fg2);margin:8px 2px;}
+.mm-legend span{display:inline-flex;align-items:center;gap:4px;}
+.mm-legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.mm-hint{font-size:12px;color:var(--fg2);margin:6px 2px;}
+.mm-detail{padding:12px 14px;}
+.mm-d-head{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;}
+.mm-d-head b{font-size:17px;}
+.mm-d-head small{font-size:11px;color:var(--fg2);}
+.mm-d-st{margin-left:auto;font-size:13px;font-weight:700;}
+.mm-d-last{font-size:12px;color:var(--fg2);margin-top:4px;}
+.mm-d-lbl{font-size:12px;font-weight:700;margin:10px 0 4px;}
+.mm-ex{display:flex;align-items:center;gap:8px;min-height:48px;border-top:1px solid var(--border);}
+.mm-ex-nm{flex:1;display:flex;flex-direction:column;min-width:0;}
+.mm-ex-nm b{font-size:14px;}
+.mm-ex-nm small{font-size:11px;color:var(--fg2);}
+.mm-tool{font-size:11px;font-weight:700;background:var(--surface2);color:var(--fg);border-radius:6px;padding:3px 7px;white-space:nowrap;}
+.mm-yt{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;}
+.mm-ai-btn{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;margin-top:10px;padding:12px 14px;border:1px dashed #C7D2FE;border-radius:14px;background:var(--accent-bg);font:inherit;font-size:14px;font-weight:700;color:var(--fg);text-align:left;cursor:pointer;}
+.mm-ai-btn small{font-size:11px;font-weight:400;color:var(--fg2);}
+#tab-other .other-subnav:not([hidden]){display:flex;}
+
+/* v2.105.0: 種目を探す・今日は軽めで */
+.exf-box{padding:10px 12px;}
+.exf-lbl{font-size:12px;font-weight:700;color:var(--fg2);display:block;}
+.exf-search{display:flex;align-items:center;gap:8px;margin-top:6px;border:1px solid var(--border);border-radius:12px;padding:0 10px;min-height:44px;background:var(--surface);color:var(--fg3);}
+.exf-search input{flex:1;border:0;outline:none;background:transparent;font:inherit;font-size:15px;color:var(--fg);min-width:0;}
+.exf-parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:10px;}
+.exf-part{display:flex;flex-direction:column;align-items:flex-start;min-height:44px;padding:5px 8px;border:1px solid var(--border);border-radius:10px;background:var(--surface);font:inherit;color:var(--fg);text-align:left;cursor:pointer;}
+.exf-part b{font-size:13px;}
+.exf-part small{font-size:9px;color:var(--fg2);}
+.exf-part.on{border-color:var(--accent);background:var(--accent-bg);}
+.exf-res{padding:2px 10px;}
+.exf-row{display:flex;align-items:center;gap:10px;min-height:72px;border-bottom:1px solid var(--border);padding:6px 0;}
+.exf-row:last-child{border-bottom:0;}
+.exf-pic{flex:none;display:block;}
+.exf-pic-body{display:flex;align-items:center;justify-content:center;background:#FFF1F2;border-radius:14px;}
+.exf-main{flex:1;display:flex;flex-direction:column;min-width:0;}
+.exf-main b{font-size:14px;}
+.exf-mus{font-size:11px;color:var(--fg);}
+.exf-sub{color:var(--fg2);}
+.exf-unk{color:#B45309;}
+.exf-note{font-size:11px;color:var(--fg2);}
+.exf-acts{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.exf-add,.exf-set{min-height:34px;padding:0 10px;border-radius:9px;border:0;background:var(--accent);color:#fff;font:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.exf-set{background:var(--surface2);color:var(--fg);}
+.exf-acts .mm-yt{min-height:28px;}
+.wo-light{margin-bottom:8px;}
+.wl-on,.wl-sug{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-radius:12px;background:#FFF7ED;color:#7C2D12;font-size:12px;}
+.wl-on{background:var(--accent-bg);color:var(--fg);}
+.wl-on b,.wl-sug b{font-size:14px;}
+.wl-btns{display:flex;gap:8px;margin-top:4px;}
+.wl-btn{min-height:36px;padding:0 12px;border-radius:9px;border:0;background:#7C2D12;color:#fff;font:inherit;font-size:12px;font-weight:700;cursor:pointer;align-self:flex-start;}
+.wl-no,.wl-off{background:var(--surface);color:var(--fg);border:1px solid var(--border);}
+.wl-mini{min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--fg2);font:inherit;font-size:12px;font-weight:700;cursor:pointer;}
+
+/* v2.106.0: 最初の質問・はじめてガイド */
+#onboarding.wiz{align-items:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+#onboarding.wiz .ob-inner{padding:calc(16px + env(safe-area-inset-top,0px)) 20px 32px;max-width:440px;}
+#onboarding.wiz .ob-title{font-size:1.1rem;margin:0 0 8px;align-self:flex-start;}
+.ob-wiz{width:100%;display:flex;flex-direction:column;gap:12px;}
+.ow-top{display:flex;align-items:center;gap:10px;}
+.ow-back{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--surface);font-size:22px;color:var(--fg);cursor:pointer;}
+.ow-back[hidden]{visibility:hidden;display:block;}
+.ow-dots{flex:1;display:flex;gap:4px;}
+.ow-dots i{flex:1;height:4px;border-radius:2px;background:var(--surface2);}
+.ow-dots i.on{background:var(--accent);}
+.ow-n{font-size:12px;color:var(--fg2);}
+.ow-body{display:flex;flex-direction:column;gap:10px;}
+.ow-q{font-size:20px;font-weight:800;margin:6px 0 0;color:var(--fg);}
+.ow-hint{font-size:12px;color:var(--fg2);margin:0;}
+.ow-lbl{font-size:13px;font-weight:700;color:var(--fg2);display:flex;flex-direction:column;gap:6px;}
+.ow-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+.ow-grid.ow-lifts{grid-template-columns:2fr 1fr;}
+.ow-grid label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--fg2);font-weight:700;}
+.ow-grid .ob-input{padding:10px 12px;font-size:16px;min-width:0;}
+.ob-wiz .ob-chips{justify-content:flex-start;}
+.ob-wiz .ob-chip{padding:10px 14px;font-size:.95rem;}
+.ow-chains .ob-chip{font-size:.85rem;padding:8px 12px;}
+.ow-parq{display:flex;flex-direction:column;gap:6px;}
+.ow-pq{display:flex;gap:10px;align-items:flex-start;text-align:left;padding:10px 12px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface);font:inherit;font-size:13px;color:var(--fg);cursor:pointer;line-height:1.5;}
+.ow-pq.on{border-color:#B45309;background:#FFF7ED;}
+.ow-pq-box{width:20px;height:20px;border-radius:6px;border:2px solid var(--fg3);flex:none;margin-top:1px;box-sizing:border-box;}
+.ow-pq.on .ow-pq-box{background:#B45309;border-color:#B45309;}
+.ow-foot{display:flex;flex-direction:column;gap:6px;margin-top:6px;}
+.ow-warn{font-size:13px;line-height:1.6;padding:10px 12px;border-radius:12px;background:#FFF7ED;color:#7C2D12;}
+.ow-plan{border:1px solid var(--border);border-radius:14px;background:var(--surface);padding:10px 12px;}
+.ow-plan-head{font-weight:800;font-size:15px;display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;}
+.ow-plan-head small{font-size:12px;color:var(--fg2);font-weight:600;}
+.ow-day{display:flex;gap:10px;font-size:13px;padding:6px 0;border-top:1px solid var(--border);}
+.ow-day b{width:20px;flex:none;}
+.ow-day.rest span{color:var(--fg3);}
+.ow-nu{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ow-nu>div{border:1px solid var(--border);border-radius:12px;padding:8px 12px;background:var(--surface);}
+.ow-nu small{display:block;font-size:11px;color:var(--fg2);}
+.ow-nu b{font-size:22px;}
+.ow-nu b span{font-size:12px;margin-left:2px;}
+.ow-pro{font-size:12px;line-height:1.6;color:var(--fg2);padding:8px 10px;border:1px dashed #C7D2FE;border-radius:12px;background:var(--accent-bg);}
+.ow-sheet{max-height:86vh;overflow-y:auto;}
+.tut-card{padding:10px 14px;border:1.5px solid var(--accent);}
+.tut-head{display:flex;align-items:center;gap:8px;margin-bottom:2px;}
+.tut-head b{font-size:15px;}
+.tut-head span{font-size:12px;color:var(--fg2);}
+.tut-close{margin-left:auto;min-height:32px;border:0;background:none;color:var(--fg3);font:inherit;font-size:12px;cursor:pointer;}
+.tut-item{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:4px 0;background:none;border:0;border-top:1px solid var(--border);font:inherit;color:var(--fg);text-align:left;cursor:pointer;}
+.tut-item.done .sk-dot{background:var(--accent);border-color:var(--accent);}
+.tut-item.done b{color:var(--fg3);text-decoration:line-through;}
+.tut-txt{display:flex;flex-direction:column;}
+.tut-txt b{font-size:14px;}
+.tut-txt small{font-size:11px;color:var(--fg2);}
+.tut-flash{outline:3px solid var(--accent);outline-offset:2px;transition:outline .3s;}
+
+/* v2.107.0: プレミアムのAIの提案とAIの判定 */
+.exf-typing .exf-parts,.exf-typing .exf-plbl{display:none;}
+.mm-ai-note{font-size:12px;font-weight:700;color:var(--accent);margin:2px 2px 4px;}
+.mm-d-why{display:flex;gap:6px;align-items:center;font-size:13px;margin:4px 0;color:var(--fg);}
+.mm-ai-box{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+.mm-ai-box.loading{color:var(--fg2);font-size:14px;}
+.mm-ai-box small{display:block;color:var(--fg3);font-size:12px;}
+.mm-ai-head{display:flex;align-items:center;gap:8px;}
+.mm-ai-head b{flex:1;font-size:15px;}
+.mm-ai-redo{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--fg2);font-size:18px;cursor:pointer;}
+.mm-ai-focus{display:flex;gap:6px;flex-wrap:wrap;}
+.mm-ai-focus span{padding:4px 12px;border-radius:999px;background:#F59E0B;color:#fff;font-weight:800;font-size:13px;}
+.mm-ai-today{margin:0;font-size:14px;line-height:1.6;}
+.mm-ai-ask{min-height:44px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--fg);font:inherit;font-size:13px;font-weight:700;cursor:pointer;}
+.mm-ai-err{font-size:13px;color:#B45309;margin:10px 2px 0;}
+.ai-suggest-card{display:flex;flex-direction:column;gap:8px;}
+.ai-suggest-card.loading{opacity:.8;}
+.ais-head{display:flex;align-items:center;gap:8px;}
+.ais-lbl{flex:1;font-size:12px;font-weight:800;color:var(--accent);}
+.ais-redo{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--fg2);cursor:pointer;}
+.ais-load{margin:0;font-size:13px;color:var(--fg2);}
+.ais-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--border);}
+.ais-item:first-of-type{border-top:0;}
+.ais-ic{font-size:20px;line-height:1.2;}
+.ais-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--fg2);line-height:1.6;}
+.ais-main b{font-size:15px;color:var(--fg);}
+.ais-menu{margin:2px 0;padding:8px 10px;border-radius:10px;background:var(--surface2);font:inherit;font-size:13px;color:var(--fg);white-space:pre-wrap;}
+.ais-act{align-self:flex-start;min-height:40px;padding:0 14px;border-radius:10px;border:0;background:var(--accent);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;}
+.ais-ask{background:var(--surface);color:var(--fg);border:1px solid var(--border);}
+.ais-x{width:44px;height:44px;flex:none;border:0;background:none;color:var(--fg3);font-size:18px;cursor:pointer;margin:-10px -8px 0 0;}
+.ais-teaser{display:flex;align-items:center;gap:8px;}
+.ais-t-txt{flex:1;display:flex;flex-direction:column;font-size:12px;color:var(--fg2);}
+.ais-t-txt b{font-size:14px;color:var(--fg);}
+.ais-t-go{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--fg);font:inherit;font-size:12px;font-weight:700;cursor:pointer;}
+.rp-sec{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-weight:800;font-size:15px;margin:14px 2px 8px;}
+.rp-sec small{font-weight:400;font-size:12px;color:var(--fg3);}
+.rp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+.rp-tile{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;}
+.rp-tile>small{font-size:12px;color:var(--fg2);}
+.rp-tile>div{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;}
+.rp-v{font-size:20px;font-weight:800;color:var(--fg);}
+.rp-v i{font-style:normal;font-size:12px;font-weight:700;color:var(--fg2);margin-left:2px;}
+.rp-tile small.up{color:#047857;font-weight:700;}
+.rp-tile small.down{color:#B45309;font-weight:700;}
+.rp-lock{display:flex;flex-direction:column;gap:6px;margin-top:14px;}
+.rp-lock b{font-size:15px;}
+.rp-lock small{font-size:13px;color:var(--fg2);line-height:1.6;}
+.rp-cor{display:flex;flex-direction:column;}
+.rp-c-row{padding:8px 0;border-top:1px solid var(--border);}
+.rp-c-row:first-child{border-top:0;}
+.rp-c-pair{font-size:12px;color:var(--fg3);}
+.rp-c-txt{font-size:14px;font-weight:700;color:var(--fg);}
+.rp-c-row.none .rp-c-txt{font-weight:400;color:var(--fg2);}
+.rp-c-meta{font-size:12px;color:var(--fg3);}
+.rp-c-row.strong .rp-c-meta{color:var(--accent);font-weight:700;}
+.rp-ai{display:flex;flex-direction:column;gap:6px;}
+.rp-ai.loading{color:var(--fg2);font-size:14px;}
+.rp-ai-head{display:flex;align-items:center;justify-content:space-between;}
+.rp-ai-head small{color:var(--fg3);font-size:12px;}
+.rp-sum{margin:0;font-size:15px;line-height:1.6;font-weight:700;}
+.rp-lbl{font-size:12px;font-weight:800;color:var(--fg2);margin-top:4px;}
+.rp-ul{margin:0;padding-left:20px;font-size:14px;line-height:1.7;}
+.rp-ins{margin:0;font-size:14px;line-height:1.6;}
+.ai-suggest-card,.mm-ai-box,.rp-lock,.rp-cor,.rp-ai{padding:12px 14px;}
+.ai-suggest-card{gap:4px;}
+.ai-suggest-card.teaser{padding:8px 4px 8px 14px;}
+
+/* v2.108.0 */
+.pw-sample{margin:0 0 12px;border:1px solid var(--border);border-radius:12px;padding:0 10px;}
+.pw-sample summary{min-height:44px;display:flex;align-items:center;font-weight:700;font-size:14px;cursor:pointer;color:var(--accent);}
+.pw-s-note{font-size:11px;color:var(--fg3);margin:0 0 6px;}
+.pw-s-card{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:10px;background:var(--surface2);font-size:12px;color:var(--fg2);margin-bottom:8px;line-height:1.6;}
+.pw-s-card b{font-size:13px;color:var(--fg);}
+.pw-s-h{font-size:11px;font-weight:800;color:var(--accent);}
+.pw-s-menu{color:var(--fg);}
+.pw-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle;}
+.alb-sheet{max-height:85vh;overflow-y:auto;}
+.alb-head{display:flex;align-items:center;justify-content:space-between;}
+.alb-head h3{margin:0;}
+.alb-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:8px;}
+.alb-tile{position:relative;aspect-ratio:1;border:0;padding:0;border-radius:10px;overflow:hidden;background:var(--surface2);cursor:pointer;}
+.alb-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+.alb-cap{position:absolute;left:0;right:0;bottom:0;padding:14px 6px 4px;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff;text-align:left;display:flex;flex-direction:column;font-size:10px;line-height:1.3;}
+.alb-cap b{font-size:11px;}
+
+/* v2.109.0: ホームの上（やる気の出る数字・大きなタイル） */
+:root{--hh-train:#FFE8DC;--hh-train-b:#FDBA8C;--hh-ready:#E8E7FF;--hh-ready-b:#C7D2FE;--hh-meal:#FFF4D1;--hh-sleep:#EDE9FE;--hh-weight:#DCFCE7;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--hh-train:#3B2418;--hh-train-b:#9A3412;--hh-ready:#25234A;--hh-ready-b:#4338CA;--hh-meal:#3A3217;--hh-sleep:#2B2550;--hh-weight:#15321F;}}
+:root[data-theme="dark"]{--hh-train:#3B2418;--hh-train-b:#9A3412;--hh-ready:#25234A;--hh-ready-b:#4338CA;--hh-meal:#3A3217;--hh-sleep:#2B2550;--hh-weight:#15321F;}
+.home-hero{margin:10px 12px 4px;display:flex;flex-direction:column;gap:10px;}
+.home-hero[hidden]{display:none;}
+:root[data-stoic] #home-hero{display:none!important;}
+:root:not([data-stoic]) body.has-hero #mm-home-card,:root:not([data-stoic]) body.has-hero #training-start-btn,:root:not([data-stoic]) body.has-hero .training-schedule-btn{display:none!important;}
+.hh-status{display:flex;gap:6px;flex-wrap:wrap;}
+.hh-pill{display:inline-flex;align-items:center;gap:4px;min-height:32px;padding:0 12px;border-radius:999px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:700;color:var(--fg2);position:relative;overflow:hidden;}
+.hh-pill b{font-size:15px;color:var(--fg);}
+.hh-fire{background:#1a1a2e;color:#FDBA74;border-color:#1a1a2e;}
+.hh-fire b{color:#fff;}
+.hh-week i{position:absolute;left:0;bottom:0;height:3px;width:var(--p);background:var(--accent);}
+.hh-week.done{border-color:#047857;}.hh-week.done i{background:#047857;}
+.hh-lv{background:var(--accent);border-color:var(--accent);color:#E0E7FF;}.hh-lv b{color:#fff;}
+.hh-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.hh-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+.hh-tile{position:relative;overflow:hidden;border:0;border-radius:20px;padding:12px 14px;text-align:left;font:inherit;color:var(--fg);cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;transition:transform .12s;}
+.hh-tile:active{transform:scale(.97);}
+.hh-train,.hh-ready{min-height:150px;}
+.hh-train{background:var(--hh-train);}
+.hh-ready{background:var(--hh-ready);}
+.hh-t-lbl{font-size:11px;font-weight:800;letter-spacing:.04em;color:#C2410C;position:relative;z-index:1;}
+.hh-ready .hh-t-lbl{color:var(--accent);}
+.hh-t-title{font-size:20px;font-weight:800;line-height:1.25;margin-top:2px;position:relative;z-index:1;max-width:100%;overflow-wrap:anywhere;}
+.hh-t-sub{font-size:11px;color:var(--fg2);margin-top:4px;position:relative;z-index:1;max-width:62%;line-height:1.4;}
+.hh-blob{position:absolute;right:-30px;bottom:-40px;width:120px;height:120px;border-radius:50%;background:var(--hh-train-b);opacity:.75;}
+.hh-ready .hh-blob{background:var(--hh-ready-b);}
+.hh-ran{position:absolute;right:-6px;bottom:-4px;width:70px;height:104px;object-fit:contain;object-position:bottom;}
+.hh-body{position:absolute;right:10px;bottom:6px;}
+.hh-body svg{display:block;}
+.hh-small{min-height:84px;padding:10px 12px;border-radius:18px;}
+.hh-meal{background:var(--hh-meal);}.hh-sleep{background:var(--hh-sleep);}.hh-weight{background:var(--hh-weight);}
+.hh-s-lbl{font-size:13px;font-weight:800;}
+.hh-s-val{margin-top:auto;display:flex;align-items:baseline;gap:2px;flex-wrap:wrap;position:relative;z-index:1;}
+.hh-s-val b{font-size:20px;font-weight:800;}
+.hh-s-val small{font-size:11px;color:var(--fg2);font-weight:700;}
+.hh-s-ic{position:absolute;right:8px;top:8px;font-size:20px;opacity:.9;}
+.hh-row{display:flex;gap:4px;overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:8px 4px;scrollbar-width:none;}
+.hh-row::-webkit-scrollbar{display:none;}
+.hh-sc{flex:1 0 64px;min-height:64px;border:0;background:none;font:inherit;color:var(--fg);display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border-radius:12px;}
+.hh-sc:active{background:var(--surface2);}
+.hh-sc-ic{font-size:22px;}
+.hh-sc-l{font-size:11px;font-weight:700;line-height:1.25;text-align:center;color:var(--fg2);}
+
+/* v2.110.0: トレーニングの今日のメニュー */
+.wo-menu-card{padding:12px 14px;margin-bottom:8px;display:flex;flex-direction:column;gap:6px;text-align:left;}
+.wm-head{display:flex;align-items:center;gap:8px;}
+.wm-lbl{font-size:12px;font-weight:800;color:#C2410C;letter-spacing:.03em;}
+.wm-count{font-size:12px;color:var(--fg2);}
+.wm-count b{font-size:15px;color:var(--fg);}
+.wm-edit{margin-left:auto;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--fg2);font:inherit;font-size:12px;font-weight:700;cursor:pointer;}
+.wm-title{font-size:17px;font-weight:800;}
+.wm-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;}
+.wm-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--border);}
+.wm-row:first-child{border-top:0;}
+.wm-row .exf-pic{flex:none;}
+.wm-nm{flex:1;min-width:0;display:flex;flex-direction:column;}
+.wm-nm b{font-size:14px;}
+.wm-nm small{font-size:12px;color:var(--fg2);}
+.wm-row.done .wm-nm b{color:var(--fg3);text-decoration:line-through;}
+.wm-ok{width:44px;text-align:center;font-size:18px;font-weight:800;color:#047857;}
+.wm-add{width:44px;height:44px;flex:none;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:22px;font-weight:700;cursor:pointer;}
+.wm-all{min-height:44px;border-radius:12px;border:0;background:#F97316;color:#fff;font:inherit;font-size:14px;font-weight:800;cursor:pointer;margin-top:2px;}
+.wm-note{margin:0;font-size:12px;color:var(--fg2);line-height:1.6;}
+.wm-done{margin:0;font-size:13px;font-weight:700;color:#047857;}
+.wm-empty{margin:0;font-size:13px;color:var(--fg2);}
+.wm-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.wm-btn{min-height:40px;padding:0 14px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--fg);font:inherit;font-size:13px;font-weight:700;cursor:pointer;}
+
+/* v2.111.0: 体のプロフィール */
+.body-lead{font-size:12px;color:var(--fg2);margin:0 2px 4px;line-height:1.6;}
 </style>
 </head>
 <body>
@@ -1485,36 +1801,13 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
       <input id="ob-name" class="ob-input" type="text" placeholder="例: 渡辺" maxlength="20" autocomplete="off">
       <button id="ob-next" class="ob-btn">次へ →</button>
     </div>
-    <div class="ob-form" id="ob-step2" hidden>
-      <label class="ob-label">何のために使いますか？（複数選択可）</label>
-      <div class="ob-chips">
-        <button class="ob-chip" data-val="study">📚 勉強・試験</button>
-        <button class="ob-chip" data-val="fitness">💪 筋トレ・体づくり</button>
-        <button class="ob-chip" data-val="diet">🍱 食事・ダイエット</button>
-        <button class="ob-chip" data-val="habit">📅 習慣管理</button>
-        <button class="ob-chip" data-val="goal">🎯 目標達成</button>
-        <button class="ob-chip" data-val="work">💼 仕事・秘書AI</button>
-      </div>
-      <button id="ob-start" class="ob-btn" style="margin-top:8px;">はじめる →</button>
-      <button id="ob-skip" class="ob-skip-btn">スキップ</button>
-    </div>
-    <div class="ob-form" id="ob-step3" hidden>
-      <label class="ob-label">いちばんよく使いそうなのはどれ？</label>
-      <p class="ob-hint">画面下のタブに置きます（あとで設定から変更できます）</p>
-      <div class="ob-chips">
-        <button class="ob-chip" data-hl="wo">🏋️ 筋トレ</button>
-        <button class="ob-chip" data-hl="meals">🍱 食事</button>
-        <button class="ob-chip" data-hl="sleep">😴 睡眠</button>
-        <button class="ob-chip" data-hl="health">❤️ 健康</button>
-      </div>
-      <button id="ob-skip3" class="ob-skip-btn">あとで決める</button>
-    </div>
+    <div class="ob-wiz" id="ob-wiz" hidden></div>
   </div>
 </div>
 
 <div id="app">
   <header class="hdr">
-    <button class="hdr-menu-btn" id="hdr-menu" aria-label="メニュー"><svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
+    <button class="hdr-menu-btn" id="hdr-menu" aria-label="メニュー" hidden><svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
     <span class="hdr-logo" id="hdr-title">LifeWith</span>
     <span class="hdr-date" id="hdr-date"></span>
     <button class="prof-btn" id="prof-btn" title="プロフィール切り替え">
@@ -1524,8 +1817,12 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
   </header>
 
   <section id="tab-cal" class="tab on">
-    <div id="stoic-today" class="card stoic-today" hidden></div>
+    <div id="home-hero" class="home-hero" hidden></div>
+    <div id="tut-card" class="card tut-card" hidden></div>
+    <div id="mm-home-card" class="card mm-home-card" hidden></div>
     <div id="ai-brief-card" class="ai-brief-card" hidden></div>
+    <div id="ai-suggest-card" class="card ai-suggest-card" hidden></div>
+    <div id="stoic-today" class="card stoic-today" hidden></div>
     <div id="daily-mission-card" class="daily-mission-card" hidden></div>
     <div id="streak-card" class="card streak-card" hidden></div>
     <div id="goal-card" class="goal-card"></div>
@@ -1596,9 +1893,26 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
     <div id="tk-list"></div>
   </section>
 
+  <section id="tab-ana" class="tab">
+    <div id="mm-root"></div>
+  </section>
+
+  <section id="tab-me" class="tab">
+    <div class="card me-head"><span class="me-avatar" id="me-avatar">?</span><span><span class="me-name" id="me-name"></span><span class="me-sub">プロフィール・プラン・設定</span></span></div>
+    <div class="card me-list">
+      <button type="button" class="me-row" data-me="plan"><span class="me-ic">👑</span><span class="me-lbl">プラン</span><span class="me-val" id="me-plan-val"></span><span class="me-go">›</span></button>
+      <button type="button" class="me-row" data-me="onb"><span class="me-ic">📝</span><span class="me-lbl">質問に答えてプランを作る</span><span class="me-go">›</span></button>
+      <button type="button" class="me-row" data-me="profile"><span class="me-ic">🧍</span><span class="me-lbl">体のプロフィール</span><span class="me-val" id="me-body-val"></span><span class="me-go">›</span></button>
+      <button type="button" class="me-row" data-me="gym"><span class="me-ic">🏢</span><span class="me-lbl">ジムと器具</span><span class="me-val" id="me-gym-val"></span><span class="me-go">›</span></button>
+      <button type="button" class="me-row" data-me="tasks"><span class="me-ic">✅</span><span class="me-lbl">タスク</span><span class="me-go">›</span></button>
+      <button type="button" class="me-row" data-me="vlists"><span class="me-ic">📺</span><span class="me-lbl">マイ動画リスト</span><span class="me-go">›</span></button>
+      <button type="button" class="me-row" data-me="settings"><span class="me-ic">⚙️</span><span class="me-lbl">設定</span><span class="me-go">›</span></button>
+    </div>
+  </section>
+
   <section id="tab-other" class="tab">
     <div class="other-subnav">
-      <button class="other-sub-btn" data-s="wo"><span class="osb-icon">🏋️</span>トレーニング</button>
+      <button class="other-sub-btn" data-s="muscle"><span class="osb-icon">💪</span>筋肉</button>
       <button class="other-sub-btn on" data-s="meals"><span class="osb-icon">🍱</span>食事</button>
       <button class="other-sub-btn" data-s="sleep"><span class="osb-icon">😴</span>睡眠</button>
       <button class="other-sub-btn" data-s="health"><span class="osb-icon">❤️</span>健康</button>
@@ -1613,8 +1927,11 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
       <div class="wo-view-tabs">
         <button class="wo-vtab on" data-v="log">記録</button>
         <button class="wo-vtab" data-v="chart">📊 グラフ</button>
+        <button class="wo-vtab" data-v="find">🔍 種目を探す</button>
       </div>
       <div id="wo-log-view">
+        <div id="wo-light" class="wo-light" hidden></div>
+        <div id="wo-menu-card" class="card wo-menu-card" hidden></div>
         <div class="card" style="padding:10px 12px 8px;">
           <div class="wo-cat-row" id="wo-cat-row">
             <button class="wo-cat-btn on" data-c="weight">🏋️ウエイト</button>
@@ -1633,6 +1950,7 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
         <button id="wo-timer-btn" class="wo-timer-fab">⏱ タイマー</button>
         <div id="wo-list"></div>
       </div>
+      <div id="wo-find-view" hidden></div>
       <div id="wo-chart-view" hidden>
         <div class="card chart-ctrl">
           <select id="chart-ex-sel"><option value="">— 種目を選択 —</option></select>
@@ -1658,7 +1976,8 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
         <button id="ml-prev">‹</button>
         <span id="ml-date" style="flex:1;text-align:center;"></span>
         <button id="ml-next">›</button>
-        <button id="ml-nut-btn" class="ml-nut-btn" style="margin-left:8px;">⚙ 栄養素</button>
+        <button id="ml-album-btn" class="ml-nut-btn" style="margin-left:8px;">📷 アルバム</button>
+        <button id="ml-nut-btn" class="ml-nut-btn" style="margin-left:6px;">⚙ 栄養素</button>
       </div>
       <div class="wo-view-tabs">
         <button class="ml-vtab on" data-v="log">記録</button>
@@ -1764,18 +2083,26 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
     </div>
   </section>
 
-  <nav class="nav" id="main-nav">
-    <button class="nb on" data-t="cal">
-      <svg viewBox="0 0 24 24" id="nav-cal-svg"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      <span id="nav-cal-label">カレンダー</span>
-    </button>
-    <button class="nb" data-t="tasks">
-      <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-      タスク
+  <nav class="nav nav5" id="main-nav">
+    <button class="nb on" data-t="cal" id="nav-home">
+      <svg viewBox="0 0 24 24" id="nav-cal-svg"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+      <span id="nav-cal-label">ホーム</span>
     </button>
     <button class="nb" data-t="other" data-sub="wo" id="nav-hl">
       <svg viewBox="0 0 24 24" id="nav-hl-svg"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>
-      <span id="nav-hl-label">筋トレ</span>
+      <span id="nav-hl-label">トレーニング</span>
+    </button>
+    <button class="nb nb-ai" data-t="ai" id="nav-ai" aria-label="AIトレーナー">
+      <span class="nb-ai-circle"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span>
+      <span>AI</span>
+    </button>
+    <button class="nb" data-t="ana" id="nav-ana">
+      <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+      <span>分析</span>
+    </button>
+    <button class="nb" data-t="me" id="nav-me">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      <span>プロフィール</span>
     </button>
     <button class="nb-add" id="fab-nav" hidden></button>
   </nav>
@@ -1893,18 +2220,17 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
   </div>
 </div>
 
-<div class="overlay" id="mo-settings" hidden>
+<!-- v2.111.0: 体のプロフィール（設定から分けた） -->
+<div class="overlay" id="mo-body" hidden>
   <div class="modal settings-modal">
-    <!-- ヘッダー -->
     <div class="settings-hdr">
-      <span class="settings-hdr-title">設定</span>
-      <button class="settings-close-btn" id="settings-close-top">✕</button>
+      <span class="settings-hdr-title">体のプロフィール</span>
+      <button class="settings-close-btn" id="body-close-top" aria-label="閉じる">✕</button>
     </div>
-    <!-- スクロール本体 -->
     <div class="settings-body">
-
+      <p class="body-lead">ここの内容をもとに、AIがメニュー・食事の目安・筋肉の回復を判定します。記録は端末の中だけに保存されます</p>
       <!-- 健康プロフィール -->
-      <div class="st-sec">健康プロフィール</div>
+      <div class="st-sec">体のこと・目標</div>
       <div class="st-card">
         <div class="st-row" style="align-items:flex-start;gap:10px;">
           <span class="st-ic" style="background:#ef4444;flex-shrink:0;">❤️</span>
@@ -1958,6 +2284,57 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
         </div>
       </div>
 
+
+      <div class="st-sec">トレーニングの環境</div>
+      <div class="st-card">
+        <div class="st-row" id="body-open-gym" style="cursor:pointer;">
+          <span class="st-ic" style="background:#0ea5e9;">🏢</span>
+          <span class="st-label">ジムと器具</span>
+          <span class="st-val" id="body-gym-val" style="font-size:12px;color:var(--fg3);"></span>
+          <span class="st-arrow">›</span>
+        </div>
+        <div class="st-row" id="body-open-onb" style="cursor:pointer;">
+          <span class="st-ic" style="background:#f97316;">📝</span>
+          <span class="st-label">質問に答えてプランを作り直す</span>
+          <span class="st-arrow">›</span>
+        </div>
+      </div>
+
+      <!-- サプリメント -->
+      <div class="st-sec">サプリメント</div>
+      <div class="st-card">
+        <div id="supp-list"></div>
+        <div class="st-row" id="supp-add-btn" style="cursor:pointer;">
+          <span class="st-ic" style="background:#10b981;">＋</span>
+          <span class="st-label">サプリメントを追加</span>
+          <span class="st-arrow">›</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="mo-settings" hidden>
+  <div class="modal settings-modal">
+    <!-- ヘッダー -->
+    <div class="settings-hdr">
+      <span class="settings-hdr-title">設定</span>
+      <button class="settings-close-btn" id="settings-close-top">✕</button>
+    </div>
+    <!-- スクロール本体 -->
+    <div class="settings-body">
+
+      <!-- 体のプロフィール（v2.111.0: 別の画面に分けた） -->
+      <div class="st-sec">体のプロフィール</div>
+      <div class="st-card">
+        <div class="st-row" id="st-open-body" style="cursor:pointer;">
+          <span class="st-ic" style="background:#ef4444;">🧍</span>
+          <span class="st-label">身長・体重・目標・アレルギー・サプリ</span>
+          <span class="st-arrow">›</span>
+        </div>
+      </div>
+
       <!-- 外観 -->
       <div class="st-sec">外観</div>
       <div class="st-card">
@@ -2008,7 +2385,7 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
             <button class="st-opt" data-pos="bl">左下</button>
           </div>
         </div>
-        <div class="st-row st-row-toggle">
+        <div class="st-row st-row-toggle" hidden>
           <span class="st-ic" style="background:#f59e0b;">⭐</span>
           <span class="st-label" style="flex:0 0 auto;margin-right:8px;">下のタブ</span>
           <div class="st-opts" style="justify-content:flex-end;">
@@ -2145,17 +2522,6 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
         </div>
       </div>
 
-      <!-- サプリメント -->
-      <div class="st-sec">サプリメント</div>
-      <div class="st-card">
-        <div id="supp-list"></div>
-        <div class="st-row" id="supp-add-btn" style="cursor:pointer;">
-          <span class="st-ic" style="background:#10b981;">＋</span>
-          <span class="st-label">サプリメントを追加</span>
-          <span class="st-arrow">›</span>
-        </div>
-      </div>
-
       <!-- AI・連携 -->
       <div class="st-sec">AI・連携</div>
       <div class="st-card">
@@ -2272,6 +2638,16 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
           <span class="st-label">プライバシーポリシー</span>
           <span class="st-arrow">›</span>
         </a>
+        <a class="st-row" id="st-link-terms" href="#" target="_blank" rel="noopener" style="text-decoration:none;">
+          <span class="st-ic" style="background:#64748b;">📄</span>
+          <span class="st-label">利用規約</span>
+          <span class="st-arrow">›</span>
+        </a>
+        <a class="st-row" id="st-link-tokushoho" href="#" target="_blank" rel="noopener" style="text-decoration:none;">
+          <span class="st-ic" style="background:#64748b;">🧾</span>
+          <span class="st-label">特定商取引法に基づく表記</span>
+          <span class="st-arrow">›</span>
+        </a>
         <a class="st-row" id="st-link-support" href="#" target="_blank" rel="noopener" style="text-decoration:none;">
           <span class="st-ic" style="background:#0ea5e9;">💬</span>
           <span class="st-label">サポート・お問い合わせ</span>
@@ -2280,7 +2656,7 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
         <div class="st-about-note">動画の検索・表示に YouTube API Services を使っています。<a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube利用規約</a>・<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googleプライバシーポリシー</a>が適用されます。AIの答えは医療アドバイスではありません。</div>
       </div>
 
-      <p style="text-align:center;font-size:11px;color:var(--fg3);margin:16px 0 4px;">LifeWith v2.103.0 <span style="opacity:.6;">build <span id="lh-build"></span></span></p>
+      <p style="text-align:center;font-size:11px;color:var(--fg3);margin:16px 0 4px;">LifeWith v2.111.0 <span style="opacity:.6;">build <span id="lh-build"></span></span></p>
       <div style="height:8px;"></div>
     </div><!-- /.settings-body -->
 
@@ -2875,7 +3251,7 @@ body.no-profiles #prof-btn,body.no-profiles #dr-acct,body.no-profiles #st-sec-se
 <script>
 // ── 自動更新: 配信中の最新版とBUILD_IDを比べ、古ければ1回だけ再読み込み ──
 (function(){
-  const BUILD_ID='8a67701d2a'; // tools/build.mjs が内容ハッシュに置換する
+  const BUILD_ID='0a52c4a32d'; // tools/build.mjs が内容ハッシュに置換する
   window._LH_BUILD=BUILD_ID;
   const el=document.getElementById('lh-build');
   if(el)el.textContent=BUILD_ID.startsWith('__')?'dev':BUILD_ID;
@@ -3243,8 +3619,8 @@ function applyFeatureVisibility(){
   document.body.classList.toggle('no-health-extra',f.healthExtra!==true);
   document.body.classList.toggle('no-profiles',f.profiles===false);
   const calLbl=calOn&&!db.settings.stoic; // v2.100.0: ストイックではカレンダーを出さない
-  const cl=document.getElementById('nav-cal-label');if(cl)cl.textContent=calLbl?'カレンダー':'ホーム';
-  const cs=document.getElementById('nav-cal-svg');if(cs)cs.innerHTML=calLbl?'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>':'<path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>';
+  void calLbl; // v2.104.0: 下のタブは常に「ホーム」（カレンダーはホームの中）
+  const tkRow=document.querySelector('.me-row[data-me="tasks"]');if(tkRow)tkRow.hidden=f.tasks===false;
   if(window._hlReady){ // ui.js・calendar.js の読込後だけ（const の初期化前に触らない）
     applyAddBtnPos();
     if(!tasksOn&&st.tab==='tasks')switchToTab('cal');
@@ -3313,15 +3689,18 @@ fabNav.onclick=openEvModalAndSetup;
 fabFloat.onclick=openEvModalAndSetup;
 // legacy reference
 const fab={onclick:null};
+// v2.104.0: 下の5つのタブ（ホーム・トレーニング・AI・分析・自分）。食事・睡眠・健康は「分析」の中
+function navGroup(){
+  if(document.getElementById('ai-modal')?.classList.contains('open'))return 'ai';
+  if(st.tab==='other')return st.otherSub==='wo'?'other':'ana';
+  return st.tab;
+}
 function updateNavActive(){
-  const aiOpen=!!(document.getElementById('ai-modal')?.classList.contains('open'));
-  document.querySelectorAll('.nb').forEach(b=>{
-    const match=b.dataset.t===st.tab&&(!b.dataset.sub||b.dataset.sub===st.otherSub);
-    b.classList.toggle('on',!aiOpen&&match);
-  });
+  const g=navGroup();
+  document.querySelectorAll('.nb').forEach(b=>b.classList.toggle('on',b.dataset.t===g));
   const key=st.tab==='other'?st.otherSub:st.tab;
   document.querySelectorAll('.dr-item[data-go]').forEach(b=>b.classList.toggle('on',b.dataset.go===key));
-  document.getElementById('hdr-title').textContent=st.tab==='cal'?'LifeWith':st.tab==='tasks'?'タスク':(SCREEN_TITLES[st.otherSub]||'LifeWith');
+  document.getElementById('hdr-title').textContent=st.tab==='cal'?'LifeWith':st.tab==='tasks'?'タスク':st.tab==='ana'?'分析':st.tab==='me'?'プロフィール':(SCREEN_TITLES[st.otherSub]||'LifeWith');
   fabFloat.hidden=st.tab!=='cal'||db.settings.features?.calendar===false;
 }
 const SCREEN_TITLES={wo:'トレーニング',meals:'食事',sleep:'睡眠',health:'健康'};
@@ -3368,10 +3747,33 @@ function switchToTab(t){
   tabEl.classList.add('on');
   tabEl.scrollTop=0;
   updateNavActive();
-  if(t==='cal'){renderGoals();renderCal();renderHealthAdvice();if(typeof renderTrendCard==='function')renderTrendCard();if(typeof lhCheckUnlocks==='function')setTimeout(lhCheckUnlocks,600);if(typeof renderStoicToday==='function')renderStoicToday();}
+  if(t==='ana'&&typeof renderMuscleMap==='function')renderMuscleMap();
+  if(t==='me')renderMeTab();
+  if(t==='cal'){if(typeof renderHomeHero==='function')renderHomeHero();if(typeof renderTutorial==='function')renderTutorial();if(typeof renderMmHomeCard==='function')renderMmHomeCard();renderGoals();renderCal();renderHealthAdvice();if(typeof renderTrendCard==='function')renderTrendCard();if(typeof lhCheckUnlocks==='function')setTimeout(lhCheckUnlocks,600);if(typeof renderStoicToday==='function')renderStoicToday();}
   if(t==='tasks')renderTasks();
   if(t==='other')renderOther();
 }
+// 自分タブ
+function renderMeTab(){
+  const profs=getProfs();
+  const active=profs.find(p=>p.id===window._LH_PID)||profs[0]||{name:db.userProfile?.name||'?',color:'#4F46E5'};
+  const nm=db.userProfile?.name||active.name||'';
+  const av=document.getElementById('me-avatar');if(av){av.style.background=active.color||'#4F46E5';av.textContent=(nm||'?')[0];}
+  const n=document.getElementById('me-name');if(n)n.textContent=nm||'あなた';
+  const pv=document.getElementById('me-plan-val');if(pv)pv.textContent=(typeof lhPlanEnforced==='function'&&!lhPlanEnforced())?'プレミアム（Web版）':(typeof lhIsPro==='function'&&lhIsPro()?'プレミアム':'無料');
+  const tk=document.querySelector('.me-row[data-me="tasks"]');if(tk)tk.hidden=db.settings.features?.tasks===false;
+  const bv=document.getElementById('me-body-val');if(bv){const h=db.settings.healthProfile||{};bv.textContent=[h.height?h.height+'cm':'',h.weight?h.weight+'kg':''].filter(Boolean).join('・');}
+  const gv=document.getElementById('me-gym-val');if(gv&&typeof lhGymLabel==='function')gv.textContent=lhGymLabel();
+}
+document.querySelectorAll('.me-row').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.me;
+  if(k==='plan'){if(typeof lhShowPaywall==='function')lhShowPaywall({feature:'none'});}
+  else if(k==='onb'){if(typeof onbReopen==='function')onbReopen();}
+  else if(k==='tasks')switchToTab('tasks');
+  else if(k==='vlists'){if(typeof openVideoLists==='function')openVideoLists();}
+  else if(k==='profile'){if(typeof openBodyProfile==='function')openBodyProfile();} // v2.111.0
+  else if(k==='settings')document.getElementById('hdr-settings').click();
+});
 document.querySelectorAll('.nb').forEach(btn=>{
   btn.addEventListener('click',()=>{
     if(btn.dataset.sub)st.otherSub=btn.dataset.sub;
@@ -4412,13 +4814,9 @@ function fixHighlightTab(){
 }
 function updateHlNav(){
   const hl=fixHighlightTab();
-  const c=HL_NAV[hl];
+  // v2.104.0: 下の5つのタブにしたので、2つ目は「トレーニング」で固定（マイタブは使わない）
   const btn=document.getElementById('nav-hl');
-  const svgEl=document.getElementById('nav-hl-svg');
-  const labelEl=document.getElementById('nav-hl-label');
-  if(btn)btn.dataset.sub=hl;
-  if(svgEl)svgEl.innerHTML=c.svg;
-  if(labelEl)labelEl.textContent=c.label;
+  if(btn)btn.dataset.sub='wo';
   document.querySelectorAll('.st-opt[data-hl]').forEach(b=>{b.hidden=!hlAvailable(b.dataset.hl);b.classList.toggle('on',b.dataset.hl===hl);});
   updateNavActive();
 }
@@ -4767,6 +5165,7 @@ function saveTrainingMenu(){
   if(!db.trainingMenus)db.trainingMenus={};
   db.trainingMenus[todayStr()]=document.getElementById('training-menu-text').value.trim();
   save(db);closeTrainingMenu();
+  if(typeof renderWoMenu==='function')renderWoMenu();if(typeof renderHomeHero==='function')renderHomeHero();
 }
 function openTrainingLog(){
   const sheet=document.getElementById('mo-training-log-sheet');if(!sheet)return;
@@ -4924,6 +5323,28 @@ document.querySelectorAll('.st-opt[data-hp-gym]').forEach(btn=>{
     document.querySelectorAll('.st-opt[data-hp-gym]').forEach(b=>b.classList.toggle('on',b.dataset.hpGym===btn.dataset.hpGym));
   };
 });
+
+// ── 体のプロフィール（v2.111.0: 設定から分けた画面） ──
+function openBodyProfile(){
+  const hp=db.settings.healthProfile||{};
+  ['height','weight','age'].forEach(k=>{const el=document.getElementById('hp-'+k);if(el)el.value=hp[k]||'';});
+  ['allergies','dislikes'].forEach(k=>{const el=document.getElementById('hp-'+k);if(el)el.value=hp[k]||'';});
+  document.querySelectorAll('.st-opt[data-hp-goal]').forEach(b=>b.classList.toggle('on',b.dataset.hpGoal===hp.goal));
+  document.querySelectorAll('.st-opt[data-hp-gym]').forEach(b=>b.classList.toggle('on',b.dataset.hpGym===String(hp.gymFreq||'')));
+  const gv=document.getElementById('body-gym-val');if(gv&&typeof lhGymLabel==='function')gv.textContent=lhGymLabel();
+  renderSuppList();
+  document.getElementById('mo-body').hidden=false;
+}
+function closeBodyProfile(){
+  save(db);document.getElementById('mo-body').hidden=true;
+  if(typeof renderMeTab==='function')renderMeTab();
+  if(typeof renderHomeHero==='function')renderHomeHero();
+}
+document.getElementById('body-close-top').onclick=closeBodyProfile;
+document.getElementById('mo-body').onclick=e=>{if(e.target===e.currentTarget)closeBodyProfile();};
+document.getElementById('st-open-body').onclick=()=>{closeSettings();openBodyProfile();};
+document.getElementById('body-open-gym').onclick=()=>{if(typeof openGymSheet==='function')openGymSheet();};
+document.getElementById('body-open-onb').onclick=()=>{closeBodyProfile();if(typeof onbReopen==='function')onbReopen();};
 // ── ICSインポート ─────────────────────────────────────────
 (function(){
   const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2);
@@ -5387,9 +5808,9 @@ function legalUrl(name){const base=(typeof lhIsStaging==='function'&&lhIsStaging
 var LH_DEV_KEY='lh_dev',LH_QUOTA_KEY='lh_quota';
 var LH_PRICE={month:'1,200円',year:'9,800円',yearPerMonth:'約817円'};
 var LH_FREE_LIMITS={chat:10,photo:2,recipe:1,feedback:3};
-var LH_FEATURE_NAMES={chat:'AIチャット',think:'💭じっくり考えるモード',photo:'食事写真の分析',recipe:'食材からメニュー',feedback:'タスクのふり返り',plan:'AIの週間トレーニングメニュー',goal:'目標のAI判定',progress:'進捗のAI評価',brief:'今日のひとこと',mission:'今日のミッション',advice:'健康アドバイス'};
+var LH_FEATURE_NAMES={chat:'AIチャット',think:'💭じっくり考えるモード',photo:'食事写真の分析',recipe:'食材からメニュー',feedback:'タスクのふり返り',plan:'AIの週間トレーニングメニュー',goal:'目標のAI判定',progress:'進捗のAI評価',recovery:'筋肉の回復のAI判定',album:'食事の写真アルバム',suggest:'ランからの提案',report:'週のAIレポート',brief:'今日のひとこと',mission:'今日のミッション',advice:'健康アドバイス'};
 // 自分で押して使う機能だけ、回数切れで案内画面を出す（ひとことなど自動のものは出さない）
-var LH_USER_FEATURES=['chat','think','photo','recipe','feedback','plan','progress'];
+var LH_USER_FEATURES=['chat','think','photo','recipe','feedback','plan','progress','recovery','report'];
 function lhDeviceId(){
   try{
     let d=localStorage.getItem(LH_DEV_KEY);
@@ -5443,14 +5864,23 @@ function lhShowPaywall(opt){
       <li><b>あなた専用の週間トレーニングメニュー</b><span>予定・過去の重量・睡眠に合わせてAIが組みます（無料は定番メニュー）</span></li>
       <li><b>目標のAI判定・進捗のAI評価</b></li>
       <li><b>💭じっくり考えるモード</b><span>より賢いAIで深く考えて答えます</span></li>
-      <li class="pw-soon"><b>近日追加</b><span>週のAIレポート・体調との関係の分析・AIからのおすすめ</span></li>
+      <li><b>ランからの提案</b><span>頼まなくても、記録を見てメニューや生活のおすすめを毎日</span></li>
+      <li><b>筋肉の回復をAIが判定</b><span>前回の量・睡眠・食事から、15部位の鍛えどきを判定（無料は日数で色分け）</span></li>
+      <li><b>食事の写真アルバム</b><span>食べたものを写真で一覧。カロリーつきでふり返れます</span></li>
+      <li><b>週のAIレポート・体調との関係</b><span>「睡眠が長い日ほどトレーニング量が多い」などを見つけて、1週間をふり返ります</span></li>
     </ul>
+    <details class="pw-sample"><summary>見本を見る</summary>
+      <p class="pw-s-note">表示の例です（実際の内容はあなたの記録から作ります）</p>
+      <div class="pw-s-card"><div class="pw-s-h">✦ ランからの提案</div><b>背中の日にしよう</b><span>背中が5日空いてて、昨夜は7時間寝られてる。攻めどきだ</span><span class="pw-s-menu">ラットプルダウン 3×10 ／ シーテッドロー 3×10 ／ フェイスプル 3×15</span></div>
+      <div class="pw-s-card"><div class="pw-s-h">💪 筋肉のAI判定</div><span><i class="pw-dot" style="background:#4F46E5"></i>胸：回復中（2日前に12セット・睡眠5時間）</span><span><i class="pw-dot" style="background:#F59E0B"></i>背中・もも裏：やりごろ</span></div>
+      <div class="pw-s-card"><div class="pw-s-h">📊 週のレポート</div><b>4日トレーニングできた、いい週だ</b><span>体調との関係：前の夜の睡眠が長い日ほど、トレーニング量が多い（強め・16日分）</span><span>来週：睡眠を7時間に・脚の日を1回入れる</span></div>
+    </details>
     <div class="pw-price"><div><b>${LH_PRICE.month}</b> / 月</div><div><b>${LH_PRICE.year}</b> / 年<small>（1か月あたり${LH_PRICE.yearPerMonth}）</small></div></div>
     <div class="pw-trial">最初の1か月は無料</div>
     <button class="aic-ok pw-buy" type="button" ${native?'':'disabled'}>${native?'1か月無料で始める':'iPhoneアプリ版で近日開始'}</button>
     ${native?'<button class="aic-no pw-restore" type="button">購入を復元</button>':''}
     <button class="aic-no pw-close" type="button">閉じる</button>
-    <p class="pw-legal">無料期間が終わると自動で更新され、料金がかかります。無料期間の終わる24時間前までに解約すれば料金はかかりません。確認・解約は iPhone の「設定」→ 自分の名前 →「サブスクリプション」から。記録の機能は無料のまま使えます。<a href="${legalUrl('privacy')}" target="_blank" rel="noopener">プライバシーポリシー</a></p>
+    <p class="pw-legal">無料期間が終わると自動で更新され、料金がかかります。無料期間の終わる24時間前までに解約すれば料金はかかりません。確認・解約は iPhone の「設定」→ 自分の名前 →「サブスクリプション」から。記録の機能は無料のまま使えます。<a href="${legalUrl('terms')}" target="_blank" rel="noopener">利用規約</a>・<a href="${legalUrl('tokushoho')}" target="_blank" rel="noopener">特定商取引法に基づく表記</a>・<a href="${legalUrl('privacy')}" target="_blank" rel="noopener">プライバシーポリシー</a></p>
   </div>`;
   const close=()=>ov.remove();
   ov.querySelector('.pw-close').onclick=close;
@@ -5499,11 +5929,20 @@ document.getElementById('st-ai-consent-row')?.addEventListener('click',async()=>
     const card=document.getElementById('ai-brief-card');if(card)card.hidden=true;
   }else{await aiRequireConsent();}
 });
-['privacy','support'].forEach(n=>{const a=document.getElementById('st-link-'+n);if(a)a.href=legalUrl(n);});
+['privacy','support','terms','tokushoho'].forEach(n=>{const a=document.getElementById('st-link-'+n);if(a)a.href=legalUrl(n);});
 renderAiConsentRow();
 document.getElementById('st-plan-row')?.addEventListener('click',()=>lhShowPaywall({feature:'none'}));
 renderPlanRow();
 const CHANGELOG=[
+  {v:'v2.111.0',d:'体のプロフィール（身長・体重・目標・アレルギー・サプリ・ジムと器具）を設定から分けて、プロフィール → 体のプロフィール に'},
+  {v:'v2.110.0',d:'トレーニング → 記録の一番上に「今日のメニュー」。種目ごとに＋で記録に入れたり、まとめて入れたりできる'},
+  {v:'v2.109.0',d:'ホームの上を新しく: 🔥何日連続・今週の回数・レベルと、大きな「トレーニング開始」「今日のやりごろ」、食事・睡眠・体重のタイル、よく使う場所への近道'},
+  {v:'v2.108.0',d:'利用規約・特定商取引法に基づく表記を追加（設定 → このアプリについて）。今日のひとことに健康アドバイスをまとめた。プレミアム: 食事の写真アルバム（食事 → 📷 アルバム）。プレミアムの案内に見本'},
+  {v:'v2.107.0',d:'プレミアム: 筋肉の回復をAIが判定（睡眠・食事・前回の量から）・ホームに「ランからの提案」・分析に「週のレポート」（数字は無料。体調との関係とAIのレポートはプレミアム）'},
+  {v:'v2.106.1',d:'プロフィールから「質問に答えてプランを作る」をいつでも開けるように'},
+  {v:'v2.106.0',d:'はじめての人向けに、最初の質問（目的・体・場所とジム・器具・回数・経験・健康チェック）と、あなた専用のプラン・はじめてガイドを追加。プロフィール → ジムと器具'},
+  {v:'v2.105.0',d:'トレーニングに🔍種目を探す（名前・部位から。種目の絵つき）。「今日は軽めで」（睡眠が短い日などは自動でおすすめ）。下のタブ「自分」を「プロフィール」に'},
+  {v:'v2.104.0',d:'下のタブを5つに（ホーム・トレーニング・AI・分析・自分）。ホームに「今日やること」と「今日のやりごろ」、分析に💪筋肉マップ（15部位を鍛えてからの日数で色分け・おすすめの種目）'},
   {v:'v2.103.0',d:'iPhoneアプリ版に向けて、無料版とプレミアムの準備をしました（Web版はこれまでどおり全部使えます）'},
   {v:'v2.102.1',d:'AIの返事に「**」などの記号がそのまま出ることがあったのを修正'},
   {v:'v2.102.0',d:'ストイックモードに昼（白・黒・赤）と夜（黒・白・赤）。設定 → 外観のテーマで切り替え'},
@@ -5720,6 +6159,7 @@ function saveAdviceFeedback(rating){
 }
 async function renderHealthAdvice(force){
   const el=document.getElementById('health-advice-card');if(!el)return;
+  if(!force){el.hidden=true;return;} // v2.108.0: 今日のひとことにまとめた
   const hp=db.settings.healthProfile||{};
   if(!hp.height&&!hp.weight&&!hp.goal){el.hidden=true;return;}
   if(!aiConsented()){el.hidden=true;return;} // v2.97.0: 未同意ならAIに送らない
@@ -6389,6 +6829,8 @@ function buildExCard(ex,xi,ds){
 }
 
 function renderWo(){
+  if(typeof renderWoLight==='function')renderWoLight(); // v2.105.0 今日は軽めで
+  if(typeof renderWoMenu==='function')renderWoMenu(); // v2.110.0 今日のメニュー
   const ds=st.woDate;
   document.getElementById('wo-date').textContent=jpDate(ds);
   const exs=db.workouts[ds]||[];
@@ -6666,7 +7108,9 @@ function woPrevLine(name,ds,cat){
 function woInitialSet(name,cat){
   const p=woPrevSession(name,'9999-12-31');
   const s=p&&p.ex.sets&&p.ex.sets[0];
-  if(cat==='weight')return {w:s?.w??0,r:s?.r??10};
+  // v2.105.0: 今日は軽めの日なら、前回の8割から
+  const light=typeof lhLightInfo==='function'&&lhLightInfo().on&&(!st.woDate||st.woDate===todayStr());
+  if(cat==='weight')return {w:light&&s?.w?lhLightWeight(s.w):(s?.w??0),r:s?.r??10};
   if(cat==='bodyweight')return {r:s?.r??10};
   return null;
 }
@@ -6831,6 +7275,10 @@ function woImportFile(file){
 function programTemplates(){
   const ex=(name,sets,reps)=>({name,sets,reps});
   return [
+    {id:'home3',name:'自宅 自重 全身',freq:3,level:'はじめて',note:'道具なし。AとBを交互に',days:[
+      {label:'自重A',exercises:[ex('スクワット',3,'15'),ex('腕立て伏せ',3,'10'),ex('グルートブリッジ',3,'15'),ex('プランク',3,'30秒')]},
+      {label:'自重B',exercises:[ex('ランジ',3,'10'),ex('腕立て伏せ',3,'10'),ex('バックエクステンション',3,'12'),ex('クランチ',3,'15')]},
+    ]},
     {id:'health2',name:'健康維持 全身',freq:2,level:'はじめて',note:'マシン中心で全身をまんべんなく',days:[
       {label:'全身',exercises:[ex('レッグプレス',3,'10-12'),ex('チェストプレス',3,'10-12'),ex('ラットプルダウン',3,'10-12'),ex('ショルダープレス',2,'10-12'),ex('プランク',3,'30秒')]},
     ]},
@@ -6857,7 +7305,10 @@ function applyTemplateDay(tplId,dayIdx,ds){
   const tpl=programTemplates().find(t=>t.id===tplId);if(!tpl)return;
   const day=tpl.days[dayIdx];if(!day)return;
   if(!db.workouts[ds])db.workouts[ds]=[];
-  day.exercises.forEach(e=>{
+  // v2.105.0: 今日は軽めの日ならセット数を1つ減らす
+  const light=ds===todayStr()&&typeof lhLightInfo==='function'&&lhLightInfo().on;
+  day.exercises.forEach(e0=>{
+    const e=light?{...e0,sets:Math.max(1,e0.sets-1)}:e0;
     if(_isTimed(e.reps)){db.workouts[ds].push({id:uid(),name:e.name,category:'stretch',sets:Array.from({length:e.sets},()=>({time:null}))});return;}
     const prev=typeof woInitialSet==='function'?woInitialSet(e.name,'weight'):null;
     const w=prev?.w||0;
@@ -6931,7 +7382,7 @@ function aiPlanContext(){
     const ideal=Math.min(ds.length,Math.max(min,Math.ceil(need*ds.length/Math.max(1,ds.length+after))));
     return `・${dl(ds[0])}〜${dl(ds[ds.length-1])}（${i===0?'今週':'来週'}）: 済み${done}回・あと${need}回必要。この7日間より後に残るこの週の日数は${after}日 → この期間に最低${min}回、余裕を持つなら${ideal}回`;
   }).join('\n');
-  return {dates,text:`【今日】${dl(dates[0])}
+  return {dates,text:(typeof lhProfileContext==='function'?lhProfileContext():'')+`【今日】${dl(dates[0])}
 【筋トレの目標】${goalMap[hp.goal]||'未設定'}・週${freq}回${hp.weight?`・体重${hp.weight}kg`:''}${hp.age?`・${hp.age}歳`:''}
 【今週の状況】${wk}
 【週ごとに必要な回数（連続記録を守るため）】
@@ -7202,6 +7653,7 @@ function renderOther(){
     b.hidden=false;
     b.classList.toggle('on',b.dataset.s===st.otherSub);
   });
+  const subnav=document.querySelector('#tab-other .other-subnav');if(subnav)subnav.hidden=st.otherSub==='wo'; // v2.104.0
   document.getElementById('other-wo').hidden=st.otherSub!=='wo';
   document.getElementById('other-meals').hidden=st.otherSub!=='meals';
   document.getElementById('other-sleep').hidden=st.otherSub!=='sleep';
@@ -7211,6 +7663,7 @@ function renderOther(){
     document.getElementById('wo-datebar').style.display='';
     document.getElementById('wo-log-view').hidden=false;
     document.getElementById('wo-chart-view').hidden=true;
+    const fv=document.getElementById('wo-find-view');if(fv)fv.hidden=true; // v2.105.0
     renderWo();
   } else if(st.otherSub==='meals') renderMeals();
   else if(st.otherSub==='sleep') renderSleepTab();
@@ -7219,7 +7672,7 @@ function renderOther(){
 }
 function renderOtherSub(s){st.otherSub=s;renderOther();}
 document.querySelectorAll('.other-sub-btn').forEach(btn=>{
-  btn.onclick=()=>renderOtherSub(btn.dataset.s);
+  btn.onclick=()=>{if(btn.dataset.s==='muscle')switchToTab('ana');else renderOtherSub(btn.dataset.s);};
 });
 
 // ── Health ────────────────────────────────────────────────
@@ -7477,7 +7930,7 @@ function _fillMlModal(k,item){
   setTimeout(()=>document.getElementById('mla-name').focus(),50);
 }
 function openMlAdd(k){
-  editingMealId=null;
+  editingMealId=null;window._mlaFile=null;
   document.getElementById('mla-title').textContent=(MEAL_DEF.find(m=>m.k===k)?.l||'食事')+'に追加';
   document.getElementById('mla-name').value='';
   document.getElementById('mla-kcal').value='';
@@ -7495,6 +7948,7 @@ document.getElementById('mla-photo-input').onchange=()=>analyzePhotoMeal();
 async function analyzePhotoMeal(){
   const file=document.getElementById('mla-photo-input').files[0];
   if(!file)return;
+  window._mlaFile=file; // v2.108.0: 追加したとき食事の写真にも残す
   if(!await aiRequireConsent()){document.getElementById('mla-photo-input').value='';return;} // v2.97.0
   const statusEl=document.getElementById('mla-photo-status');
   const btn=document.getElementById('mla-photo-btn');
@@ -7549,6 +8003,8 @@ document.getElementById('mla-ok').onclick=()=>{
     if(item){item.name=name;item.kcal=parseInt(document.getElementById('mla-kcal').value)||0;item.nutrients=nutVals;}
   } else {
     dm[addingMealK].push({id:uid(),name,kcal:parseInt(document.getElementById('mla-kcal').value)||0,nutrients:nutVals});
+    const pf=window._mlaFile,pd=st.mlDate,pk=addingMealK;window._mlaFile=null;
+    if(pf)processFiles([pf],p=>{if(!db.mlPhotos[pd])db.mlPhotos[pd]={breakfast:[],lunch:[],dinner:[],snack:[]};(db.mlPhotos[pd][pk]=db.mlPhotos[pd][pk]||[]).push(p);save(db);renderMeals();});
   }
   save(db);
   document.getElementById('mo-ml-add').hidden=true;
@@ -7601,30 +8057,19 @@ document.getElementById('ml-next').onclick=()=>{const d=new Date(st.mlDate);d.se
     app.style.display='none';
     const inp=document.getElementById('ob-name');
     const nextBtn=document.getElementById('ob-next');
-    const startBtn=document.getElementById('ob-start');
-    const skipBtn=document.getElementById('ob-skip');
-    const step1=document.getElementById('ob-step1');
-    const step2=document.getElementById('ob-step2');
-    const step3=document.getElementById('ob-step3');
     function goToStep2(){
       const name=inp.value.trim()||'マイデータ';
       const profs=getProfs();
       if(profs[0])profs[0].name=name;
       saveProfs(profs);
-      step1.hidden=true;
-      step2.hidden=false;
+      window._onbName=inp.value.trim();
+      onbStart(finishOnboarding); // v2.106.0: 最初の質問（8画面）
     }
     nextBtn.addEventListener('click',goToStep2);
     inp.addEventListener('keydown',e=>{if(e.key==='Enter')goToStep2();});
-    step2.querySelectorAll('.ob-chip').forEach(chip=>{
-      chip.addEventListener('click',()=>chip.classList.toggle('active'));
-    });
-    // 用途選択 → マイタブ（下部タブ3つ目）の選択へ
-    function goToStep3(){step2.hidden=true;step3.hidden=false;}
-    function finishOnboarding(hlChoice){
-      const selected=[...step2.querySelectorAll('.ob-chip.active')].map(c=>c.dataset.val);
-      // マイタブ: 明示選択 > 用途からの推定（食事系のみなら食事、それ以外は筋トレ）
-      db.settings.highlightTab=hlChoice||(selected.includes('diet')&&!selected.includes('fitness')?'meals':'wo');
+    function finishOnboarding(selected){
+      selected=selected||[];
+      db.settings.highlightTab='wo';
       const savedName=inp.value.trim()||'マイデータ';
       db.userProfile={useCase:selected,setupAt:todayStr(),name:savedName};
       // v2.97.0: 新しく始める人はカレンダーとタスクを最初は隠す（設定の「表示する機能」でオン）
@@ -7639,14 +8084,12 @@ document.getElementById('ml-next').onclick=()=>{const d=new Date(st.mlDate);d.se
       applyFeatureVisibility();
       updateHlNav();
       renderGoals();renderCal();renderTasks();renderHealthAdvice();
+      if(typeof renderStoicToday==='function')renderStoicToday();
+      if(typeof renderMmHomeCard==='function')renderMmHomeCard();
+      if(typeof renderHomeHero==='function')renderHomeHero();
+      if(typeof renderTutorial==='function')renderTutorial();
       if(window._showCharIntro)window._showCharIntro();
     }
-    startBtn.addEventListener('click',goToStep3);
-    skipBtn.addEventListener('click',goToStep3);
-    step3.querySelectorAll('.ob-chip[data-hl]').forEach(chip=>{
-      chip.addEventListener('click',()=>finishOnboarding(chip.dataset.hl));
-    });
-    document.getElementById('ob-skip3').addEventListener('click',()=>finishOnboarding());
     setTimeout(()=>inp.focus(),100);
   }
 })();
@@ -7661,6 +8104,7 @@ if(!window._LH_IS_NEW){
 
 // Passcode boot
 window._pcBoot();
+setTimeout(onbAutoAsk,400); // v2.106.1: 既存の人にも最初の質問を1回
 
 // Passcode settings buttons
 document.getElementById('btn-pc-set').onclick=()=>{
@@ -7999,6 +8443,7 @@ function calcGameStats(){
   }
 
   // ── ツール ──
+  window.lhGetContext=function(){return getContext();}; // v2.107.0: 提案・週のレポートで使う
   function getContext(){
     const AIDAYS=lhIsPro()?30:7; // v2.103.0: AIが読む記録の期間（無料は直近7日）
     const today=todayStr();
@@ -8087,7 +8532,7 @@ function calcGameStats(){
     if(hp.dislikes)hpParts.push(`苦手な食材:${hp.dislikes}`);
     const hpStats=hpParts.length?hpParts.join(' / '):'未設定';
     const streakStats=typeof streakSummaryText==='function'?streakSummaryText():'なし';
-    return `【今日の日付】${today}\n【連続記録】${streakStats}\n【健康プロフィール】${hpStats}\n【使用目的】${useCaseStr}\n【今後14日間の予定】\n${evs}\n【未完了タスク】\n${tasks}\n【進行中の目標】\n${goals}\n【カレンダー一覧】\n${cals}\n【タスク達成状況】${taskStats}\n【筋トレ履歴（直近${AIDAYS}日${AIDAYS>7?'/最大90日遡及':''}）】\n${woStats}\n【睡眠記録（直近${AIDAYS}日統計）】\n${sleepStats}\n【食事記録（過去7日間）】\n${mealStats}\n【今日の健康データ】${healthStats}\n【タスクフィードバック履歴】\n${fbStats}\n【動画への本人の評価・コメント（本人とAIだけが見る。好みに合わせた提案に使う）】\n${typeof vnContextText==='function'?vnContextText():'なし'}`;
+    return (typeof lhProfileContext==='function'?lhProfileContext():'')+(typeof lhLightContext==='function'?lhLightContext():'')+`【今日の日付】${today}\n【連続記録】${streakStats}\n【健康プロフィール】${hpStats}\n【使用目的】${useCaseStr}\n【今後14日間の予定】\n${evs}\n【未完了タスク】\n${tasks}\n【進行中の目標】\n${goals}\n【カレンダー一覧】\n${cals}\n【タスク達成状況】${taskStats}\n【筋トレ履歴（直近${AIDAYS}日${AIDAYS>7?'/最大90日遡及':''}）】\n${woStats}\n【睡眠記録（直近${AIDAYS}日統計）】\n${sleepStats}\n【食事記録（過去7日間）】\n${mealStats}\n【今日の健康データ】${healthStats}\n【タスクフィードバック履歴】\n${fbStats}\n【動画への本人の評価・コメント（本人とAIだけが見る。好みに合わせた提案に使う）】\n${typeof vnContextText==='function'?vnContextText():'なし'}`;
   }
   async function executeTool(name,input){
     if(name==='add_event'){
@@ -8584,7 +9029,7 @@ function calcGameStats(){
       }
       let ctx='';
       try{ctx=getContext();}catch(e){console.warn('[brief] getContext failed:',e);card.hidden=true;return;}
-      const prompt='以下はユーザーの今日のライフデータです。\n\n'+ctx+'\n\n上記データを踏まえて、今日のユーザーへの「ひとこと」を2〜3文で書いてください。予定・タスク・筋トレ状況を絡めて、具体的に、明るく親しみやすい言葉で。余計な前置きなしで本文だけ返してください。';
+      const prompt='以下はユーザーの今日のライフデータです。\n\n'+ctx+'\n\n上記データを踏まえて、今日のユーザーへの「ひとこと」を2〜3文で書いてください。予定・タスク・筋トレ状況を絡めて、体のこと（睡眠・食事・体重の目標）から今日の健康のための行動を1つ入れて、具体的に、明るく親しみやすい言葉で。余計な前置きなしで本文だけ返してください。';
       const stoicBrief=lhStoic(); // v2.100.0: ストイックは事実と数字だけ・1〜2文
       const promptX=stoicBrief?'以下はユーザーの今日のライフデータです。\n\n'+ctx+'\n\n今日やるべきことを、事実と数字だけで1〜2文、合計60字以内で書いてください。励ましの言葉・絵文字・感嘆符は使わない。本文だけ返してください。':prompt;
       const body=JSON.stringify({lh_feature:'brief',model:'claude-haiku-5-5',max_tokens:400,thinking:{type:'disabled'},system:stoicBrief?'あなたはLifeWithのAIトレーナーです。キャラクターは演じず、事実と数字だけを簡潔な常体の日本語で伝えます。':'あなたはLifeWithのAIアシスタントです。ユーザーの生活データを把握している、身近な友達のような存在です。です・ます調は使わず、自然でやわらかいタメ口の日本語で短く話します。',messages:[{role:'user',content:promptX}]});
@@ -10020,7 +10465,7 @@ function stoicTodayItems(){
 }
 function renderStoicToday(){
   const el=document.getElementById('stoic-today');if(!el)return;
-  if(!lhStoic()){el.hidden=true;el.innerHTML='';return;}
+  // v2.104.0: 通常モードでもホームに「今日やること」を出す（記録はここからワンタップ）
   const items=stoicTodayItems(),done=items.filter(i=>i.done).length;
   el.hidden=false;
   el.innerHTML=`<div class="sk-head"><span class="sk-title">今日やること</span><span class="sk-count"><b>${done}</b> / ${items.length}</span></div>
@@ -10043,6 +10488,998 @@ document.getElementById('st-stoic-toggle')?.addEventListener('change',function()
   if(!this.checked&&typeof renderTrendCard==='function'){renderTrendCard();}
 });
 lhApplyStoic();
+// ── 筋肉マップ（v2.104.0） ─────────────────────────────
+// 種目名 → 部位（メイン/補助）を判定し、最後に鍛えてからの日数で 15 部位を色分けする
+// ※ビルドで1つのscriptに連結されるため、トップレベルに const/let を置かない（TDZ回避）
+var MM_PARTS=[
+  {k:'chest',n:'胸',f:'大胸筋',side:'f',main:true},
+  {k:'back',n:'背中',f:'広背筋',side:'b',main:true},
+  {k:'shoulder',n:'肩',f:'三角筋',side:'fb',main:true},
+  {k:'biceps',n:'力こぶ',f:'上腕二頭筋',side:'f',main:true},
+  {k:'triceps',n:'腕の裏',f:'上腕三頭筋',side:'b',main:true},
+  {k:'glutes',n:'お尻',f:'大臀筋',side:'b',main:true},
+  {k:'quads',n:'前もも',f:'大腿四頭筋',side:'f',main:true},
+  {k:'hams',n:'もも裏',f:'ハムストリングス',side:'b',main:true},
+  {k:'abs',n:'お腹',f:'腹筋',side:'f',main:true},
+  {k:'abductor',n:'お尻の横',f:'外転筋（中臀筋）',side:'fb',main:false},
+  {k:'adductor',n:'内もも',f:'内転筋',side:'f',main:false},
+  {k:'calves',n:'ふくらはぎ',f:'下腿三頭筋',side:'fb',main:false},
+  {k:'traps',n:'首の付け根',f:'僧帽筋上部',side:'b',main:false},
+  {k:'lowback',n:'腰',f:'脊柱起立筋',side:'b',main:false},
+  {k:'forearm',n:'前腕',f:'前腕筋群',side:'fb',main:false}
+];
+// 上から順に見て、最初に当てはまったものを使う（細かいものを先に）
+var MM_RULES=[
+  [/ナローベンチ|クローズグリップ/,['triceps'],['chest','shoulder']],
+  [/レッグカール/,['hams'],[]],
+  [/リストカール|リバースカール|前腕|グリップ|ファーマーズ/,['forearm'],[]],
+  [/ハンマーカール/,['biceps','forearm'],[]],
+  [/カール|curl/i,['biceps'],['forearm']],
+  [/フェイスプル|リアレイズ|リアデルト|リバースフライ/,['shoulder'],['traps','back']],
+  [/インクライン.*(プレス|ベンチ|フライ)/,['chest','shoulder'],['triceps']],
+  [/ベンチプレス|チェストプレス|ダンベルプレス|腕立て|プッシュアップ|フライ|ケーブルクロス|ディップス|ペックデック|bench/i,['chest'],['shoulder','triceps']],
+  [/シュラッグ/,['traps'],[]],
+  [/ショルダープレス|オーバーヘッドプレス|ミリタリー|サイドレイズ|フロントレイズ|アップライトロー|アーノルド/,['shoulder'],['triceps','traps']],
+  [/ヒップスラスト|グルートブリッジ|ヒップリフト|グルートキックバック/,['glutes'],['hams']],
+  [/トライセプス|プッシュダウン|フレンチプレス|スカルクラッシャー|キックバック|ライイングエクステンション|オーバーヘッドエクステンション/,['triceps'],[]],
+  [/ルーマニアン|RDL|スティッフ|グッドモーニング/i,['hams','glutes'],['lowback']],
+  [/デッドリフト|deadlift/i,['back','lowback','glutes','hams'],['traps','forearm']],
+  [/ラットプル|懸垂|チンニング|プルアップ|チンアップ|ローイング|ベントオーバー|シーテッドロー|ワンハンドロー|ケーブルロー|Tバー|プルオーバー|ロー$/,['back'],['biceps','traps']],
+  [/バックエクステンション|ハイパーエクステンション|背筋/,['lowback'],['glutes']],
+  [/アダクション|内転|ワイドスクワット|スモウ/,['adductor'],['glutes','quads']],
+  [/アブダクション|外転|クラムシェル|サイドライイング/,['abductor'],['glutes']],
+  [/カーフ|かかと上げ/,['calves'],[]],
+  [/レッグエクステンション/,['quads'],[]],
+  [/スクワット|レッグプレス|ランジ|ブルガリアン|ステップアップ|squat/i,['quads','glutes'],['adductor','hams']],
+  [/クランチ|腹筋|シットアップ|プランク|レッグレイズ|アブ|ロシアンツイスト|ハンギング|ドラゴンフラッグ/,['abs'],[]]
+];
+// 部位ごとのおすすめ種目（器具・ひとこと）
+var MM_LIB={
+  chest:[['ベンチプレス','バーベル','胸の全体。肩・腕の裏も使う'],['ダンベルプレス','ダンベル','胸を深く伸ばせる'],['チェストプレス','マシン','はじめてでも安全'],['腕立て伏せ','道具なし','家でできる']],
+  back:[['ラットプルダウン','マシン','背中の広いところ'],['懸垂','バー','自分の体重で背中全体'],['シーテッドロー','マシン','背中の厚み'],['ワンハンドロー','ダンベル','左右を別々に鍛える']],
+  shoulder:[['ショルダープレス','ダンベル','肩の前と横'],['サイドレイズ','ダンベル','肩の横。軽い重さで丁寧に'],['フェイスプル','ケーブル','肩の後ろ。姿勢がよくなる']],
+  biceps:[['アームカール','ダンベル','力こぶの基本'],['ハンマーカール','ダンベル','力こぶ＋前腕'],['ケーブルカール','ケーブル','最後まで力が抜けない']],
+  triceps:[['プッシュダウン','ケーブル','腕の裏の基本'],['フレンチプレス','ダンベル','腕の裏を伸ばして鍛える'],['ディップス','道具なし','胸と腕の裏']],
+  glutes:[['ヒップスラスト','バーベル','お尻をいちばん使う'],['ブルガリアンスクワット','ダンベル','お尻と前もも'],['グルートブリッジ','道具なし','家でできる']],
+  quads:[['スクワット','バーベル','脚の基本。お尻も使う'],['レッグプレス','マシン','重くても安全'],['レッグエクステンション','マシン','前ももだけを狙う'],['ランジ','ダンベル','バランスも鍛える']],
+  hams:[['ルーマニアンデッドリフト','バーベル','もも裏とお尻'],['レッグカール','マシン','もも裏だけを狙う']],
+  abs:[['クランチ','道具なし','お腹の前'],['プランク','道具なし','体幹全体'],['レッグレイズ','道具なし','お腹の下のほう'],['アブローラー','ローラー','強めに効く']],
+  abductor:[['アブダクション','マシン','お尻の横'],['サイドライイングレッグレイズ','道具なし','寝転んで脚を横に上げる']],
+  adductor:[['アダクション','マシン','内もも'],['ワイドスクワット','道具なし','足を広げてしゃがむ']],
+  calves:[['カーフレイズ','マシン','ふくらはぎ。段差でもできる']],
+  traps:[['シュラッグ','ダンベル','肩をすくめる'],['フェイスプル','ケーブル','首の付け根と肩の後ろ']],
+  lowback:[['バックエクステンション','ベンチ','腰まわり'],['デッドリフト','バーベル','背中・腰・脚の全体']],
+  forearm:[['リストカール','ダンベル','握る力'],['ファーマーズウォーク','ダンベル','重りを持って歩く']]
+};
+var MM_ST={rest:{c:'#4F46E5',l:'回復中'},soon:{c:'#A5B4FC',l:'もうすぐ'},ready:{c:'#F59E0B',l:'やりごろ'},long:{c:'#B45309',l:'ご無沙汰'},none:{c:'#E5E7EB',l:'記録なし'}};
+window._mmSide=window._mmSide||'f';
+window._mmSel=window._mmSel||null;
+
+function mmMusclesOf(name){
+  const s=String(name||'');
+  const ov=db.settings&&db.settings.exMuscle&&db.settings.exMuscle[s];
+  if(ov&&Array.isArray(ov.main))return {main:ov.main,sub:ov.sub||[]};
+  for(const [re,main,sub] of MM_RULES)if(re.test(s))return {main,sub};
+  return {main:[],sub:[]};
+}
+function _mmDays(a,b){return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000);}
+// 部位ごとに最後に鍛えた日（今日から90日さかのぼる）と、その日の種目
+function mmState(){
+  const t=todayStr(),cut=(()=>{const d=new Date(t+'T00:00:00');d.setDate(d.getDate()-90);return fmt(d);})();
+  const dates=Object.keys(db.workouts||{}).filter(d=>d<=t&&d>=cut).sort().reverse();
+  const out={};
+  MM_PARTS.forEach(p=>{out[p.k]={last:null,days:null,st:'none',ex:[]};});
+  dates.forEach(d=>{
+    (db.workouts[d]||[]).forEach(e=>{
+      const m=mmMusclesOf(e.name);
+      [...m.main,...m.sub].forEach(k=>{
+        const o=out[k];if(!o)return;
+        if(!o.last)o.last=d;
+        if(o.last===d&&!o.ex.includes(e.name))o.ex.push(e.name);
+      });
+    });
+  });
+  MM_PARTS.forEach(p=>{
+    const o=out[p.k];if(!o.last)return;
+    o.days=_mmDays(o.last,t);
+    o.st=o.days<=1?'rest':o.days<=3?'soon':o.days<=6?'ready':'long';
+  });
+  // v2.107.0: プレミアムでAIが今日判定していれば、その判定を色に使う
+  const ai=typeof lhMmAiToday==='function'?lhMmAiToday():null;
+  if(ai)MM_PARTS.forEach(p=>{
+    const a=ai.parts[p.k],o=out[p.k];if(!a||!MM_ST[a.st])return;
+    let s=a.st;if(s==='ready'&&o.days!=null&&o.days>=7)s='long';if(s==='none'&&o.last)s=o.st;if(s!=='none'&&!o.last)s='none';
+    o.st=s;o.ai=true;o.why=String(a.why||'');
+  });
+  return out;
+}
+function mmDaysText(o){return o.days==null?'記録なし':o.days===0?'今日':o.days+'日前';}
+// 体の図（前 f / 後ろ b）。fill はキー → 色
+function mmSvg(side,fill,w,h,label){
+  const c=k=>fill[k]||'#E5E7EB',g='#E5E7EB';
+  const parts=side==='f'?`
+    <circle cx="60" cy="18" r="13" fill="${g}"/><rect x="54" y="30" width="12" height="10" rx="3" fill="${g}"/>
+    <ellipse data-k="shoulder" cx="34" cy="54" rx="11" ry="11" fill="${c('shoulder')}"/><ellipse data-k="shoulder" cx="86" cy="54" rx="11" ry="11" fill="${c('shoulder')}"/>
+    <rect data-k="chest" x="40" y="45" width="19.5" height="24" rx="7" fill="${c('chest')}"/><rect data-k="chest" x="60.5" y="45" width="19.5" height="24" rx="7" fill="${c('chest')}"/>
+    <rect data-k="abs" x="45" y="72" width="30" height="44" rx="7" fill="${c('abs')}"/>
+    <path d="M60 75V113M47 87H73M47 100H73" stroke="#fff" stroke-width="1.5" pointer-events="none"/>
+    <ellipse data-k="biceps" cx="27" cy="82" rx="7" ry="15" fill="${c('biceps')}"/><ellipse data-k="biceps" cx="93" cy="82" rx="7" ry="15" fill="${c('biceps')}"/>
+    <ellipse data-k="forearm" cx="23" cy="114" rx="5.5" ry="14" fill="${c('forearm')}"/><ellipse data-k="forearm" cx="97" cy="114" rx="5.5" ry="14" fill="${c('forearm')}"/>
+    <ellipse data-k="abductor" cx="40" cy="128" rx="5" ry="10" fill="${c('abductor')}"/><ellipse data-k="abductor" cx="80" cy="128" rx="5" ry="10" fill="${c('abductor')}"/>
+    <ellipse data-k="quads" cx="49" cy="162" rx="11" ry="30" fill="${c('quads')}"/><ellipse data-k="quads" cx="71" cy="162" rx="11" ry="30" fill="${c('quads')}"/>
+    <ellipse data-k="adductor" cx="56" cy="146" rx="3.5" ry="15" fill="${c('adductor')}"/><ellipse data-k="adductor" cx="64" cy="146" rx="3.5" ry="15" fill="${c('adductor')}"/>
+    <ellipse data-k="calves" cx="49" cy="218" rx="7" ry="22" fill="${c('calves')}"/><ellipse data-k="calves" cx="71" cy="218" rx="7" ry="22" fill="${c('calves')}"/>`:`
+    <circle cx="60" cy="18" r="13" fill="${g}"/>
+    <path data-k="traps" d="M46 36 L60 31 L74 36 L78 46 L42 46 Z" fill="${c('traps')}"/>
+    <ellipse data-k="shoulder" cx="34" cy="54" rx="11" ry="11" fill="${c('shoulder')}"/><ellipse data-k="shoulder" cx="86" cy="54" rx="11" ry="11" fill="${c('shoulder')}"/>
+    <path data-k="back" d="M41 48 Q60 45 79 48 L74 96 Q60 100 46 96 Z" fill="${c('back')}"/>
+    <rect data-k="lowback" x="49" y="96" width="22" height="18" rx="5" fill="${c('lowback')}"/>
+    <path d="M60 50V112" stroke="#fff" stroke-width="1.5" pointer-events="none"/>
+    <ellipse data-k="triceps" cx="27" cy="82" rx="7" ry="15" fill="${c('triceps')}"/><ellipse data-k="triceps" cx="93" cy="82" rx="7" ry="15" fill="${c('triceps')}"/>
+    <ellipse data-k="forearm" cx="23" cy="114" rx="5.5" ry="14" fill="${c('forearm')}"/><ellipse data-k="forearm" cx="97" cy="114" rx="5.5" ry="14" fill="${c('forearm')}"/>
+    <ellipse data-k="abductor" cx="41" cy="118" rx="5" ry="9" fill="${c('abductor')}"/><ellipse data-k="abductor" cx="79" cy="118" rx="5" ry="9" fill="${c('abductor')}"/>
+    <ellipse data-k="glutes" cx="51" cy="128" rx="10" ry="11" fill="${c('glutes')}"/><ellipse data-k="glutes" cx="69" cy="128" rx="10" ry="11" fill="${c('glutes')}"/>
+    <ellipse data-k="hams" cx="49" cy="168" rx="10" ry="26" fill="${c('hams')}"/><ellipse data-k="hams" cx="71" cy="168" rx="10" ry="26" fill="${c('hams')}"/>
+    <ellipse data-k="calves" cx="49" cy="218" rx="8" ry="22" fill="${c('calves')}"/><ellipse data-k="calves" cx="71" cy="218" rx="8" ry="22" fill="${c('calves')}"/>`;
+  return `<svg class="mm-svg" width="${w}" height="${h}" viewBox="0 0 120 250" role="img" aria-label="${esc(label||'筋肉マップ')}">${parts}</svg>`;
+}
+function _mmFill(state){const f={};MM_PARTS.forEach(p=>{f[p.k]=MM_ST[state[p.k].st].c;});return f;}
+function _mmNames(keys){return keys.map(k=>(MM_PARTS.find(p=>p.k===k)||{}).n).filter(Boolean);}
+
+// ホーム: 今日のやりごろ
+function renderMmHomeCard(){
+  const el=document.getElementById('mm-home-card');if(!el)return;
+  const f=db.settings.features||{};
+  if(f.workout===false){el.hidden=true;return;}
+  const s=mmState();
+  const any=MM_PARTS.some(p=>s[p.k].last);
+  const ready=MM_PARTS.filter(p=>p.main&&['ready','long'].includes(s[p.k].st)).sort((a,b)=>s[b.k].days-s[a.k].days).map(p=>p.k);
+  const rest=MM_PARTS.filter(p=>p.main&&s[p.k].st==='rest').map(p=>p.k);
+  let head,sub;
+  if(!any){head='筋トレを記録すると、鍛えどきの部位がわかります';sub='分析 → 筋肉で、15部位の回復の様子を見られます';}
+  else if(ready.length){head=_mmNames(ready.slice(0,3)).join('・');sub=rest.length?_mmNames(rest.slice(0,3)).join('・')+'は回復中':'しっかり回復しています';}
+  else{head='今日は休みか、軽めでOK';sub=rest.length?_mmNames(rest.slice(0,3)).join('・')+'は回復中':'もうすぐ回復する部位が多い日です';}
+  // v2.105.0: 軽めの日・軽めがおすすめの日はひとこと添える
+  const li=typeof lhLightInfo==='function'?lhLightInfo():{};
+  if(li.on)sub+='・今日は軽めの日';else if(li.reason&&!li.dismissed)sub+='・今日は軽めがおすすめ';
+  el.hidden=false;
+  el.innerHTML=`<button type="button" class="mm-home-btn">${mmSvg('f',_mmFill(s),40,84,'体の前側の筋肉マップ（小）')}<span class="mm-home-txt"><span class="mm-home-lbl">${any&&ready.length?'今日のやりごろ':'筋肉マップ'}</span><span class="mm-home-head">${esc(head)}</span><span class="mm-home-sub">${esc(sub)}</span></span><span class="mm-home-go" aria-hidden="true">›</span></button>`;
+  el.querySelector('.mm-home-btn').onclick=()=>switchToTab('ana');
+}
+
+// 分析の上の切り替え（筋肉・食事・睡眠・体重と健康）
+function mmAnaChips(cur){
+  return `<div class="ana-chips" role="tablist">${[['muscle','筋肉'],['report','週のレポート'],['meals','食事'],['sleep','睡眠'],['health','体重・健康']].map(([k,l])=>`<button type="button" class="ana-chip${k===cur?' on':''}" data-ana="${k}">${l}</button>`).join('')}</div>`;
+}
+function mmBindChips(root){
+  root.querySelectorAll('.ana-chip').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.ana;
+    if(k==='muscle'||k==='report'){window._anaView=k;switchToTab('ana');}
+    else{st.otherSub=k;switchToTab('other');}
+  });
+}
+
+// 分析 → 筋肉
+function renderMuscleMap(){
+  const root=document.getElementById('mm-root');if(!root)return;
+  if(window._anaView==='report'&&typeof renderWeekReport==='function'){renderWeekReport(root);return;}
+  const s=mmState(),side=window._mmSide==='b'?'b':'f';
+  const list=MM_PARTS.filter(p=>p.side.includes(side));
+  const sel=window._mmSel&&MM_PARTS.find(p=>p.k===window._mmSel);
+  root.innerHTML=`${mmAnaChips('muscle')}
+    <div class="mm-seg" role="tablist"><button type="button" class="mm-side${side==='f'?' on':''}" data-side="f">前</button><button type="button" class="mm-side${side==='b'?' on':''}" data-side="b">後ろ</button></div>
+    <div class="card mm-card">
+      <div class="mm-fig">${mmSvg(side,_mmFill(s),150,312,side==='f'?'体の前側の筋肉マップ':'体の後ろ側の筋肉マップ')}</div>
+      <div class="mm-list">${list.map(p=>{const o=s[p.k];return `<button type="button" class="mm-row${sel&&sel.k===p.k?' on':''}" data-k="${p.k}"><span class="mm-dot" style="background:${MM_ST[o.st].c}"></span><span class="mm-nm"><b>${esc(p.n)}</b><small>${esc(p.f)}</small></span><span class="mm-days">${mmDaysText(o)}</span></button>`;}).join('')}</div>
+    </div>
+    ${typeof lhMmAiToday==='function'&&lhMmAiToday()?'<div class="mm-ai-note">色は今日のAIの判定</div>':''}
+    <div class="mm-legend">${Object.values(MM_ST).map((v,i)=>`<span><i style="background:${v.c}"></i>${v.l}${[' 0〜1日',' 2〜3日',' 4〜6日',' 7日以上',''][i]}</span>`).join('')}</div>
+    <div id="mm-detail">${sel?mmDetailHtml(sel,s[sel.k]):'<p class="mm-hint">部位をタップすると、前回の記録とおすすめの種目が出ます</p>'}</div>
+    <div id="mm-ai-area">${typeof mmAiBoxHtml==='function'?mmAiBoxHtml():''}</div>`;
+  root.querySelectorAll('.mm-side').forEach(b=>b.onclick=()=>{window._mmSide=b.dataset.side;renderMuscleMap();});
+  root.querySelectorAll('.mm-row').forEach(b=>b.onclick=()=>{window._mmSel=b.dataset.k;renderMuscleMap();});
+  root.querySelectorAll('.mm-svg [data-k]').forEach(e=>e.addEventListener('click',()=>{window._mmSel=e.getAttribute('data-k');renderMuscleMap();}));
+  mmBindChips(root);
+  if(typeof mmAiBind==='function')mmAiBind(root);
+  if(typeof renderPlanRow==='function')renderPlanRow();
+}
+function mmDetailHtml(p,o){
+  const lib=MM_LIB[p.k]||[];
+  const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q+' やり方');
+  return `<div class="card mm-detail">
+    <div class="mm-d-head"><b>${esc(p.n)}</b><small>${esc(p.f)}</small><span class="mm-d-st" style="color:${o.st==='none'?'var(--fg3)':MM_ST[o.st].c}">${mmDaysText(o)}${o.st!=='none'?'・'+MM_ST[o.st].l:''}</span></div>
+    ${o.ai&&o.why?`<div class="mm-d-why"><span class="pw-tag">AI</span>${esc(o.why)}</div>`:''}
+    ${o.last?`<div class="mm-d-last">前回 ${esc(o.last.slice(5).replace('-','/'))}：${esc(o.ex.slice(0,3).join('、'))}</div>`:''}
+    <div class="mm-d-lbl">おすすめの種目</div>
+    ${lib.map(([n,tool,note])=>`<div class="mm-ex"><span class="mm-ex-nm"><b>${esc(n)}</b><small>${esc(note)}</small></span><span class="mm-tool">${esc(tool)}</span><a class="mm-yt" href="${yt(n)}" target="_blank" rel="noopener">動画</a></div>`).join('')}
+  </div>`;
+}
+
+// 初回の表示
+renderMmHomeCard();
+// ── 種目を探す・種目の絵・部位の設定・今日は軽めで（v2.105.0） ─────────────
+// ※ビルドで1つのscriptに連結されるため、トップレベルに const/let を置かない（TDZ回避）
+
+// 種目の絵（オリジナルの線の絵。効く場所を赤 #E11D48）。viewBox 0 0 64 64
+var EX_PICS={
+  'ベンチプレス':'<rect x="9" y="39" width="38" height="4" rx="2" fill="#9CA3AF"/><g stroke="#9CA3AF" stroke-width="2.5" stroke-linecap="round"><path d="M14 43V55M42 43V55"/></g><circle cx="25" cy="19" r="6" fill="none" stroke="#374151" stroke-width="3"/><circle cx="13" cy="35" r="4.5" fill="#374151"/><g stroke="#374151" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M25 36V20M38 36L47 45L47 55M28 36H38"/></g><path d="M18 35.5H28" stroke="#E11D48" stroke-width="7" stroke-linecap="round"/>',
+  'ラットプルダウン':'<g stroke="#9CA3AF" stroke-width="2.5" stroke-linecap="round" fill="none"><path d="M12 58V7H40M34 7V13"/></g><path d="M21 14H47" stroke="#374151" stroke-width="3" stroke-linecap="round"/><rect x="27" y="44" width="16" height="4" rx="2" fill="#9CA3AF"/><circle cx="34" cy="24" r="4.5" fill="#374151"/><g stroke="#374151" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M34 31L26 23L24 15M34 31L42 23L44 15M34 43L44 44L44 56"/></g><path d="M34 30V43" stroke="#E11D48" stroke-width="7" stroke-linecap="round"/>',
+  'スクワット':'<circle cx="27" cy="19" r="6" fill="none" stroke="#374151" stroke-width="3"/><circle cx="31" cy="11" r="4.5" fill="#374151"/><g stroke="#374151" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M29 18L25 34M28 21L35 24L31 19M38 39L35 53L42 53"/></g><path d="M25 34L38 39" stroke="#E11D48" stroke-width="7" stroke-linecap="round"/><path d="M9 57H55" stroke="#9CA3AF" stroke-width="2.5" stroke-linecap="round"/>',
+  'デッドリフト':'<circle cx="22" cy="18" r="4.5" fill="#374151"/><path d="M26 22L38 34" stroke="#E11D48" stroke-width="7" stroke-linecap="round"/><g stroke="#374151" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M29 26L34 44M38 34L40 46L40 56"/></g><circle cx="35" cy="47" r="6" fill="none" stroke="#374151" stroke-width="3"/><path d="M9 57H55" stroke="#9CA3AF" stroke-width="2.5" stroke-linecap="round"/>',
+  'ショルダープレス':'<path d="M21 18V48" stroke="#9CA3AF" stroke-width="2.5" stroke-linecap="round"/><rect x="21" y="44" width="18" height="4" rx="2" fill="#9CA3AF"/><circle cx="30" cy="17" r="4.5" fill="#374151"/><g stroke="#374151" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M30 23V43M22 22L22 10M38 22L38 10M30 43L40 44L40 56"/></g><path d="M30 26L22 22M30 26L38 22" stroke="#E11D48" stroke-width="6" stroke-linecap="round"/><g fill="#374151"><rect x="18" y="6" width="8" height="4" rx="1.5"/><rect x="34" y="6" width="8" height="4" rx="1.5"/></g>',
+  'アームカール':'<circle cx="30" cy="12" r="4.5" fill="#374151"/><g stroke="#374151" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M30 17V36M30 36L26 56M30 36L34 56M32 32L40 24"/></g><path d="M30 20L32 32" stroke="#E11D48" stroke-width="6" stroke-linecap="round"/><rect x="38" y="20" width="4" height="8" rx="1.5" fill="#374151"/><path d="M9 57H55" stroke="#9CA3AF" stroke-width="2.5" stroke-linecap="round"/>'
+};
+// 名前の言い換え（絵を共通にする）
+var EX_PIC_ALIAS=[[/ベンチ|チェストプレス|ダンベルプレス/,'ベンチプレス'],[/ラットプル|懸垂|チンニング|プルアップ/,'ラットプルダウン'],[/スクワット|レッグプレス|ランジ/,'スクワット'],[/デッドリフト|ルーマニアン/,'デッドリフト'],[/ショルダープレス|オーバーヘッドプレス|ミリタリー/,'ショルダープレス'],[/カール/,'アームカール']];
+function exPicKey(name){if(EX_PICS[name])return name;const a=EX_PIC_ALIAS.find(([re])=>re.test(name));return a?a[1]:null;}
+// 種目の絵。絵がない種目は、小さな体の図で効く部位を示す
+function exPicHtml(name,size){
+  size=size||52;
+  const k=exPicKey(name);
+  if(k)return `<svg class="exf-pic" width="${size}" height="${size}" viewBox="0 0 64 64" role="img" aria-label="${esc(name)}の絵"><rect width="64" height="64" rx="14" fill="#EEF2FF"/>${EX_PICS[k]}</svg>`;
+  const m=mmMusclesOf(name),fill={};
+  m.sub.forEach(x=>{fill[x]='#FDA4AF';});m.main.forEach(x=>{fill[x]='#E11D48';});
+  const first=MM_PARTS.find(p=>p.k===m.main[0]);
+  const side=first&&first.side==='b'?'b':'f';
+  return `<span class="exf-pic exf-pic-body" style="width:${size}px;height:${size}px">${mmSvg(side,fill,Math.round(size*0.48),size,(name||'種目')+'で効く部位')}</span>`;
+}
+function _exKana(s){return String(s||'').replace(/[ぁ-ゖ]/g,c=>String.fromCharCode(c.charCodeAt(0)+0x60)).toLowerCase();}
+// 種目の一覧（部位ごとのおすすめ＋自分が記録した種目）
+function exCatalog(){
+  const map=new Map();
+  Object.values(MM_LIB).forEach(arr=>arr.forEach(([n,tool,note])=>{if(!map.has(n))map.set(n,{name:n,tool,note});}));
+  (typeof getAllExerciseNames==='function'?getAllExerciseNames():[]).forEach(n=>{if(n&&!map.has(n))map.set(n,{name:n,tool:'',note:'自分の記録',mine:true});});
+  return [...map.values()];
+}
+window._exfPart=window._exfPart||'';
+function _exPartNames(keys){return keys.map(k=>(MM_PARTS.find(p=>p.k===k)||{}).n).filter(Boolean).join('・');}
+function renderExFind(){
+  const box=document.getElementById('wo-find-view');if(!box)return;
+  if(!box.dataset.built){
+    box.dataset.built='1';
+    box.innerHTML=`<div class="card exf-box"><label for="exf-q" class="exf-lbl">種目の名前で探す</label><div class="exf-search"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="exf-q" type="search" placeholder="例：ベンチ、すくわっと" autocomplete="off"></div></div>
+      <div class="exf-lbl exf-plbl" style="margin:4px 2px 6px">部位から探す</div>
+      <div class="exf-parts" id="exf-parts"></div>
+      <div id="exf-list"></div>`;
+    document.getElementById('exf-q').addEventListener('input',renderExFindList);
+  }
+  const parts=document.getElementById('exf-parts');
+  parts.innerHTML=[['','すべて','']].concat(MM_PARTS.map(p=>[p.k,p.n,p.f])).map(([k,n,f])=>`<button type="button" class="exf-part${window._exfPart===k?' on':''}" data-k="${k}"><b>${esc(n)}</b>${f?`<small>${esc(f)}</small>`:''}</button>`).join('');
+  parts.querySelectorAll('.exf-part').forEach(b=>b.onclick=()=>{window._exfPart=b.dataset.k;renderExFind();});
+  renderExFindList();
+}
+function renderExFindList(){
+  const el=document.getElementById('exf-list');if(!el)return;
+  const q=_exKana(document.getElementById('exf-q')?.value.trim());
+  document.getElementById('wo-find-view')?.classList.toggle('exf-typing',!!q); // v2.107.0
+  const part=window._exfPart;
+  let list=exCatalog().map(e=>({...e,m:mmMusclesOf(e.name)}));
+  if(q)list=list.filter(e=>_exKana(e.name).includes(q));
+  if(part)list=list.filter(e=>e.m.main.includes(part)||e.m.sub.includes(part)).sort((a,b)=>(b.m.main.includes(part)?1:0)-(a.m.main.includes(part)?1:0));
+  const yt=n=>'https://www.youtube.com/results?search_query='+encodeURIComponent(n+' やり方');
+  el.innerHTML=list.length?`<div class="card exf-res">${list.slice(0,40).map((e,i)=>{
+    const known=e.m.main.length>0;
+    const mus=known?`${esc(_exPartNames(e.m.main))}${e.m.sub.length?`<span class="exf-sub">／補助：${esc(_exPartNames(e.m.sub))}</span>`:''}`:'<span class="exf-unk">部位がわかりません</span>';
+    return `<div class="exf-row">${exPicHtml(e.name)}<div class="exf-main"><b>${esc(e.name)}</b><span class="exf-mus">${mus}</span>${e.note?`<span class="exf-note">${esc(e.note)}</span>`:''}</div><div class="exf-acts">${e.tool?`<span class="mm-tool">${esc(e.tool)}</span>`:''}<button type="button" class="exf-add" data-i="${i}">記録に追加</button>${known?`<a class="mm-yt" href="${yt(e.name)}" target="_blank" rel="noopener">動画</a>`:`<button type="button" class="exf-set" data-i="${i}">部位を設定</button>`}</div></div>`;}).join('')}</div>`
+    :`<p class="mm-hint">見つかりませんでした。名前を変えて探すか、記録の画面で新しい種目として追加できます</p>`;
+  const shown=list.slice(0,40);
+  el.querySelectorAll('.exf-add').forEach(b=>b.onclick=()=>{
+    const e=shown[+b.dataset.i];
+    if(typeof woCatSel!=='undefined')woCatSel=e.tool==='道具なし'?'bodyweight':'weight';
+    if(!st.woDate)st.woDate=todayStr();
+    exAddAndClose(e.name);
+    document.querySelector('.wo-vtab[data-v="log"]')?.click();
+  });
+  el.querySelectorAll('.exf-set').forEach(b=>b.onclick=()=>openExMuscleSheet(shown[+b.dataset.i].name));
+}
+// 部位を自分で設定（db.settings.exMuscle[種目名] = {main:[...], sub:[]}）
+function openExMuscleSheet(name){
+  const cur=new Set(mmMusclesOf(name).main);
+  const ov=document.createElement('div');ov.className='aic-ov';ov.id='exm-ov';
+  const draw=()=>{ov.innerHTML=`<div class="aic-sheet" role="dialog" aria-modal="true" aria-labelledby="exm-title"><h3 id="exm-title" style="margin:0 0 4px">「${esc(name)}」で鍛える部位</h3><p class="aic-sub" style="margin:0 0 10px">当てはまる部位を選んでください（いくつでも）。筋肉マップに反映されます</p><div class="exf-parts">${MM_PARTS.map(p=>`<button type="button" class="exf-part${cur.has(p.k)?' on':''}" data-k="${p.k}"><b>${esc(p.n)}</b><small>${esc(p.f)}</small></button>`).join('')}</div><button type="button" class="aic-ok" id="exm-save">保存</button><button type="button" class="aic-no" id="exm-cancel">やめる</button></div>`;
+    ov.querySelectorAll('.exf-part').forEach(b=>b.onclick=()=>{const k=b.dataset.k;cur.has(k)?cur.delete(k):cur.add(k);draw();});
+    ov.querySelector('#exm-save').onclick=()=>{if(!db.settings.exMuscle)db.settings.exMuscle={};if(cur.size)db.settings.exMuscle[name]={main:[...cur],sub:[]};else delete db.settings.exMuscle[name];save(db);ov.remove();renderExFindList();};
+    ov.querySelector('#exm-cancel').onclick=()=>ov.remove();
+  };
+  draw();ov.addEventListener('click',e=>{if(e.target===ov)ov.remove();});
+  document.body.appendChild(ov);
+}
+// 記録・グラフ・種目を探す の切り替え
+document.querySelectorAll('.wo-vtab').forEach(btn=>btn.addEventListener('click',()=>{
+  const v=btn.dataset.v,fv=document.getElementById('wo-find-view');
+  if(fv)fv.hidden=v!=='find';
+  if(v==='find')renderExFind();
+}));
+
+// ── 今日は軽めで ──
+function _lhSleepMin(rec){
+  if(!rec||!rec.bedtime||!rec.wakeTime)return null;
+  const [bh,bm]=rec.bedtime.split(':').map(Number),[wh,wm]=rec.wakeTime.split(':').map(Number);
+  let d=(wh*60+wm)-(bh*60+bm);if(d<0)d+=1440;return d;
+}
+// {on:今日は軽めの日か, reason:自動でおすすめする理由（なければ空）}
+function lhLightInfo(){
+  const t=todayStr(),set=(db.settings.lightDays||{})[t];
+  const y=(()=>{const d=new Date(t+'T00:00:00');d.setDate(d.getDate()-1);return fmt(d);})();
+  const reasons=[];
+  const sm=_lhSleepMin(db.sleep&&db.sleep[y]);
+  if(sm!=null&&sm<360)reasons.push(`昨夜の睡眠が${Math.floor(sm/60)}時間${sm%60?sm%60+'分':''}`);
+  const past=Object.keys(db.workouts||{}).filter(d=>d<t&&(db.workouts[d]||[]).length).sort();
+  if(past.length){const gap=Math.round((new Date(t+'T00:00:00')-new Date(past[past.length-1]+'T00:00:00'))/86400000);if(gap>=7)reasons.push(`前回のトレーニングから${gap}日あいた`);}
+  return {on:set===true,dismissed:set===false,reason:reasons.join('・')};
+}
+function lhSetLight(on){const t=todayStr();if(!db.settings.lightDays)db.settings.lightDays={};db.settings.lightDays[t]=on;
+  // 古い日の記録は残さない
+  Object.keys(db.settings.lightDays).forEach(d=>{if(d<t)delete db.settings.lightDays[d];});
+  save(db);renderWoLight();if(typeof renderMmHomeCard==='function')renderMmHomeCard();}
+function lhLightContext(){const i=lhLightInfo();return i.on?`【今日の調子】本人が「今日は軽めで」を選んだ日${i.reason?'（'+i.reason+'）':''}。重さは前回の8割・セット数は少なめで提案する\n`:i.reason&&!i.dismissed?`【今日の調子】軽めがよさそうな日（${i.reason}）\n`:'';}
+function renderWoLight(){
+  const el=document.getElementById('wo-light');if(!el)return;
+  const i=lhLightInfo();
+  if(st.woDate&&st.woDate!==todayStr()){el.hidden=true;return;}
+  el.hidden=false;
+  if(i.on)el.innerHTML=`<div class="wl-on"><b>今日は軽めの日</b><span>重さは前回の8割から・定番メニューはセット数を1つ少なく${i.reason?'（'+esc(i.reason)+'）':''}</span><button type="button" class="wl-btn wl-off">いつもどおりに戻す</button></div>`;
+  else if(i.reason&&!i.dismissed)el.innerHTML=`<div class="wl-sug"><b>今日は軽めがおすすめ</b><span>${esc(i.reason)}</span><div class="wl-btns"><button type="button" class="wl-btn wl-yes">軽めにする</button><button type="button" class="wl-btn wl-no">いつもどおり</button></div></div>`;
+  else el.innerHTML=`<button type="button" class="wl-mini wl-yes">今日は軽めで</button>`;
+  el.querySelector('.wl-yes')?.addEventListener('click',()=>lhSetLight(true));
+  el.querySelector('.wl-no')?.addEventListener('click',()=>lhSetLight(false));
+  el.querySelector('.wl-off')?.addEventListener('click',()=>lhSetLight(false));
+}
+// 軽めの日の重さ（2.5kg単位で切り下げ）
+function lhLightWeight(w){return Math.floor((+w||0)*0.8/2.5)*2.5;}
+// ── 最初の質問・健康チェック・ジム登録・プラン・はじめてガイド（v2.106.0） ─────────
+// ※ビルドで1つのscriptに連結されるため、トップレベルに const/let を置かない（TDZ回避）
+var ONB_PURPOSE=[['muscle','💪 筋肉をつけたい'],['lose','🔥 やせたい'],['health','🏃 体力・健康'],['look','✨ 見た目を整える'],['sport','🏅 競技・部活']];
+var ONB_PLACE=[['gym','🏢 ジム'],['home','🏠 自宅'],['both','🔁 両方'],['none','🌱 まだしていない']];
+var ONB_CHAINS=['エニタイムフィットネス','chocoZAP','ゴールドジム','JOYFIT','ティップネス','コナミスポーツ','セントラル','ルネサンス','公共の体育館・トレーニング室','大学のジム','その他'];
+var ONB_GYM_EQ=['バーベル','ダンベル','マシン','ケーブル','ベンチ','懸垂バー','スミスマシン'];
+var ONB_HOME_EQ=['道具なし','ダンベル','懸垂バー','ベンチ','チューブ','ケトルベル'];
+var ONB_EXP=[['new','はじめて'],['lt6m','半年未満'],['6m2y','半年〜2年'],['gt2y','2年以上']];
+// PAR-Q+ にならった7問（診断ではない）
+var ONB_PARQ=['医師から心臓の病気や高血圧があると言われたことがある','安静にしているとき・運動中・日常生活で、胸の痛みを感じることがある','この1年で、めまいでふらついたり、気を失ったりしたことがある','心臓・高血圧以外に、医師から言われている持病がある','持病のために薬を飲んでいる','運動すると悪くなりそうな骨・関節・筋肉の問題がある（腰・ひざなど）','医師から、医師の監督のもとでのみ運動するよう言われている'];
+function onbDefaultEquip(h){
+  const g=[],place=h.place;
+  if(place==='gym'||place==='both'){
+    const c=h.gym&&h.gym.chain;
+    if(c==='chocoZAP')g.push('マシン','ダンベル');
+    else if(c==='公共の体育館・トレーニング室')g.push('マシン','ダンベル','ベンチ');
+    else g.push(...ONB_GYM_EQ);
+  }
+  if(place==='home'||place==='both')g.push('道具なし');
+  if(place==='none'||!place)g.push('道具なし');
+  return [...new Set(g)];
+}
+function onbGoalOf(p){p=p||[];return p.includes('lose')?'cut':p.includes('look')?'recomp':p.includes('muscle')?'bulk':'maintain';}
+// 1日の目安カロリー（Mifflin-St Jeor × 活動量 ± 目的）とたんぱく質
+function onbNutrition(h){
+  const w=+h.weight,ht=+h.height,a=+h.age;
+  if(!(w>0&&ht>0&&a>0))return null;
+  const base=10*w+6.25*ht-5*a+(h.sex==='m'?5:h.sex==='f'?-161:-78);
+  const f=+h.gymFreq||0,act=f<=1?1.3:f<=3?1.45:f<=5?1.6:1.75;
+  const goal=h.goal||'maintain',minor=a<18;
+  const adj=goal==='cut'?(minor?0.95:0.85):goal==='bulk'?1.1:goal==='recomp'?0.95:1;
+  const kcal=Math.round(base*act*adj/10)*10;
+  const pPerKg=goal==='cut'||goal==='recomp'?2.0:goal==='bulk'?1.8:f>0?1.4:1.0;
+  return {kcal,protein:Math.round(w*pPerKg),minor};
+}
+// 回数・経験・場所から定番の型を選んで、1週間に並べる
+function onbPlan(h){
+  const freq=Math.min(7,Math.max(1,+h.gymFreq||3));
+  const eq=h.equipment||[];
+  const gymLike=(h.place==='gym'||h.place==='both')&&eq.some(x=>['バーベル','マシン','ダンベル','ケーブル'].includes(x));
+  const tpls=programTemplates();
+  let id;
+  if(!gymLike)id='home3';
+  else if(freq<=2)id='health2';
+  else if(freq===3)id=(h.exp==='6m2y'||h.exp==='gt2y')?'ppl':'full3';
+  else id='ul4';
+  const tpl=tpls.find(t=>t.id===id)||tpls[0];
+  const DAYS={1:[3],2:[2,5],3:[1,3,5],4:[1,2,4,5],5:[1,2,3,4,5],6:[1,2,3,4,5,6],7:[0,1,2,3,4,5,6]}[freq];
+  const t0=new Date(todayStr()+'T00:00:00'),out=[];let n=0;
+  for(let i=0;i<7;i++){
+    const d=new Date(t0);d.setDate(d.getDate()+i);
+    const ds=fmt(d),on=DAYS.includes(d.getDay());
+    const day=on?tpl.days[n++%tpl.days.length]:null;
+    out.push({ds,dow:'日月火水木金土'[d.getDay()],day});
+  }
+  return {tpl,days:out};
+}
+function onbPlanText(day){return day.label+'\n'+day.exercises.map(e=>`${e.name} ${e.sets}×${e.reps}`).join('\n');}
+
+// ── 質問の画面 ──
+window._onb=window._onb||{i:0,h:{}};
+var ONB_STEPS=['purpose','body','place','equip','freq','exp','parq','plan'];
+function onbStart(done,reopen){
+  window._onb={i:0,h:Object.assign({purposes:[],sex:'',equipment:null,parq:[]},JSON.parse(JSON.stringify(db.settings.healthProfile||{}))),done,reopen:!!reopen};
+  document.getElementById('ob-step1').hidden=true;
+  document.querySelector('#onboarding .ob-logo')?.setAttribute('hidden','');
+  document.querySelector('#onboarding .ob-sub')?.setAttribute('hidden','');
+  const w=document.getElementById('ob-wiz');w.hidden=false;
+  document.getElementById('onboarding').classList.add('wiz');
+  onbRender();
+}
+function _chip(on,attrs,label){return `<button type="button" class="ob-chip${on?' active':''}" ${attrs}>${label}</button>`;}
+function onbRender(){
+  const S=window._onb,h=S.h,k=ONB_STEPS[S.i],w=document.getElementById('ob-wiz');
+  let body='';
+  if(k==='purpose')body=`<h2 class="ow-q">LifeWithで、何をしたいですか？</h2><p class="ow-hint">いくつでも選べます</p><div class="ob-chips">${ONB_PURPOSE.map(([v,l])=>_chip((h.purposes||[]).includes(v),`data-p="${v}"`,l)).join('')}</div>`;
+  else if(k==='body')body=`<h2 class="ow-q">体のことを教えてください</h2><p class="ow-hint">目安のカロリーと、最初の重さの計算に使います</p>
+    <div class="ow-lbl">性別</div><div class="ob-chips">${[['m','男性'],['f','女性'],['x','答えない']].map(([v,l])=>_chip(h.sex===v,`data-sex="${v}"`,l)).join('')}</div>
+    <div class="ow-grid"><label>年齢<input class="ob-input" id="ow-age" type="number" inputmode="numeric" min="10" max="100" value="${h.age||''}"></label><label>身長 cm<input class="ob-input" id="ow-height" type="number" inputmode="decimal" min="100" max="230" value="${h.height||''}"></label><label>体重 kg<input class="ob-input" id="ow-weight" type="number" inputmode="decimal" min="25" max="250" step="0.1" value="${h.weight||''}"></label></div>`;
+  else if(k==='place')body=onbPlaceHtml(h);
+  else if(k==='equip')body=onbEquipHtml(h);
+  else if(k==='freq')body=`<h2 class="ow-q">週に何日、1回どれくらい？</h2><div class="ow-lbl">週の日数</div><div class="ob-chips">${[1,2,3,4,5,6,7].map(n=>_chip(+h.gymFreq===n,`data-freq="${n}"`,n+'日')).join('')}</div><div class="ow-lbl">1回の時間</div><div class="ob-chips">${[30,45,60,90].map(n=>_chip(+h.minutes===n,`data-min="${n}"`,n+'分')).join('')}</div>`;
+  else if(k==='exp')body=`<h2 class="ow-q">今の筋トレは？</h2><div class="ob-chips">${ONB_EXP.map(([v,l])=>_chip(h.exp===v,`data-exp="${v}"`,l)).join('')}</div><p class="ow-hint">わかれば、いつもの重さ×回数（なくても大丈夫）</p><div class="ow-grid ow-lifts"><label>ベンチプレス kg<input class="ob-input" id="ow-bw" type="number" inputmode="decimal" value="${h.lifts?.bench?.w||''}"></label><label>回数<input class="ob-input" id="ow-br" type="number" inputmode="numeric" value="${h.lifts?.bench?.r||''}"></label><label>スクワット kg<input class="ob-input" id="ow-sw" type="number" inputmode="decimal" value="${h.lifts?.squat?.w||''}"></label><label>回数<input class="ob-input" id="ow-sr" type="number" inputmode="numeric" value="${h.lifts?.squat?.r||''}"></label></div>`;
+  else if(k==='parq')body=`<h2 class="ow-q">運動を始める前の健康チェック</h2><p class="ow-hint">当てはまるものを選んでください。安全なメニューを組むためで、診断ではありません</p><div class="ow-parq">${ONB_PARQ.map((q,i)=>`<button type="button" class="ow-pq${(h.parq||[]).includes(i)?' on':''}" data-pq="${i}"><span class="ow-pq-box"></span><span>${esc(q)}</span></button>`).join('')}</div><p class="ow-hint">どれも当てはまらなければ、そのまま「次へ」</p>`;
+  else if(k==='plan')body=onbPlanHtml(h);
+  const last=k==='plan';
+  w.innerHTML=`<div class="ow-top"><button type="button" class="ow-back" ${S.i?'':'hidden'} aria-label="戻る">‹</button><div class="ow-dots">${ONB_STEPS.map((_,i)=>`<i class="${i<=S.i?'on':''}"></i>`).join('')}</div><span class="ow-n">${S.i+1}/${ONB_STEPS.length}</span>${S.reopen?'<button type="button" class="ow-back ow-close" aria-label="やめる">×</button>':''}</div>
+    <div class="ow-body">${body}</div>
+    ${last?'':`<div class="ow-foot"><button type="button" class="ob-btn" id="ow-next">次へ</button><button type="button" class="ob-skip-btn" id="ow-skip">スキップ</button></div>`}`;
+  onbBind(w,k);
+}
+function onbPlaceHtml(h){
+  const g=h.gym||{};
+  return `<h2 class="ow-q">どこでトレーニングしますか？</h2><div class="ob-chips">${ONB_PLACE.map(([v,l])=>_chip(h.place===v,`data-place="${v}"`,l)).join('')}</div>
+    ${h.place==='gym'||h.place==='both'?`<div class="ow-lbl">通っているジム</div><div class="ob-chips ow-chains">${ONB_CHAINS.map(c=>_chip(g.chain===c,`data-chain="${esc(c)}"`,esc(c))).join('')}</div><label class="ow-lbl">店舗名（わかれば）<input class="ob-input" id="ow-store" type="text" maxlength="30" placeholder="例：渋谷店" value="${esc(g.store||'')}"></label>`:''}`;
+}
+function onbEquipHtml(h){
+  if(!Array.isArray(h.equipment))h.equipment=onbDefaultEquip(h);
+  const list=[...new Set([...(h.place==='home'?[]:ONB_GYM_EQ),...ONB_HOME_EQ])];
+  return `<h2 class="ow-q">使える器具は？</h2><p class="ow-hint">${h.gym?.chain?esc(h.gym.chain)+'の一般的な器具を選んでおきました。':''}違っていたら直してください。そこにある器具だけでメニューを組みます</p><div class="ob-chips">${list.map(x=>_chip(h.equipment.includes(x),`data-eq="${esc(x)}"`,esc(x))).join('')}</div>`;
+}
+function onbPlanHtml(h){
+  h.goal=onbGoalOf(h.purposes);
+  const nu=onbNutrition(h),pl=onbPlan(h),pro=typeof lhIsPro==='function'&&lhIsPro(),canBuy=typeof lhCanPurchase==='function'&&lhCanPurchase();
+  const enforced=typeof lhPlanEnforced==='function'&&lhPlanEnforced();
+  return `<h2 class="ow-q">${esc(db.userProfile?.name||window._onbName||'')}さん専用のプラン</h2>
+    ${(h.parq||[]).length?`<div class="ow-warn">健康チェックで当てはまる項目がありました。<b>運動を始める前に、医師に相談してください。</b>LifeWithのAIは強い負荷を避けて提案します。</div>`:''}
+    <div class="ow-plan"><div class="ow-plan-head">${esc(pl.tpl.name)}<small>週${+h.gymFreq||3}日${h.minutes?'・1回'+h.minutes+'分':''}</small></div>
+    ${pl.days.map(x=>`<div class="ow-day${x.day?'':' rest'}"><b>${x.dow}</b><span>${x.day?esc(x.day.label)+'：'+esc(x.day.exercises.slice(0,3).map(e=>e.name).join('・'))+(x.day.exercises.length>3?' ほか':''):'休み'}</span></div>`).join('')}</div>
+    ${nu?`<div class="ow-nu"><div><small>1日の目安</small><b>${nu.kcal.toLocaleString()}<span>kcal</span></b></div><div><small>たんぱく質</small><b>${nu.protein}<span>g</span></b></div></div>${nu.minor?'<p class="ow-hint">18歳未満なので、食事は減らしすぎない目安にしています</p>':''}`:'<p class="ow-hint">体のことを入れると、1日の目安カロリーも出せます（プロフィールからいつでも）</p>'}
+    <div class="ow-pro"><span class="pw-tag">PREMIUM</span> プレミアムなら、ランが睡眠・食事・予定まで見て、このメニューを毎週あなたに合わせて組み直します</div>
+    <button type="button" class="ob-btn" id="ow-trial">${enforced&&!pro?(canBuy?'1か月無料でプレミアムを試す':'1か月無料で試す（iPhoneアプリで近日）'):'このプランではじめる'}</button>
+    <button type="button" class="ob-skip-btn" id="ow-free">${enforced&&!pro?'無料ではじめる':'あとで見直す'}</button>`;
+}
+function _onbReadInputs(k){
+  const h=window._onb.h,v=id=>{const e=document.getElementById(id);return e&&e.value!==''?+e.value:null;};
+  if(k==='body'){const a=v('ow-age'),ht=v('ow-height'),w=v('ow-weight');if(a)h.age=a;if(ht)h.height=ht;if(w)h.weight=w;}
+  if(k==='place'){const s=document.getElementById('ow-store');if(s&&h.gym)h.gym.store=s.value.trim();}
+  if(k==='exp'){const lifts={};const bw=v('ow-bw'),br=v('ow-br'),sw=v('ow-sw'),sr=v('ow-sr');if(bw)lifts.bench={w:bw,r:br||null};if(sw)lifts.squat={w:sw,r:sr||null};if(Object.keys(lifts).length)h.lifts=lifts;}
+}
+function onbBind(w,k){
+  const S=window._onb,h=S.h,re=()=>{_onbReadInputs(k);onbRender();};
+  w.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{const p=b.dataset.p,a=h.purposes||(h.purposes=[]);a.includes(p)?a.splice(a.indexOf(p),1):a.push(p);re();});
+  w.querySelectorAll('[data-sex]').forEach(b=>b.onclick=()=>{h.sex=b.dataset.sex;re();});
+  w.querySelectorAll('[data-place]').forEach(b=>b.onclick=()=>{h.place=b.dataset.place;if(h.place==='gym'||h.place==='both'){h.gym=h.gym||{};}else delete h.gym;h.equipment=null;re();});
+  w.querySelectorAll('[data-chain]').forEach(b=>b.onclick=()=>{h.gym=Object.assign(h.gym||{},{chain:b.dataset.chain});h.equipment=null;re();});
+  w.querySelectorAll('[data-eq]').forEach(b=>b.onclick=()=>{const x=b.dataset.eq,a=h.equipment;a.includes(x)?a.splice(a.indexOf(x),1):a.push(x);re();});
+  w.querySelectorAll('[data-freq]').forEach(b=>b.onclick=()=>{h.gymFreq=+b.dataset.freq;re();});
+  w.querySelectorAll('[data-min]').forEach(b=>b.onclick=()=>{h.minutes=+b.dataset.min;re();});
+  w.querySelectorAll('[data-exp]').forEach(b=>b.onclick=()=>{h.exp=b.dataset.exp;re();});
+  w.querySelectorAll('[data-pq]').forEach(b=>b.onclick=()=>{const i=+b.dataset.pq,a=h.parq||(h.parq=[]);a.includes(i)?a.splice(a.indexOf(i),1):a.push(i);re();});
+  w.querySelector('.ow-back:not(.ow-close)')?.addEventListener('click',()=>{_onbReadInputs(k);S.i=Math.max(0,S.i-1);onbRender();});
+  w.querySelector('.ow-close')?.addEventListener('click',onbClose);
+  const go=()=>{_onbReadInputs(k);S.i=Math.min(ONB_STEPS.length-1,S.i+1);onbRender();};
+  w.querySelector('#ow-next')?.addEventListener('click',go);
+  w.querySelector('#ow-skip')?.addEventListener('click',()=>{S.i=Math.min(ONB_STEPS.length-1,S.i+1);onbRender();});
+  w.querySelector('#ow-trial')?.addEventListener('click',()=>{onbFinish(true);});
+  w.querySelector('#ow-free')?.addEventListener('click',()=>onbFinish(false));
+}
+// 答えを保存して、プランを今週の予定に入れる
+function onbFinish(trial){
+  const S=window._onb,h=S.h;
+  h.goal=onbGoalOf(h.purposes);
+  if(!Array.isArray(h.equipment))h.equipment=onbDefaultEquip(h);
+  db.settings.healthProfile=Object.assign(db.settings.healthProfile||{},h);
+  const pl=onbPlan(h);
+  if(!db.trainingMenus)db.trainingMenus={};
+  pl.days.forEach(x=>{if(x.day&&!db.trainingMenus[x.ds])db.trainingMenus[x.ds]=onbPlanText(x.day);});
+  if(!S.reopen)db.settings.tutorial={rec:false,map:false,ai:false};
+  onbMarkAsked();
+  save(db);
+  const useCase=[...new Set((h.purposes||[]).flatMap(p=>({muscle:['fitness'],lose:['diet','fitness'],health:['fitness','habit'],look:['fitness','diet'],sport:['fitness']})[p]||[]))];
+  if(typeof S.done==='function')S.done(useCase.length?useCase:['fitness']);
+  if(trial&&typeof lhPlanEnforced==='function'&&lhPlanEnforced()&&!lhIsPro())setTimeout(()=>lhShowPaywall({feature:'none'}),600);
+}
+// v2.106.1: すでに使っている人が、プロフィールから質問を開き直す
+function onbReopen(){
+  document.getElementById('onboarding').hidden=false;
+  document.getElementById('app').style.display='none';
+  onbStart(function(){
+    onbClose();
+    if(typeof renderMeTab==='function')renderMeTab();
+    if(typeof renderMmHomeCard==='function')renderMmHomeCard();
+    if(typeof renderStoicToday==='function')renderStoicToday();
+    if(typeof showToast==='function')showToast('答えを保存しました');
+  },true);
+}
+function onbClose(){
+  onbMarkAsked();save(db);
+  const ob=document.getElementById('onboarding');
+  ob.hidden=true;ob.classList.remove('wiz');
+  document.getElementById('app').style.display='';
+}
+// 一度出したら（答えた・閉じた）次からは自動で出さない
+function onbAsked(){try{if(localStorage.getItem('lh_onb_asked'))return true;}catch(e){}return !!db.settings.onbAsked;}
+function onbMarkAsked(){db.settings.onbAsked=true;try{localStorage.setItem('lh_onb_asked','1');}catch(e){}}
+// すでに使っている人にも、アップデート後の最初の起動で1回だけ出す（パスコードのあと）
+function onbAutoAsk(){
+  if(window._LH_IS_NEW||onbAsked())return;
+  const go=()=>{if(!onbAsked()&&document.getElementById('onboarding').hidden)onbReopen();};
+  const pc=document.getElementById('pc-screen');
+  if(!pc||pc.hidden){go();return;}
+  const t=setInterval(()=>{if(pc.hidden){clearInterval(t);go();}},300);
+}
+// AIに渡すトレーニング環境と健康チェック
+function lhProfileContext(){
+  const h=db.settings.healthProfile||{};
+  const parts=[];
+  const placeL={gym:'ジム',home:'自宅',both:'ジムと自宅',none:'まだしていない'}[h.place];
+  if(placeL)parts.push('場所: '+placeL+(h.gym&&h.gym.chain?`（${h.gym.chain}${h.gym.store?' '+h.gym.store:''}）`:''));
+  if(Array.isArray(h.equipment)&&h.equipment.length)parts.push('使える器具: '+h.equipment.join('・')+'（これ以外の器具が必要な種目は出さない）');
+  if(h.gymFreq||h.minutes)parts.push(`週${h.gymFreq||'?'}日${h.minutes?'・1回'+h.minutes+'分':''}`);
+  const expL={'new':'はじめて','lt6m':'半年未満','6m2y':'半年〜2年','gt2y':'2年以上'}[h.exp];
+  if(expL)parts.push('筋トレ歴: '+expL);
+  if(h.lifts){const L=[];if(h.lifts.bench)L.push(`ベンチプレス${h.lifts.bench.w}kg${h.lifts.bench.r?'×'+h.lifts.bench.r:''}`);if(h.lifts.squat)L.push(`スクワット${h.lifts.squat.w}kg${h.lifts.squat.r?'×'+h.lifts.squat.r:''}`);if(L.length)parts.push('いつもの重さ: '+L.join('・'));}
+  if(h.sex)parts.push('性別: '+({m:'男性',f:'女性',x:'答えない'}[h.sex]||''));
+  let s=parts.length?`【トレーニング環境】${parts.join(' / ')}\n`:'';
+  if((h.parq||[]).length)s+=`【健康チェック】当てはまる項目あり: ${h.parq.map(i=>ONB_PARQ[i]).filter(Boolean).join('／')}。強い負荷・高強度は避け、運動を始める前に医師へ相談するよう勧める\n`;
+  if(+h.age&&+h.age<18)s+='【年齢】18歳未満。極端な減量・チートデイは提案しない\n';
+  return s;
+}
+
+// ── プロフィール → ジムと器具 ──
+function openGymSheet(){
+  const h=JSON.parse(JSON.stringify(db.settings.healthProfile||{}));
+  const ov=document.createElement('div');ov.className='aic-ov';ov.id='gym-ov';
+  const draw=()=>{
+    ov.innerHTML=`<div class="aic-sheet ow-sheet" role="dialog" aria-modal="true" aria-label="ジムと器具">${onbPlaceHtml(h)}${h.place?onbEquipHtml(h):''}<button type="button" class="aic-ok" id="gym-save">保存</button><button type="button" class="aic-no" id="gym-cancel">やめる</button></div>`;
+    const read=()=>{const s=ov.querySelector('#ow-store');if(s&&h.gym)h.gym.store=s.value.trim();};
+    ov.querySelectorAll('[data-place]').forEach(b=>b.onclick=()=>{read();h.place=b.dataset.place;if(h.place==='gym'||h.place==='both')h.gym=h.gym||{};else delete h.gym;h.equipment=null;draw();});
+    ov.querySelectorAll('[data-chain]').forEach(b=>b.onclick=()=>{read();h.gym=Object.assign(h.gym||{},{chain:b.dataset.chain});h.equipment=null;draw();});
+    ov.querySelectorAll('[data-eq]').forEach(b=>b.onclick=()=>{read();const x=b.dataset.eq;x&&h.equipment.includes(x)?h.equipment.splice(h.equipment.indexOf(x),1):h.equipment.push(x);draw();});
+    ov.querySelector('#gym-save').onclick=()=>{read();const hp=db.settings.healthProfile||(db.settings.healthProfile={});hp.place=h.place;if(h.gym)hp.gym=h.gym;else delete hp.gym;hp.equipment=h.equipment||onbDefaultEquip(h);save(db);ov.remove();if(typeof renderMeTab==='function')renderMeTab();};
+    ov.querySelector('#gym-cancel').onclick=()=>ov.remove();
+  };
+  draw();ov.addEventListener('click',e=>{if(e.target===ov)ov.remove();});
+  document.body.appendChild(ov);
+}
+function lhGymLabel(){const h=db.settings.healthProfile||{};if(h.gym&&h.gym.chain)return h.gym.chain+(h.gym.store?' '+h.gym.store:'');return {gym:'ジム',home:'自宅',both:'ジムと自宅',none:'未設定'}[h.place]||'未設定';}
+
+// ── はじめてガイド（ホーム） ──
+function renderTutorial(){
+  const el=document.getElementById('tut-card');if(!el)return;
+  const t=db.settings.tutorial;
+  if(!t||t.closed||(t.rec&&t.map&&t.ai)){el.hidden=true;return;}
+  const items=[['rec','今日やることを1つ記録する','体重や朝食をワンタップで'],['map','筋肉マップを見る','鍛えどきの部位がわかります'],['ai','ランに話しかける','「今日なにやればいい？」と聞いてみよう']];
+  const done=items.filter(([k])=>t[k]).length;
+  el.hidden=false;
+  el.innerHTML=`<div class="tut-head"><b>はじめてガイド</b><span>${done} / 3</span><button type="button" class="tut-close" aria-label="ガイドを閉じる">あとで</button></div>${items.map(([k,l,s])=>`<button type="button" class="tut-item${t[k]?' done':''}" data-tut="${k}"><span class="sk-dot"></span><span class="tut-txt"><b>${l}</b><small>${s}</small></span></button>`).join('')}`;
+  el.querySelector('.tut-close').onclick=()=>{t.closed=true;save(db);renderTutorial();};
+  el.querySelectorAll('.tut-item').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.tut;t[k]=true;save(db);
+    if(k==='rec'){const st0=document.getElementById('stoic-today');st0?.scrollIntoView({behavior:'smooth',block:'start'});st0?.classList.add('tut-flash');setTimeout(()=>st0?.classList.remove('tut-flash'),1600);renderTutorial();}
+    else if(k==='map')switchToTab('ana');
+    else if(k==='ai'){switchToTab('ai');const inp=document.getElementById('ai-input');if(inp){inp.value='今日なにやればいい？';inp.dispatchEvent(new Event('input'));}}
+  });
+}
+document.querySelector('.me-row[data-me="gym"]')?.addEventListener('click',openGymSheet);
+
+renderTutorial();
+// ── プレミアムのAIの提案とAIの判定（v2.107.0） ─────────────────
+// ①筋肉の回復のAI判定 ②ランからの提案（ホーム・1日1回） ③週のレポート（数字は無料・体調との関係とAIのレポートはプレミアム）
+// ※ビルドで1つのscriptに連結されるため、トップレベルに const/let を置かない（TDZ回避）
+
+function _pmDate(off,base){const d=new Date((base||todayStr())+'T00:00:00');d.setDate(d.getDate()+off);return fmt(d);}
+function _pmKey(k){return k+'_'+(window._LH_PID||'');}
+function _pmGet(k){try{return JSON.parse(localStorage.getItem(_pmKey(k))||'null');}catch(e){return null;}}
+function _pmSet(k,v){try{localStorage.setItem(_pmKey(k),JSON.stringify(v));}catch(e){}}
+function _pmVol(ds){let sets=0,vol=0;((db.workouts&&db.workouts[ds])||[]).forEach(e=>(e.sets||[]).forEach(s=>{sets++;if(s.w!=null&&s.r!=null)vol+=(+s.w||0)*(+s.r||0);}));return {sets,vol:Math.round(vol)};}
+function _pmProtId(){const n=(db.nutrients||[]).find(x=>/タンパク|たんぱく|protein/i.test(x.name||''));return n?n.id:null;}
+function _pmMeal(ds){const m=db.meals&&db.meals[ds];if(!m)return null;const pid=_pmProtId();let kcal=0,p=0,n=0;['breakfast','lunch','dinner','snack'].forEach(k=>(m[k]||[]).forEach(it=>{n++;kcal+=+it.kcal||0;p+=+(it.protein!=null?it.protein:pid&&it.nutrients?it.nutrients[pid]:0)||0;}));return n?{kcal:Math.round(kcal),p:Math.round(p)}:null;}
+function _pmSleepH(ds){const m=typeof _lhSleepMin==='function'?_lhSleepMin(db.sleep&&db.sleep[ds]):null;return m==null?null:m/60;}
+function _pmH(ds){return (db.health&&db.health[ds])||{};}
+function lhPremiumLocked(){return typeof lhIsPro==='function'&&!lhIsPro();}
+function lhAskRan(text){
+  switchToTab('ai');
+  const inp=document.getElementById('ai-input');
+  if(inp){inp.value=text;inp.dispatchEvent(new Event('input'));inp.focus();}
+}
+function _pmTarget(){
+  const h=db.settings.healthProfile||{};
+  if(typeof onbNutrition!=='function')return null;
+  return onbNutrition(Object.assign({},h,{goal:h.goal||(typeof onbGoalOf==='function'?onbGoalOf(h.purposes):'maintain')}));
+}
+// AIにJSONで答えてもらう。{data} か {err, kind}
+async function lhAiJson(feature,sys,prompt,maxTok,silent){
+  if(window._DEV_MODE)return {err:'[DEVモード] AIは本番・stagingのみ動作します'};
+  if(!aiConsented()){if(silent||!(await aiRequireConsent()))return {err:'AIを使うには最初に確認が必要です',kind:'consent'};}
+  try{
+    const res=await fetch(WORKER_URL,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({lh_feature:feature,model:'claude-haiku-5-5',max_tokens:maxTok||1200,thinking:{type:'disabled'},system:sys+'\n出力はJSONだけ。前置き・コードブロック・説明は書かない。',messages:[{role:'user',content:prompt}]})});
+    const d=await res.json();
+    if(d&&(d.error||d.type==='error'))return {err:aiErrorText(d)||'AIの返事を受け取れませんでした。少し時間をおいて試してください',kind:aiErrorKind(d)};
+    const t=((d&&d.content)||[]).filter(c=>c.type==='text').map(c=>c.text).join('');
+    const m=t.match(/\{[\s\S]*\}/);if(!m)return {err:'AIの返事を読み取れませんでした。もう一度試してください'};
+    return {data:JSON.parse(m[0])};
+  }catch(e){return {err:'通信できませんでした。電波のよいところでもう一度試してください'};}
+}
+function _pmDataCtx(){
+  let s='';
+  try{if(typeof window.lhGetContext==='function')s+=window.lhGetContext()+'\n';}catch(e){}
+  try{if(typeof lhProfileContext==='function')s+=lhProfileContext();}catch(e){}
+  try{if(typeof lhLightContext==='function')s+=lhLightContext();}catch(e){}
+  return s;
+}
+
+// ── ① 筋肉の回復のAI判定 ──
+// 今日の判定（プレミアムのときだけ使う）。mmState() が色に重ねる
+function lhMmAiToday(){
+  if(lhPremiumLocked())return null;
+  const c=_pmGet('lh_mm_ai');
+  return c&&c.date===todayStr()&&c.data&&c.data.parts?c.data:null;
+}
+function lhRecoveryPrompt(){
+  const parts={};MM_PARTS.forEach(p=>{parts[p.k]=[];});
+  for(let i=0;i<14;i++){
+    const ds=_pmDate(-i);
+    ((db.workouts&&db.workouts[ds])||[]).forEach(e=>{
+      const m=mmMusclesOf(e.name),sets=e.sets||[];
+      const desc=sets.map(s=>s.w!=null?`${s.w}kg×${s.r==null?'?':s.r}`:s.r!=null?`${s.r}回`:s.time!=null?`${s.time}分`:'').filter(Boolean).join(',');
+      m.main.forEach(k=>{if(parts[k])parts[k].push(`${i}日前 ${e.name} ${sets.length}セット${desc?'('+desc+')':''}`);});
+      m.sub.forEach(k=>{if(parts[k])parts[k].push(`${i}日前 ${e.name}（補助で使用） ${sets.length}セット`);});
+    });
+  }
+  const lines=MM_PARTS.map(p=>`${p.k}（${p.n}）: ${parts[p.k].slice(0,4).join(' / ')||'14日間記録なし'}`).join('\n');
+  const sl=[1,2,3].map(i=>{const h=_pmSleepH(_pmDate(-i));return `${i}日前の夜: ${h==null?'記録なし':h.toFixed(1)+'時間'}`;}).join('、');
+  const tg=_pmTarget();
+  const ml=[-1,0].map(i=>{const m=_pmMeal(_pmDate(i));return `${i?'昨日':'今日（ここまで）'}: ${m?m.kcal+'kcal・たんぱく質'+m.p+'g':'記録なし'}`;}).join('、');
+  let ctx='';try{if(typeof lhProfileContext==='function')ctx+=lhProfileContext();if(typeof lhLightContext==='function')ctx+=lhLightContext();}catch(e){}
+  return `【部位ごとの直近14日のトレーニング】\n${lines}\n\n【睡眠】${sl}\n【食事】${ml}${tg?`（1日の目安 ${tg.kcal}kcal・たんぱく質${tg.protein}g）`:''}\n${ctx}
+次の考え方で、15部位それぞれの今日の回復状態を判定してください。
+・大きい筋肉（胸・背中・前もも・もも裏・お尻）は強く鍛えたあと48〜72時間、小さい筋肉（腕・肩・ふくらはぎ・お腹・前腕）は24〜48時間で回復するのが目安
+・セット数や重さが多いほど回復に時間がかかる。睡眠が6時間未満の日・たんぱく質が目安より少ない日は回復が遅れる
+・補助で使っただけの部位は回復が早い。14日間記録がない部位は "none"
+・st は rest（回復中）/ soon（もうすぐ）/ ready（鍛えてよい）/ none（記録なし）のどれか
+・why は判定の理由を20字以内で（例:「2日前に胸を12セット・睡眠5h」）
+・focus は今日鍛えるのにいちばん向いている部位のキー（最大3つ。休んだほうがよい日は空）
+・today は今日のおすすめを2文以内のタメ口で
+形式: {"parts":{"chest":{"st":"rest","why":"..."}, ...15部位すべて},"focus":["back"],"today":"..."}
+部位のキー: ${MM_PARTS.map(p=>p.k).join(', ')}`;
+}
+async function lhRunRecovery(force){
+  if(lhPremiumLocked()){lhShowPaywall({feature:'recovery'});return;}
+  if(!force&&lhMmAiToday()){renderMuscleMap();return;}
+  window._mmAiBusy=true;window._mmAiErr='';renderMuscleMap();
+  const r=await lhAiJson('recovery','あなたはスポーツ科学にくわしい筋トレのトレーナーです。記録から筋肉の回復を判定します。',lhRecoveryPrompt(),1500);
+  window._mmAiBusy=false;
+  if(r.data&&r.data.parts)_pmSet('lh_mm_ai',{date:todayStr(),data:r.data});
+  else window._mmAiErr=r.err||'判定できませんでした。もう一度試してください';
+  renderMuscleMap();
+  if(typeof renderMmHomeCard==='function')renderMmHomeCard();
+}
+// 分析 → 筋肉の下に出す AI 判定の欄
+function mmAiBoxHtml(){
+  const ai=lhMmAiToday();
+  if(window._mmAiBusy)return `<div class="card mm-ai-box loading"><span class="pw-tag">PREMIUM</span> AIが判定しています…<small>睡眠・食事・前回の量を見ています</small></div>`;
+  if(ai){
+    const focus=(ai.focus||[]).filter(k=>MM_PARTS.some(p=>p.k===k));
+    return `<div class="card mm-ai-box"><div class="mm-ai-head"><span class="pw-tag">PREMIUM</span><b>AIの判定（今日）</b><button type="button" class="mm-ai-redo" id="mm-ai-redo" aria-label="もう一度判定する">↺</button></div>
+      ${focus.length?`<div class="mm-ai-focus">${focus.map(k=>`<span>${esc(_mmNames([k])[0])}</span>`).join('')}</div>`:''}
+      ${ai.today?`<p class="mm-ai-today">${esc(ai.today)}</p>`:''}
+      <p class="mm-hint" style="margin:0">図の色はAIの判定です。部位をタップすると理由が出ます</p>
+      <button type="button" class="mm-ai-ask" id="mm-ai-ask">このおすすめでメニューをランに聞く</button></div>`;
+  }
+  return `${window._mmAiErr?`<p class="mm-ai-err">${esc(window._mmAiErr)}</p>`:''}<button type="button" class="mm-ai-btn" id="mm-ai-btn"><span class="pw-tag">PREMIUM</span> AIにくわしく判定してもらう<small>睡眠・食事・前回の量まで見て、15部位の回復と今日の鍛えどきを判定</small></button>`;
+}
+function mmAiBind(root){
+  root.querySelector('#mm-ai-btn')?.addEventListener('click',()=>lhRunRecovery(false));
+  root.querySelector('#mm-ai-redo')?.addEventListener('click',()=>lhRunRecovery(true));
+  root.querySelector('#mm-ai-ask')?.addEventListener('click',()=>{
+    const ai=lhMmAiToday()||{};
+    const f=_mmNames((ai.focus||[]).filter(k=>MM_PARTS.some(p=>p.k===k)));
+    lhAskRan(f.length?`筋肉の判定で今日は${f.join('・')}がやりごろだった。今日のメニューを組んで`:'筋肉の判定を見て、今日のメニュー（休むなら軽い内容）を組んで');
+  });
+}
+
+// ── ② ランからの提案（ホーム） ──
+async function renderAiSuggest(force){
+  const el=document.getElementById('ai-suggest-card');if(!el)return;
+  const f=db.settings.features||{};
+  if(window._LH_IS_NEW&&!db.userProfile){el.hidden=true;return;}
+  if(lhPremiumLocked()){
+    if(db.settings.hideSuggestTeaser||!lhPlanEnforced()){el.hidden=true;return;}
+    el.hidden=false;el.className='card ai-suggest-card teaser';
+    el.innerHTML=`<div class="ais-teaser"><span class="pw-tag">PREMIUM</span><span class="ais-t-txt"><b>ランからの提案</b><small>記録を見て、メニューや生活のおすすめをAIが毎日出します</small></span><button type="button" class="ais-t-go">くわしく</button><button type="button" class="ais-x" aria-label="閉じる">×</button></div>`;
+    el.querySelector('.ais-t-go').onclick=()=>lhShowPaywall({feature:'suggest'});
+    el.querySelector('.ais-x').onclick=()=>{db.settings.hideSuggestTeaser=true;save(db);el.hidden=true;};
+    return;
+  }
+  if(!aiConsented()||window._DEV_MODE){el.hidden=true;return;}
+  const today=todayStr();
+  let c=_pmGet('lh_ai_suggest');
+  if(force||!c||c.date!==today){
+    if(window._aisBusy)return;
+    window._aisBusy=true;
+    el.hidden=false;el.className='card ai-suggest-card loading';
+    el.innerHTML=`<div class="ais-head"><span class="ais-lbl">✦ ランからの提案</span></div><p class="ais-load">記録を見て考えています…</p>`;
+    const menu=(db.trainingMenus||{})[today];
+    const r=await lhAiJson('suggest','あなたはLifeWithのAIトレーナー「ラン」です。ユーザーに頼まれていなくても、記録を読んで役に立つ具体的な提案をします。タメ口で短く。',
+      `${_pmDataCtx()}\n【今日のトレーニングの予定】${menu?menu.replace(/\n/g,' / '):'まだない'}\n\n上のデータを読んで、今日のユーザーに役立つ提案を最大2つ出してください。
+・kind は menu（今日のトレーニングメニュー）/ sleep（睡眠）/ meal（食事）/ rest（休養）/ other のどれか
+・今日のトレーニングの予定がすでにあるなら menu は出さない。健康チェックで当てはまる項目があれば強い負荷は出さない
+・title は15字以内、body はデータの数字を根拠にした2文以内
+・menu のときだけ "menu" に、1行目にメニュー名、2行目から「種目名 セット数×回数」を1行ずつ（3〜6種目・使える器具だけ）
+・データが少なくて言えることがなければ items は空
+形式: {"items":[{"kind":"menu","title":"...","body":"...","menu":"背中の日\\nラットプルダウン 3×10"}]}`,1000,true);
+    window._aisBusy=false;
+    if(r.data&&Array.isArray(r.data.items)){c={date:today,items:r.data.items.slice(0,2),hide:[]};_pmSet('lh_ai_suggest',c);}
+    else{el.innerHTML=`<div class="ais-head"><span class="ais-lbl">✦ ランからの提案</span><button type="button" class="ais-redo" aria-label="もう一度">↺</button></div><p class="ais-load">${esc(r.err||'提案を作れませんでした')}</p>`;el.className='card ai-suggest-card';el.querySelector('.ais-redo').onclick=()=>renderAiSuggest(true);return;}
+  }
+  const items=(c.items||[]).map((x,i)=>Object.assign({i},x)).filter(x=>x&&x.title&&!(c.hide||[]).includes(x.i));
+  if(!items.length){el.hidden=true;return;}
+  const ic={menu:'💪',sleep:'😴',meal:'🍽',rest:'🛌',other:'✦'};
+  el.hidden=false;el.className='card ai-suggest-card';
+  el.innerHTML=`<div class="ais-head"><span class="ais-lbl">✦ ランからの提案</span><span class="pw-tag">PREMIUM</span></div>
+    ${items.map(x=>`<div class="ais-item" data-i="${x.i}"><span class="ais-ic" aria-hidden="true">${ic[x.kind]||'✦'}</span><div class="ais-main"><b>${esc(x.title)}</b><span>${esc(x.body||'')}</span>
+      ${x.kind==='menu'&&x.menu?`<pre class="ais-menu">${esc(String(x.menu).split('\n').slice(1).join('\n'))}</pre><button type="button" class="ais-act ais-add">今日の予定に入れる</button>`:`<button type="button" class="ais-act ais-ask">ランに相談</button>`}
+      </div><button type="button" class="ais-x" aria-label="この提案を消す">×</button></div>`).join('')}`;
+  el.querySelectorAll('.ais-item').forEach(row=>{
+    const x=items.find(y=>y.i===+row.dataset.i);
+    row.querySelector('.ais-x').onclick=()=>{c.hide=(c.hide||[]).concat(x.i);_pmSet('lh_ai_suggest',c);renderAiSuggest();};
+    row.querySelector('.ais-ask')?.addEventListener('click',()=>lhAskRan(`「${x.title}」の提案について、くわしく教えて`));
+    row.querySelector('.ais-add')?.addEventListener('click',()=>{
+      if(!db.trainingMenus)db.trainingMenus={};
+      if(db.trainingMenus[today]&&!confirm('今日のトレーニングの予定を、この提案に入れ替えますか？'))return;
+      db.trainingMenus[today]=String(x.menu).trim();save(db);
+      if(typeof renderStoicToday==='function')renderStoicToday();
+      showToast('今日の予定に入れました');
+      c.hide=(c.hide||[]).concat(x.i);_pmSet('lh_ai_suggest',c);renderAiSuggest();
+    });
+  });
+}
+document.addEventListener('lh-ai-consent',()=>{try{renderAiSuggest();}catch(e){}});
+
+// ── ③ 週のレポート ──
+function lhWeekStats(endOff){
+  const days=[];for(let i=6;i>=0;i--)days.push(_pmDate(endOff-i));
+  let tdays=0,sets=0,vol=0;const sl=[],kc=[],pr=[],st=[],wt=[];
+  days.forEach(ds=>{
+    const v=_pmVol(ds);if(v.sets){tdays++;sets+=v.sets;vol+=v.vol;}
+    const s=_pmSleepH(ds);if(s!=null)sl.push(s);
+    const m=_pmMeal(ds);if(m){if(m.kcal)kc.push(m.kcal);if(m.p)pr.push(m.p);}
+    const h=_pmH(ds);if(+h.steps)st.push(+h.steps);if(+h.weight)wt.push(+h.weight);
+  });
+  const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+  return {from:days[0],to:days[6],tdays,sets,vol,sleep:avg(sl),kcal:avg(kc),protein:avg(pr),steps:avg(st),wFirst:wt.length?wt[0]:null,wLast:wt.length?wt[wt.length-1]:null,wN:wt.length};
+}
+function _pmPearson(xs,ys){
+  const n=xs.length;if(n<5)return null;
+  const mx=xs.reduce((a,b)=>a+b,0)/n,my=ys.reduce((a,b)=>a+b,0)/n;
+  let sxy=0,sxx=0,syy=0;for(let i=0;i<n;i++){const dx=xs[i]-mx,dy=ys[i]-my;sxy+=dx*dy;sxx+=dx*dx;syy+=dy*dy;}
+  if(!sxx||!syy)return null;return sxy/Math.sqrt(sxx*syy);
+}
+// 直近30日の体調との関係。{x, y, r, n, text}
+function lhCorrelations(){
+  const P=[
+    {x:'前の夜の睡眠',xu:'長い',y:'トレーニング量',yu:'多い',yd:'少ない',fx:d=>_pmSleepH(_pmDate(-1,d)),fy:d=>{const v=_pmVol(d);return v.sets?v.vol||v.sets:null;}},
+    {x:'前の夜の睡眠',xu:'長い',y:'歩数',yu:'多い',yd:'少ない',fx:d=>_pmSleepH(_pmDate(-1,d)),fy:d=>+_pmH(d).steps||null},
+    {x:'前の夜の睡眠',xu:'長い',y:'食べたカロリー',yu:'多い',yd:'少ない',fx:d=>_pmSleepH(_pmDate(-1,d)),fy:d=>{const m=_pmMeal(d);return m&&m.kcal?m.kcal:null;}},
+    {x:'前の日のたんぱく質',xu:'多い',y:'トレーニング量',yu:'多い',yd:'少ない',fx:d=>{const m=_pmMeal(_pmDate(-1,d));return m&&m.p?m.p:null;},fy:d=>{const v=_pmVol(d);return v.sets?v.vol||v.sets:null;}},
+    {x:'トレーニング量',xu:'多い',y:'その夜の睡眠',yu:'長い',yd:'短い',fx:d=>{const v=_pmVol(d);return v.sets?v.vol||v.sets:null;},fy:d=>_pmSleepH(d)}
+  ];
+  return P.map(p=>{
+    const xs=[],ys=[];
+    for(let i=0;i<30;i++){const d=_pmDate(-i);const x=p.fx(d),y=p.fy(d);if(x!=null&&y!=null&&isFinite(x)&&isFinite(y)){xs.push(x);ys.push(y);}}
+    const r=_pmPearson(xs,ys),n=xs.length;
+    let text,lvl='none';
+    if(r==null)text='記録が足りません（あと'+Math.max(1,5-n)+'日分）';
+    else{const a=Math.abs(r);lvl=a>=0.5?'strong':a>=0.3?'some':'none';text=lvl==='none'?'はっきりした関係はなさそう':`${p.x}が${p.xu}日ほど、${p.y}が${r>0?p.yu:p.yd}${lvl==='strong'?'（強め）':'（少し）'}`;}
+    return {x:p.x,y:p.y,r,n,lvl,text};
+  });
+}
+function _pmWeekKey(){const d=new Date(todayStr()+'T00:00:00');const w=(d.getDay()+6)%7;d.setDate(d.getDate()-w);return fmt(d);}
+function lhReportToday(){if(lhPremiumLocked())return null;const c=_pmGet('lh_ai_report');return c&&c.week===_pmWeekKey()&&c.data?c:null;}
+async function lhRunReport(){
+  if(lhPremiumLocked()){lhShowPaywall({feature:'report'});return;}
+  window._rpBusy=true;window._rpErr='';renderMuscleMap();
+  const a=lhWeekStats(0),b=lhWeekStats(-7),cr=lhCorrelations().filter(x=>x.r!=null);
+  const fmtS=s=>`トレーニング${s.tdays}日・${s.sets}セット・量${s.vol}kg / 平均睡眠${s.sleep==null?'記録なし':s.sleep.toFixed(1)+'h'} / 平均${s.kcal==null?'記録なし':Math.round(s.kcal)+'kcal'}・たんぱく質${s.protein==null?'記録なし':Math.round(s.protein)+'g'} / 歩数${s.steps==null?'記録なし':Math.round(s.steps)} / 体重${s.wN>=2?s.wFirst+'→'+s.wLast+'kg':s.wLast?s.wLast+'kg':'記録なし'}`;
+  const tg=_pmTarget();
+  const r=await lhAiJson('report','あなたはLifeWithのAIトレーナー「ラン」です。1週間の記録をふり返るレポートを書きます。タメ口で短く、数字を根拠に。',
+    `【直近7日（${a.from}〜${a.to}）】${fmtS(a)}\n【その前の7日】${fmtS(b)}\n${tg?`【1日の目安】${tg.kcal}kcal・たんぱく質${tg.protein}g\n`:''}【直近30日の体調との関係（相関係数）】\n${cr.length?cr.map(x=>`${x.x}と${x.y}: r=${x.r.toFixed(2)}（${x.n}日分）`).join('\n'):'記録が足りない'}\n${_pmDataCtx()}
+上のデータで週のレポートを書いてください。
+・summary: この1週間を2文以内で
+・good: よかったこと（最大3つ・各40字以内）
+・next: 来週やること（最大3つ・具体的に・各40字以内）
+・insight: 体調との関係からわかることを2文以内（関係が弱い・日数が少ないときはそう書く。因果関係とは言い切らない）
+形式: {"summary":"...","good":["..."],"next":["..."],"insight":"..."}`,1400);
+  window._rpBusy=false;
+  if(r.data&&r.data.summary)_pmSet('lh_ai_report',{week:_pmWeekKey(),date:todayStr(),data:r.data});
+  else window._rpErr=r.err||'レポートを作れませんでした。もう一度試してください';
+  renderMuscleMap();
+}
+function _pmDelta(a,b,unit,dig){
+  if(a==null)return '<span class="rp-v">—</span>';
+  const v=dig?a.toFixed(dig):Math.round(a).toLocaleString();
+  let d='';if(b!=null&&a!==b){const x=a-b;d=`<small class="${x>0?'up':'down'}">${x>0?'▲':'▼'}${dig?Math.abs(x).toFixed(dig):Math.round(Math.abs(x)).toLocaleString()}</small>`;}
+  return `<span class="rp-v">${v}<i>${unit}</i></span>${d}`;
+}
+function renderWeekReport(root){
+  const a=lhWeekStats(0),b=lhWeekStats(-7),locked=lhPremiumLocked();
+  const md=s=>s.slice(5).replace('-','/');
+  const w=a.wN>=2?a.wLast-a.wFirst:null;
+  const tiles=[['トレーニング',_pmDelta(a.tdays,b.tdays,'日')],['セット数',_pmDelta(a.sets,b.sets,'')],['量（重さ×回数）',_pmDelta(a.vol,b.vol,'kg')],['平均睡眠',_pmDelta(a.sleep,b.sleep,'h',1)],['平均カロリー',_pmDelta(a.kcal,b.kcal,'kcal')],['たんぱく質',_pmDelta(a.protein,b.protein,'g')],['歩数',_pmDelta(a.steps,b.steps,'歩')],['体重の変化',w==null?'<span class="rp-v">—</span>':`<span class="rp-v">${w>0?'+':''}${w.toFixed(1)}<i>kg</i></span>`]];
+  let prem='';
+  if(locked){
+    prem=`<div class="card rp-lock"><span class="pw-tag">PREMIUM</span><b>体調との関係とAIの週のレポート</b><small>「睡眠が長い日ほどトレーニング量が多い」など、直近30日の記録から体調との関係を見つけて、ランが1週間をふり返ります</small><button type="button" class="ob-btn" id="rp-pw">くわしく見る</button></div>`;
+  }else{
+    const cr=lhCorrelations();
+    const lv={strong:'強め',some:'少し',none:'—'};
+    prem=`<div class="rp-sec">体調との関係<small>直近30日</small></div>
+      <div class="card rp-cor">${cr.map(x=>`<div class="rp-c-row ${x.lvl}"><div class="rp-c-pair">${esc(x.x)} × ${esc(x.y)}</div><div class="rp-c-txt">${esc(x.text)}</div>${x.r!=null?`<div class="rp-c-meta">${x.lvl==='none'?'':lv[x.lvl]+'・'}${x.n}日分</div>`:''}</div>`).join('')}
+      <p class="mm-hint" style="margin:6px 0 0">関係があっても、片方が原因とは限りません</p></div>`;
+    const rp=lhReportToday();
+    prem+=`<div class="rp-sec">AIの週のレポート<span class="pw-tag">PREMIUM</span></div>`;
+    if(window._rpBusy)prem+=`<div class="card rp-ai loading">ランがレポートを書いています…</div>`;
+    else if(rp){const d=rp.data,li=a=>(Array.isArray(a)?a:[]).filter(Boolean).map(x=>`<li>${esc(x)}</li>`).join('');
+      prem+=`<div class="card rp-ai"><div class="rp-ai-head"><small>${esc(md(rp.date))}に作成</small><button type="button" class="mm-ai-redo" id="rp-redo" aria-label="作り直す">↺</button></div><p class="rp-sum">${esc(d.summary||'')}</p>${li(d.good)?`<div class="rp-lbl">よかったこと</div><ul class="rp-ul good">${li(d.good)}</ul>`:''}${li(d.next)?`<div class="rp-lbl">来週やること</div><ul class="rp-ul">${li(d.next)}</ul>`:''}${d.insight?`<div class="rp-lbl">体調との関係</div><p class="rp-ins">${esc(d.insight)}</p>`:''}<button type="button" class="mm-ai-ask" id="rp-ask">レポートについてランに聞く</button></div>`;}
+    else prem+=`${window._rpErr?`<p class="mm-ai-err">${esc(window._rpErr)}</p>`:''}<button type="button" class="ob-btn" id="rp-make">AIの週のレポートを作る</button>`;
+  }
+  root.innerHTML=`${mmAnaChips('report')}
+    <div class="rp-sec">この1週間<small>${md(a.from)}〜${md(a.to)}・▲▼はその前の7日とくらべて</small></div>
+    <div class="rp-grid">${tiles.map(([l,v])=>`<div class="rp-tile"><small>${esc(l)}</small><div>${v}</div></div>`).join('')}</div>
+    ${prem}`;
+  mmBindChips(root);
+  root.querySelector('#rp-pw')?.addEventListener('click',()=>lhShowPaywall({feature:'report'}));
+  root.querySelector('#rp-make')?.addEventListener('click',lhRunReport);
+  root.querySelector('#rp-redo')?.addEventListener('click',lhRunReport);
+  root.querySelector('#rp-ask')?.addEventListener('click',()=>lhAskRan('今週のレポートを見て、来週のトレーニングと生活をどうするか相談したい'));
+  if(typeof renderPlanRow==='function')renderPlanRow();
+}
+
+setTimeout(()=>{try{renderAiSuggest();}catch(e){}},1200);
+
+// ── ④ 食事の写真アルバム（v2.108.0・プレミアム） ──
+function lhMealAlbumList(){
+  const L={breakfast:'朝食',lunch:'昼食',dinner:'夕食',snack:'間食'},out=[];
+  Object.keys(db.mlPhotos||{}).sort().reverse().forEach(ds=>{
+    const day=db.mlPhotos[ds]||{};
+    ['dinner','snack','lunch','breakfast'].forEach(k=>(day[k]||[]).slice().reverse().forEach(p=>{
+      if(!p||!p.id)return;
+      const items=((db.meals&&db.meals[ds]&&db.meals[ds][k])||[]);
+      out.push({ds,k,label:L[k],p,kcal:items.reduce((s,i)=>s+(+i.kcal||0),0),names:items.map(i=>i.name).slice(0,2).join('・')});
+    }));
+  });
+  return out;
+}
+function openMealAlbum(){
+  if(lhPremiumLocked()){lhShowPaywall({feature:'album'});return;}
+  const list=lhMealAlbumList();
+  const ov=document.createElement('div');ov.className='aic-ov';ov.id='alb-ov';
+  ov.innerHTML=`<div class="aic-sheet alb-sheet" role="dialog" aria-modal="true" aria-labelledby="alb-title"><div class="alb-head"><h3 id="alb-title">食事の写真アルバム</h3><button type="button" class="ais-x alb-x" aria-label="閉じる">×</button></div>
+    ${list.length?`<div class="alb-grid">${list.slice(0,200).map((x,i)=>`<button type="button" class="alb-tile" data-i="${i}"><img alt="${esc(x.names||x.label)}"><span class="alb-cap"><b>${esc(x.ds.slice(5).replace('-','/'))} ${esc(x.label)}</b>${x.kcal?`<small>${x.kcal}kcal</small>`:''}</span></button>`).join('')}</div>`
+      :'<p class="mm-hint">まだ写真がありません。食事の「📷 フォト」や「写真で自動入力」で撮ると、ここに並びます</p>'}</div>`;
+  document.body.appendChild(ov);
+  const close=()=>ov.remove();
+  ov.querySelector('.alb-x').onclick=close;
+  ov.addEventListener('click',e=>{if(e.target===ov)close();});
+  ov.querySelectorAll('.alb-tile').forEach(b=>{
+    const x=list[+b.dataset.i],img=b.querySelector('img');
+    if(x.p.data)img.src=x.p.data;else _photoDB.get(x.p.id).then(d=>{if(d)img.src=d;}).catch(()=>{});
+    b.onclick=()=>{if(typeof openMediaViewer==='function')openMediaViewer(x.p);};
+  });
+}
+document.getElementById('ml-album-btn')?.addEventListener('click',openMealAlbum);
+// ── ホームの上（v2.109.0）: やる気の出る数字と、すぐ押せる大きなタイル ─────────
+// ※ビルドで1つのscriptに連結されるため、トップレベルに const/let を置かない（TDZ回避）
+function _hhGo(sub){st.otherSub=sub;switchToTab('other');}
+function _hhLatestWeight(){const ks=Object.keys(db.health||{}).filter(d=>+db.health[d].weight).sort();return ks.length?{w:+db.health[ks[ks.length-1]].weight,ds:ks[ks.length-1]}:null;}
+function renderHomeHero(){
+  const el=document.getElementById('home-hero');if(!el)return;
+  if(window._LH_IS_NEW&&!db.userProfile){el.hidden=true;return;}
+  const f=db.settings.features||{},t=todayStr();
+  el.hidden=false;document.body.classList.add('has-hero');
+  // やる気の出る数字
+  const pills=[];
+  const sk=typeof getStreaks==='function'?getStreaks():{};
+  const best=Math.max(sk.workout&&!sk.workout.unset?sk.workout.count:0,sk.meals?sk.meals.count:0,sk.sleep?sk.sleep.count:0);
+  pills.push(`<span class="hh-pill hh-fire">🔥 <b>${best}</b>日連続</span>`);
+  if(sk.workout&&!sk.workout.unset){const w=sk.workout,pct=Math.min(100,Math.round(w.thisWeek/w.freq*100));pills.push(`<span class="hh-pill hh-week${w.metThis?' done':''}">今週 <b>${w.thisWeek}</b>/${w.freq}回<i style="--p:${pct}%"></i></span>`);}
+  if(typeof lhUnlocked==='function'&&lhUnlocked('level')&&typeof calcGameStats==='function'){try{const g=calcGameStats();if(g&&g.level)pills.push(`<span class="hh-pill hh-lv">Lv.<b>${g.level}</b></span>`);}catch(e){}}
+  // トレーニング開始・今日のやりごろ
+  const menu=((db.trainingMenus||{})[t]||'').split('\n')[0];
+  const done=((db.workouts||{})[t]||[]).length;
+  const trainSub=done?`今日 ${done}種目 記録済み`:menu?`今日：${menu}`:'今日のメニューを選んで始める';
+  let readyHead='筋肉マップ',readySub='記録すると鍛えどきがわかる',fill={};
+  if(typeof mmState==='function'){
+    const s=mmState(),ready=MM_PARTS.filter(p=>p.main&&['ready','long'].includes(s[p.k].st)).sort((a,b)=>(s[b.k].days||0)-(s[a.k].days||0)).map(p=>p.n);
+    fill=_mmFill(s);
+    if(MM_PARTS.some(p=>s[p.k].last)){readyHead=ready.length?ready.slice(0,2).join('・'):'今日は休みでOK';readySub=ready.length?'がやりごろ':'回復中の部位が多い日';}
+  }
+  const ran={img:'assets/characters/01_Ran_pointing.png'}; // ランがAIトレーナーの顔
+  // 食事・睡眠・体重
+  const m=typeof _pmMeal==='function'?_pmMeal(t):null,tg=typeof _pmTarget==='function'?_pmTarget():null;
+  const yd=(()=>{const d=new Date(t+'T00:00:00');d.setDate(d.getDate()-1);return fmt(d);})();
+  const sh=typeof _pmSleepH==='function'?_pmSleepH(yd):null;
+  const wt=_hhLatestWeight();
+  const small=[];
+  if(f.meals!==false)small.push(['meals','hh-meal','食事',m&&m.kcal?`<b>${m.kcal.toLocaleString()}</b>${tg?`<small>/${tg.kcal.toLocaleString()}kcal</small>`:'<small>kcal</small>'}`:'<small>記録する</small>','🍱']);
+  if(f.sleep!==false)small.push(['sleep','hh-sleep','睡眠',sh!=null?`<b>${Math.floor(sh)}</b><small>時間${Math.round((sh%1)*60)?Math.round((sh%1)*60)+'分':''}</small>`:'<small>昨夜を記録</small>','😴']);
+  small.push(['health','hh-weight','体重',wt?`<b>${wt.w.toFixed(1)}</b><small>kg</small>`:'<small>記録する</small>','⚖️']);
+  const sc=[['ai','🤖','ランに話す'],['find','🔍','種目を探す'],['report','📊','週の<br>レポート'],['plan','📅','週間<br>プランナー'],['album','📷','食事の<br>アルバム']];
+  el.innerHTML=`<div class="hh-status">${pills.join('')}</div>
+    <div class="hh-grid2">
+      <button type="button" class="hh-tile hh-train" id="hh-train"><span class="hh-t-lbl">LET'S GO</span><span class="hh-t-title">トレーニング<br>開始</span><span class="hh-t-sub">${esc(trainSub)}</span><span class="hh-blob"></span><img class="hh-ran" src="${esc(ran.img)}" alt="" onerror="this.style.display='none'"></button>
+      <button type="button" class="hh-tile hh-ready" id="hh-ready"><span class="hh-t-lbl">今日のやりごろ</span><span class="hh-t-title">${esc(readyHead)}</span><span class="hh-t-sub">${esc(readySub)}</span><span class="hh-blob"></span><span class="hh-body">${typeof mmSvg==='function'?mmSvg('f',fill,44,92,'筋肉マップ'):''}</span></button>
+    </div>
+    <div class="hh-grid3">${small.map(([k,c,l,v,ic])=>`<button type="button" class="hh-tile hh-small ${c}" data-go="${k}"><span class="hh-s-lbl">${l}</span><span class="hh-s-val">${v}</span><span class="hh-s-ic" aria-hidden="true">${ic}</span></button>`).join('')}</div>
+    <div class="hh-row">${sc.map(([k,ic,l])=>`<button type="button" class="hh-sc" data-sc="${k}"><span class="hh-sc-ic" aria-hidden="true">${ic}</span><span class="hh-sc-l">${l}</span></button>`).join('')}</div>`;
+  el.querySelector('#hh-train').onclick=()=>startTraining();
+  el.querySelector('#hh-ready').onclick=()=>{window._anaView='muscle';switchToTab('ana');};
+  el.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>_hhGo(b.dataset.go));
+  el.querySelectorAll('[data-sc]').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.sc;
+    if(k==='ai')switchToTab('ai');
+    else if(k==='find'){_hhGo('wo');setTimeout(()=>document.querySelector('.wo-vtab[data-v="find"]')?.click(),50);}
+    else if(k==='report'){window._anaView='report';switchToTab('ana');}
+    else if(k==='plan'){if(typeof openTrainingSchedule==='function')openTrainingSchedule();}
+    else if(k==='album'){if(typeof openMealAlbum==='function')openMealAlbum();}
+  });
+}
+renderHomeHero();
+// ── トレーニング → 記録の「今日のメニュー」（v2.110.0） ─────────────
+// db.trainingMenus[日付] のテキスト（1行目にメニュー名、続けて「種目名 セット×回数」）を種目ごとに出す
+// ※ビルドで1つのscriptに連結されるため、トップレベルに const/let を置かない（TDZ回避）
+function lhParseMenu(text){
+  const out={title:'',items:[],notes:[]};
+  String(text||'').split('\n').map(l=>l.trim()).filter(Boolean).forEach((l,i)=>{
+    const m=l.replace(/^[・\-•\s]+/,'').match(/^(.+?)[\s　]+(\d+)\s*[×xX]\s*(.+)$/);
+    if(m)out.items.push({name:m[1].trim(),sets:+m[2],reps:m[3].trim()});
+    else if(i===0&&!out.title)out.title=l.replace(/^【|】.*$/g,'').trim()||l;
+    else out.notes.push(l);
+  });
+  return out;
+}
+function _wmTool(name){for(const arr of Object.values(MM_LIB||{}))for(const [n,tool] of arr)if(n===name)return tool;return '';}
+function lhAddMenuEx(e,ds,light){
+  if(!db.workouts[ds])db.workouts[ds]=[];
+  const sets=light?Math.max(1,e.sets-1):e.sets;
+  const reps=String(e.reps),r=(reps.match(/\d+/)||[10])[0]*1;
+  if(/秒|分/.test(reps)){db.workouts[ds].push({id:uid(),name:e.name,category:'stretch',sets:Array.from({length:sets},()=>({time:null}))});return;}
+  if(_wmTool(e.name)==='道具なし'||/腕立て|プッシュアップ|懸垂|チンニング|プランク|クランチ|シットアップ|レッグレイズ|ディップス|自重/.test(e.name)){db.workouts[ds].push({id:uid(),name:e.name,category:'bodyweight',sets:Array.from({length:sets},()=>({r}))});return;}
+  const prev=typeof woInitialSet==='function'?woInitialSet(e.name,'weight'):null;
+  const w=prev&&prev.w!=null?prev.w:0;
+  db.workouts[ds].push({id:uid(),name:e.name,category:'weight',sets:Array.from({length:sets},()=>({w,r}))});
+}
+function renderWoMenu(){
+  const el=document.getElementById('wo-menu-card');if(!el)return;
+  const ds=st.woDate||todayStr(),isToday=ds===todayStr();
+  const text=(db.trainingMenus||{})[ds]||'';
+  const lbl=isToday?'今日のメニュー':`${+ds.slice(5,7)}/${+ds.slice(8)}のメニュー`;
+  el.hidden=false;
+  if(!text.trim()){
+    el.className='card wo-menu-card empty';
+    el.innerHTML=`<div class="wm-head"><span class="wm-lbl">${lbl}</span></div><p class="wm-empty">${isToday?'今日のメニューはまだありません':'この日のメニューはありません'}</p><div class="wm-btns"><button type="button" class="wm-btn wm-plan">週間プランナーで作る</button>${isToday?'<button type="button" class="wm-btn wm-ask">ランに組んでもらう</button>':''}</div>`;
+  }else{
+    const p=lhParseMenu(text),recs=(db.workouts||{})[ds]||[];
+    const done=it=>recs.some(r=>r.name===it.name);
+    const left=p.items.filter(it=>!done(it)).length;
+    const light=isToday&&typeof lhLightInfo==='function'&&lhLightInfo().on;
+    el.className='card wo-menu-card';
+    el.innerHTML=`<div class="wm-head"><span class="wm-lbl">${lbl}</span>${p.items.length?`<span class="wm-count"><b>${p.items.length-left}</b>/${p.items.length}</span>`:''}<button type="button" class="wm-edit">直す</button></div>
+      ${p.title?`<div class="wm-title">${esc(p.title)}</div>`:''}
+      ${p.items.length?`<ul class="wm-list">${p.items.map((it,i)=>`<li class="wm-row${done(it)?' done':''}">${typeof exPicHtml==='function'?exPicHtml(it.name,40):''}<span class="wm-nm"><b>${esc(it.name)}</b><small>${it.sets}セット × ${esc(it.reps)}${light?'（軽めの日は1セット少なく）':''}</small></span>${done(it)?'<span class="wm-ok" aria-label="記録済み">✓</span>':`<button type="button" class="wm-add" data-i="${i}" aria-label="${esc(it.name)}を記録に入れる">＋</button>`}</li>`).join('')}</ul>`:''}
+      ${p.notes.length?`<p class="wm-note">${p.notes.map(esc).join('<br>')}</p>`:''}
+      ${left?`<button type="button" class="wm-all">まだの${left}種目をまとめて記録に入れる</button>`:p.items.length?'<p class="wm-done">メニューの種目はぜんぶ記録しました 💪</p>':''}`;
+    const addOne=it=>{lhAddMenuEx(it,ds,light);};
+    el.querySelectorAll('.wm-add').forEach(b=>b.onclick=()=>{addOne(p.items[+b.dataset.i]);save(db);renderWo();window._missionHook?.('log_workout');});
+    el.querySelector('.wm-all')?.addEventListener('click',()=>{const todo=p.items.filter(it=>!done(it));todo.forEach(addOne);save(db);renderWo();showToast(`${todo.length}種目を記録に入れました。重さと回数を確かめてね`);window._missionHook?.('log_workout');});
+    el.querySelector('.wm-edit').onclick=()=>{if(isToday&&typeof openTrainingMenu==='function')openTrainingMenu();else if(typeof openTrainingSchedule==='function')openTrainingSchedule();};
+  }
+  el.querySelector('.wm-plan')?.addEventListener('click',()=>{if(typeof openTrainingSchedule==='function')openTrainingSchedule();});
+  el.querySelector('.wm-ask')?.addEventListener('click',()=>{if(typeof lhAskRan==='function')lhAskRan('今日のトレーニングメニューを組んで。今日のメニューに入れて');});
+}
 </script>
 <div id="lu-overlay" hidden style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;"></div>
 <div id="share-pv-modal" class="share-pv-modal" hidden>
